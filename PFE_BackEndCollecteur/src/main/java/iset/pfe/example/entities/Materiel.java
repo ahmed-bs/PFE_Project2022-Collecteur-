@@ -6,15 +6,23 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Materiel implements Serializable{
+	
 	@Id
 	@GeneratedValue
 	private Integer idM;
 	private String intitule;
 	private String matricule;
 	private Date dateAchat;
+	
+	@ManyToOne
+	@JoinColumn(name="idChef")
+	private Chef chef;
+	
 	public Materiel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,6 +32,16 @@ public class Materiel implements Serializable{
 		this.intitule = intitule;
 		this.matricule = matricule;
 		this.dateAchat = dateAchat;
+	}
+	
+	
+	
+	public Materiel(String intitule, String matricule, Date dateAchat, Chef chef) {
+		super();
+		this.intitule = intitule;
+		this.matricule = matricule;
+		this.dateAchat = dateAchat;
+		this.chef = chef;
 	}
 	public Integer getIdM() {
 		return idM;
@@ -49,8 +67,11 @@ public class Materiel implements Serializable{
 	public void setDateAchat(Date dateAchat) {
 		this.dateAchat = dateAchat;
 	}
-	
-	
-	
+	public Chef getChef() {
+		return chef;
+	}
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
 
 }

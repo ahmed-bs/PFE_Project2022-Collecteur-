@@ -1,9 +1,15 @@
 package iset.pfe.example.entities;
 
 import java.io.Serializable;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -20,6 +26,14 @@ public class Chef implements Serializable{
 	private int tel;
 	private String username;
 	private String password;
+	
+	@OneToMany(mappedBy="chef",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Materiel> materiels;
+	
+	@OneToMany(mappedBy="chef",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<ArrivageLait> arrivageLait;
 
 
 	public Chef() {
@@ -37,9 +51,36 @@ public class Chef implements Serializable{
 		this.username = username;
 		this.password = password;
 	}
-	
-	
 
+
+	public Chef(String nom, String prenom, String email, String adress, int cin, int tel, String username,
+			String password, Set<Materiel> materiels) {
+		super();
+		Nom = nom;
+		Prenom = prenom;
+		Email = email;
+		Adress = adress;
+		Cin = cin;
+		this.tel = tel;
+		this.username = username;
+		this.password = password;
+		this.materiels = materiels;
+	}
+
+	public Chef(String nom, String prenom, String email, String adress, int cin, int tel, String username,
+			String password, Set<Materiel> materiels, Set<ArrivageLait> arrivageLait) {
+		super();
+		Nom = nom;
+		Prenom = prenom;
+		Email = email;
+		Adress = adress;
+		Cin = cin;
+		this.tel = tel;
+		this.username = username;
+		this.password = password;
+		this.materiels = materiels;
+		this.arrivageLait = arrivageLait;
+	}
 
 	public Integer getIdChef() {
 		return idChef;
@@ -113,5 +154,20 @@ public class Chef implements Serializable{
 		this.password = password;
 	}
 
+	public Set<Materiel> getMateriels() {
+		return materiels;
+	}
+
+	public void setMateriels(Set<Materiel> materiels) {
+		this.materiels = materiels;
+	}
+
+	public Set<ArrivageLait> getArrivageLait() {
+		return arrivageLait;
+	}
+
+	public void setArrivageLait(Set<ArrivageLait> arrivageLait) {
+		this.arrivageLait = arrivageLait;
+	}
 
 }

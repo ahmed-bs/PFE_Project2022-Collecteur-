@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ArrivageLait implements Serializable{
@@ -15,6 +17,15 @@ public class ArrivageLait implements Serializable{
 	private double poids;
 	private double volume;
 	private Date dateArrive;
+	
+	@ManyToOne
+	@JoinColumn(name="idChef")
+	private Chef chef;
+	
+	@ManyToOne
+	@JoinColumn(name="idAnalyse")
+	private AnalyseLait analyseLait;
+	
 	public ArrivageLait() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -25,6 +36,15 @@ public class ArrivageLait implements Serializable{
 		this.poids = poids;
 		this.volume = volume;
 		this.dateArrive = dateArrive;
+	}
+	
+	public ArrivageLait(double poids, double volume, Date dateArrive, Chef chef, AnalyseLait analyseLait) {
+		super();
+		this.poids = poids;
+		this.volume = volume;
+		this.dateArrive = dateArrive;
+		this.chef = chef;
+		this.analyseLait = analyseLait;
 	}
 	public Integer getIdA() {
 		return idA;
@@ -49,6 +69,18 @@ public class ArrivageLait implements Serializable{
 	}
 	public void setDateArrive(Date dateArrive) {
 		this.dateArrive = dateArrive;
+	}
+	public Chef getChef() {
+		return chef;
+	}
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
+	public AnalyseLait getAnalyseLait() {
+		return analyseLait;
+	}
+	public void setAnalyseLait(AnalyseLait analyseLait) {
+		this.analyseLait = analyseLait;
 	}
 
 }
