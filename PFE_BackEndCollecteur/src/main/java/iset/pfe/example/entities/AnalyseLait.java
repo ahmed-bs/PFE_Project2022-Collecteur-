@@ -2,10 +2,19 @@ package iset.pfe.example.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class AnalyseLait implements Serializable {
@@ -20,6 +29,17 @@ public class AnalyseLait implements Serializable {
 	private double calcium;
 	private double lactose;
 	private double proteine;
+	
+	@OneToMany(mappedBy="analyseLait",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<ArrivageLait> arrivageLait;
+	
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name="analyse_tank" , joinColumns = @JoinColumn(name="idAnalyse") , inverseJoinColumns=@JoinColumn(name="idTank"))
+	@JsonIgnore
+	private Set<Tank> tanks= new HashSet<>();
+
+	
 	public AnalyseLait() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -35,6 +55,22 @@ public class AnalyseLait implements Serializable {
 		this.lactose = lactose;
 		this.proteine = proteine;
 	}
+	
+	
+	public AnalyseLait(String etatAnalyse, double temperature, Date dateAnalyse, double bacterie, double calcium,
+			double lactose, double proteine, Set<ArrivageLait> arrivageLait, Set<Tank> tanks) {
+		super();
+		this.etatAnalyse = etatAnalyse;
+		Temperature = temperature;
+		this.dateAnalyse = dateAnalyse;
+		this.bacterie = bacterie;
+		this.calcium = calcium;
+		this.lactose = lactose;
+		this.proteine = proteine;
+		this.arrivageLait = arrivageLait;
+		this.tanks = tanks;
+	}
+
 	public Integer getIdAnalyse() {
 		return idAnalyse;
 	}
@@ -83,7 +119,18 @@ public class AnalyseLait implements Serializable {
 	public void setProteine(double proteine) {
 		this.proteine = proteine;
 	}
-	
+	public Set<ArrivageLait> getArrivageLait() {
+		return arrivageLait;
+	}
+	public void setArrivageLait(Set<ArrivageLait> arrivageLait) {
+		this.arrivageLait = arrivageLait;
+	}
+	public Set<Tank> getTanks() {
+		return tanks;
+	}
+	public void setTanks(Set<Tank> tanks) {
+		this.tanks = tanks;
+	}
 	
 	
 }

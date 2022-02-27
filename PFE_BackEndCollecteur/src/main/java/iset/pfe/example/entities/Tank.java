@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,6 +27,10 @@ public class Tank implements Serializable{
 	private Date Date_Sortie;
 	private int Etat;
 	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tanks")
+	@JsonIgnore
+    private Set<AnalyseLait> analyseLaits= new HashSet<>();
+	
 	
 	//constructors
 	public Tank() {
@@ -35,9 +38,8 @@ public class Tank implements Serializable{
 	}
 	
 
-	public Tank(Integer idTank, double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat) {
+	public Tank( double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat) {
 		super();
-		this.idTank = idTank;
 		Poid = poid;
 		Volume = volume;
 		Date_Remplissage = date_Remplissage;
@@ -47,6 +49,18 @@ public class Tank implements Serializable{
 
 
 	//getters and setters 
+
+	public Tank(double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat,
+			Set<AnalyseLait> analyseLaits) {
+		super();
+		Poid = poid;
+		Volume = volume;
+		Date_Remplissage = date_Remplissage;
+		Date_Sortie = date_Sortie;
+		Etat = etat;
+		this.analyseLaits = analyseLaits;
+	}
+
 
 	//idTank
 	public Integer getIdTank() {
@@ -92,6 +106,14 @@ public class Tank implements Serializable{
 	}
 
 
+	public Set<AnalyseLait> getAnalyseLaits() {
+		return analyseLaits;
+	}
+
+
+	public void setAnalyseLaits(Set<AnalyseLait> analyseLaits) {
+		this.analyseLaits = analyseLaits;
+	}
 
 	
 }
