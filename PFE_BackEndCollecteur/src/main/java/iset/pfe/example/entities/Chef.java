@@ -22,7 +22,7 @@ public class Chef implements Serializable{
 	private String prenom;
 	private String email;
 	private String adress;
-	private int cin;
+	private int cin; //badalha matricule
 	private int tel;
 	private String username;
 	private String password;
