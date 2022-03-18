@@ -7,16 +7,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import iset.pfe.example.entities.AnalyseLait;
-import iset.pfe.example.entities.ArrivageLait;
+import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Chef;
-import iset.pfe.example.entities.Materiel;
+import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.Tank;
-import iset.pfe.example.repositories.AnalyseLaitRepository;
-import iset.pfe.example.repositories.ArrivageLaitRepository;
+import iset.pfe.example.entities.Usine;
+import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.ChefRepository;
-import iset.pfe.example.repositories.MaterielRepository;
+import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.TankRepository;
+import iset.pfe.example.repositories.UsineRepository;
 
 @SpringBootApplication
 public class PfeBackEndApplication implements CommandLineRunner {
@@ -24,13 +24,13 @@ public class PfeBackEndApplication implements CommandLineRunner {
 	@Autowired
 	private ChefRepository chefRepository;
 	@Autowired
-	private AnalyseLaitRepository analyseLaitRepository;
-	@Autowired
-	private ArrivageLaitRepository arrivageLaitRepository ;
-	@Autowired
-	private MaterielRepository materielRepository;
-	@Autowired
 	private TankRepository tankRepository;
+	@Autowired
+	private AgriculteurRepository agriculteurRepository;
+	@Autowired
+	private UsineRepository usineRepository;
+	@Autowired
+	private OperationRepository operationRepository;
 	
 	
 	public static void main(String[] args) {
@@ -44,24 +44,19 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		Chef c=new Chef("Nour", "Guerfali", "nour@gmail.com", "Bizerte", 11431134, 54546450, "Nour", "1234");
 		chefRepository.save(c);
 		
-		AnalyseLait a1=new AnalyseLait("bonne", 35.5, date, 1.2, 1.5, 2.1, 2.5);
-		analyseLaitRepository.save(a1);
-		
-		ArrivageLait arr1=new ArrivageLait(125, 125, date, c, a1);
-		arrivageLaitRepository.save(arr1);
-		
-		Materiel m1=new Materiel("materiel 1 ....", "12346vf21", date,c);
-		materielRepository.save(m1);
-		
-		
-		Tank t1=new Tank(125, 125, date, date, 1);
-		//t1.getAnalyseLaits().add(a1);
+		Tank t1=new Tank("102s50v5", 120, 0, "non remplis");
 		tankRepository.save(t1);
 		
-		//a1.getTanks().add(t1);
-		//analyseLaitRepository.save(a1);
-		//tankRepository.save(t1);
+		Agriculteur a1=new Agriculteur("Ahmed", "Ben saber", "ahmed@gmail.com", "Bizerte", 22332233);
+		agriculteurRepository.save(a1);
 		
+		Usine u1=new Usine("Usine 1", "bizerte");
+		usineRepository.save(u1);
+		
+		Operation o1=new Operation(120, date.toString(), "Remplissage", 10006);
+		operationRepository.save(o1);
+		
+	
 		
 	}
 
