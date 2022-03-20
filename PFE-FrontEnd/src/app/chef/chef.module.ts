@@ -7,11 +7,13 @@ import { TankComponent } from './tank/tank.component';
 import { ChefRoutingModule } from './chef-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ChefComponent } from './chef.component';
 
 
 
 @NgModule({
   declarations: [
+    ChefComponent,
     AgriculteurComponent,
     UsineComponent,
     OperationComponent,

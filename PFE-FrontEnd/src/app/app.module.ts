@@ -18,11 +18,6 @@ import { OperationRoutingModule } from './chef/operation/operation-routing.modul
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ChefRoutingModule,
-    AgriculteurRoutingModule,
-    UsineRoutingModule,
-    TankRoutingModule,
-    OperationRoutingModule,
     HttpClientModule,
   ],
   providers: [],
