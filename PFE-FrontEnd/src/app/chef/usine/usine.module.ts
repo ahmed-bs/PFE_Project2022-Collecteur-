@@ -6,6 +6,27 @@ import { UpdateUsineComponent } from './update-usine/update-usine.component';
 import { DetailsUsineComponent } from './details-usine/details-usine.component';
 import { UsineRoutingModule } from './usine-routing.module';
 
+import { HttpClientModule } from '@angular/common/http';
+
+// import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule} from "@angular/material/dialog";
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+
+// AddForPaginator
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+//add For Sorted
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -18,6 +39,24 @@ import { UsineRoutingModule } from './usine-routing.module';
   imports: [
     CommonModule,
     UsineRoutingModule,
+
+    FormsModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatButtonModule,
+    FormsModule,
+    MatIconModule,
+    MatMenuModule,
+    ReactiveFormsModule,
+     //add For Sorted
+     MatSortModule,
+     // AddForPaginator
+     MatPaginatorModule,
+     MatFormFieldModule,
+     MatInputModule,
+     MatTableModule,
+     MatSnackBarModule,
   ]
 })
 export class UsineModule { }

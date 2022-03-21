@@ -1,1 +1,60 @@
-<p>update-usine works!</p>
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h2 id="modal-title"><b>Modifier le usine numero : {{usine.idUsine}}</b></h2>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    <form [formGroup]="myForm" class="needs-validation" novalidate>
+
+      <div class="form-group">
+        <div class="col-md-12 mb-3">
+        <label>nom de l'usine :</label>
+        <input type="text"
+               class="form-control"
+               formControlName="nomUsine"
+               name="nomUsine"
+               [(ngModel)]="usine.nomUsine"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="nomUsine?.invalid && nomUsine?.touched"
+                class="text-danger">
+                nomUsine invalide !
+         </div>
+         <div
+              *ngIf="nomUsine?.valid && nomUsine?.touched"
+              class="text-success">
+               nomUsine valide !
+         </div>
+        </div>
+
+
+          <div class="col-md-12 mb-3">
+            <label>Adresse :</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="adresse"
+                   name="adresse"
+                   [(ngModel)]="usine.adresse"
+                   placeholder="Post Name here ..">
+              <div
+                   *ngIf="adresse?.invalid && adresse?.touched"
+                    class="text-danger">
+                    adresse invalide !
+             </div>
+             <div
+                  *ngIf="adresse?.valid && adresse?.touched"
+                  class="text-success">
+                  adresse valide !
+             </div>
+            </div>
+
+    </div>
+
+      <div class="modal-footer">
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" (click)="updateUsine()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      </div>
+    </form>
+
+  </div>
