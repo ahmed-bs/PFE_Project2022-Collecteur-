@@ -36,10 +36,6 @@ export class CreateAgriculteurComponent implements OnInit {
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
-    //this.ValidatedForm();
-    // this.produits=this.produitService.getProduits();
-    // this.fournisseurs=this.fournisseurService.getFournisseurs();
-    // this.agriculteurs=this.agriculteurService.getagriculteurs();
 
   }
 
