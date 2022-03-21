@@ -1,1 +1,129 @@
-<p>create-agriculteur works!</p>
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h3 id="modal-title"><b>Ajouter un nouveau agriculteur :</b></h3>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
+          <form [formGroup]="myForm"  novalidate >
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-3">
+                <label>Nom : <span style="color:red;">*</span></label>
+                <input type="text"
+                 formControlName="nom"
+                 class="form-control"
+                 id="nom"
+                 name="nom">
+  
+                <div *ngIf="nom?.invalid && nom?.touched" class="text-danger">
+                  Nom invalide !
+                </div>
+                <div *ngIf="nom?.valid && nom?.touched " class="text-success">
+                  Nom valide!
+                </div>
+                <!-- <div *ngIf="msgErreur==1" class="text-danger">
+                  Vous ne pouvez pas prendre cette quantité!! car la quantité disponible dans le stock est: {{qteAct}} !
+                  <br> Vous devez introduire une quantite moins ou egale a {{qteAct}} .
+                </div> -->
+  
+              </div>
+
+  
+            <!-- <div class="form-row"> -->
+  
+              <div class="col-md-6 mb-3">
+                  <label for="prix">Prenom : <span style="color:red;">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                    id="prenom"
+                    formControlName="prenom"
+                    name="prenom">
+    
+                    <div *ngIf="prenom?.invalid && prenom?.touched" class="text-danger">
+                    Prenom invalide !
+                    </div>
+                    <div *ngIf="prenom?.valid && prenom?.touched" class="text-success">
+                      Prenom Valide
+                    </div>
+  
+              </div>
+
+              <div class="col-md-12 mb-3">
+                <label for="prix">Adresse : <span style="color:red;">*</span></label>
+                <input type="text"
+                class="form-control"
+                  id="adress"
+                  formControlName="adress"
+                  name="adress">
+  
+                  <div *ngIf="adress?.invalid && adress?.touched" class="text-danger">
+                    Adresse invalide !
+                  </div>
+                  <div *ngIf="adress?.valid && adress?.touched" class="text-success">
+                    Adresse Valide
+                  </div>
+
+            </div>
+
+            <div class="col-md-12 mb-3">
+              <label for="prix">Email: <span style="color:red;">*</span></label>
+              <input type="text"
+              class="form-control"
+                id="email"
+                formControlName="email"
+                name="email">
+
+                <div *ngIf="email?.invalid && email?.touched" class="text-danger">
+                  Email invalide !
+                </div>
+                <div *ngIf="email?.valid && email?.touched" class="text-success">
+                  Email Valide
+                </div>
+
+          </div>
+
+            
+            <div class="col-md-12 mb-3">
+              <label for="prix">Telephone : <span style="color:red;">*</span></label>
+              <input type="text"
+              class="form-control"
+                id="tel"
+                formControlName="tel"
+                name="tel">
+
+                <div *ngIf="tel?.invalid && tel?.touched" class="text-danger">
+                  Numero de telephone invalide !
+                </div>
+                <div *ngIf="tel?.valid && tel?.touched" class="text-success">
+                  Numero de telephone Valide
+                </div>
+
+          </div>
+  
+            <!-- </div> -->
+  
+  
+           
+  
+            </div>
+  
+  
+  
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="cgu" required>
+                <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation</label>
+                <br>
+                <span style="color:red;margin-bottom:45px;">{{msg}}</span>
+                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
+            <!-- close popup -->
+            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+  
+          </form>
+        </div>
+  
+  

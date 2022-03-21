@@ -1,1 +1,126 @@
-<p>update-agriculteur works!</p>
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h2 id="modal-title"><b>Modifier le agriculteur numero : {{agriculteur.idAgriculteur}}</b></h2>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    <form [formGroup]="myForm" class="needs-validation" novalidate>
+
+      <div class="form-group">
+        <div class="col-md-12 mb-3">
+        <label>Nom :</label>
+        <input type="text"
+               class="form-control"
+               formControlName="nom"
+               name="nom"
+               [(ngModel)]="agriculteur.nom"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="nom?.invalid && nom?.touched"
+                class="text-danger">
+                nom invalide !
+         </div>
+         <div
+              *ngIf="nom?.valid && nom?.touched"
+              class="text-success">
+               nom valide !
+         </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+          <label>Prenom :</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="prenom"
+                 name="prenom"
+                 [(ngModel)]="agriculteur.prenom"
+                 placeholder="Post Name here ..">
+            <div
+                 *ngIf="prenom?.invalid && prenom?.touched"
+                  class="text-danger">
+                  prenom invalide !
+           </div>
+           <div
+                *ngIf="prenom?.valid && prenom?.touched"
+                class="text-success">
+                 prenom valide !
+           </div>
+          </div>
+
+
+          <div class="col-md-12 mb-3">
+            <label>Email :</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="email"
+                   name="email"
+                   [(ngModel)]="agriculteur.email"
+                   placeholder="Post Name here ..">
+              <div
+                   *ngIf="email?.invalid && email?.touched"
+                    class="text-danger">
+                    email invalide !
+             </div>
+             <div
+                  *ngIf="email?.valid && email?.touched"
+                  class="text-success">
+                  email valide !
+             </div>
+            </div>
+
+
+
+
+
+          <div class="col-md-12 mb-3">
+            <label>Adresse :</label>
+            <input type="text"
+                   class="form-control"
+                   formControlName="adress"
+                   name="adress"
+                   [(ngModel)]="agriculteur.adress"
+                   placeholder="Post Name here ..">
+              <div
+                   *ngIf="adress?.invalid && adress?.touched"
+                    class="text-danger">
+                    adress invalide !
+             </div>
+             <div
+                  *ngIf="adress?.valid && adress?.touched"
+                  class="text-success">
+                  adress valide !
+             </div>
+            </div>
+
+
+
+            <div class="col-md-12 mb-3">
+              <label>Numero de telephone :</label>
+              <input type="text"
+                     class="form-control"
+                     formControlName="tel"
+                     name="tel"
+                     [(ngModel)]="agriculteur.tel"
+                     placeholder="Post Name here ..">
+                <div
+                     *ngIf="tel?.invalid && tel?.touched"
+                      class="text-danger">
+                      adress invalide !
+               </div>
+               <div
+                    *ngIf="tel?.valid && tel?.touched"
+                    class="text-success">
+                    adress valide !
+               </div>
+              </div>
+
+    </div>
+
+      <div class="modal-footer">
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" (click)="updateAgriculteur()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      </div>
+    </form>
+
+  </div>

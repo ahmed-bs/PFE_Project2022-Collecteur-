@@ -8,6 +8,9 @@ import { ChefRoutingModule } from './chef-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChefComponent } from './chef.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale'
 
 
 
@@ -24,7 +27,9 @@ import { ChefComponent } from './chef.component';
   ],
   imports: [
     CommonModule,
-    ChefRoutingModule
+    ChefRoutingModule,
+    NgxChartsModule,
+    MatSnackBarModule,
   ]
 })
 export class ChefModule { }
