@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.repositories.TankRepository;
 
@@ -99,8 +100,15 @@ public class TankRestController {
 		
 		//update a tank method
 		@RequestMapping(value="/tanks/{idTank}",method = RequestMethod.PUT)
-		public ResponseEntity<Tank> EditTank(@PathVariable Integer idTank, @RequestBody Tank tanks){
-			return ResponseEntity.ok(tankRepository.save(tanks));
+		public Tank EditTank(@PathVariable Integer idTank, @RequestBody Tank tanks){
+		Tank t= tankRepository.findById(idTank).orElseThrow(()->new ResourceNotFoundException("Cet tank n'existe pas"));
+			t.setEtat(tanks.getEtat());
+			t.setMatricule(tanks.getMatricule());
+			t.setPoidActuel(tanks.getPoidActuel());
+			t.setPoidVide(tanks.getPoidVide());
+			tankRepository.save(t);
+				
+		  	return t;
 	    }
 		
 	
