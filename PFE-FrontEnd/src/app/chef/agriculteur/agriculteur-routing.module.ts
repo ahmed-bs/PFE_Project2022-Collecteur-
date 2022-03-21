@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'addAgriculteur', component: CreateAgriculteurComponent  },
   { path: 'detailsAgriculteur/:id', component: DetailsAgriculteurComponent   },
   { path: 'updateAgriculteur/:id', component: UpdateAgriculteurComponent  },
-  { path:'',redirectTo:'/Agriculteur',pathMatch:'full'},
+  { path:'',redirectTo:'/agriculteur',pathMatch:'full'},
   // {  path:'**', component: AgriculteurComponent },
 ];
 

@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 const routes :Routes =[
   {path:'login',component:LoginComponent },
   {path:'chef', loadChildren: () => import('./chef/chef.module').then(m => m.ChefModule) },
-  {path:'',redirectTo:'/login',pathMatch:'full'},
+  // {path:'',redirectTo:'/login',pathMatch:'full'},
 
 
 

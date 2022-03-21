@@ -3,7 +3,7 @@ export class Agriculteur{
     nom!: string;
     prenom!: string;
     email!: string;
-    adresse!: string;
+    adress!: string;
     tel!:number;
    
   
