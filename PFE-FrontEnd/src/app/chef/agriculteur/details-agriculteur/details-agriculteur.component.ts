@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-details-agriculteur',
