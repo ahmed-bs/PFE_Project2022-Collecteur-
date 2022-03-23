@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.OperationTank;
 import iset.pfe.example.entities.Tank;
+import iset.pfe.example.repositories.AgriculteurRepository;
+import iset.pfe.example.repositories.ChefRepository;
 import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.OperationTankRepository;
 import iset.pfe.example.repositories.TankRepository;
@@ -33,7 +35,10 @@ public class OperationRestController {
 	private TankRepository tankRepository;
 	@Autowired
 	private OperationTankRepository operationTankRepository;
-	
+	@Autowired
+	private AgriculteurRepository agriculteurRepository;
+	@Autowired
+	private ChefRepository chefRepository;
 	
 	@RequestMapping(value="/operations",method = RequestMethod.GET)
 	public List<Operation> getOperations(){
@@ -127,6 +132,8 @@ public class OperationRestController {
 			Date date1=new Date();
 			operation.setDateOperation(currentDateTime);
 			operation.setTypeOp("Remplissage");
+			operation.setChef(chefRepository.findAll().get(0));
+		
 			operationRepository.save(operation);
 		
 		for(int j=0;j<tankRepository.findAll().size();j++){
@@ -248,6 +255,8 @@ public class OperationRestController {
 	Date date1=new Date();
 	operation.setDateOperation(currentDateTime);
 	operation.setTypeOp("Retrait");
+	operation.setChef(chefRepository.findAll().get(0));
+	operation.setCode(10000+operationRepository.findAll().size());
 	operationRepository.save(operation);
 	
 	for(int j=0;j<tankRepository.findAll().size();j++){

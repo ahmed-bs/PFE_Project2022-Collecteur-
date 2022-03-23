@@ -5,11 +5,11 @@ import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Services/operation.service';
 
 @Component({
-  selector: 'app-details-operation',
-  templateUrl: './details-operation.component.html',
-  styleUrls: ['./details-operation.component.css']
+  selector: 'app-details-operation-retrait',
+  templateUrl: './details-operation-retrait.component.html',
+  styleUrls: ['./details-operation-retrait.component.css']
 })
-export class DetailsOperationComponent implements OnInit {
+export class DetailsOperationRetraitComponent implements OnInit {
   id!: number;
   idO!: any;
   operation?:Operation = new Operation();

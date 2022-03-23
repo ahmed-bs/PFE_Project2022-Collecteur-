@@ -54,9 +54,14 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		usineRepository.save(u1);
 		
 		Operation o1=new Operation(120, date.toString(), "Remplissage", 10006);
+		o1.setAgriculteur(a1);
 		operationRepository.save(o1);
+
 		
-	
+		Operation o2=new Operation(120, date.toString(), "Retrait", 10006);
+		o2.setUsine(u1);
+		operationRepository.save(o2);
+		
 		
 	}
 

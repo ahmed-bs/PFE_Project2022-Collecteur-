@@ -1,1 +1,75 @@
-<p>update-operation works!</p>
+<div class="ContenuCard" >
+  <div class="modal-header">
+    <h3 id="modal-title"><b>Modifier l'operation numero: {{operation.idOperation}}</b></h3>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label>Poids Lait :</label>
+      <input type="number"
+             class="form-control"
+             formControlName="poidsLait"
+             name="poidsLait"
+             [(ngModel)]="operation.poidsLait"
+             placeholder="Post Name here ..">
+        <div
+             *ngIf="poidsLait?.invalid && poidsLait?.touched"
+              class="text-danger">
+              Poids invalide !
+       </div>
+       <div
+            *ngIf="poidsLait?.valid && poidsLait?.touched"
+            class="text-success">
+            Poids valide !
+       </div>
+    </div>
+
+    <!-- <div class="lg mb-3">
+      <label>Date Operation :</label>
+      <input type="text" class="form-control"
+                placeholder="Description Post here ...."
+                name="dateOperation"
+                formControlName="dateOperation"
+                [(ngModel)]="operation.dateOperation"
+                >
+          <div
+                *ngIf="dateOperation?.invalid && dateOperation?.touched"
+                 class="text-danger">
+                 Date invalide !
+          </div>
+          <div
+               *ngIf="dateOperation?.valid && dateOperation?.touched"
+               class="text-success">
+                Date valide !
+          </div>
+    </div> -->
+
+
+    <div class="lg mb-3">
+      <label class="mr-sm-5" for="inlineFormCustomSelect">agriculteur : <span style="color:red;">*</span></label>
+              <select formControlName="agriculteur" name="agriculteur"    [(ngModel)]="operation.agriculteur.idAgriculteur" class="custom-select mr-sm-2" id="agriculteur" >
+                <option selected>Choisir un fournisseur...</option>
+                <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">{{agriculteur.nom}}</option>
+              </select>
+              <div
+              *ngIf="agriculteur?.invalid && agriculteur?.touched"
+               class="text-danger">
+                  invalide agriculteur!
+           </div>
+             <div
+             *ngIf="agriculteur?.valid && agriculteur?.touched"
+             class="text-success">
+             agriculteur valide!
+           </div>
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      <button type="submit" (click)="updateOperation()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+    </div>
+  </form>
+
+</div>
