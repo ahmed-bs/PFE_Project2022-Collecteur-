@@ -10,6 +10,7 @@ import { ListeOperationRetraitComponent } from './liste-operation-retrait/liste-
 import { CreateOperationRetraitComponent } from './create-operation-retrait/create-operation-retrait.component';
 import { UpdateOperationRetraitComponent } from './update-operation-retrait/update-operation-retrait.component';
 import { DetailsOperationRetraitComponent } from './details-operation-retrait/details-operation-retrait.component';
+import { ListeOperationTankComponent } from './liste-operation-tank/liste-operation-tank.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'updateOperationR/:id', component: UpdateOperationRetraitComponent },
   // { path: 'operationPage', component: PageOperationsComponent  },
   { path: 'listeOperationRetrait', component:     ListeOperationRetraitComponent  },
+  { path: 'listeOperationTank', component: ListeOperationTankComponent },
   // { path: 'detailsOperationTank/:id', component: DetailsOperationTankComponent  },
   { path:'',redirectTo:'/operation',pathMatch:'full'},
   // {  path:'**', component: OperationComponent },
