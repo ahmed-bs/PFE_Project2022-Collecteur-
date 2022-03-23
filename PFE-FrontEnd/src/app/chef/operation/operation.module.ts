@@ -29,6 +29,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ListeOperationTankComponent } from './liste-operation-tank/liste-operation-tank.component';
+import { DetailsOperationTankComponent } from './details-operation-tank/details-operation-tank.component';
 
 
 
@@ -41,7 +43,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CreateOperationRetraitComponent,
     UpdateOperationRetraitComponent,
     DetailsOperationRetraitComponent,
-    ListeOperationRetraitComponent
+    ListeOperationRetraitComponent,
+    ListeOperationTankComponent,
+    DetailsOperationTankComponent
   ],
   imports: [
     CommonModule,
