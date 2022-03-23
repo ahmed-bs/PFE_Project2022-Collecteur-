@@ -7,17 +7,18 @@ import { Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
+import { CreateOperationRetraitComponent } from '../create-operation-retrait/create-operation-retrait.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
+import { DetailsOperationRetraitComponent } from '../details-operation-retrait/details-operation-retrait.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
-import { UpdateOperationComponent } from '../update-operation/update-operation.component';
+import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
 
 @Component({
-  selector: 'app-liste-operation',
-  templateUrl: './liste-operation.component.html',
-  styleUrls: ['./liste-operation.component.css']
+  selector: 'app-liste-operation-retrait',
+  templateUrl: './liste-operation-retrait.component.html',
+  styleUrls: ['./liste-operation-retrait.component.css']
 })
-export class ListeOperationComponent implements OnInit {
-
+export class ListeOperationRetraitComponent implements OnInit {
   @ViewChild('paginator') paginator!:MatPaginator;
   // AddForSotedData
   @ViewChild(MatSort) matSort!:MatSort;
@@ -33,7 +34,7 @@ export class ListeOperationComponent implements OnInit {
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
   v=0;
-  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
@@ -43,9 +44,9 @@ export class ListeOperationComponent implements OnInit {
       this.reloadData();
       console.log(this.tankService.getTanksQteLibre());
 
-      this.idContenu = 'TostSuccessContenu';
+     this.idContenu = 'TostSuccessContenu';
       this.idTitle = 'TostSuccessTile';
-
+  
       this.Toast = JSON.parse(localStorage.getItem('Toast') || '[]') || [];
       if (this.Toast[0] == 'Success') {
         console.log('Toast est n est pas vide');
@@ -53,24 +54,28 @@ export class ListeOperationComponent implements OnInit {
       } else {
         console.log('Toast Vide');
       }
-
+  
     }
-
+  
     reloadData() {
-        this.operationService.getOperationsRemplissages().subscribe(o =>{
+        this.operationService.getOperationsRetraits().subscribe(o =>{
         this.ELEMENT_DATA= o;
         this.dataSource = new MatTableDataSource(o);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort =this.matSort;
         console.log(this.dataSource);
         console.log(this.ELEMENT_DATA);});
-
+      
     }
-
-    deleteOperation(id: number) {
-      let confirmation =confirm("Êtes-vous sûr de supprimer l'Operation où son id est egale à : "+id+" ??")
+  
+     deleteOperation(id: number) {
+      this.operationService.getOperation(id).subscribe(o =>{
+        this.ELEMENT_DATA= o;});
+        console.log(this.ELEMENT_DATA);
+        //console.log(this.id);
+      let confirmation =confirm("Êtes-vous sûr de supprimer le Operation où son id est egale à : "+id+" ??")
       if(confirmation)
-      this.operationService. deleteOperation(id).subscribe(()=>{
+      this.operationService.deleteOperation(id).subscribe(data => {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
@@ -85,47 +90,43 @@ export class ListeOperationComponent implements OnInit {
       }
     );
   }
-
-
-
-
+  
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
-      this.dialog.open(DetailsOperationComponent, dialogConfig);
+      this.dialog.open(DetailsOperationRetraitComponent, dialogConfig);
       //this.router.navigate(['employees/admin/detailemployee', id]);
     }
-
-    updateOperation(operation:Operation){
+  
+    updateOperationR(operation:Operation){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
-      this.dialog.open(UpdateOperationComponent, dialogConfig);
+      this.dialog.open(UpdateOperationRetraitComponent, dialogConfig);
       //this.router.navigate(['employees/admin/updateemployee', id]);
     }
-
+  
     onOpenDialogCreate():void{
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      this.dialog.open(CreateOperationComponent, dialogConfig);
+      this.dialog.open(CreateOperationRetraitComponent, dialogConfig);
     }
-
+  
     onOpenDialogCreate2():void{
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      this.dialog.open(CreateOperationComponent, dialogConfig);
+      this.dialog.open(CreateOperationRetraitComponent, dialogConfig);
     }
-
-
+  
+  
     filterData($event:any){
       this.dataSource.filter = $event.target.value;
     }
-
     showToast() {
       if (this.ShowToast == 'hide') {
         setTimeout(() => {
@@ -133,7 +134,7 @@ export class ListeOperationComponent implements OnInit {
           console.log(this.ShowToast);
         }, 1);
       }
-
+  
       setTimeout(() => {
         this.ShowToast = 'hide';
         this.Toast = [];
@@ -147,9 +148,9 @@ export class ListeOperationComponent implements OnInit {
         clearInterval(this.intervalId);
       }, 1000);
       this.counter=0
-
+  
     }
-
+  
   }
 
 
