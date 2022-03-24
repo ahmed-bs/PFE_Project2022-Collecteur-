@@ -1,0 +1,355 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<script src="node_modules/chart.js/src/chart.js"></script>
+
+
+
+
+<!-- zetha hedhy bech walet dashboard kahla  -->
+
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<!-- Content Wrapper. Contains page content -->
+   <!-- Content Header (Page header) -->
+   <div class="content-header">
+     <div class="container-fluid">
+       <div class="row mb-2">
+         <div class="col-sm-6">
+           <h1 class="m-0 text-dark">Dashboard</h1>
+         </div><!-- /.col -->
+       </div><!-- /.row -->
+     </div><!-- /.container-fluid -->
+   </div>
+   <!-- /.content-header -->
+
+
+   <!-- Main content -->
+   <section class="content">
+       <div class="container-fluid">
+         <!-- Small boxes (Stat box) -->
+
+         <!-- /.row -->
+         <!-- Main row -->
+         <div class="row">
+           <section class="content">
+               <div class="container-fluid">
+                 <!-- Small boxes (Stat box) -->
+                 <div class="row">
+                   <div class="col-lg-3 col-6">
+                     <!-- small box -->
+                     <div class="small-box bg-info">
+                       <div class="inner">
+                         <h3>{{somOperation}}</h3>
+
+                         <p>Operations</p>
+                       </div>
+                       <div class="icon">
+                         <i class="ion ion-ios-list-outline"></i>
+                       </div>
+                       <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                     </div>
+                   </div>
+
+                   <!-- ./col -->
+                   <div class="col-lg-3 col-6">
+                     <!-- small box -->
+                     <div class="small-box bg-success">
+                       <div class="inner">
+                         <h3>{{somTank}}</h3>
+
+                         <p>Tanks</p>
+                       </div>
+                       <div class="icon">
+                        <i class="ion ion-beaker"></i>
+                         <!-- <i class="ion ion-person-stalker"></i> -->
+                       </div>
+                       <a href="chef/tank/listeTank" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                     </div>
+                   </div>
+                   <!-- ./col -->
+                   <div class="col-lg-3 col-6">
+                     <!-- small box -->
+                     <div class="small-box bg-warning">
+                       <div class="inner">
+                         <h3 style="color: white;">   {{somAgriculteur}}</h3>
+
+                         <p style="color: white;">Agriculteurs</p>
+                       </div>
+                       <div class="icon" style="color: white;">
+                         <i class="ion  ion-person-stalker"></i>
+                       </div>
+                       <a style="color: white;" href="chef/tank/listeTank" class="small-box-footer" >  More info <i style="color: white;" class="fas fa-arrow-circle-right"></i></a>
+                     </div>
+                   </div>
+                   <!-- ./col -->
+                   <div class="col-lg-3 col-6">
+                     <!-- small box -->
+                     <div class="small-box bg-danger">
+                       <div class="inner">
+                         <h3>{{somUsine}}</h3>
+
+                         <p>Usines</p>
+                       </div>
+                       <div class="icon">
+                         <i class="ion ion-home"></i>
+                       </div>
+                       <a href="chef/usine/listeUsineyyyyyyyyy" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                     </div>
+                   </div>
+                  
+               
+
+                   <!-- ./col -->
+                 </div>
+                 <!-- /.row -->
+                 <!-- Main row -->
+                 <div class="row">
+                   <div class="col-md-12">
+                     <div class="card">
+                       <div class="card-header">
+                         <h2 class="card-title">Monthly Recap Report</h2>
+
+                         <!-- <tr *ngFor="let l of list ">
+                           <td>{{l}}</td>
+                         </tr>  -->
+
+                         <div class="card-tools">
+                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                             <i class="fas fa-minus"></i>
+                           </button>
+                           <div class="btn-group">
+                             <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                               <i class="fas fa-wrench"></i>
+                             </button>
+                             <div class="dropdown-menu dropdown-menu-right" role="menu">
+                               <a href="#" class="dropdown-item">Action</a>
+                               <a href="#" class="dropdown-item">Another action</a>
+                               <a href="#" class="dropdown-item">Something else here</a>
+                               <a class="dropdown-divider"></a>
+                               <a href="#" class="dropdown-item">Separated link</a>
+                             </div>
+                           </div>
+                           <button type="button" class="btn btn-tool" data-card-widget="remove">
+                             <i class="fas fa-times"></i>
+                           </button>
+                         </div>
+                       </div>
+                       <!-- /.card-header -->
+                       <div class="card-body">
+                         <div class="row">
+                           <div class="col-md-8">
+                             <p class="text-center">
+                               <strong>{{myDate}}</strong>
+                             </p>
+
+                             <div class="chart">
+
+
+                               <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data"
+                               [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                               [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                               [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
+                             </ngx-charts-bar-vertical>
+
+                               <!-- <ngx-charts-pie-grid
+                               [view]="[600,300]"
+                               [results]="data"
+                               [scheme]="colorScheme" >
+                             </ngx-charts-pie-grid> -->
+
+                             <!-- <div class="col-sm-3 col-6"> -->
+                               <ngx-charts-pie-grid style="color :white;"
+                               [view]="[600,300]"
+                               [results]="data"
+                               [scheme]="colorScheme" >
+                             </ngx-charts-pie-grid>
+                     <!-- </div> -->
+
+                               <!-- Sales Chart Canvas -->
+                               <!-- <div id="main" height="480" style="height: 480px;"></div> -->
+                               <!-- <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
+                             </div>
+                             <!-- /.chart-responsive -->
+                           </div>
+                           <!-- /.col -->
+                           <div class="col-md-4">
+
+                             <div id="time" style="height: 385px;width:350px;margin-top:-20px;margin-right:-80px;margin-bottom:-50px;overflow: hidden"></div>
+
+                             <p class="text-center">
+                               <strong style="margin-right:95px;">Time</strong>
+                             </p>
+                             <div  style="margin-top:45px;margin-left:-20px;margin-right:70px">
+                               <!-- Info Boxes Style 2 -->
+                               <div class="info-box mb-3 bg-warning">
+                                 <span class="info-box-icon"><i class="ion ion-person-stalker" style="color: white"></i></span>
+
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des agriculteurs</span>
+                                   <span class="info-box-number">{{somAgriculteur}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
+                               </div>
+                               <!-- /.info-box -->
+                               <div class="info-box mb-3 bg-success">
+                                 <span class="info-box-icon"> <i class="ion ion-beaker"></i></span>
+
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des tanks</span>
+                                   <span class="info-box-number">{{somTank}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
+                               </div>
+                               <!-- /.info-box -->
+
+                               <div class="info-box mb-3 bg-danger" >
+                                 <span class="info-box-icon">  <i class="ion ion-home"></i></span>
+
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des usines</span>
+                                   <span class="info-box-number">{{somUsine}} </span>
+                                 </div>
+                                 <!-- /.info-box-content -->
+                               </div>
+                               <!-- /.info-box -->
+                               <div class="info-box mb-3 bg-info">
+                                 <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des operations</span>
+                                   <span class="info-box-number">{{somOperation}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
+                               </div>
+                               <!-- /.info-box -->
+
+                               <!-- PRODUCT LIST -->
+
+                               <!-- /.card -->
+                             </div>
+                             <!-- /.col -->
+
+
+                           </div>
+                           <!-- /.col -->
+                         </div>
+                         <!-- /.row -->
+                       </div>
+                       <!-- ./card-body -->
+                       <div class="card-footer">
+                         <div class="row">
+                           <div class="col-sm-2 col-6">
+                             <div class="description-block border-right">
+                               <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                               <h5 class="description-header">{{somTank}}</h5>
+                               <span class="description-text">TOTAL TANK</span>
+                             </div>
+                             <!-- /.description-block -->
+                           </div>
+                           <!-- /.col -->
+                           <div class="col-sm-2 col-6">
+                             <div class="description-block border-right">
+                               <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                               <h5 class="description-header">{{somUsine}}</h5>
+                               <span class="description-text">TOTAL USINES</span>
+                             </div>
+                             <!-- /.description-block -->
+                           </div>
+                           <!-- /.col -->
+                           <div class="col-sm-2 col-6">
+                             <div class="description-block border-right">
+                               <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i> 20%</span>
+                               <h5 class="description-header">{{somOperation}}</h5>
+                               <span class="description-text">TOTAL OPERATIONS</span>
+                             </div>
+                             <!-- /.description-block -->
+                           </div>
+                           <!-- /.col -->
+
+                           <div class="col-sm-2 col-6">
+                            <div class="description-block">
+                              <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                              <h5 class="description-header">{{somAgriculteur}}</h5>
+                              <span class="description-text">TOTAL AGRICULTEURS</span>
+                            </div>
+                            <!-- /.description-block -->
+                          </div>
+
+
+                         </div>
+                         <!-- /.row -->
+                       </div>
+                       <!-- /.card-footer -->
+                     </div>
+                     <!-- /.card -->
+                   </div>
+                   <!-- /.col -->
+                 </div>
+                 <!-- /.row -->
+
+                 <!-- Main row -->
+                 <div class="row">
+                   <!-- Left col -->
+                   <!-- <div class="col-md-8"> -->
+                     <!-- MAP & BOX PANE -->
+                     <!-- <div class="card">
+                       <div class="card-header">
+                         <h3 class="card-title">US-Visitors Report</h3> -->
+
+
+                       <!-- </div> -->
+                       <!-- /.card-header -->
+                       <!-- <div class="card-body p-0">
+                         <div class="d-md-flex">
+                           <div class="p-1 flex-fill" style="overflow: hidden"> -->
+                             <!-- Map will be created here -->
+                             <!-- <div id="graph2" style="height: 325px; overflow: hidden">
+
+                               <div class="map"></div>
+                             </div> -->
+
+                             <!-- <ngx-charts-advanced-pie-chart style="padding:30px; overflow: initial !important;"
+                             [results]="data"
+                             [view]="[700,550]"
+                             [gradient]="true"
+                             [scheme]="colorScheme" >
+                       </ngx-charts-advanced-pie-chart> -->
+
+
+
+
+
+
+                             <!-- <ngx-charts-bar-vertical  [view]="[600,350]" scheme="cool" [results]="data"
+                             [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                             [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                             [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme" >
+                           </ngx-charts-bar-vertical> -->
+
+                           <!-- </div> -->
+
+                         <!-- </div> -->
+                         <!-- /.d-md-flex -->
+                       <!-- </div> -->
+                       <!-- /.card-body -->
+                     <!-- </div> -->
+                     <!-- /.card -->
+
+                   <!-- </div> -->
+                   <!-- /.col -->
+<br>
+                 </div>
+                 <!-- /.row -->
+               </div><!--/. container-fluid -->
+
+                 <!-- /.row (main row) -->
+             </section>
+         </div>
+         <!-- /.row (main row) -->
+       </div><!-- /.container-fluid -->
+     </section>
+     <!-- /.content -->
+
+     </body>

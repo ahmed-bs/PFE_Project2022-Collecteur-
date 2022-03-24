@@ -13,8 +13,16 @@ import { Agriculteur } from '../Models/agriculteur';
 })
 export class AgriculteurService {
   baseUrl : string = 'http://localhost:3801/agriculteurs';
+  baseUrl1 : string = 'http://localhost:3801/nbreA';
 
   constructor(private http: HttpClient) { }
+
+  getNbA(): Observable<any> {
+    // let jwt = this.authService.getToken();
+    // jwt = "Bearer "+jwt;
+    // let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl1}`);
+  }
 
   getAgriculteurs(): Observable<any> {
   

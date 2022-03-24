@@ -29,6 +29,10 @@ public class AgriculteurRestController {
 		return agriculteurRepository.findAll();
 	}
 	
+	@RequestMapping(value="/nbreA",method = RequestMethod.GET)
+	public int getNbAgreculteurs(){
+		return agriculteurRepository.findAll().size();
+	}
 		
 	@RequestMapping(value="/agriculteurs/{idAgriculteur}",method = RequestMethod.GET)
     public Agriculteur getAgriculteur(@PathVariable Integer idAgriculteur) {
