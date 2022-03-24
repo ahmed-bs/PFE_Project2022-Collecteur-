@@ -10,7 +10,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChefComponent } from './chef.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale'
+import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale';
+import { DashboardComponent } from './dashboard/dashboard.component'
 
 
 
@@ -22,7 +23,8 @@ import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale'
     OperationComponent,
     TankComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent
 
   ],
   imports: [

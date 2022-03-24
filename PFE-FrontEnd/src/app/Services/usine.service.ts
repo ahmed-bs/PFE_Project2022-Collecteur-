@@ -9,12 +9,21 @@ import { Usine } from '../Models/usine';
 export class UsineService {
 
   baseUrl : string = 'http://localhost:3801/usines';
+  baseUrl1 : string = 'http://localhost:3801/nbreU';
+
 
   constructor(private http: HttpClient) { }
 
   getUsines(): Observable<any> {
   
     return this.http.get(`${this.baseUrl}`);
+  }
+
+  getNbUsines(): Observable<any> {
+    // let jwt = this.authService.getToken();
+    // jwt = "Bearer "+jwt;
+    // let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl1}`);
   }
 
   getUsine(id: number): Observable<any> {

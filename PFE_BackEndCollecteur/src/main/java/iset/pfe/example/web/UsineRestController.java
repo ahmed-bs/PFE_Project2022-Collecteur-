@@ -30,6 +30,11 @@ public class UsineRestController {
 		return usineRepository.findAll();
 	}
 	
+	@RequestMapping(value="/nbreU",method = RequestMethod.GET)
+	public int getNbAgreculteurs(){
+		return usineRepository.findAll().size();
+	}
+	
 	@RequestMapping(value="/usines/{idUsine}",method = RequestMethod.GET)
     public Usine getUsine(@PathVariable Integer idUsine) {
 		Optional<Usine> usine = usineRepository.findById(idUsine);
