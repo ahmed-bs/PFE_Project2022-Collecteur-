@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { Chef } from '../Models/chef';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,19 +9,42 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  // err:number=0;
-  constructor(public router:Router) { }
+  user =new Chef();
+  err:number=0;
 
-  ngOnInit(): void {
-  }
+    constructor(private authService: AuthService, public router:Router ) { }
 
-  password = "password"
-  myFunction() {
-   if (this.password === "password") {
-     this.password = "text";
-   } else {
-     this.password = "password";
+
+
+    ngOnInit () {
+
+    }
+
+    onLoggedin()
+    {
+      this.authService.login(this.user).subscribe((data)=> {
+        let jwToken : any   = data.headers.get('Authorization');
+        this.authService.saveToken(jwToken);
+
+          this.router.navigate(['/chef/dashboard']);
+
+        //this.router.navigate(['/']);
+         //this.router.navigate(['/employees/admin/employeesList']);
+      },(err)=>{   this.err = 1;
+  });
+
    }
- }
 
-}
+
+
+
+    password = "password"
+     myFunction() {
+      if (this.password === "password") {
+        this.password = "text";
+      } else {
+        this.password = "password";
+      }
+    }
+
+  }

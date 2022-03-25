@@ -22,7 +22,7 @@ export class CreateTankComponent implements OnInit {
       matricule : new FormControl(null,[Validators.required]),
       poidVide : new FormControl(null,[Validators.required ]),
       poidActuel : new FormControl(null,[Validators.required ]),
-      etat : new FormControl(null,[Validators.required ]),
+      // etat : new FormControl(null,[Validators.required ]),
   })
   // produits!:Observable<Produit[]>;
   // Tanks!:Observable<Tank[]>;
@@ -79,7 +79,7 @@ export class CreateTankComponent implements OnInit {
           "matricule":this.myForm.get('matricule')?.value,
           "poidVide":this.myForm.get('poidVide')?.value,
           "poidActuel":this.myForm.get('poidActuel')?.value,
-          "etat":this.myForm.get('etat')?.value,
+          // "etat":this.myForm.get('etat')?.value,
         })
         .subscribe(o=>{
           window.location.reload();
@@ -116,9 +116,9 @@ get poidActuel(){
   return this.myForm.get('poidActuel') ;
 }
 
-get etat(){
-  return this.myForm.get('etat') ;
-}
+// get etat(){
+//   return this.myForm.get('etat') ;
+// }
 
 
 }

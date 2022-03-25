@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,19 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'PFE-FrontEnd';
 
-  constructor (private router: Router) {}
-}
+  constructor (public authService: AuthService,private router: Router) {}
+
+  ngOnInit () {
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+     
+        }
+  }
+  
+  onLogout(){
+    this.authService.logout();
+  }
+  }
+  

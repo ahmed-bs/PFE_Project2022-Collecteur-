@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Chef;
 import iset.pfe.example.entities.Operation;
+import iset.pfe.example.entities.Role;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.entities.Usine;
 import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.ChefRepository;
 import iset.pfe.example.repositories.OperationRepository;
+import iset.pfe.example.repositories.RoleRepository;
 import iset.pfe.example.repositories.TankRepository;
 import iset.pfe.example.repositories.UsineRepository;
 
@@ -31,6 +34,8 @@ public class PfeBackEndApplication implements CommandLineRunner {
 	private UsineRepository usineRepository;
 	@Autowired
 	private OperationRepository operationRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	
 	public static void main(String[] args) {
@@ -41,8 +46,8 @@ public class PfeBackEndApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Date date=new Date("08/05/2021");
 		
-		Chef c=new Chef("Nour", "Guerfali", "nour@gmail.com", "Bizerte", 11431134, 54546450, "Nour", "1234");
-		chefRepository.save(c);
+//		Chef c=new Chef("Nour", "Guerfali", "nour@gmail.com", "Bizerte", 11431134, 54546450, "Nour", "1234");
+//		chefRepository.save(c);
 		
 		Tank t1=new Tank("102s50v5", 120, 0, "non remplis");
 		tankRepository.save(t1);
@@ -61,6 +66,24 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		Operation o2=new Operation(120, date.toString(), "Retrait", 10006);
 		o2.setUsine(u1);
 		operationRepository.save(o2);
+		
+		
+		Role role1=new Role("USER");
+		roleRepository.save(role1);
+		
+		
+		BCryptPasswordEncoder encoder; 
+		encoder = new BCryptPasswordEncoder();
+		
+		Chef ch1=new Chef();
+		ch1.setUsername("nour");
+		ch1.setPassword(encoder.encode("nour"));
+		ch1.setAdress("bizerte");
+		ch1.setNom("nour");
+		ch1.setCin(11431134);
+		ch1.getRoles().add(role1);
+		chefRepository.save(ch1);
+		
 		
 		
 	}
