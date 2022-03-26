@@ -17,8 +17,8 @@ export class UpdateTankComponent implements OnInit {
    myForm=new  FormGroup({
      matricule : new FormControl(null,[Validators.required]),
      poidVide : new FormControl(null,[Validators.required ]),
-     poidActuel : new FormControl(null,[Validators.required ]),
-     etat : new FormControl(null,[Validators.required ]),
+    //  poidActuel : new FormControl(null,[Validators.required ]),
+    //  etat : new FormControl(null,[Validators.required ]),
  })
 
 
@@ -44,8 +44,8 @@ export class UpdateTankComponent implements OnInit {
          .updateTank(this.tank.idTank,{
            "matricule":this.myForm.get('matricule')?.value,
            "poidVide":this.myForm.get('poidVide')?.value,
-           "poidActuel":this.myForm.get('poidActuel')?.value,
-           "etat":this.myForm.get('etat')?.value,
+          //  "poidActuel":this.myForm.get('poidActuel')?.value,
+          //  "etat":this.myForm.get('etat')?.value,
 
          })
          .subscribe(o=>{
@@ -69,13 +69,13 @@ export class UpdateTankComponent implements OnInit {
 
 
 
- get poidActuel(){
-   return this.myForm.get('poidActuel') ;
- }
+//  get poidActuel(){
+//    return this.myForm.get('poidActuel') ;
+//  }
 
- get etat(){
-  return this.myForm.get('etat') ;
-}
+//  get etat(){
+//   return this.myForm.get('etat') ;
+// }
 
    onClose() {
      this.dialogClose.closeAll();

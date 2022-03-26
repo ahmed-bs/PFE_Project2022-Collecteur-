@@ -41,6 +41,9 @@ export class UpdateAgriculteurComponent implements OnInit {
 
    updateAgriculteur(){
 
+    if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && this.myForm.get('email')?.value!=null
+   && this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null ){
+
      this.agriculteurService
      // .updateAgriculteur(this.Agriculteur.idAgriculteur,this.Agriculteur)
          .updateAgriculteur(this.agriculteur.idAgriculteur,{
@@ -61,6 +64,7 @@ export class UpdateAgriculteurComponent implements OnInit {
          }
        );
    }
+  }
 
   get nom(){
    return this.myForm.get('nom') ;

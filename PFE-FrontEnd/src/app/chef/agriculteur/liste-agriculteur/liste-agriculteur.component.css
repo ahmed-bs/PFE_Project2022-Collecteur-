@@ -5,7 +5,7 @@
     padding-bottom: 20px;
   }
   th{
-    color: #fc9209;
+    color: #7EBD08 ;
     font-size: large;
     padding-left: 25px !important;
     padding-bottom: 15px !important;
@@ -42,7 +42,7 @@
   }
   
   .mat-input-element {
-    caret-color: #fc9209 !important;
+    caret-color: #7EBD08  !important;
   }
   
   #AlertSucces{
@@ -56,8 +56,8 @@
   
   #btn{
     margin-top: 42px;
-    background-color: #fc9209;
-    color: wheat;
+    background-color: #7EBD08 ;
+    color: white;
     font-size: 20px;
     margin-left: 300px;
   }
@@ -70,7 +70,7 @@
   
   
   #entete-Table{
-    color: #fc9209;
+    color: #7EBD08 ;
     font-family: comic sans ms;
     font-size: 15px;
   }
@@ -81,7 +81,7 @@
   #title-Table{
   
     border-radius: 10px;
-    background-color: #fc9209;
+    background-color: #7EBD08 ;
     margin-left: 20px !important;
     margin-right: 20px !important;
     bottom: 29px;

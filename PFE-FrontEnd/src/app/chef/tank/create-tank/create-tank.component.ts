@@ -21,7 +21,7 @@ export class CreateTankComponent implements OnInit {
   myForm=new  FormGroup({
       matricule : new FormControl(null,[Validators.required]),
       poidVide : new FormControl(null,[Validators.required ]),
-      poidActuel : new FormControl(null,[Validators.required ]),
+      // poidActuel : new FormControl(null,[Validators.required ]),
       // etat : new FormControl(null,[Validators.required ]),
   })
   // produits!:Observable<Produit[]>;
@@ -30,7 +30,7 @@ export class CreateTankComponent implements OnInit {
 
   constructor(
      private tankService: TankService,
-     private router: Router, 
+     private router: Router,
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -57,36 +57,37 @@ export class CreateTankComponent implements OnInit {
   else{
     this.msg="";
    }
-  
-  if(this.myForm.get('poidActuel')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-  
 
-  if(this.myForm.get('etat')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
+  // if(this.myForm.get('poidActuel')?.value==null){
+  //   this.msg="vous devez remplir le formulaire !!";
+  // }
+  // else{
+  //   this.msg="";
+  //  }
 
-   
+
+  // if(this.myForm.get('etat')?.value==null){
+  //   this.msg="vous devez remplir le formulaire !!";
+  // }
+  // else{
+  //   this.msg="";
+  //  }
+
+  if(this.myForm.get('poidVide')?.value!=null && this.myForm.get('matricule')?.value!=null){
     this.tankService
         .createTank({
           "matricule":this.myForm.get('matricule')?.value,
           "poidVide":this.myForm.get('poidVide')?.value,
-          "poidActuel":this.myForm.get('poidActuel')?.value,
+          // "poidActuel":this.myForm.get('poidActuel')?.value,
           // "etat":this.myForm.get('etat')?.value,
         })
         .subscribe(o=>{
           window.location.reload();
           console.log(this.tank);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un Tank a été ajouté avec succès"]));
-          window.location.reload();      
+          window.location.reload();
         });
+      }
     }
 
 

@@ -70,7 +70,7 @@ export class ListeOperationComponent implements OnInit {
     deleteOperation(id: number) {
       let confirmation =confirm("Êtes-vous sûr de supprimer l'Operation où son id est egale à : "+id+" ??")
       if(confirmation)
-      this.operationService. deleteOperation(id).subscribe(()=>{
+      this.operationService.deleteOperation(id).subscribe(()=>{
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));

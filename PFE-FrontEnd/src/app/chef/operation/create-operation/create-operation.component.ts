@@ -60,6 +60,8 @@ export class CreateOperationComponent implements OnInit {
 
   save() {
 
+    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('agriculteur')?.value!=null ){
+
     this.operationService
         .createOperationRemplissage(
           {
@@ -82,7 +84,7 @@ export class CreateOperationComponent implements OnInit {
         }
       );
     
-      
+      } 
   }
 
 
