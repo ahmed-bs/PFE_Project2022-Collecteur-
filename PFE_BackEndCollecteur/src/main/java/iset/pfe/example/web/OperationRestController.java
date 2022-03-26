@@ -76,8 +76,8 @@ public class OperationRestController {
 	@ResponseBody
 	public void deleteOperation(@PathVariable Integer idOperation) {
 		Optional<Operation> op= operationRepository.findById(idOperation);
-			if (op.isPresent()) { 
-				operationRepository.deleteById(idOperation);
+			 if (op.isPresent()) { 
+				operationRepository.deleteOp(idOperation);
 			}else throw new RuntimeException("Operation introuvable ! vous ne pouvez pas le supprimer !!");
 		}
 		

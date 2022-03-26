@@ -20,7 +20,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div style="margin-left:450px;">
+      <div style="margin-left:400px;">
         <button class="btn btn" id="btn" (click)="onOpenDialogCreate()">
           <i class="fas fa-plus"></i>
           Ajouter un element
@@ -93,10 +93,10 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
            </table>
-           <!-- <mat-paginator #paginator
+           <mat-paginator #paginator
                           [pageSize]="4"
                           [pageSizeOptions]="[2, 3,4, 5, 10, 25, 100]">
-          </mat-paginator> -->
+          </mat-paginator>
         </div>
       </div>
     </div>

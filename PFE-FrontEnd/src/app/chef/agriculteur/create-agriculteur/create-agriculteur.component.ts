@@ -82,6 +82,8 @@ export class CreateAgriculteurComponent implements OnInit {
     this.msg="";
    }
 
+   if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && this.myForm.get('email')?.value!=null
+   && this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null ){
     this.agriculteurService
         .createAgriculteur({
           "nom":this.myForm.get('nom')?.value,
@@ -97,7 +99,8 @@ export class CreateAgriculteurComponent implements OnInit {
           window.location.reload();      
         });
     }
-
+  }
+  
 
   onSubmit() {
         this.save();
