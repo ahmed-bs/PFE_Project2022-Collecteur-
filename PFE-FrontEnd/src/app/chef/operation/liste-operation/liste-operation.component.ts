@@ -33,6 +33,8 @@ export class ListeOperationComponent implements OnInit {
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
   v=0;
+  erreur=0;
+  err="";
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
@@ -53,6 +55,15 @@ export class ListeOperationComponent implements OnInit {
       } else {
         console.log('Toast Vide');
       }
+
+      // this.tankService.getQteLibreAujourdhui().subscribe(
+
+      //   o=>{
+      //   console.log(o);
+      //   if(o==0){
+
+      //   }
+      //   });
 
     }
 
@@ -108,10 +119,26 @@ export class ListeOperationComponent implements OnInit {
     }
 
     onOpenDialogCreate():void{
+      this.tankService.getQteLibreAujourdhui().subscribe(
+
+        o=>{
+        console.log(o);
+        if(o>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateOperationComponent, dialogConfig);
+      this.erreur=0;
+        }
+        else{
+            this.erreur=1;
+            this.idContenu = 'TostDangerContenu';
+            this.idTitle = 'TostDangerTile';
+            this.Toast[0] = 'Erreur';
+            this.Toast[1] ='Les tanks sont totalment remplis !!';
+            this.showToast();
+        }
+        });
     }
 
     onOpenDialogCreate2():void{
@@ -139,11 +166,11 @@ export class ListeOperationComponent implements OnInit {
         this.Toast = [];
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         console.log(this.ShowToast);
-      }, 6100);
+      }, 7100);
       this.intervalId = setInterval(() => {
         this.counter = this.counter + 1;
         console.log(this.counter);
-        if (this.counter === 6)
+        if (this.counter === 7)
         clearInterval(this.intervalId);
       }, 1000);
       this.counter=0

@@ -44,7 +44,7 @@ export class UpdateOperationRetraitComponent implements OnInit {
 
   updateOperation(){
 
-    this.tankService.getTanksQteGenerale().subscribe(
+    this.tankService.getQteG().subscribe(
       o=>{
       console.log(o);
       if(this.myForm.get('poidsLait')?.value<=o+this.qte){

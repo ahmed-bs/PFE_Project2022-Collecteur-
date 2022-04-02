@@ -18,12 +18,14 @@ export class UpdateOperationComponent implements OnInit {
   myForm!:FormGroup;
   CheckesCompetance:boolean=false;
   agriculteurs!:Observable<Agriculteur[]>;
+  laitOp=0;
     // qte de lait restante pour chaque vache
     qteRsetLait=0;
     //qte restante de lait pour un tank
     qteRsetLaitTank=0;
     msgErreur=0;
     msgErreur2=0;
+    RestQte=0;
 
   constructor(
     private dialogClose: MatDialog,
@@ -37,7 +39,9 @@ export class UpdateOperationComponent implements OnInit {
     this.ValidatedForm();
     this.operationService.getOperation(JSON.parse(localStorage.getItem('IdOperation') || '[]') || []).subscribe(o =>{
       this.operation = o;
+      this.laitOp=o.poidsLait;
       console.log(this.operation);
+      console.log(this.laitOp);
     });
 
     this.agriculteurs=this.agriculteurService.getAgriculteurs();
@@ -46,15 +50,22 @@ export class UpdateOperationComponent implements OnInit {
 
   updateOperation(){
 
-    this.tankService.getTanksQteLibre().subscribe(
+    // this.tankService.getTanksQteGenerale().subscribe(
+    //   a=>{
+    //     this.RestQte=a;
+    //   console.log(a);
+ 
+
+    this.tankService.getQteLibreAujourdhui().subscribe(
+
       o=>{
       console.log(o);
-      if(this.myForm.get('poidsLait')?.value<=o){
+      if(this.myForm.get('poidsLait')?.value<=(o+this.laitOp)){
 
     this.operationService
         .updateOperation(this.operation.idOperation,{
           "poidsLait":this.myForm.get('poidsLait')?.value,
-           "dateOperation":this.myForm.get('dateOperation')?.value,
+          //  "dateOperation":this.myForm.get('dateOperation')?.value,
           "agriculteur":{
             "idAgriculteur":this.myForm.get('agriculteur')?.value,
          },
@@ -71,11 +82,14 @@ export class UpdateOperationComponent implements OnInit {
       }
       else{
         this.msgErreur=1;
-        this.qteRsetLait=o;
+        this.qteRsetLait=o+this.laitOp;
         }
   
         
     });
+
+  // }
+  // );
   
     }
 
@@ -92,9 +106,9 @@ export class UpdateOperationComponent implements OnInit {
   return this.myForm.get('poidsLait') ;
 }
 
-get dateOperation(){
-  return this.myForm.get('dateOperation') ;
-}
+// get dateOperation(){
+//   return this.myForm.get('dateOperation') ;
+// }
 
 get agriculteur(){
   return this.myForm.get('agriculteur') ;

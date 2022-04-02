@@ -29,6 +29,7 @@ export class ListeOperationRetraitComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
+  erreur =0;
 
   ELEMENT_DATA?:Operation[];
   operation?:Operation;
@@ -110,11 +111,26 @@ export class ListeOperationRetraitComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.tankService.getQteG().subscribe(
+
+        o=>{
+        console.log(o);
+        if(o>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateOperationRetraitComponent, dialogConfig);
     }
+    else{
+        this.erreur=1;
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Erreur';
+        this.Toast[1] ='Les tanks sont vide !! \n \n Vous ne pouvez pas faire loperation de retarit !!';
+        this.showToast();
+    }
+    });
+}
   
     onOpenDialogCreate2():void{
       const dialogConfig = new MatDialogConfig();

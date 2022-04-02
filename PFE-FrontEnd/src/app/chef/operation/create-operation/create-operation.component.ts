@@ -51,6 +51,20 @@ export class CreateOperationComponent implements OnInit {
     //this.ValidatedForm();
     this.tanks=this.tankService.getTanks();
     this.agriculteurs=this.agriculteurService.getAgriculteurs();
+
+    this.tankService.getTanksQteLibre().subscribe(
+      o=>{
+      console.log(o);
+      if(this.myForm.get('poidsLait')?.value<=o)
+      this.msgErreur=0;
+      else{
+        this.msgErreur=1;
+      this.qteRsetLait=o;
+      }
+
+      
+  });
+
   }
 
   newEmployee(): void {
@@ -59,6 +73,21 @@ export class CreateOperationComponent implements OnInit {
   }
 
   save() {
+
+    
+  if(this.myForm.get('poidsLait')?.value==null){
+    this.msg="vous devez remplir le formulaire !!";
+  }
+  else{
+    this.msg="";
+   }
+
+   if(this.myForm.get('agriculteur')?.value==null){
+    this.msg="vous devez remplir le formulaire !!";
+  }
+  else{
+    this.msg="";
+   }
 
     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('agriculteur')?.value!=null ){
 
@@ -93,8 +122,10 @@ export class CreateOperationComponent implements OnInit {
     this.tankService.getTanksQteLibre().subscribe(
       o=>{
       console.log(o);
-      if(this.myForm.get('poidsLait')?.value<=o)
+      if(this.myForm.get('poidsLait')?.value<=o){
       this.save();
+      this.msgErreur=0;
+      }
       else{
       this.msgErreur=1;
       this.qteRsetLait=o;

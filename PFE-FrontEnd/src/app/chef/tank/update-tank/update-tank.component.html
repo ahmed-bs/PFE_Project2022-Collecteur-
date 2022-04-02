@@ -30,7 +30,7 @@
 
         <div class="col-md-12 mb-3">
           <label>Poids Vide :</label>
-          <input type="text"
+          <input type="number"
                  class="form-control"
                  formControlName="poidVide"
                  name="poidVide"
@@ -39,12 +39,12 @@
             <div
                  *ngIf="poidVide?.invalid && poidVide?.touched"
                   class="text-danger">
-                  poidVide invalide !
+                  Poids invalide !
            </div>
            <div
                 *ngIf="poidVide?.valid && poidVide?.touched"
                 class="text-success">
-                 poidVide valide !
+                 Poids valide !
            </div>
           </div>
 

@@ -54,7 +54,7 @@ export class CreateUsineComponent implements OnInit {
     this.msg="";
    }
   
-  
+   if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null ){
 
     this.usineService
         .createUsine({
@@ -68,6 +68,7 @@ export class CreateUsineComponent implements OnInit {
           window.location.reload();      
         });
     }
+  }
 
 
   onSubmit() {
