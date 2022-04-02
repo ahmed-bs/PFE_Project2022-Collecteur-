@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Ajouter un nouveau agriculteur :</b></h3>
+      <h2 id="modal-title"><b>Ajouter un nouveau tank :</b></h2>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -34,17 +34,17 @@
 
               <div class="col-md-6 mb-3">
                   <label for="prix">Poids Vide : <span style="color:red;">*</span></label>
-                  <input type="text"
+                  <input type="number"
                   class="form-control"
                     id="poidVide"
                     formControlName="poidVide"
                     name="poidVide">
 
                     <div *ngIf="poidVide?.invalid && poidVide?.touched" class="text-danger">
-                    poidVide invalide !
+                      Poids invalide !
                     </div>
                     <div *ngIf="poidVide?.valid && poidVide?.touched" class="text-success">
-                      poidVide Valide
+                      Poids Valide
                     </div>
 
               </div>

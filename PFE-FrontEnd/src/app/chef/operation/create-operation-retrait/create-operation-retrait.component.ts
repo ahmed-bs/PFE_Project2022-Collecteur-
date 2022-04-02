@@ -24,6 +24,7 @@ export class CreateOperationRetraitComponent implements OnInit {
   msg="";
   msgErreur=0;
   qteActLaitTank=0;
+  qteMax=0;
   som=10000;
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required]),
@@ -60,6 +61,23 @@ export class CreateOperationRetraitComponent implements OnInit {
 
   save() {
 
+    if(this.myForm.get('poidsLait')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+  
+     if(this.myForm.get('agriculteur')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+
+
+     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('usine')?.value!=null ){
+
     this.operationService
     .createOperation(
       {
@@ -95,22 +113,28 @@ export class CreateOperationRetraitComponent implements OnInit {
 //     });
 // if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
 
-  
+     }
     
   }
 
 
   onSubmit() {
-    this.tankService.getTanksQteGenerale().subscribe(
+    this.tankService.getQteTanks().subscribe(
+      a=>{
+    this.tankService.getQteG().subscribe(
       o=>{
       console.log(o);
-      if(this.myForm.get('poidsLait')?.value<=o)
+      if(this.myForm.get('poidsLait')?.value<=o  ){
       this.save();
+      this.msgErreur=0;
+    }
       else{
       this.msgErreur=1;
       this.qteActLaitTank=o;
-      }
+      this.qteMax=a;
+          }
   });
+});
 }
 
   gotoList() {

@@ -18,6 +18,11 @@ export class TankService {
   baseUrl3 : string = 'http://localhost:3801/qteTanksLibre';
   baseUrl4 : string = 'http://localhost:3801/qteTanksGenerale';
   baseUrl6 : string = 'http://localhost:3801/nbreT';
+  // URL : Quanitite que je peux l'inserer .. date d'aujourd hui 
+  baseUrl7 : string = 'http://localhost:3801/tanksQte';
+  baseUrl8 : string = 'http://localhost:3801/QteG';
+  baseUrl9 : string = 'http://localhost:3801/QteTanks';
+
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
@@ -35,6 +40,28 @@ export class TankService {
     return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
   }
 
+  getQteLibreAujourdhui(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl7}`,{headers:httpHeaders});
+  }
+
+  getQteTanks(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl9}`,{headers:httpHeaders});
+  }
+
+
+  getQteG(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl8}`,{headers:httpHeaders});
+  }
+
 
   getTanksQteLibre(): Observable<any> {
     let jwt = this.authService.getToken();
@@ -43,6 +70,7 @@ export class TankService {
     return this.http.get(`${this.baseUrl3}`,{headers:httpHeaders});
   }
 
+  //qte tanks generale d'aujourd'hui
   getTanksQteGenerale(): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;

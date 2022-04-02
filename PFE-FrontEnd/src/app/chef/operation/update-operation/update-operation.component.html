@@ -19,11 +19,12 @@
               class="text-danger">
               Poids invalide !
        </div>
-       <div
-            *ngIf="poidsLait?.valid && poidsLait?.touched"
-            class="text-success">
-            Poids valide !
-       </div>
+       <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0"  class="text-success">
+        Poids valide!
+      </div>
+      <div *ngIf="msgErreur==1" class="text-danger">
+        Vous ne pouvez pas depasser cette quantite ,car la quantite disponible d'aujourd'hui que tu peut l'inserer est : {{qteRsetLait}} !!
+      </div>
     </div>
 
     <!-- <div class="lg mb-3">
@@ -56,12 +57,12 @@
               <div
               *ngIf="agriculteur?.invalid && agriculteur?.touched"
                class="text-danger">
-                  invalide agriculteur!
+                  invalide Agriculteur!
            </div>
              <div
              *ngIf="agriculteur?.valid && agriculteur?.touched"
              class="text-success">
-             agriculteur valide!
+             Agriculteur valide!
            </div>
     </div>
 

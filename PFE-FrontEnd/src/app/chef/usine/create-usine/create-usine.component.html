@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Ajouter un nouveau agriculteur :</b></h3>
+      <h2 id="modal-title"><b>Ajouter une nouvelle usine :</b></h2>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -15,23 +15,19 @@
                  class="form-control"
                  id="nomUsine"
                  name="nomUsine">
-  
+
                 <div *ngIf="nomUsine?.invalid && nomUsine?.touched" class="text-danger">
                   nomUsine invalide !
                 </div>
                 <div *ngIf="nomUsine?.valid && nomUsine?.touched " class="text-success">
                   nomUsine valide!
                 </div>
-                <!-- <div *ngIf="msgErreur==1" class="text-danger">
-                  Vous ne pouvez pas prendre cette quantité!! car la quantité disponible dans le stock est: {{qteAct}} !
-                  <br> Vous devez introduire une quantite moins ou egale a {{qteAct}} .
-                </div> -->
-  
+
               </div>
 
-  
+
             <!-- <div class="form-row"> -->
-  
+
 
               <div class="col-md-6 mb-3">
                 <label for="prix">adresse : <span style="color:red;">*</span></label>
@@ -40,21 +36,21 @@
                   id="adresse"
                   formControlName="adresse"
                   name="adresse">
-  
+
                   <div *ngIf="adresse?.invalid && adresse?.touched" class="text-danger">
-                    adressee invalide !
+                    adresse invalide !
                   </div>
                   <div *ngIf="adresse?.valid && adresse?.touched" class="text-success">
-                    adressee Valide
+                    adresse Valide
                   </div>
 
             </div>
-           
-  
+
+
             </div>
-  
-  
-  
+
+
+
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="cgu" required>
@@ -67,8 +63,7 @@
             <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
             <!-- close popup -->
             <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-  
+
           </form>
         </div>
-  
-  
+
