@@ -9,12 +9,14 @@ import { Usine } from 'src/app/Models/usine';
 import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
 import { UsineService } from 'src/app/Services/usine.service';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-create-operation-retrait',
   templateUrl: './create-operation-retrait.component.html',
-  styleUrls: ['./create-operation-retrait.component.css']
+  styleUrls: ['./create-operation-retrait.component.css'],
+  providers: [DatePipe]
 })
 export class CreateOperationRetraitComponent implements OnInit {
 
@@ -25,7 +27,7 @@ export class CreateOperationRetraitComponent implements OnInit {
   msgErreur=0;
   qteActLaitTank=0;
   qteMax=0;
-  som=10000;
+  som=0;
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required]),
      // dateOperation : new FormControl(null,[Validators.required ]),
@@ -34,6 +36,8 @@ export class CreateOperationRetraitComponent implements OnInit {
   })
   tanks!:Observable<Tank[]>;
   usines!:Observable<Usine[]>;
+
+  maDate = new Date();
 
 
   constructor(
@@ -49,8 +53,11 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.usines=this.usineService.getUsines();
     this.operationService.getNbOp().subscribe(o=>{
     console.log(o);
-    this.som=this.som+o+1;  
+    this.som=10000+o+1;  
     });
+
+    console.log(this.maDate);
+    // var transformDate = DatePipe.transform(this.maDate, 'yyyy-MM-dd');
 
   }
 
@@ -68,7 +75,7 @@ export class CreateOperationRetraitComponent implements OnInit {
       this.msg="";
      }
   
-     if(this.myForm.get('agriculteur')?.value==null){
+     if(this.myForm.get('usine')?.value==null){
       this.msg="vous devez remplir le formulaire !!";
     }
     else{
@@ -85,6 +92,7 @@ export class CreateOperationRetraitComponent implements OnInit {
         "usine":{
           "idUsine":this.myForm.get('usine')?.value,
        },
+       "code":this.som,
         },
       
     )

@@ -16,12 +16,12 @@
                  id="poidsLait"
                  name="poidsLait">
     
-                <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
-                  Poids invalide !
-                </div>
-                <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
-                  Poids valide!
-                </div>
+                 <div *ngIf="poidsLait?.invalid && poidsLait?.touched && msgErreur==1" class="text-danger">
+                Poids invalide !
+              </div>
+              <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0"  class="text-success">
+                Poids valide!
+              </div>
                 <div *ngIf="msgErreur==1" class="text-danger">
                   Vous ne pouvez pas prendre cette quantité !! car la quantité de lait disponible est: {{qteActLaitTank}} !
                   <br> Vous devez introduire une quantite moins ou egale a {{qteActLaitTank}} .

@@ -57,11 +57,11 @@
   
   
               <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action</th>
+                <th mat-header-cell *matHeaderCellDef >&nbsp;&nbsp;&nbsp; Action</th>
                 <td mat-cell *matCellDef="let element">
-                  <a (click)="updateOperation(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
+                  <!-- <a (click)="updateOperation(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
                     <i class="fas fa-edit"></i>
-                </a>
+                </a> -->
   
                 <a  (click)="detailsOperation(element)" class="btn  btn-secondary" style="margin-right:15px;margin-bottom:15px;">
                   <i class="fas fa-info"></i>

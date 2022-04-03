@@ -42,6 +42,13 @@ public class OperationRestController {
 	
 	@RequestMapping(value="/operations",method = RequestMethod.GET)
 	public List<Operation> getOperations(){
+		for(int i=0;i<tankRepository.findAll().size();i++){
+			Tank t=tankRepository.findAll().get(i);
+			if(t.getPoidActuel()==0) {
+				t.setDateIns(null);
+				tankRepository.save(t);
+			}
+		}
 		return operationRepository.findAll();
 	}
 	
@@ -76,7 +83,23 @@ public class OperationRestController {
 	@ResponseBody
 	public void deleteOperation(@PathVariable Integer idOperation) {
 		Optional<Operation> op= operationRepository.findById(idOperation);
-			 if (op.isPresent()) { 
+		Operation o=operationRepository.findById(idOperation).get();
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+			OperationTank opt=operationRepository.find(idOperation).get(i);
+			if(idOperation==opt.getOperation().getIdOperation()) {
+		
+    		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
+    		System.out.println(t.getIdTank());
+    		t.setPoidActuel((t.getPoidActuel()-opt.getQteInsereTank()));
+    		tankRepository.save(t);
+//			//o.setPoidsLait(operation.getPoidsLait());
+			o.setIdOperation(idOperation);
+			operationRepository.save(o);
+		}
+		}
+		operationRepository.deleteOpTank(idOperation);
+		//operationRepository.deleteOp(idOperation);			
+		if (op.isPresent()) { 
 				operationRepository.deleteOp(idOperation);
 			}else throw new RuntimeException("Operation introuvable ! vous ne pouvez pas le supprimer !!");
 		}
@@ -338,12 +361,13 @@ public class OperationRestController {
 							Tank tank2=tankRepository.findAll().get(i);
 							
 							if(tank2.getPoidActuel()==tank2.getPoidVide()) {
-							tank2.setEtat("Totalement remplis");
+							tank2.setEtat("Remplis");
 							tankRepository.save(tank2);
 						
 							}
 							else if(tank2.getPoidActuel()==0) {
-								tank2.setEtat("Non remplis");
+								tank2.setEtat("Vide");
+								tank2.setDateIns(null);
 								tankRepository.save(tank2);
 								
 								}
@@ -376,7 +400,8 @@ public class OperationRestController {
 	operation.setDateOperation(currentDateTime);
 	operation.setTypeOp("Retrait");
 	operation.setChef(chefRepository.findAll().get(0));
-	operation.setCode(10000+operationRepository.findAll().size());
+	int b=operationRepository.findAll().size();
+	//operation.setCode(10000+b);
 	operationRepository.save(operation);
 	
 	// nverifi 3la date idha 3andha date a9al heya eli nlivriha lowla 
@@ -806,11 +831,12 @@ public class OperationRestController {
 						Tank tank2=tankRepository.findAll().get(i);
 						
 						if(tank2.getPoidActuel()==tank2.getPoidVide()) {
-						tank2.setEtat("Totalement remplis");
+						tank2.setEtat("Remplis");
 						tankRepository.save(tank2);
 						}
 						else if(tank2.getPoidActuel()==0) {
-							tank2.setEtat("Non remplis");
+							tank2.setEtat("Vide");
+							tank2.setDateIns(null);
 							tankRepository.save(tank2);
 							}
 						else if(tank2.getPoidActuel()<tank2.getPoidVide()) {
@@ -822,7 +848,7 @@ public class OperationRestController {
 					}
 
 		
-    operation.setCode(operation.getCode()+operationRepository.findAll().size());
+   // operation.setCode(operation.getCode()+operationRepository.findAll().size());
 	return operationRepository.save(operation);
 }
 
