@@ -83,6 +83,7 @@ public class TankRestController {
 			}else throw new RuntimeException("Tank introuvable !!");
 		}
 		
+		
 		@RequestMapping(value="/qteTanksGenerale",method = RequestMethod.GET)
 	    public double getQteTankGenerale() {
 			double qteGeneraleLait=0;

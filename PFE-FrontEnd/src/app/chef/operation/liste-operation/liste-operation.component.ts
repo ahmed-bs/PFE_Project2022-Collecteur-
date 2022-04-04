@@ -35,6 +35,8 @@ export class ListeOperationComponent implements OnInit {
   v=0;
   erreur=0;
   err="";
+  p=0;
+  q=0;
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
@@ -56,6 +58,9 @@ export class ListeOperationComponent implements OnInit {
         console.log('Toast Vide');
       }
 
+
+      
+
       // this.tankService.getQteLibreAujourdhui().subscribe(
 
       //   o=>{
@@ -75,6 +80,7 @@ export class ListeOperationComponent implements OnInit {
         this.dataSource.sort =this.matSort;
         console.log(this.dataSource);
         console.log(this.ELEMENT_DATA);});
+        
 
     }
 
@@ -95,8 +101,34 @@ export class ListeOperationComponent implements OnInit {
         this.showToast();
       }
     );
+
+  
   }
 
+  deleteOp(id: number){
+
+    this.tankService.getTanksQteGenerale().subscribe(o=>{
+      console.log(o);
+      this.q=o;
+      this.operationService.getOperation(id).subscribe(a=>{
+        console.log(a.poidsLait);
+        this.p=a.poidsLait;
+
+        if(this.p<=this.q){
+          this.deleteOperation(id);
+        }else{
+          this.idContenu = 'TostDangerContenu';
+          this.idTitle = 'TostDangerTile';
+          this.Toast[0] = 'Failed';
+          this.Toast[1] ='Vous ne pouvez pas supprimer cette opereation, car la quantite disponible dans les tanks est inferieur a la quantite que vous voulez la supprimer !!';
+          this.showToast();
+        }
+      });
+  
+      });
+
+    
+  }
 
 
 
@@ -166,11 +198,11 @@ export class ListeOperationComponent implements OnInit {
         this.Toast = [];
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         console.log(this.ShowToast);
-      }, 7100);
+      }, 9100);
       this.intervalId = setInterval(() => {
         this.counter = this.counter + 1;
         console.log(this.counter);
-        if (this.counter === 7)
+        if (this.counter === 9)
         clearInterval(this.intervalId);
       }, 1000);
       this.counter=0
