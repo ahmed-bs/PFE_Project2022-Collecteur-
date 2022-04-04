@@ -95,9 +95,16 @@ public class OperationRestController {
 //			//o.setPoidsLait(operation.getPoidsLait());
 			o.setIdOperation(idOperation);
 			operationRepository.save(o);
+			
+			if(t.getPoidActuel()==0) {
+				t.setDateIns(null);
+				tankRepository.save(t);
 		}
 		}
+		}
+		
 		operationRepository.deleteOpTank(idOperation);
+		
 		//operationRepository.deleteOp(idOperation);			
 		if (op.isPresent()) { 
 				operationRepository.deleteOp(idOperation);

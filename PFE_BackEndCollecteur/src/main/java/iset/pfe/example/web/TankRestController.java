@@ -34,6 +34,7 @@ public class TankRestController {
 	
 		@RequestMapping(value="/tanks",method = RequestMethod.GET)
 		public List<Tank> getTanks(){
+			
 			return tankRepository.findAll();
 		}
 		
@@ -145,8 +146,10 @@ public class TankRestController {
 		@ResponseBody
 		public void deleteTank(@PathVariable Integer idTank) {
 			Optional<Tank> tank = tankRepository.findById(idTank);
+			
 					if (tank.isPresent()) { 
 						tankRepository.deleteById(idTank);
+
 			    }else throw new RuntimeException("Tank introuvable ! vous ne pouvez pas le supprimer !!");
 		}
 		
