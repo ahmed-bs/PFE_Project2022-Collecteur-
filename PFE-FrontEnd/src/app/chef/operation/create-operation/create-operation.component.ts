@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { Operation } from 'src/app/Models/operation';
+import { OperationTank } from 'src/app/Models/operationTank';
 import { Tank } from 'src/app/Models/tank';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import { OperationService } from 'src/app/Services/operation.service';
@@ -36,18 +37,23 @@ export class CreateOperationComponent implements OnInit {
       // lait : new FormControl(null,[Validators.required ]),
 
   })
-  
+
   tanks!:Observable<Tank[]>;
   agriculteurs!:Observable<Agriculteur[]>;
+
+  length=0;
+
+  ELEMENT_DATA?:OperationTank[];
+  elem?:OperationTank;
 
   constructor(
     private operationService: OperationService,
     private tankService:TankService,
-    private agriculteurService:AgriculteurService, 
+    private agriculteurService:AgriculteurService,
     private router: Router,
     private dialogClose: MatDialog) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     //this.ValidatedForm();
     this.tanks=this.tankService.getTanks();
     this.agriculteurs=this.agriculteurService.getAgriculteurs();
@@ -58,11 +64,22 @@ export class CreateOperationComponent implements OnInit {
       if(this.myForm.get('poidsLait')?.value<=o)
       this.msgErreur=0;
       else{
-        this.msgErreur=1;
+      this.msgErreur=1;
       this.qteRsetLait=o;
       }
 
-      
+      this.operationService.getOpTank(JSON.parse(localStorage.getItem('IdOperation') || '[]') || []).subscribe(async i=>{
+         this.ELEMENT_DATA=await i;
+       // this.length=this.ELEMENT_DATA?.length;
+        console.log(i.idOpTank);
+        console.log(this.ELEMENT_DATA);
+        //console.log(this.ELEMENT_DATA?.idOpTank);
+  
+      });
+
+    
+
+
   });
 
   }
@@ -74,7 +91,7 @@ export class CreateOperationComponent implements OnInit {
 
   save() {
 
-    
+
   if(this.myForm.get('poidsLait')?.value==null){
     this.msg="vous devez remplir le formulaire !!";
   }
@@ -98,7 +115,7 @@ export class CreateOperationComponent implements OnInit {
             "agriculteur":{
               "idAgriculteur":this.myForm.get('agriculteur')?.value,
            },
-  
+
           }
         )
         .subscribe(o=>{
@@ -106,14 +123,14 @@ export class CreateOperationComponent implements OnInit {
           console.log(this.operation);
 
           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-          window.location.reload();      
+          window.location.reload();
         },
         (error) => {
           console.log("Failed")
         }
       );
-    
-      } 
+
+      }
   }
 
 
@@ -131,7 +148,7 @@ export class CreateOperationComponent implements OnInit {
       this.qteRsetLait=o;
       }
 
-      
+
   });
 
   }

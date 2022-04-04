@@ -61,6 +61,14 @@ public class OperationRestController {
 		}else throw new RuntimeException("Operation introuvable !!");
 	}
 	
+	
+	@RequestMapping(value="/getOpTank/{idOperation}",method = RequestMethod.GET)
+	public List<OperationTank> getOpTank(@PathVariable Integer idOperation) {		
+		return operationRepository.find(idOperation);
+	}
+	
+	
+	
 	@RequestMapping(value="/find/{idOperation}",method = RequestMethod.GET)
 	public List<OperationTank> fingOperation(@PathVariable Integer idOperation) {
 	List<OperationTank> op = operationRepository.find(idOperation);
