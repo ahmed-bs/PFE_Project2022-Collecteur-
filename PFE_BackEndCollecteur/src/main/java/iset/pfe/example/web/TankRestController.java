@@ -157,7 +157,7 @@ public class TankRestController {
 		//create new tank method 
 		@RequestMapping(value="/tanks",method = RequestMethod.POST)
 			public Tank AddTank(@RequestBody Tank tank ){
-			tank.setEtat("Non remplis");
+			tank.setEtat("Vide");
 			tank.setPoidActuel(0);
 			
 				

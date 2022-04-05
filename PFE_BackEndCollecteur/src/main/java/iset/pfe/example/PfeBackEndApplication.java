@@ -55,16 +55,16 @@ public class PfeBackEndApplication implements CommandLineRunner {
 	     String currentDateTime = dateFormatter.format(new Date("2021/03/25 23:36"));
 	     String currentDateTime2 = dateFormatter.format(new Date());
 		 
-		Tank t1=new Tank("tank numero 1", 120, 0, "Non remplis");
+		Tank t1=new Tank("tank numero 1", 120, 0, "Vide");
 //		t1.setDateIns(currentDateTime2);
 		tankRepository.save(t1);
 		
-		Tank t2=new Tank("tank numero 2", 120, 0, "Non remplis");
+		Tank t2=new Tank("tank numero 2", 120, 0, "Vide");
 //		t2.setDateIns(currentDateTime);
 		tankRepository.save(t2);
 		
 		
-		Tank t3=new Tank("tank numero 3", 120, 0, "Non remplis");
+		Tank t3=new Tank("tank numero 3", 120, 0, "Vide");
 //		t3.setDateIns(currentDateTime2);
 		tankRepository.save(t3);
 		
@@ -75,14 +75,14 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		Usine u1=new Usine("Usine 1", "bizerte");
 		usineRepository.save(u1);
 		
-		Operation o1=new Operation(120, currentDateTime2, "Remplissage", 10006);
-		o1.setAgriculteur(a1);
-		operationRepository.save(o1);
-
-		
-		Operation o2=new Operation(120, currentDateTime2, "Retrait", 10006);
-		o2.setUsine(u1);
-		operationRepository.save(o2);
+//		Operation o1=new Operation(120, currentDateTime2, "Remplissage", 10006);
+//		o1.setAgriculteur(a1);
+//		operationRepository.save(o1);
+//
+//		
+//		Operation o2=new Operation(120, currentDateTime2, "Retrait", 10006);
+//		o2.setUsine(u1);
+//		operationRepository.save(o2);
 		
 		
 		Role role1=new Role("USER");

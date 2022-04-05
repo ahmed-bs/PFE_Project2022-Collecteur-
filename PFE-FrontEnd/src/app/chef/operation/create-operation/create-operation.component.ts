@@ -31,10 +31,11 @@ export class CreateOperationComponent implements OnInit {
   valeur2=0;
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required]),
+      code : new FormControl(null,[Validators.required ]),
      // dateOperation : new FormControl(null,[Validators.required ]),
       // agriculteur : new FormControl(null,[Validators.required ]),
       agriculteur : new FormControl(null,[Validators.required ]),
-      // lait : new FormControl(null,[Validators.required ]),
+     
 
   })
 
@@ -106,12 +107,21 @@ export class CreateOperationComponent implements OnInit {
     this.msg="";
    }
 
-    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('agriculteur')?.value!=null ){
+   
+   if(this.myForm.get('code')?.value==null){
+    this.msg="vous devez remplir le formulaire !!";
+  }
+  else{
+    this.msg="";
+   }
+
+    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('agriculteur')?.value!=null && this.myForm.get('code')?.value!=null ){
 
     this.operationService
         .createOperationRemplissage(
           {
             "poidsLait":this.myForm.get('poidsLait')?.value,
+            "code":this.myForm.get('code')?.value,
             "agriculteur":{
               "idAgriculteur":this.myForm.get('agriculteur')?.value,
            },
@@ -170,6 +180,11 @@ export class CreateOperationComponent implements OnInit {
 
 get agriculteur(){
   return this.myForm.get('agriculteur') ;
+}
+
+
+get code(){
+  return this.myForm.get('code') ;
 }
 
 
