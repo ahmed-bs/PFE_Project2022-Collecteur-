@@ -39,6 +39,11 @@
 		</div>
 		<div class="login-content">
 			<form>
+        <div  class="alert alert-danger" style="height:90px;width:365px;text-align:center;padding:15px;" *ngIf="err==1">
+          <strong>Erreur !!<br> le nom d'utilisateur ou le mot de passe est incorecte ...</strong>
+         </div>
+         <br>
+
 				<img src="../../assets/avatar.svg" alt="cccccccc">
 				<h2 class="title">Welcome</h2>
            		<div class="input-div one">
