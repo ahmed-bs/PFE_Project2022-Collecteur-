@@ -393,7 +393,7 @@ public class OperationRestController {
 						}
 		}
 			
-		operation.setCode(null);
+		//operation.setCode(null);
 		operationRepository.save(operation);
 		
 		

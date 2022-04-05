@@ -21,7 +21,6 @@ export class DetailsOperationComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-  
     this.operationService.getOperation(JSON.parse(localStorage.getItem('IdOperation') || '[]') || []).subscribe(o =>{
       this.operation = o;
       this.idO=this.operation?.idOperation;

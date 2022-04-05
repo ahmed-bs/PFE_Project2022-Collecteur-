@@ -37,7 +37,7 @@ export class ListeOperationComponent implements OnInit {
   err="";
   p=0;
   q=0;
-  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur','code', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
@@ -198,11 +198,11 @@ export class ListeOperationComponent implements OnInit {
         this.Toast = [];
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         console.log(this.ShowToast);
-      }, 9100);
+      }, 12100);
       this.intervalId = setInterval(() => {
         this.counter = this.counter + 1;
         console.log(this.counter);
-        if (this.counter === 9)
+        if (this.counter === 15)
         clearInterval(this.intervalId);
       }, 1000);
       this.counter=0
