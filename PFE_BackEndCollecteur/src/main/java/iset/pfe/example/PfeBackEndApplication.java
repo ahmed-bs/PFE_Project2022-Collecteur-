@@ -98,6 +98,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		ch1.setAdress("bizerte");
 		ch1.setNom("nour");
 		ch1.setCin(11431134);
+		ch1.setTel(156465);
 		ch1.getRoles().add(role1);
 		chefRepository.save(ch1);
 		

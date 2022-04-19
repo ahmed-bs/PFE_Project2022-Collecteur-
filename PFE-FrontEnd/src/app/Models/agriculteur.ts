@@ -4,7 +4,5 @@ export class Agriculteur{
     prenom!: string;
     email!: string;
     adress!: string;
-    tel!:number;
-   
-  
+    tel!:number; 
   }
