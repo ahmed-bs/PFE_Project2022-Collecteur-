@@ -23,12 +23,13 @@ export class DetailsUsineComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-  
+
     this.usineService.getUsine(JSON.parse(localStorage.getItem('IdUsine') || '[]') || []).subscribe(o =>{
       this.usine = o;
       this.idU=this.usine?.idUsine;
       //console.log(typeof this.OneOffer);
       console.log(this.usine);
+      // console.log(this.idM);
   });
 }
 

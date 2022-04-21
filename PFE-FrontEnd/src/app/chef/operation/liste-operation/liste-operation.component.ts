@@ -43,7 +43,7 @@ export class ListeOperationComponent implements OnInit {
   err="";
   p=0;
   q=0;
-  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur','code', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur','code','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }

@@ -264,14 +264,14 @@ option = {
       axisLine: {
         lineStyle: {
           width: 10,
-          color: [[1, 'rgba(255,255,255, 0.3)']],
-          shadowColor: 'white',
+          color: [[1, 'rgba(0,0,0,0.7)']],
+          shadowColor: 'rgba(0, 0, 0, 0.5)',
           shadowBlur: 10
         }
       },
       splitLine: {
         lineStyle: {
-          shadowColor: 'rgba(255,255,255, 0.3)',
+          shadowColor: 'rgba(0, 0, 0, 0.3)',
           shadowBlur: 3,
           shadowOffsetX: 1,
           shadowOffsetY: 2
@@ -295,7 +295,7 @@ option = {
         size: 120,
         keepAspect: true,
         itemStyle: {
-          color: 'white'
+          color: '#707177'
         }
       },
       pointer: {
@@ -304,7 +304,7 @@ option = {
         length: '55%',
         offsetCenter: [0, '8%'],
         itemStyle: {
-          color: 'white',
+          color: '#C0911F',
           shadowColor: 'rgba(0, 0, 0, 0.3)',
           shadowBlur: 8,
           shadowOffsetX: 2,
@@ -349,8 +349,8 @@ option = {
         length: '70%',
         offsetCenter: [0, '8%'],
         itemStyle: {
-          color: 'white',
-          shadowColor: 'white',
+          color: '#C0911F',
+          shadowColor: 'rgba(0, 0, 0, 0.3)',
           shadowBlur: 8,
           shadowOffsetX: 2,
           shadowOffsetY: 4
@@ -362,8 +362,8 @@ option = {
         showAbove: false,
         itemStyle: {
           borderWidth: 15,
-          borderColor: 'white',
-          shadowColor: 'white',
+          borderColor: '#C0911F',
+          shadowColor: 'rgba(0, 0, 0, 0.3)',
           shadowBlur: 8,
           shadowOffsetX: 2,
           shadowOffsetY: 4
@@ -408,7 +408,7 @@ option = {
         length: '85%',
         offsetCenter: [0, '8%'],
         itemStyle: {
-          color: 'white',
+          color: '#C0911F',
           shadowColor: 'rgba(0, 0, 0, 0.3)',
           shadowBlur: 8,
           shadowOffsetX: 2,
@@ -421,7 +421,7 @@ option = {
         showAbove: true,
         itemStyle: {
           color: '#C0911F',
-          shadowColor: 'white',
+          shadowColor: 'rgba(0, 0, 0, 0.3)',
           shadowBlur: 8,
           shadowOffsetX: 2,
           shadowOffsetY: 4

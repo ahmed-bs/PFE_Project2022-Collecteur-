@@ -21,6 +21,7 @@ public class Agriculteur implements Serializable{
 	private String nom;
 	private String prenom;
 	private String email;
+	private String matricule;
 	private String adress;
 	private int tel;
 	
@@ -48,6 +49,19 @@ public class Agriculteur implements Serializable{
 		this.operations = operations;
 	}
 	
+	public Agriculteur(String nom, String prenom, String email, String matricule, String adress, int tel,
+			Set<Operation> operations) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.matricule = matricule;
+		this.adress = adress;
+		this.tel = tel;
+		this.operations = operations;
+	}
+
+
 	public Agriculteur() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -114,6 +128,14 @@ public class Agriculteur implements Serializable{
 		this.operations = operations;
 	}
 
-	
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
 
 }

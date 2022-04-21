@@ -4,28 +4,25 @@
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div><br>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
 
-                <label>Poids Lait : </label>
+                <label>Quantité de lait(minimum 1L) :<span style="color:red;">*</span></label>
                 <input type="number"
                  formControlName="poidsLait"
                  class="form-control"
                  id="poidsLait"
                  name="poidsLait">
     
-                 <div *ngIf="poidsLait?.invalid && poidsLait?.touched && msgErreur==1" class="text-danger">
-                Poids invalide !
+                 <div *ngIf="poidsLait?.invalid && poidsLait?.touched || msgErreur==1" class="text-danger">
+                  Quantité invalide !
               </div>
               <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0"  class="text-success">
-                Poids valide!
+                Quantité valide!
               </div>
-                <div *ngIf="msgErreur==1" class="text-danger">
-                  Vous ne pouvez pas prendre cette quantité !! car la quantité de lait disponible est: {{qteActLaitTank}} !
-                  <br> Vous devez introduire une quantite moins ou egale a {{qteActLaitTank}} .
-                </div>
     
               </div>
 
@@ -33,7 +30,7 @@
               <div class="col-md-6 mb-3">
                 <label class="mr-sm-5" for="inlineFormCustomSelect">Usine : <span style="color:red;">*</span></label>
                 <select formControlName="usine" name="usine"  class="custom-select mr-sm-2" id="usine" >
-                  <option disabled selected value [ngValue]="null">Choisir un usine...</option>
+                  <option disabled selected value [ngValue]="null">Choisir une usine...</option>
                   <option *ngFor="let usine of usines | async" [value]="usine.idUsine">{{usine.nomUsine}}</option>
                 </select>
                 <div
@@ -44,11 +41,14 @@
                  <div
                   *ngIf="usine?.valid && usine?.touched"
                class="text-success">
-               usine valide!
+               Usine valide!
              </div>
               </div>
   
-
+              <div *ngIf="msgErreur==1" class="text-danger">
+                 La quantité de lait disponible est : {{qteActLaitTank}}L !
+                <br> Vous devez introduire une quantite moins ou egale a {{qteActLaitTank}}L .
+              </div>  <br><br>
 
               &nbsp;&nbsp;  <h5 style="color:blue">Voici le code de la livraison  :<strong><i> {{som}} </i> </strong> </h5><br><br>
   

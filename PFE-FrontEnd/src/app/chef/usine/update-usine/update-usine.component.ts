@@ -13,11 +13,12 @@ export class UpdateUsineComponent implements OnInit {
   usine:Usine=new Usine();
   // myForm!:FormGroup;
    CheckesCompetance:boolean=false;
+   msg="";
 
    myForm=new  FormGroup({
-     nomUsine : new FormControl(null,[Validators.required]),
-     adresse : new FormControl(null,[Validators.required ]),
- })
+    nomUsine : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+    adresse : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
+})
 
 
    constructor(
@@ -36,6 +37,15 @@ export class UpdateUsineComponent implements OnInit {
    }
 
    updateUsine(){
+    if(this.myForm.get('nomUsine')?.value==null || this.myForm.get('adresse')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+    
+     if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null && 
+         this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3){
 
      this.usineService
      // .updateusine(this.usine.idusine,this.usine)
@@ -50,9 +60,10 @@ export class UpdateUsineComponent implements OnInit {
          },
          (error) => {
            console.log("Failed")
-         }
-       );
-   }
+         });
+        }
+      }
+    
 
   get nomUsine(){
    return this.myForm.get('nomUsine') ;

@@ -9,20 +9,24 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom de l'usine : <span style="color:red;">*</span></label>
+                <label>Nom de l'usine :<span style="color:red;">*</span></label>
+                <p>(minimum 3 caracteres)</p>
                 <input type="text"
                  formControlName="nomUsine"
+                 placeholder="Nom de l'usine .."
                  class="form-control"
                  id="nomUsine"
                  name="nomUsine">
 
                 <div *ngIf="nomUsine?.invalid && nomUsine?.touched" class="text-danger">
-                  nomUsine invalide !
+                  Nom de l'usine invalide !
                 </div>
-                <div *ngIf="nomUsine?.valid && nomUsine?.touched " class="text-success">
-                  nomUsine valide!
+                <div *ngIf="nomUsine?.valid && nomUsine?.touched && msg1==0 " class="text-success">
+                  Nom de l'usine valide!
                 </div>
-
+                <div *ngIf="msg1==1"  class="text-danger">
+                  &nbsp;Nom de l'usine existe deja !
+                </div>
               </div>
 
 
@@ -30,18 +34,20 @@
 
 
               <div class="col-md-6 mb-3">
-                <label for="prix">adresse : <span style="color:red;">*</span></label>
+                <label>Adresse :<span style="color:red;">*</span></label>
+                <p>(minimum 4 caracteres)</p>
                 <input type="text"
-                class="form-control"
+                  class="form-control"
                   id="adresse"
+                  placeholder="ep : Tunis .."
                   formControlName="adresse"
                   name="adresse">
 
                   <div *ngIf="adresse?.invalid && adresse?.touched" class="text-danger">
-                    adresse invalide !
+                    Adresse invalide !
                   </div>
                   <div *ngIf="adresse?.valid && adresse?.touched" class="text-success">
-                    adresse Valide
+                    Adresse Valide
                   </div>
 
             </div>

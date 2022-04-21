@@ -15,6 +15,8 @@ const httpOptions = {
 export class AgriculteurService {
   baseUrl : string = 'http://localhost:3801/agriculteurs';
   baseUrl1 : string = 'http://localhost:3801/nbreA';
+  baseUrl2 : string = 'http://localhost:3801/agriculteur';
+  baseUrl3 : string = 'http://localhost:3801/ag';
 
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -32,6 +34,34 @@ export class AgriculteurService {
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
+
+  //si le nom et prenom de l'agriculteur existe ou nn 
+  getNomPrenomUtilse(nom: String,prenom: String): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl2}/${nom}/${prenom}`
+    return this.http.get(url,{headers:httpHeaders}); 
+  }
+
+    //si le numero de tel existe ou nn 
+    getTelUtilse(tel: number): Observable<any> {
+      let jwt = this.authService.getToken();
+      jwt = "Bearer "+jwt;
+      let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+      const url = `${this.baseUrl2}/${tel}`
+      return this.http.get(url,{headers:httpHeaders}); 
+    }
+
+     //si le matricule existe ou nn 
+     getMatriculeUtilse(matricule: string): Observable<any> {
+      let jwt = this.authService.getToken();
+      jwt = "Bearer "+jwt;
+      let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+      const url = `${this.baseUrl3}/${matricule}`
+      return this.http.get(url,{headers:httpHeaders}); 
+    }
+
 
   getAgriculteur(id: number): Observable<any> {
     let jwt = this.authService.getToken();

@@ -6,83 +6,48 @@
       </button>
     </div>
     <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
-          <form [formGroup]="myForm"  novalidate >
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-3">
-                <label>Matricule : <span style="color:red;">*</span></label>
-                <input type="text"
-                 formControlName="matricule"
-                 class="form-control"
-                 id="matricule"
-                 name="matricule">
+    <form [formGroup]="myForm"  novalidate >
+      <div class="form-row">
+        <div class="form-group col-md-6 mb-3">
+          <label>Matricule (min 8 caracteres): <span style="color:red;">*</span></label>
+          <input type="text"
+           formControlName="matricule"
+           class="form-control"
+           id="matricule"
+           name="matricule">
 
-                <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
-                  matricule invalide !
-                </div>
-                <div *ngIf="matricule?.valid && matricule?.touched " class="text-success">
-                  matricule valide!
-                </div>
-                <!-- <div *ngIf="msgErreur==1" class="text-danger">
-                  Vous ne pouvez pas prendre cette quantité!! car la quantité disponible dans le stock est: {{qteAct}} !
-                  <br> Vous devez introduire une quantite moins ou egale a {{qteAct}} .
-                </div> -->
-
-              </div>
-
-
-            <!-- <div class="form-row"> -->
-
-              <div class="col-md-6 mb-3">
-                  <label for="prix">Poids Vide : <span style="color:red;">*</span></label>
-                  <input type="number"
-                  class="form-control"
-                    id="poidVide"
-                    formControlName="poidVide"
-                    name="poidVide">
-
-                    <div *ngIf="poidVide?.invalid && poidVide?.touched" class="text-danger">
-                      Poids invalide !
-                    </div>
-                    <div *ngIf="poidVide?.valid && poidVide?.touched" class="text-success">
-                      Poids Valide
-                    </div>
-
-              </div>
-
-              <!-- <div class="col-md-12 mb-3">
-                <label for="prix">Poids Acturel: <span style="color:red;">*</span></label>
-                <input type="text"
-                class="form-control"
-                  id="poidActuel"
-                  formControlName="poidActuel"
-                  name="poidActuel">
-
-                  <div *ngIf="poidActuel?.invalid && poidActuel?.touched" class="text-danger">
-                    poidActuele invalide !
-                  </div>
-                  <div *ngIf="poidActuel?.valid && poidActuel?.touched" class="text-success">
-                    poidActuele Valide
-                  </div>
-
-            </div> -->
-
-            <!-- <div class="col-md-12 mb-3">
-              <label for="prix">Etat: <span style="color:red;">*</span></label>
-              <input type="text"
-              class="form-control"
-                id="etat"
-                formControlName="etat"
-                name="etat">
-
-                <div *ngIf="etat?.invalid && etat?.touched" class="text-danger">
-                  etat invalide !
-                </div>
-                <div *ngIf="etat?.valid && etat?.touched" class="text-success">
-                  etat Valide
-                </div>
-
+          <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+            Matricule invalide !
           </div>
-   -->
+          <div *ngIf="matricule?.valid && matricule?.touched && msg1==0 " class="text-success">
+            Matricule valide!
+          </div>
+          <div *ngIf="msg1==1"  class="text-danger">
+            &nbsp;Matricule existe deja !
+          </div>
+
+        </div>
+
+
+      <!-- <div class="form-row"> -->
+
+        <div class="col-md-6 mb-3">
+            <label for="prix">Poids vide (min 100L): <span style="color:red;">*</span></label>
+            <input type="number"
+            class="form-control"
+              id="poidVide"
+              formControlName="poidVide"
+              placeholder="exp : 100 Litres .."
+              name="poidVide">
+
+              <div *ngIf="poidVide?.invalid && poidVide?.touched" class="text-danger">
+                Poids invalide !
+              </div>
+              <div *ngIf="poidVide?.valid && poidVide?.touched" class="text-success">
+                Poids Valide
+              </div>
+
+        </div>
             </div>
 
 

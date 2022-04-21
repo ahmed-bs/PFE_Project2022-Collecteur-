@@ -22,6 +22,7 @@ export class OperationService {
   baseUrl6 : string = 'http://localhost:3801/nbreOp';
   baseUrl7 : string = 'http://localhost:3801/operationsR';
   baseUrl8 : string = 'http://localhost:3801/getOpTank';
+  baseUrl9 : string = 'http://localhost:3801/op';
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
@@ -33,7 +34,14 @@ export class OperationService {
     return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
   }
 
-
+ // test si le code exist ou nn
+ getOpCodeUtilise(code: number): Observable<any> {
+  let jwt = this.authService.getToken();
+  jwt = "Bearer "+jwt;
+  let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+  const url = `${this.baseUrl9}/${code}`
+  return this.http.get(url,{headers:httpHeaders});
+}
 
   getOperations(): Observable<any> {
     let jwt = this.authService.getToken();

@@ -11,6 +11,7 @@ export class UsineService {
 
   baseUrl : string = 'http://localhost:3801/usines';
   baseUrl1 : string = 'http://localhost:3801/nbreU';
+  baseUrl2 : string = 'http://localhost:3801/usine';
 
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -20,6 +21,16 @@ export class UsineService {
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
+  }
+
+
+  //si le nomde l'usine existe ou nn 
+  getNomUsineUtilse(nomUsine: String): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl2}/${nomUsine}`
+    return this.http.get(url,{headers:httpHeaders}); 
   }
 
   getNbUsines(): Observable<any> {

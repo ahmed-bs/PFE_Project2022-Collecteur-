@@ -22,6 +22,7 @@ export class TankService {
   baseUrl7 : string = 'http://localhost:3801/tanksQte';
   baseUrl8 : string = 'http://localhost:3801/QteG';
   baseUrl9 : string = 'http://localhost:3801/QteTanks';
+  baseUrl14 : string = 'http://localhost:3801/tank';
 
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -32,6 +33,15 @@ export class TankService {
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
+
+    // test si le matricule exist ou nn
+    getTankMatriculeUtilise(matricule: string): Observable<any> {
+      let jwt = this.authService.getToken();
+      jwt = "Bearer "+jwt;
+      let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+      const url = `${this.baseUrl14}/${matricule}`
+      return this.http.get(url,{headers:httpHeaders});
+    }
 
   getNbTanks(): Observable<any> {
     let jwt = this.authService.getToken();

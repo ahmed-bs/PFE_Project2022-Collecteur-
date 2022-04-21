@@ -35,6 +35,20 @@ public class UsineRestController {
 		return usineRepository.findAll().size();
 	}
 	
+	// si le nom de l'usine existe ou nn 
+	@RequestMapping(value="/usine/{nomUsine}",method = RequestMethod.GET)
+	public int getNomUsineUtilise(@PathVariable String nomUsine){
+		int msg=0;
+		for(int i=0;i<usineRepository.findAll().size();i++) {
+			Usine t=usineRepository.findAll().get(i);
+			if(nomUsine.equals(t.getNomUsine())) {
+				msg=1;
+			}
+			
+		}
+		return msg;
+	}
+	
 	@RequestMapping(value="/usines/{idUsine}",method = RequestMethod.GET)
     public Usine getUsine(@PathVariable Integer idUsine) {
 		Optional<Usine> usine = usineRepository.findById(idUsine);

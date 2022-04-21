@@ -29,6 +29,43 @@ public class AgriculteurRestController {
 		return agriculteurRepository.findAll();
 	}
 	
+	//si le nom et prenom de l'agriculteur existe ou nn
+	@RequestMapping(value="/agriculteur/{nom}/{prenom}",method = RequestMethod.GET)
+	public int getNomPrenom(@PathVariable String nom , @PathVariable String prenom ){
+		int msg=0;
+		for(int i=0;i<agriculteurRepository.findAll().size();i++) {
+			Agriculteur t=agriculteurRepository.findAll().get(i);
+			if(nom.equals(t.getNom()) && prenom.equals(t.getPrenom()))
+				msg=1;
+		}
+		return msg;
+	}
+	
+	//si le telephone de l'agriculteur existe ou nn
+	@RequestMapping(value="/agriculteur/{tel}",method = RequestMethod.GET)
+	public int getTel(@PathVariable int tel ){
+		int msg=0;
+		for(int i=0;i<agriculteurRepository.findAll().size();i++) {
+			Agriculteur t=agriculteurRepository.findAll().get(i);
+			if(tel == t.getTel())
+				msg=1;
+		}
+		return msg;
+	}
+	
+	//si lematricule de l'agriculteur existe ou nn
+		@RequestMapping(value="/ag/{matricule}",method = RequestMethod.GET)
+		public int getmatricule(@PathVariable String matricule ){
+			int msg=0;
+			for(int i=0;i<agriculteurRepository.findAll().size();i++) {
+				Agriculteur t=agriculteurRepository.findAll().get(i);
+				if(t.getMatricule().equals(matricule))
+					msg=1;
+			}
+			return msg;
+		}
+	
+	
 	@RequestMapping(value="/nbreA",method = RequestMethod.GET)
 	public int getNbAgreculteurs(){
 		return agriculteurRepository.findAll().size();
@@ -67,6 +104,7 @@ public class AgriculteurRestController {
 		  ag.setNom(agriculteur.getNom());
 		  ag.setPrenom(agriculteur.getPrenom());
 		  ag.setTel(agriculteur.getTel());
+		  ag.setMatricule(agriculteur.getMatricule());
 		  agriculteurRepository.save(ag);
 			
 	  	return ag;

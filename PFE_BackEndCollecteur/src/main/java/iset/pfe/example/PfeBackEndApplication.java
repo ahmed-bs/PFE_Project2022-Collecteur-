@@ -70,6 +70,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		
 		
 		Agriculteur a1=new Agriculteur("Ahmed", "Ben saber", "ahmed@gmail.com", "Bizerte", 22332233);
+		a1.setMatricule("als55slql");
 		agriculteurRepository.save(a1);
 		
 		Usine u1=new Usine("Usine 1", "bizerte");
