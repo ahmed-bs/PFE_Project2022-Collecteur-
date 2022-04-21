@@ -11,6 +11,13 @@ import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
 
+import { ethers } from 'ethers';
+import { Chef } from 'src/app/Models/chef';
+import { Usine } from 'src/app/Models/usine';
+
+declare let require: any;
+declare let window: any;
+let Remplissage = require('../../../../../build/contracts/RemplissageCol.json');
 @Component({
   selector: 'app-create-operation',
   templateUrl: './create-operation.component.html',
@@ -44,9 +51,10 @@ export class CreateOperationComponent implements OnInit {
 
   length=0;
 
-  ELEMENT_DATA?:OperationTank[];
-  elem?:OperationTank;
+  ELEMENT_DATA!:OperationTank[];
 
+  tab!: any[];
+  tabTankId!: any[];
   constructor(
     private operationService: OperationService,
     private tankService:TankService,
@@ -59,31 +67,23 @@ export class CreateOperationComponent implements OnInit {
     this.tanks=this.tankService.getTanks();
     this.agriculteurs=this.agriculteurService.getAgriculteurs();
 
-    this.tankService.getTanksQteLibre().subscribe(
-      o=>{
-      console.log(o);
-      if(this.myForm.get('poidsLait')?.value<=o)
-      this.msgErreur=0;
-      else{
-      this.msgErreur=1;
-      this.qteRsetLait=o;
-      }
 
-      this.operationService.getOpTank(JSON.parse(localStorage.getItem('IdOperation') || '[]') || []).subscribe(async i=>{
-         this.ELEMENT_DATA=await i;
-       // this.length=this.ELEMENT_DATA?.length;
-        console.log(i.idOpTank);
-        console.log(this.ELEMENT_DATA);
-        //console.log(this.ELEMENT_DATA?.idOpTank);
-  
-      });
-
-    
-
-
-  });
 
   }
+
+
+
+
+
+
+  async  requestAccount() {
+    if (typeof window.ethereum !== 'undefined') {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    }
+  }
+
+
+
 
   newEmployee(): void {
     this.submitted = false;
@@ -128,12 +128,13 @@ export class CreateOperationComponent implements OnInit {
 
           }
         )
-        .subscribe(o=>{
-          window.location.reload();
-          console.log(this.operation);
+        .subscribe(o=>{ 
+          
+         this.tab = Object.values(o)
+          localStorage.setItem('idOP',this.tab[0])
 
           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-          window.location.reload();
+          this.reLoad() 
         },
         (error) => {
           console.log("Failed")
@@ -141,7 +142,61 @@ export class CreateOperationComponent implements OnInit {
       );
 
       }
+      this.tankService.getTanksQteLibre().subscribe(
+        o=>{
+          this.reLoad() 
+        if(this.myForm.get('poidsLait')?.value<=o)
+        this.msgErreur=0;
+        else{
+        this.msgErreur=1;
+        this.qteRsetLait=o;
+        }
+  var kk=JSON.parse(localStorage.getItem('idOP') || '[]') || []
+        this.operationService.getOpTank(kk).subscribe( i=>{  
+           this.tabTankId=Object.values(i);
+         // this.length=this.ELEMENT_DATA?.length
+
+  localStorage.setItem('tabTankId',JSON.stringify(this.tabTankId))
+  this.reLoad()
+  console.log("this.tabTankId---------------------------------");
+  console.log(this.tabTankId);
+  this.reLoad() 
+               });
+  
+      
+  
+  
+    });
   }
+
+
+
+   count!: number;
+  elem0: OperationTank[] = [];
+ //usine:Usine = new Usine();
+  async saveInBc(){
+    const depKEY=Object.keys(Remplissage.networks)[0];
+    await this.requestAccount();
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer);
+    this.elem0=JSON.parse(localStorage.getItem('tabTankId') || '[]') || []  ;
+
+    this.count=this.elem0.length
+
+
+    const transaction = await contract.addOperationTank(this.elem0,this.count);
+      
+    await transaction.wait() ; 
+
+
+
+    }
+
+
+
+
+
 
 
   onSubmit() {
@@ -151,13 +206,15 @@ export class CreateOperationComponent implements OnInit {
       console.log(o);
       if(this.myForm.get('poidsLait')?.value<=o){
       this.save();
+      this.reLoad();
       this.msgErreur=0;
+      this.saveInBc();
       }
       else{
       this.msgErreur=1;
       this.qteRsetLait=o;
       }
-
+     
 
   });
 
@@ -167,7 +224,9 @@ export class CreateOperationComponent implements OnInit {
     this.router.navigate(['chef/operation/listeOperation']);
   }
 
-
+  reLoad(){
+    this.router.navigate([this.router.url])
+  }
   onClose() {
     this.dialogClose.closeAll();
     this.gotoList();
@@ -187,6 +246,9 @@ get code(){
   return this.myForm.get('code') ;
 }
 
+get tank(){
+  return this.myForm.get('tank') ;
+}
 
 }
 

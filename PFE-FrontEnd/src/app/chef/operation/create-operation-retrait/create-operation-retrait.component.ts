@@ -11,7 +11,13 @@ import { TankService } from 'src/app/Services/tank.service';
 import { UsineService } from 'src/app/Services/usine.service';
 import { DatePipe } from '@angular/common';
 
+import { ethers } from 'ethers';
+import { OperationTank } from 'src/app/Models/operationTank';
+import { Chef } from 'src/app/Models/chef';
 
+declare let require: any;
+declare let window: any;
+let Remplissage = require('../../../../../build/contracts/RetraitCol.json');
 @Component({
   selector: 'app-create-operation-retrait',
   templateUrl: './create-operation-retrait.component.html',
@@ -24,6 +30,9 @@ export class CreateOperationRetraitComponent implements OnInit {
   t:Tank=new Tank();
   submitted = false;
   msg="";
+  tab!: any[];
+  tabTankId!: any[];
+  qteRsetLait=0;
   msgErreur=0;
   qteActLaitTank=0;
   qteMax=0;
@@ -97,10 +106,19 @@ export class CreateOperationRetraitComponent implements OnInit {
       
     )
     .subscribe(o=>{
-      window.location.reload();
+      this.usineService.getUsine(this.myForm.get('usine')?.value).subscribe(
+        b=>{
+          console.log(b)
+
+          localStorage.setItem('usine',JSON.stringify(b))
+        }
+      )
+      this.reLoad(); 
+      this.tab = Object.values(o)
+      localStorage.setItem('idOP',this.tab[0]);
       console.log(this.operation);     
       localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-      window.location.reload();      
+      this.reLoad();      
     },
     (error) => {
       console.log("Failed")
@@ -122,10 +140,78 @@ export class CreateOperationRetraitComponent implements OnInit {
 // if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
 
      }
+     this.tankService.getTanksQteLibre().subscribe(
+      o=>{
+      console.log(o);
+      if(this.myForm.get('poidsLait')?.value<=o)
+      this.msgErreur=0;
+      else{
+      this.msgErreur=1;
+      this.qteRsetLait=o;
+      }
+var kk=JSON.parse(localStorage.getItem('idOP') || '[]') || []
+console.log("///////////////////////////////////////////000000");
+console.log(kk);
+
+
+      this.operationService.getOpTank(kk).subscribe( i=>{
+        
+         this.tabTankId = Object.values(i)
+       // this.length=this.ELEMENT_DATA?.length;
+       localStorage.setItem('tabTankId',JSON.stringify(this.tabTankId))
+       console.log("///////////////////////////////////////////000000");
+       console.log(this.tabTankId);
+             });
+
+    
+
+
+  });
     
   }
 
 
+  async  requestAccount() {
+    if (typeof window.ethereum !== 'undefined') {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    }
+  }
+
+  usine0:Usine = new Usine();
+  count!: number;
+  elem0: OperationTank[] = [];
+  async saveInBc(){
+    const depKEY=Object.keys(Remplissage.networks)[0];
+    await this.requestAccount()
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
+    const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
+    this.elem0=JSON.parse(localStorage.getItem('tabTankId') || '[]') || []  ;
+
+    this.count=this.elem0.length
+for(var i=0;i<this.count;i++){
+this.elem0[i].operation.usine=JSON.parse(localStorage.getItem('usine') || '[]') || []  ;
+
+}
+
+    const transaction = await contract.RetraitOperationTank(this.elem0,this.count);
+
+
+      
+    await transaction.wait() ; 
+
+
+    }
+
+
+
+
+
+
+
+  reLoad(){
+    this.router.navigate([this.router.url])
+  }
   onSubmit() {
     this.tankService.getQteTanks().subscribe(
       a=>{
@@ -135,6 +221,7 @@ export class CreateOperationRetraitComponent implements OnInit {
       if(this.myForm.get('poidsLait')?.value<=o  ){
       this.save();
       this.msgErreur=0;
+      this.saveInBc();
     }
       else{
       this.msgErreur=1;

@@ -10,7 +10,13 @@ import { TankService } from 'src/app/Services/tank.service';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
+import { ethers } from 'ethers';
+import { Observable } from 'rxjs';
+import { OperationTank } from 'src/app/Models/operationTank';
 
+declare let require: any;
+declare let window: any;
+let Remplissage = require('../../../../../build/contracts/RemplissageCol.json');
 @Component({
   selector: 'app-liste-operation',
   templateUrl: './liste-operation.component.html',
@@ -43,10 +49,24 @@ export class ListeOperationComponent implements OnInit {
     private router: Router, private dialog:MatDialog) { }
 
 
+    operations!: Observable<OperationTank[]>;
+    reloadData00() {  
+      const depKEY=Object.keys(Remplissage.networks)[0];
+      if (typeof window.ethereum !== 'undefined') {
+     const provider = new ethers.providers.Web3Provider(window.ethereum);
+     const signer = provider.getSigner()
+     console.log(signer);
+     const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
+     this.operations = contract.getOperationTanks();}
+     console.log('**************************4471441714144');
+     console.log(this.operations);
+    }
     ngOnInit() {
+     
       this.reloadData();
+      this.reloadData00()
       console.log(this.tankService.getTanksQteLibre());
-
+     
       this.idContenu = 'TostSuccessContenu';
       this.idTitle = 'TostSuccessTile';
 
@@ -60,7 +80,7 @@ export class ListeOperationComponent implements OnInit {
 
 
       
-
+    
       // this.tankService.getQteLibreAujourdhui().subscribe(
 
       //   o=>{
@@ -71,6 +91,12 @@ export class ListeOperationComponent implements OnInit {
       //   });
 
     }
+
+
+
+
+ 
+
 
     reloadData() {
         this.operationService.getOperationsRemplissages().subscribe(o =>{
@@ -201,7 +227,7 @@ export class ListeOperationComponent implements OnInit {
       }, 12100);
       this.intervalId = setInterval(() => {
         this.counter = this.counter + 1;
-        console.log(this.counter);
+     //   console.log(this.counter);
         if (this.counter === 15)
         clearInterval(this.intervalId);
       }, 1000);

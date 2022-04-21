@@ -4,7 +4,7 @@ export class Chef{
  nom!: string;
  prenom!: string;
  email!: string;
- adresse!: string;
+ adress!: string;
  tel!:number;
  cin!:number;
  username!:string;
