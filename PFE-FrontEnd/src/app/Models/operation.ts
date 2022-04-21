@@ -1,6 +1,7 @@
 import { Agriculteur } from "./agriculteur";
 import { Chef } from "./chef";
 import { Collecteur } from "./collecteur";
+import { OperationTank } from "./operationTank";
 import { Tank } from "./tank";
 import { Usine } from "./usine";
 
