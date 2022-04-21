@@ -1,5 +1,8 @@
 import { Agriculteur } from "./agriculteur";
 import { Chef } from "./chef";
+import { Collecteur } from "./collecteur";
+import { OperationTank } from "./operationTank";
+import { Tank } from "./tank";
 import { Usine } from "./usine";
 
 export class Operation{
@@ -9,8 +12,9 @@ export class Operation{
   dateOperation!: string;
   typeOp!: string;
   code!:number;
-  chef!:Chef;
-  usine!:Usine;
   agriculteur!:Agriculteur;
-  
+  chef!:Chef;
+  tank!:Tank;
+ // collecteur!:Collecteur;
+  usine!:Usine;
 }
