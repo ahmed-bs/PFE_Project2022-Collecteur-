@@ -24,6 +24,10 @@ export class OperationService {
   baseUrl8 : string = 'http://localhost:3801/getOpTank';
   baseUrl9 : string = 'http://localhost:3801/op';
 
+  
+  baseUrl14 : string = 'http://localhost:3801/nbOpRetrait';
+  baseUrl15 : string = 'http://localhost:3801/nbOpRemplissage';
+
   constructor(private http: HttpClient,private authService :AuthService) { }
 
 
@@ -33,6 +37,23 @@ export class OperationService {
     let httpHeaders = new HttpHeaders({"Authorization":jwt})
     return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
   }
+
+  getNbOpRetrait(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl14}`,{headers:httpHeaders});
+   }
+
+
+  getNbOpRemplissage(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl15}`,{headers:httpHeaders});
+    // return this.http.get(`${this.baseUrl15}`);
+  }
+
 
  // test si le code exist ou nn
  getOpCodeUtilise(code: number): Observable<any> {

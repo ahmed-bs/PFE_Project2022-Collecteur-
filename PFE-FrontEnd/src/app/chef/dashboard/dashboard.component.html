@@ -106,250 +106,317 @@
                  <!-- /.row -->
                  <!-- Main row -->
                  <div class="row">
-                   <div class="col-md-12">
-                     <div class="card">
-                       <div class="card-header">
-                         <h2 class="card-title">Monthly Recap Report</h2>
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-header">
+                        <h2 class="card-title">Monthly Recap Report</h2>
 
-                         <!-- <tr *ngFor="let l of list ">
-                           <td>{{l}}</td>
-                         </tr>  -->
+                        <!-- <tr *ngFor="let l of list ">
+                          <td>{{l}}</td>
+                        </tr>  -->
 
-                         <div class="card-tools">
-                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                             <i class="fas fa-minus"></i>
-                           </button>
-                           <div class="btn-group">
-                             <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                               <i class="fas fa-wrench"></i>
-                             </button>
-                             <div class="dropdown-menu dropdown-menu-right" role="menu">
-                               <a href="#" class="dropdown-item">Action</a>
-                               <a href="#" class="dropdown-item">Another action</a>
-                               <a href="#" class="dropdown-item">Something else here</a>
-                               <a class="dropdown-divider"></a>
-                               <a href="#" class="dropdown-item">Separated link</a>
-                             </div>
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
+                              <i class="fas fa-wrench"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" role="menu">
+                              <a href="#" class="dropdown-item">Action</a>
+                              <a href="#" class="dropdown-item">Another action</a>
+                              <a href="#" class="dropdown-item">Something else here</a>
+                              <a class="dropdown-divider"></a>
+                              <a href="#" class="dropdown-item">Separated link</a>
+                            </div>
+                          </div>
+                          <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <p class="text-center">
+                              <strong>{{myDate}}</strong>
+                            </p>
+
+                            <div class="chart">
+
+                              <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data"
+                              [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                              [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                              [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
+                            </ngx-charts-bar-vertical>
+
+                            <br><br><br><br><br><br><br>
+
+                            <div  style="margin-top:25px;margin-left:-100px;margin-right:70px">
+                            <ngx-charts-pie-chart
+                            [results]="data"
+                            [legend]="true"
+                            [legendTitle]="'Product Sale Report'"
+                            [view]="[1000,400]"
+                            [scheme]="colorScheme"
+                            [labels]="true" >
+                            </ngx-charts-pie-chart>
                            </div>
-                           <button type="button" class="btn btn-tool" data-card-widget="remove">
-                             <i class="fas fa-times"></i>
-                           </button>
+
+                           <br><br>
+                            <ngx-charts-advanced-pie-chart  style="margin-top:-1020px;margin-bottom:-550px;"
+                            [results]="data"
+                            [view]="[800,300]"
+                            [scheme]="colorScheme"
+                            [gradient]="true" >
+                           </ngx-charts-advanced-pie-chart>
+
+
+                            </div>
+                            <!-- /.chart-responsive -->
+                          </div>
+
+                          <!-- /.col -->
+                          <div class="col-md-4">
+
+                            <div id="time" style="height: 385px;width:350px;margin-top:-20px;margin-right:-80px;margin-bottom:-50px;overflow: hidden"></div>
+
+                            <p class="text-center">
+                              <br>
+                              <!-- <strong style="margin-right:105px;">Time</strong> -->
+                            </p>
+
+
+                            <div  style="margin-top:40px;margin-left:-20px;margin-right:70px">
+                              <!-- Info Boxes Style 2 -->
+                              <div class="info-box mb-3 bg-warning">
+                                <span class="info-box-icon"><i class="ion ion-ios-film-outline" style="color: white"></i></span>
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des agriculteurs</span>
+                                  <span class="info-box-number">{{somAgriculteur}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+                              <!-- /.info-box -->
+                              <div class="info-box mb-3 bg-success">
+                                <span class="info-box-icon"> <i class="ion ion-beaker"></i></span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des tanks</span>
+                                  <span class="info-box-number">{{somTank}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+                              <!-- /.info-box -->
+
+                              <div class="info-box mb-3 bg-danger" >
+                                <span class="info-box-icon">  <i class="ion ion-ios-cart"></i></span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des usines</span>
+                                  <span class="info-box-number">{{somUsine}} </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+                              <!-- /.info-box -->
+                              <!-- <div class="info-box mb-3 bg-info">
+                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des operations</span>
+                                  <span class="info-box-number">{{somOperation}}</span>
+                                </div>
+
+                              </div> -->
+
+
+                              <div class="info-box mb-3 bg-info">
+                               <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+
+                               <div class="info-box-content">
+                                 <span class="info-box-text">Nombre des operations de remplissage</span>
+                                 <span class="info-box-number">{{somOpRemplissage}}</span>
+                               </div>
+                               <!-- /.info-box-content -->
+                             </div>
+
+                             <div class="info-box mb-3 bg-light">
+                               <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+
+                               <div class="info-box-content">
+                                 <span class="info-box-text">Nombre des operations de retrait</span>
+                                 <span class="info-box-number">{{somOpRetrait}}</span>
+                               </div>
+                               <!-- /.info-box-content -->
+                             </div>
+                             
+
+                              <!-- /.info-box -->
+
+                              <!-- PRODUCT LIST -->
+
+                              <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+
+
+                            <!-- <ngx-charts-pie-chart
+                            [results]="data"
+                            [legend]="true"
+                            [legendTitle]="'Product Sale Report'"
+                            [view]="[1000,250]"
+                            [scheme]="colorScheme"
+                            [labels]="true" >
+                            </ngx-charts-pie-chart> -->
+
+
+                          </div>
+                          <!-- /.col -->
+
+                        </div>
+                        <!-- /.row -->
+                      </div>
+                      <!-- ./card-body -->
+                      <div class="card-footer">
+                        <div class="row">
+
+
+                         <!-- /.col -->
+                         <div class="col-sm-4 col-6">
+                           <div class="description-block border-right">
+                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankRemplis}}%</span>
+                             <h5 class="description-header">{{somTRemplis}}</h5>
+                             <span class="description-text">TOTAL TANKS REMPLIS</span>
+                           </div>
+                           <!-- /.description-block -->
                          </div>
-                       </div>
-                       <!-- /.card-header -->
-                       <div class="card-body">
-                         <div class="row">
-                           <div class="col-md-8">
-                             <p class="text-center">
-                               <strong>{{myDate}}</strong>
-                             </p>
-
-                             <div class="chart">
+                         <!-- /.col -->
 
 
-                               <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data"
-                               [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                               [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                               [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
-                             </ngx-charts-bar-vertical>
-
-                               <!-- <ngx-charts-pie-grid
-                               [view]="[600,300]"
-                               [results]="data"
-                               [scheme]="colorScheme" >
-                             </ngx-charts-pie-grid> -->
-
-                             <!-- <div class="col-sm-3 col-6"> -->
-                               <ngx-charts-pie-grid style="color :white;"
-                               [view]="[600,300]"
-                               [results]="data"
-                               [scheme]="colorScheme" >
-                             </ngx-charts-pie-grid>
-                     <!-- </div> -->
-
-                               <!-- Sales Chart Canvas -->
-                               <!-- <div id="main" height="480" style="height: 480px;"></div> -->
-                               <!-- <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
-                             </div>
-                             <!-- /.chart-responsive -->
-                           </div>
-                           <!-- /.col -->
-                           <div class="col-md-4">
-
-                             <div id="time" style="height: 385px;width:350px;margin-top:-20px;margin-right:-80px;margin-bottom:-50px;overflow: hidden"></div>
-
-                             <p class="text-center">
-                               <strong style="margin-right:95px;">Time</strong>
-                             </p>
-                             <div  style="margin-top:45px;margin-left:-20px;margin-right:70px">
-                               <!-- Info Boxes Style 2 -->
-                               <div class="info-box mb-3 bg-warning">
-                                 <span class="info-box-icon"><i class="ion ion-person-stalker" style="color: white"></i></span>
-
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des agriculteurs</span>
-                                   <span class="info-box-number">{{somAgriculteur}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
-                               <div class="info-box mb-3 bg-success">
-                                 <span class="info-box-icon"> <i class="ion ion-beaker"></i></span>
-
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des tanks</span>
-                                   <span class="info-box-number">{{somTank}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
-
-                               <div class="info-box mb-3 bg-danger" >
-                                 <span class="info-box-icon">  <i class="ion ion-home"></i></span>
-
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des usines</span>
-                                   <span class="info-box-number">{{somUsine}} </span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
-                               <div class="info-box mb-3 bg-info">
-                                 <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
-
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des operations</span>
-                                   <span class="info-box-number">{{somOperation}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
-
-                               <!-- PRODUCT LIST -->
-
-                               <!-- /.card -->
-                             </div>
-                             <!-- /.col -->
-
-
-                           </div>
-                           <!-- /.col -->
+                         <!-- /.col -->
+                         <div class="col-sm-4 col-6">
+                         <div class="description-block border-right">
+                           <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankNonRemplis}}%</span>
+                           <h5 class="description-header">{{somTVide}}</h5>
+                           <span class="description-text">TOTAL TANKS VIDES</span>
                          </div>
-                         <!-- /.row -->
-                       </div>
-                       <!-- ./card-body -->
-                       <div class="card-footer">
-                         <div class="row">
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block border-right">
-                               <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                               <h5 class="description-header">{{somTank}}</h5>
-                               <span class="description-text">TOTAL TANK</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-                           <!-- /.col -->
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block border-right">
-                               <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                               <h5 class="description-header">{{somUsine}}</h5>
-                               <span class="description-text">TOTAL USINES</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-                           <!-- /.col -->
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block border-right">
-                               <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i> 20%</span>
-                               <h5 class="description-header">{{somOperation}}</h5>
-                               <span class="description-text">TOTAL OPERATIONS</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-                           <!-- /.col -->
+                         <!-- /.description-block -->
+                         </div>
+                         <!-- /.col -->
 
-                           <div class="col-sm-2 col-6">
-                            <div class="description-block">
-                              <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                              <h5 class="description-header">{{somAgriculteur}}</h5>
-                              <span class="description-text">TOTAL AGRICULTEURS</span>
+
+
+                         <!-- /.col -->
+                         <div class="col-sm-4 col-6">
+                         <div class="description-block border-right">
+                           <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankEnCours}}%</span>
+                           <h5 class="description-header">{{somTEnCours}}</h5>
+                           <span class="description-text">TOTAL TANKS EN COURS DE REMPLISSAGE</span>
+                         </div>
+                         <!-- /.description-block -->
+                         </div>
+                         <!-- /.col -->
+
+
+
+                          <div class="col-sm-6 col-6">
+                            <div class="description-block border-right">
+                              <span class="description-percentage  text-primary"><i class="fas fa-caret-up"></i> {{prcOpRetrait}}%</span>
+                              <h5 class="description-header">{{somOpRetrait}}</h5>
+                              <span class="description-text">TOTAL OPERATIONS DE RETARITS</span>
                             </div>
                             <!-- /.description-block -->
                           </div>
+                          <!-- /.col -->
+                          <div class="col-sm-6 col-6">
+                            <div class="description-block border-right">
+                              <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i>{{prcOpRemplissage}}%</span>
+                              <h5 class="description-header">{{somOpRemplissage}}</h5>
+                              <span class="description-text">TOTAL  OPERATIONS DE REMPLISSAGES</span>
+                            </div>
+                            <!-- /.description-block -->
+                          </div>
+                          <!-- /.col -->
+                         
+                          <!-- /.col -->
+
+                          
 
 
-                         </div>
-                         <!-- /.row -->
-                       </div>
-                       <!-- /.card-footer -->
-                     </div>
-                     <!-- /.card -->
-                   </div>
-                   <!-- /.col -->
-                 </div>
-                 <!-- /.row -->
+                        </div>
+                        <!-- /.row -->
+                      </div>
+                      <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
 
-                 <!-- Main row -->
-                 <div class="row">
-                   <!-- Left col -->
-                   <!-- <div class="col-md-8"> -->
-                     <!-- MAP & BOX PANE -->
-                     <!-- <div class="card">
-                       <div class="card-header">
-                         <h3 class="card-title">US-Visitors Report</h3> -->
-
-
-                       <!-- </div> -->
-                       <!-- /.card-header -->
-                       <!-- <div class="card-body p-0">
-                         <div class="d-md-flex">
-                           <div class="p-1 flex-fill" style="overflow: hidden"> -->
-                             <!-- Map will be created here -->
-                             <!-- <div id="graph2" style="height: 325px; overflow: hidden">
-
-                               <div class="map"></div>
-                             </div> -->
-
-                             <!-- <ngx-charts-advanced-pie-chart style="padding:30px; overflow: initial !important;"
-                             [results]="data"
-                             [view]="[700,550]"
-                             [gradient]="true"
-                             [scheme]="colorScheme" >
-                       </ngx-charts-advanced-pie-chart> -->
+                <!-- Main row -->
+                <div class="row">
+                  <!-- Left col -->
+                  <!-- <div class="col-md-8"> -->
+                    <!-- MAP & BOX PANE -->
+                    <!-- <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">US-Visitors Report</h3> -->
 
 
+                      <!-- </div> -->
+                      <!-- /.card-header -->
+                      <!-- <div class="card-body p-0">
+                        <div class="d-md-flex">
+                          <div class="p-1 flex-fill" style="overflow: hidden"> -->
+                            <!-- Map will be created here -->
+                            <!-- <div id="graph2" style="height: 325px; overflow: hidden">
+
+                              <div class="map"></div>
+                            </div> -->
+
+                            <!-- <ngx-charts-advanced-pie-chart style="padding:30px; overflow: initial !important;"
+                            [results]="data"
+                            [view]="[700,550]"
+                            [gradient]="true"
+                            [scheme]="colorScheme" >
+                      </ngx-charts-advanced-pie-chart> -->
 
 
 
 
-                             <!-- <ngx-charts-bar-vertical  [view]="[600,350]" scheme="cool" [results]="data"
-                             [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                             [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                             [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme" >
-                           </ngx-charts-bar-vertical> -->
 
-                           <!-- </div> -->
 
-                         <!-- </div> -->
-                         <!-- /.d-md-flex -->
-                       <!-- </div> -->
-                       <!-- /.card-body -->
-                     <!-- </div> -->
-                     <!-- /.card -->
+                            <!-- <ngx-charts-bar-vertical  [view]="[600,350]" scheme="cool" [results]="data"
+                            [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                            [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme" >
+                          </ngx-charts-bar-vertical> -->
 
-                   <!-- </div> -->
-                   <!-- /.col -->
+                          <!-- </div> -->
+
+                        <!-- </div> -->
+                        <!-- /.d-md-flex -->
+                      <!-- </div> -->
+                      <!-- /.card-body -->
+                    <!-- </div> -->
+                    <!-- /.card -->
+
+                  <!-- </div> -->
+                  <!-- /.col -->
 <br>
-                 </div>
-                 <!-- /.row -->
-               </div><!--/. container-fluid -->
+                </div>
+                <!-- /.row -->
+              </div><!--/. container-fluid -->
 
-                 <!-- /.row (main row) -->
-             </section>
-         </div>
-         <!-- /.row (main row) -->
-       </div><!-- /.container-fluid -->
-     </section>
-     <!-- /.content -->
+                <!-- /.row (main row) -->
+            </section>
+        </div>
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 
-     <!-- </body> -->
+    <!-- </body> -->

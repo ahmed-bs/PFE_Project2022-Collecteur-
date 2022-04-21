@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import iset.pfe.example.entities.Chef;
+import iset.pfe.example.entities.User;
 import iset.pfe.example.repositories.ChefRepository;
 
 @RestController
@@ -24,6 +25,12 @@ public class ChefRestController {
 	@RequestMapping(value="/chefs",method = RequestMethod.GET)
 	public List<Chef> getChefs(){
 		return chefRepository.findAll();
+	}
+	
+	@RequestMapping(value="/getUser/{username}",method = RequestMethod.GET)
+    public Chef getuser(@PathVariable String username) {
+	Chef u=chefRepository.findUserWithName(username).get();
+		return u;
 	}
 	
 		

@@ -125,12 +125,11 @@ export class CreateOperationComponent implements OnInit {
           localStorage.setItem('idOP',this.tab[0])
 
           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-          this.reLoad() 
+          this.reLoad();
         },
         (error) => {
           console.log("Failed")
         });
-      }
 
 
       this.tankService.getTanksQteLibre().subscribe(
@@ -147,19 +146,17 @@ export class CreateOperationComponent implements OnInit {
            this.tabTankId=Object.values(i);
          // this.length=this.ELEMENT_DATA?.length
 
-  localStorage.setItem('tabTankId',JSON.stringify(this.tabTankId))
-  this.reLoad()
+  localStorage.setItem('tabTankId',JSON.stringify(this.tabTankId));
+  this.reLoad();
   console.log("this.tabTankId---------------------------------");
   console.log(this.tabTankId);
-  this.reLoad() 
+  this.reLoad();
                });
-  
-      
-  
-
     });
-  }
 
+  }
+});
+ }
 
 
    count!: number;
