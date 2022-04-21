@@ -17,13 +17,16 @@ export class CreateAgriculteurComponent implements OnInit {
   msg="";
   msgErreur=0;
   qteAct=0;
+  msg1=0;
+  msg2=0;
+  msg3=0;
 
   myForm=new  FormGroup({
-      nom : new FormControl(null,[Validators.required]),
-      prenom : new FormControl(null,[Validators.required ]),
-      email : new FormControl(null,[Validators.required ]),
-      adress : new FormControl(null,[Validators.required ]),
-      tel : new FormControl(null,[Validators.required ]),
+      nom : new FormControl(null,[Validators.required ,Validators.minLength(3)]),
+      prenom : new FormControl(null,[Validators.required ,Validators.minLength(3)]),
+      matricule : new FormControl(null,[Validators.required,Validators.minLength(8)]),
+      adress : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
+      tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
     
   })
   // produits!:Observable<Produit[]>;
@@ -46,49 +49,50 @@ export class CreateAgriculteurComponent implements OnInit {
 
   save() {
 
-   if(this.myForm.get('nom')?.value==null){
+    if(this.myForm.get('nom')?.value==null || this.myForm.get('tel')?.value==null || this.myForm.get('prenom')?.value==null ||
+   this.myForm.get('adress')?.value==null ||   this.myForm.get('matricule')?.value==null ){
     this.msg="vous devez remplir le formulaire !!";
    }
    else{
     this.msg="";
    }
 
-   if(this.myForm.get('prenom')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-  
-  if(this.myForm.get('adress')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-  
+    this.agriculteurService.getNomPrenomUtilse(this.myForm.get('nom')?.value,this.myForm.get('prenom')?.value).subscribe(t=>{
+      console.log(t);
+      if(t==1){
+        this.msg1=1;
+       }
+       else{
+        this.msg1=0;
+       }
+       this.agriculteurService.getTelUtilse(this.myForm.get('tel')?.value).subscribe(b=>{
+        console.log(b);
+        if(b==1){
+          this.msg2=1;
+         }
+         else{
+          this.msg2=0;
+         }
 
-  if(this.myForm.get('email')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-   if(this.myForm.get('tel')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-   if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && this.myForm.get('email')?.value!=null
-   && this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null ){
+         this.agriculteurService.getMatriculeUtilse(this.myForm.get('matricule')?.value).subscribe(m=>{
+          console.log(m);
+          if(m==1){
+            this.msg3=1;
+           }
+           else{
+            this.msg3=0;
+           }
+ 
+   if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && t==0 && b==0 && m==0 &&
+      this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null &&
+      this.myForm.get('tel')?.value.toString().length==8 && this.myForm.get('nom')?.value.length>=3 && 
+      this.myForm.get('prenom')?.value.length>=3  && this.myForm.get('adress')?.value.length>=4 &&
+      this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8  ){
     this.agriculteurService
         .createAgriculteur({
           "nom":this.myForm.get('nom')?.value,
           "prenom":this.myForm.get('prenom')?.value,
-          "email":this.myForm.get('email')?.value,
+          "matricule":this.myForm.get('matricule')?.value,
           "adress":this.myForm.get('adress')?.value,
           "tel":this.myForm.get('tel')?.value,
         })
@@ -99,6 +103,9 @@ export class CreateAgriculteurComponent implements OnInit {
           window.location.reload();      
         });
     }
+  });
+});
+});
   }
   
 
@@ -124,8 +131,8 @@ get prenom(){
   return this.myForm.get('prenom') ;
 }
 
-get email(){
-  return this.myForm.get('email') ;
+get matricule(){
+  return this.myForm.get('matricule') ;
 }
 
 get adress(){

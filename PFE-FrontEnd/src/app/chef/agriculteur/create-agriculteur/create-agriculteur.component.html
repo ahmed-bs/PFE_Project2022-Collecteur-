@@ -9,17 +9,19 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom : <span style="color:red;">*</span></label>
+                <label>Nom :<span style="color:red;">*</span></label>
+                <p>(minimum 3 caracteres)</p>
                 <input type="text"
                  formControlName="nom"
+                 placeholder="nom"
                  class="form-control"
                  id="nom"
                  name="nom">
   
-                <div *ngIf="nom?.invalid && nom?.touched" class="text-danger">
+                <div *ngIf="nom?.invalid && nom?.touched || msg1==1" class="text-danger">
                   Nom invalide !
                 </div>
-                <div *ngIf="nom?.valid && nom?.touched " class="text-success">
+                <div *ngIf="nom?.valid && nom?.touched && msg1==0" class="text-success">
                   Nom valide!
                 </div>
   
@@ -29,27 +31,35 @@
             <!-- <div class="form-row"> -->
   
               <div class="col-md-6 mb-3">
-                  <label for="prix">Prenom : <span style="color:red;">*</span></label>
+                <label>Prenom :<span style="color:red;">*</span></label>
+                <p>(minimum 3 caracteres)</p>
                   <input type="text"
                   class="form-control"
+                  placeholder="prenom"
                     id="prenom"
                     formControlName="prenom"
                     name="prenom">
     
-                    <div *ngIf="prenom?.invalid && prenom?.touched" class="text-danger">
+                    <div *ngIf="prenom?.invalid && prenom?.touched || msg1==1" class="text-danger">
                     Prenom invalide !
                     </div>
-                    <div *ngIf="prenom?.valid && prenom?.touched" class="text-success">
+                    <div *ngIf="prenom?.valid && prenom?.touched && msg1==0" class="text-success">
                       Prenom Valide
                     </div>
   
               </div>
 
+              <div *ngIf="msg1==1" class="text-danger">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Nom et prenom existe déjà  !
+              </div>
+
               <div class="col-md-12 mb-3">
-                <label for="prix">Adresse : <span style="color:red;">*</span></label>
+                <label for="prix">Adresse (minimum 4 caracteres): <span style="color:red;">*</span></label>
                 <input type="text"
                 class="form-control"
                   id="adress"
+                  placeholder="exp : Tunis .."
                   formControlName="adress"
                   name="adress">
   
@@ -62,42 +72,47 @@
 
             </div>
 
-            <div class="col-md-12 mb-3">
-              <label for="prix">Email: <span style="color:red;">*</span></label>
-              <input type="text"
-              class="form-control"
-                id="email"
-                formControlName="email"
-                name="email">
-
-                <div *ngIf="email?.invalid && email?.touched" class="text-danger">
-                  Email invalide !
-                </div>
-                <div *ngIf="email?.valid && email?.touched" class="text-success">
-                  Email Valide
-                </div>
-
-          </div>
-
+            <div class="form-row">
             
             <div class="col-md-12 mb-3">
-              <label for="prix">Telephone : <span style="color:red;">*</span></label>
+              <label for="prix">Telephone (8 chiffres): <span style="color:red;">*</span></label>
               <input type="number"
               class="form-control"
                 id="tel"
                 formControlName="tel"
+                placeholder="12345678"
                 name="tel">
-
-                <div *ngIf="tel?.invalid && tel?.touched" class="text-danger">
+                <div *ngIf="tel?.invalid && tel?.touched|| msg2==1 " class="text-danger">
                   Numero de telephone invalide !
                 </div>
-                <div *ngIf="tel?.valid && tel?.touched" class="text-success">
+                <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
                   Numero de telephone Valide
                 </div>
-
+                <div *ngIf="msg2==1" class="text-danger">
+                 Numéro de  téléphone existe  déjà  !
+                </div>
           </div>
+
+          <div class="col-md-12 mb-3">
+            <label for="prix">Matricule (min 8 caracteres): <span style="color:red;">*</span></label>
+            <input type="text"
+            class="form-control"
+              id="matricule"
+              formControlName="matricule"
+              placeholder="1a2a2a3z"
+              name="matricule">
+              <div *ngIf="matricule?.invalid && matricule?.touched  " class="text-danger">
+                Matricule invalide !
+              </div>
+              <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
+                Matricule Valide
+              </div>
+              <div *ngIf="msg3==1" class="text-danger">
+               Matricule existe  déjà  !
+              </div>
+        </div>
   
-            <!-- </div> -->
+            </div>
   
   
            

@@ -20,6 +20,7 @@ export class CreateOperationComponent implements OnInit {
   operation:Operation = new Operation();
   submitted = false;
   msg="";
+  msg1=0;
   t:Tank=new Tank();
   msgErreur=0;
   msgErreur2=0;
@@ -30,13 +31,9 @@ export class CreateOperationComponent implements OnInit {
   valeur1=0;
   valeur2=0;
   myForm=new  FormGroup({
-      poidsLait : new FormControl(null,[Validators.required]),
-      code : new FormControl(null,[Validators.required ]),
-     // dateOperation : new FormControl(null,[Validators.required ]),
-      // agriculteur : new FormControl(null,[Validators.required ]),
+    poidsLait : new FormControl(null,[Validators.required,Validators.min(1)]),
+      code : new FormControl(null,[Validators.required,Validators.minLength(5) ]),
       agriculteur : new FormControl(null,[Validators.required ]),
-     
-
   })
 
   tanks!:Observable<Tank[]>;
@@ -91,31 +88,25 @@ export class CreateOperationComponent implements OnInit {
   }
 
   save() {
+    if(this.myForm.get('poidsLait')?.value==null || this.myForm.get('agriculteur')?.value==null || this.myForm.get('code')?.value==null ){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+
+   this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe(t=>{
+    console.log(t);
+    if(t==1){
+      this.msg1=1;
+     }
+     else{
+      this.msg1=0;
+     }
 
 
-  if(this.myForm.get('poidsLait')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-   if(this.myForm.get('agriculteur')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-   
-   if(this.myForm.get('code')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('agriculteur')?.value!=null && this.myForm.get('code')?.value!=null ){
+    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('agriculteur')?.value!=null && this.myForm.get('code')?.value!=null
+    && this.myForm.get('poidsLait')?.value>=1  && t==0 &&  this.myForm.get('code')?.value.toString().length>=5 ){
 
     this.operationService
         .createOperationRemplissage(
@@ -137,10 +128,9 @@ export class CreateOperationComponent implements OnInit {
         },
         (error) => {
           console.log("Failed")
-        }
-      );
-
+        });
       }
+    });
   }
 
 

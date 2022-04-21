@@ -15,14 +15,13 @@ export class CreateTankComponent implements OnInit {
   tank:Tank = new Tank();
   submitted = false;
   msg="";
+  msg1=0;
   msgErreur=0;
   qteAct=0;
 
   myForm=new  FormGroup({
-      matricule : new FormControl(null,[Validators.required]),
-      poidVide : new FormControl(null,[Validators.required ]),
-      // poidActuel : new FormControl(null,[Validators.required ]),
-      // etat : new FormControl(null,[Validators.required ]),
+    matricule : new FormControl(null,[Validators.required,Validators.minLength(8)]),
+    poidVide : new FormControl(null,[Validators.required,Validators.min(100)]),
   })
   // produits!:Observable<Produit[]>;
   // Tanks!:Observable<Tank[]>;
@@ -44,36 +43,26 @@ export class CreateTankComponent implements OnInit {
 
   save() {
 
-   if(this.myForm.get('matricule')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-   }
-   else{
-    this.msg="";
-   }
+    if(this.myForm.get('matricule')?.value==null || this.myForm.get('poidVide')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+  
+     this.tankService.getTankMatriculeUtilise(this.myForm.get('matricule')?.value).subscribe(t=>{
+      console.log(t);
+      if(t==1){
+        this.msg1=1;
+       }
+       else{
+        this.msg1=0;
+       }
+  
+  
+    if(this.myForm.get('poidVide')?.value!=null && this.myForm.get('matricule')?.value!=null 
+    && this.myForm.get('poidVide')?.value>=100  && this.myForm.get('matricule')?.value.length>=8 && t==0){
 
-   if(this.myForm.get('poidVide')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-  // if(this.myForm.get('poidActuel')?.value==null){
-  //   this.msg="vous devez remplir le formulaire !!";
-  // }
-  // else{
-  //   this.msg="";
-  //  }
-
-
-  // if(this.myForm.get('etat')?.value==null){
-  //   this.msg="vous devez remplir le formulaire !!";
-  // }
-  // else{
-  //   this.msg="";
-  //  }
-
-  if(this.myForm.get('poidVide')?.value!=null && this.myForm.get('matricule')?.value!=null){
     this.tankService
         .createTank({
           "matricule":this.myForm.get('matricule')?.value,
@@ -88,6 +77,7 @@ export class CreateTankComponent implements OnInit {
           window.location.reload();
         });
       }
+    });
     }
 
 

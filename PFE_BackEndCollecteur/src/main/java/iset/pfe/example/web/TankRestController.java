@@ -32,11 +32,38 @@ public class TankRestController {
 	@Autowired
 	private OperationRepository operationRepository;
 	
-		@RequestMapping(value="/tanks",method = RequestMethod.GET)
-		public List<Tank> getTanks(){
-			
-			return tankRepository.findAll();
+	@RequestMapping(value="/tanks",method = RequestMethod.GET)
+	public List<Tank> getTanks(){
+		for(int i=0;i<tankRepository.findAll().size();i++) {
+			Tank t=tankRepository.findAll().get(i);
+			if(t.getPoidActuel()==0) {
+				t.setEtat("Vide");
+			}
+			else if(t.getPoidActuel()>0 && t.getPoidActuel()<t.getPoidVide()) {
+				t.setEtat("En cours");
+			}
+			else if(t.getPoidActuel()==t.getPoidVide()) {
+				t.setEtat("Remplis");
+			}
 		}
+		
+		return tankRepository.findAll();
+	}
+	
+	
+		@RequestMapping(value="/tank/{matricule}",method = RequestMethod.GET)
+		public int getTanksUtilise(@PathVariable String matricule){
+			int msg=0;
+			for(int i=0;i<tankRepository.findAll().size();i++) {
+				Tank t=tankRepository.findAll().get(i);
+				if(matricule.equals(t.getMatricule())) {
+					msg=1;
+				}
+				
+			}
+			return msg;
+		}
+		
 		
 		@RequestMapping(value="/nbreT",method = RequestMethod.GET)
 		public int getNbTanks(){

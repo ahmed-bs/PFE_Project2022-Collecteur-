@@ -17,10 +17,11 @@ export class CreateUsineComponent implements OnInit {
   msg="";
   msgErreur=0;
   qteAct=0;
+  msg1=0;
 
   myForm=new  FormGroup({
-      nomUsine : new FormControl(null,[Validators.required]),
-      adresse : new FormControl(null,[Validators.required ]),
+      nomUsine : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      adresse : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
   })
 
 
@@ -40,21 +41,25 @@ export class CreateUsineComponent implements OnInit {
 
   save() {
 
-   if(this.myForm.get('nomUsine')?.value==null){
+   if(this.myForm.get('nomUsine')?.value==null || this.myForm.get('adresse')?.value==null){
     this.msg="vous devez remplir le formulaire !!";
    }
    else{
     this.msg="";
    }
 
-   if(this.myForm.get('adresse')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
+   
+   this.usineService. getNomUsineUtilse(this.myForm.get('nomUsine')?.value).subscribe(t=>{
+    console.log(t);
+    if(t==1){
+      this.msg1=1;
+     }
+     else{
+      this.msg1=0;
+     }
   
-   if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null ){
+   if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null && t==0 &&
+       this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3){
 
     this.usineService
         .createUsine({
@@ -68,6 +73,7 @@ export class CreateUsineComponent implements OnInit {
           window.location.reload();      
         });
     }
+  });
   }
 
 

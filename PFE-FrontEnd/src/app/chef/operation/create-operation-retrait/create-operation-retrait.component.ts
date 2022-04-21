@@ -29,8 +29,7 @@ export class CreateOperationRetraitComponent implements OnInit {
   qteMax=0;
   som=0;
   myForm=new  FormGroup({
-      poidsLait : new FormControl(null,[Validators.required]),
-     // dateOperation : new FormControl(null,[Validators.required ]),
+       poidsLait : new FormControl(null,[Validators.required,Validators.min(1)]),
        usine : new FormControl(null,[Validators.required ]),
     
   })
@@ -68,22 +67,14 @@ export class CreateOperationRetraitComponent implements OnInit {
 
   save() {
 
-    if(this.myForm.get('poidsLait')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-    }
-    else{
-      this.msg="";
-     }
-  
-     if(this.myForm.get('usine')?.value==null){
+    if(this.myForm.get('poidsLait')?.value==null || this.myForm.get('usine')?.value==null){
       this.msg="vous devez remplir le formulaire !!";
     }
     else{
       this.msg="";
      }
 
-
-     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('usine')?.value!=null ){
+     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('usine')?.value!=null && this.myForm.get('poidsLait')?.value>=1 ){
 
     this.operationService
     .createOperation(

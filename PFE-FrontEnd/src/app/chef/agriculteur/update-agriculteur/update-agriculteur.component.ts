@@ -13,15 +13,16 @@ export class UpdateAgriculteurComponent implements OnInit {
   agriculteur:Agriculteur=new Agriculteur();
   // myForm!:FormGroup;
    CheckesCompetance:boolean=false;
+   msg="";
 
    myForm=new  FormGroup({
-     nom : new FormControl(null,[Validators.required]),
-     prenom : new FormControl(null,[Validators.required ]),
-     email : new FormControl(null,[Validators.required ]),
-     adress : new FormControl(null,[Validators.required ]),
-     tel : new FormControl(null,[Validators.required ]),
-
- })
+    nom : new FormControl(null,[Validators.required ,Validators.minLength(3)]),
+    prenom : new FormControl(null,[Validators.required ,Validators.minLength(3)]),
+    matricule : new FormControl(null,[Validators.required,Validators.minLength(8)]),
+    adress : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
+    tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
+  
+})
 
 
    constructor(
@@ -40,16 +41,26 @@ export class UpdateAgriculteurComponent implements OnInit {
    }
 
    updateAgriculteur(){
+    if(this.myForm.get('nom')?.value==null || this.myForm.get('tel')?.value==null || this.myForm.get('prenom')?.value==null ||
+    this.myForm.get('adress')?.value==null || this.myForm.get('matricule')?.value==null ){
+     this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+     this.msg="";
+    }
 
-    if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && this.myForm.get('email')?.value!=null
-   && this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null ){
+    if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null &&
+      this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null &&
+      this.myForm.get('tel')?.value.toString().length==8 && this.myForm.get('nom')?.value.length>=3 && 
+      this.myForm.get('prenom')?.value.length>=3  && this.myForm.get('adress')?.value.length>=4 && 
+      this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8 ){
 
      this.agriculteurService
      // .updateAgriculteur(this.Agriculteur.idAgriculteur,this.Agriculteur)
          .updateAgriculteur(this.agriculteur.idAgriculteur,{
            "nom":this.myForm.get('nom')?.value,
            "prenom":this.myForm.get('prenom')?.value,
-           "email":this.myForm.get('email')?.value,
+           "matricule":this.myForm.get('matricule')?.value,
            "adress":this.myForm.get('adress')?.value,
            "tel":this.myForm.get('tel')?.value,
 
@@ -74,12 +85,6 @@ export class UpdateAgriculteurComponent implements OnInit {
    return this.myForm.get('prenom') ;
  }
 
-
-
- get email(){
-   return this.myForm.get('email') ;
- }
-
  get adress(){
   return this.myForm.get('adress') ;
 }
@@ -87,6 +92,11 @@ export class UpdateAgriculteurComponent implements OnInit {
 
 get tel(){
   return this.myForm.get('tel') ;
+}
+
+
+get matricule(){
+  return this.myForm.get('matricule') ;
 }
 
    onClose() {

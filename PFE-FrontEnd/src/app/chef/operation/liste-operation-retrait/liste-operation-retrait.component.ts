@@ -37,7 +37,7 @@ export class ListeOperationRetraitComponent implements OnInit {
   v=0;
   q=0;
   p=0;
-  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }

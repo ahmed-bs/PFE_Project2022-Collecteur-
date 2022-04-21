@@ -52,6 +52,18 @@ public class OperationRestController {
 		return operationRepository.findAll();
 	}
 	
+	@RequestMapping(value="/op/{code}",method = RequestMethod.GET)
+	public int getOperationsUtilise(@PathVariable Integer code){
+		int msg=0;
+		for(int i=0;i<operationRepository.findAll().size();i++) {
+			Operation t=operationRepository.findAll().get(i);
+			if(code.equals(t.getCode())) {
+				msg=1;
+			}
+		}
+		return msg;
+	}
+	
 		
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.GET)
 	public Operation getOperation(@PathVariable Integer idOperation) {

@@ -4,11 +4,13 @@
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div><br>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-row">
         <div class="col-md-6 mb-3">
-        <label>Nom :</label>
+          <label>Nom :<span style="color:red;">*</span></label>
+          <p>(minimum 3 caracteres)</p>
         <input type="text"
                class="form-control"
                formControlName="nom"
@@ -28,7 +30,8 @@
         </div>
 
         <div class="col-md-6 mb-3">
-          <label>Prenom :</label>
+          <label>Prenom :<span style="color:red;">*</span></label>
+          <p>(minimum 3 caracteres)</p>
           <input type="text"
                  class="form-control"
                  formControlName="prenom"
@@ -50,31 +53,7 @@
 
         <div class="form-row">
           <div class="col-md-12 mb-3">
-            <label>Email :</label>
-            <input type="text"
-                   class="form-control"
-                   formControlName="email"
-                   name="email"
-                   [(ngModel)]="agriculteur.email"
-                   placeholder="Post Name here ..">
-              <div
-                   *ngIf="email?.invalid && email?.touched"
-                    class="text-danger">
-                    email invalide !
-             </div>
-             <div
-                  *ngIf="email?.valid && email?.touched"
-                  class="text-success">
-                  email valide !
-             </div>
-            </div>
-
-
-
-
-
-          <div class="col-md-12 mb-3">
-            <label>Adresse :</label>
+            <label for="prix">Adresse (minimum 4 caracteres): <span style="color:red;">*</span></label>
             <input type="text"
                    class="form-control"
                    formControlName="adress"
@@ -96,7 +75,7 @@
 
 
             <div class="col-md-12 mb-3">
-              <label>Numero de telephone :</label>
+              <label for="prix">Telephone (8 chiffres): <span style="color:red;">*</span></label>
               <input type="number"
                      class="form-control"
                      formControlName="tel"
@@ -114,6 +93,21 @@
                     Numero de téléphone valide !
                </div>
               </div>
+
+              <div class="col-md-12 mb-3">
+                <label for="prix">Matricule (min 8 caracteres): <span style="color:red;">*</span></label>
+                <input type="text"
+                class="form-control"
+                  formControlName="matricule"
+                  [(ngModel)]="agriculteur.matricule"
+                  name="matricule">
+                  <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+                    Matricule invalide !
+                  </div>
+                  <div *ngIf="matricule?.valid && matricule?.touched " class="text-success">
+                    Matricule Valide
+                  </div>
+            </div>
 
     </div>
 

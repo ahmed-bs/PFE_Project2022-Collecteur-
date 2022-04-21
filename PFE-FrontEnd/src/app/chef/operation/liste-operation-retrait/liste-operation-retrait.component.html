@@ -36,8 +36,8 @@
                 <td mat-cell *matCellDef="let element" > &nbsp;&nbsp;{{element.idOperation}} </td>
               </ng-container>
               <ng-container matColumnDef="poidsLait">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef >poids Lait  </th>
-                <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{element.poidsLait}}</td>
+                <th mat-sort-header mat-header-cell *matHeaderCellDef >Quantité de Lait</th>
+                <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{element.poidsLait}}</td>
               </ng-container>
               <ng-container matColumnDef="dateOperation">
                 <th mat-sort-header mat-header-cell *matHeaderCellDef> Date Operation  </th>
@@ -45,13 +45,8 @@
               </ng-container>
 
               <ng-container matColumnDef="usine">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp;&nbsp;&nbsp;&nbsp;Usine </th>
+                <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Usine </th>
                 <td id="alignement" mat-cell *matCellDef="let element" >{{element.usine.nomUsine}}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="typeOp">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp;&nbsp;&nbsp;&nbsp;Type Operation </th>
-                <td id="alignement" mat-cell *matCellDef="let element" >{{element.typeOp}}</td>
               </ng-container>
 
 

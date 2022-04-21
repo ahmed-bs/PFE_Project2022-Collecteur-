@@ -36,8 +36,8 @@
                 <td mat-cell *matCellDef="let element" > {{element.idOperation}} </td>
               </ng-container>
               <ng-container matColumnDef="poidsLait">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef >poids Lait  </th>
-                <td mat-cell *matCellDef="let element" >&nbsp;&nbsp; {{element.poidsLait}}</td>
+                <th mat-sort-header mat-header-cell *matHeaderCellDef >Quantité de Lait  </th>
+                <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{element.poidsLait}}</td>
               </ng-container>
               <ng-container matColumnDef="dateOperation">
                 <th mat-sort-header mat-header-cell *matHeaderCellDef> Date Operation  </th>
@@ -45,13 +45,8 @@
               </ng-container>
 
               <ng-container matColumnDef="agriculteur">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp; &nbsp;&nbsp;&nbsp;Nom de l'agriculteur </th>
-                <td id="alignement" mat-cell *matCellDef="let element" >{{element.agriculteur.nom}}</td>
-              </ng-container>
-
-              <ng-container matColumnDef="typeOp">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp; &nbsp;&nbsp;&nbsp;Type de l'Operation </th>
-                <td id="alignement" mat-cell *matCellDef="let element" >{{element.typeOp}}</td>
+                <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp; &nbsp;Matricule de l'agriculteur </th>
+                <td id="alignement" mat-cell *matCellDef="let element" >{{element.agriculteur.matricule}}</td>
               </ng-container>
 
               <ng-container matColumnDef="code">

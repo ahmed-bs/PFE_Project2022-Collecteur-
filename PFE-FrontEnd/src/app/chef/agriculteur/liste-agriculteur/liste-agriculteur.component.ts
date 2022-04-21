@@ -31,7 +31,7 @@ export class ListeAgriculteurComponent implements OnInit {
   ELEMENT_DATA?:Agriculteur[];
   agriculteur?:Agriculteur;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idAgriculteur','nom','prenom','email','adress','tel','action'];
+  displayedColumns: string[] = ['idAgriculteur','nom','prenom','matricule','adress','tel','action'];
 
   constructor(
     private agriculteurService: AgriculteurService,
