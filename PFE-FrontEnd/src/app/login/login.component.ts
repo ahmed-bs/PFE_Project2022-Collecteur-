@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { Chef } from '../Models/chef';
 import { AuthService } from '../Services/auth.service';
+import { ChefService } from '../Services/chef.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,9 @@ export class LoginComponent implements OnInit {
   user =new Chef();
   err:number=0;
 
-    constructor(private authService: AuthService, public router:Router ) { }
+    constructor(private authService: AuthService, 
+      public router:Router,
+      private chefService:ChefService, ) { }
 
 
 
@@ -25,6 +28,13 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.user).subscribe((data)=> {
         let jwToken : any   = data.headers.get('Authorization');
         this.authService.saveToken(jwToken);
+        this.chefService.getUserWithUsername(this.user.username).subscribe( u=>{
+        console.log("haahahahahahahahahhaa");
+        console.log(this.user.username);
+        console.log(u.idChef);
+        console.log("haahahahahahahahahhaa");
+        localStorage.setItem('IdUser', JSON.stringify(u.idChef));
+        });
 
           this.router.navigate(['/chef/dashboard']);
 

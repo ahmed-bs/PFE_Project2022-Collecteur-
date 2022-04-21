@@ -22,7 +22,13 @@ export class TankService {
   baseUrl7 : string = 'http://localhost:3801/tanksQte';
   baseUrl8 : string = 'http://localhost:3801/QteG';
   baseUrl9 : string = 'http://localhost:3801/QteTanks';
+
+  baseUrl11 : string = 'http://localhost:3801/nbTankRemplis';
+  baseUrl12 : string = 'http://localhost:3801/nbTankVide';
+  baseUrl13 : string = 'http://localhost:3801/nbTankEnCours';
+
   baseUrl14 : string = 'http://localhost:3801/tank';
+
 
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -42,6 +48,32 @@ export class TankService {
       const url = `${this.baseUrl14}/${matricule}`
       return this.http.get(url,{headers:httpHeaders});
     }
+
+    
+  getNbTanksRemplis(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl11}`,{headers:httpHeaders});
+    // return this.http.get(`${this.baseUrl6}`);
+  }
+
+  getNbTanksVide(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl12}`,{headers:httpHeaders});
+    // return this.http.get(`${this.baseUrl6}`);
+  }
+
+
+  getNbTanksEnCours(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl13}`,{headers:httpHeaders});
+    // return this.http.get(`${this.baseUrl6}`);
+  }
 
   getNbTanks(): Observable<any> {
     let jwt = this.authService.getToken();

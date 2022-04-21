@@ -32,6 +32,33 @@ export class DashboardComponent implements OnInit {
   myDate=new Date();
 
 
+  somMagasin?: number;
+  somCentre?: number;
+
+
+  prcOpRetrait="";
+  prcOpRemplissage="";
+  prcOpTransformation="";
+
+  prcTankRemplis="";
+  prcTankNonRemplis="";
+  prcTankEnCours="";
+
+  somOpRetrait?:number;
+  somOpRemplissage?:number;
+  somOpTransformation?:number;
+
+  somTRemplis?:number;
+  somTVide?:number;
+  somTEnCours?:number;
+
+
+
+  x=0;
+  y=0;
+  z=0;
+
+
   dataAxis = [];
   data:any[] = [];
   piedata: any[] = [];
@@ -190,14 +217,55 @@ export class DashboardComponent implements OnInit {
 
     this.getData();
 
+    this.tankService.getNbTanks().subscribe(o =>{
+      this.somTank = o;
+      console.log(this.somTank);
+
+
+      this.tankService.getNbTanksRemplis().subscribe(t=>{
+      this.somTRemplis=t;
+      this.x=(t/o)*100;
+      this.prcTankRemplis=this.x.toFixed(2);
+      });
+
+      this.tankService.getNbTanksVide().subscribe(t1=>{
+      this.somTVide=t1;
+      this.y=(t1/o)*100;
+      this.prcTankNonRemplis=this.y.toFixed(2);
+      });
+
+
+      
+      this.tankService.getNbTanksEnCours().subscribe(t2=>{
+        this.somTEnCours=t2;
+        this.z=(t2/o)*100;
+        this.prcTankEnCours=this.z.toFixed(2);
+    });
+  });
+
+    
     //Get all opertions
     this.tankService.getNbTanks().subscribe(o =>{
       this.somTank = o;
       console.log(this.somTank);});
 
-      this.operationService.getNbOp().subscribe(o =>{
-        this.somOperation= o;
-        console.log(this.somOperation);});
+      this.operationService.getNbOp().subscribe(a =>{
+        this.somOperation= a;
+        console.log(this.somOperation);
+
+        this.operationService.getNbOpRetrait().subscribe(y =>{
+          this.somOpRetrait= y;
+          this.x=(y/a)*100;
+          this.prcOpRetrait= this.x.toFixed(2);
+          console.log(this.somOpRetrait);});
+
+          this.operationService.getNbOpRemplissage().subscribe(x =>{
+            this.somOpRemplissage= x;
+            this.y=(x/a)*100;
+            this.prcOpRemplissage= this.y.toFixed(2);
+            console.log(this.somOpRemplissage);});
+
+            });
 
 
       // //Get all Condidats

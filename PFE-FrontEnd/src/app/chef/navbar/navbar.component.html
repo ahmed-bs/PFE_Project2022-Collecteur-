@@ -20,7 +20,7 @@
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="fas fa-caret-down"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-ms dropdown-menu-right" style="width: 201px;">
+      <div class="dropdown-menu dropdown-menu-ms dropdown-menu-right" style="width: 271px;">
         <span class="dropdown-item dropdown-header"></span>
         <div class="dropdown-divider"></div>
         <div class="media">
@@ -31,10 +31,30 @@
           
             </h3>
             <p class="text-sm text-muted" style="margin-left:25px;">     
-              <span style="font-weight: bold;"> UserName  &nbsp;:</span>  &nbsp; {{authService.loggedUser}} <br>
-              <span style="font-weight: bold;"> &nbsp;&nbsp;&nbsp;&nbsp;Role  &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;: </span>&nbsp;  &nbsp;{{authService.getRole()}} </p>
-          </div>
+              <span style="font-weight: bold;"><i class="fas fa-solid fa-user-check fa-lg"></i> &nbsp;Username  &nbsp;:</span> {{authService.loggedUser}} <br>
+            </p>
+            <p class="text-sm text-muted" style="margin-left:25px;"> 
+            <span style="font-weight: bold;"><i class="fas fa-solid fa-briefcase fa-lg"></i> &nbsp;&nbsp;Role  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;:</span> {{authService.getRole()}} 
+             </p> 
+             
+             
+            <h6 style="font-weight: bold;color:blue; padding:10px;"> &nbsp;- Autres informations : </h6>
+
+              <p class="text-sm text-muted" style="margin-left:25px;">   
+              <span style="font-weight: bold; "><i class="fas fa-solid fa-file-signature fa-lg"></i> Nom&nbsp;&nbsp;:</span> {{nom}} <br>
+            </p>
+            <p class="text-sm text-muted" style="margin-left:25px;">   
+            <span style="font-weight: bold; "><i class="fas fa-solid fa-file-signature fa-lg"></i> Prenom :</span> {{prenom}} <br>
+          </p>
+          <p class="text-sm text-muted" style="margin-left:25px;">   
+              <span style="font-weight: bold;"><i class="fas fa-solid fa-id-card fa-lg"></i> CIN &nbsp;:</span> {{cin}} <br>
+            </p>
+            <p class="text-sm text-muted" style="margin-left:25px;">   
+              <span style="font-weight: bold;"><i class="fas fa-solid fa-phone fa-lg"></i> Téléphone&nbsp;:</span> {{tel}} <br>
+            </p>
+            
         </div>
+      </div>
         <div class="dropdown-divider"></div>
         <a href="#" class="dropdown-item mr-4 ml-1">
         <span class="mr-3"> <i class="fas fa-cog"></i> </span> 

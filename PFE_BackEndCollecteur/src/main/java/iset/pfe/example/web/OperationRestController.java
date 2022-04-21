@@ -64,6 +64,22 @@ public class OperationRestController {
 		return msg;
 	}
 	
+	
+	@RequestMapping(value="/nbOpRetrait",method = RequestMethod.GET)
+	public int getnbOpRetrait(){
+		return operationRepository.findAllOperationsRemplissages("Retrait").size();
+	}
+	
+	@RequestMapping(value="/nbOpRemplissage",method = RequestMethod.GET)
+	public int getnbOpRemplissage(){
+		return operationRepository.findAllOperationsRemplissages("Remplissage").size();
+	}
+	
+	@RequestMapping(value="/nbOpTransformation",method = RequestMethod.GET)
+	public int getnbOpTransformation(){
+		return operationRepository.findAllOperationsRemplissages("Transformation").size();
+	}
+	
 		
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.GET)
 	public Operation getOperation(@PathVariable Integer idOperation) {
