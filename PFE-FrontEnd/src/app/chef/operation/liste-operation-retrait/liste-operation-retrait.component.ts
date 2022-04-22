@@ -37,6 +37,9 @@ export class ListeOperationRetraitComponent implements OnInit {
   v=0;
   q=0;
   p=0;
+  msg='';
+  test1=0;
+  test2=0;
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
@@ -71,7 +74,7 @@ export class ListeOperationRetraitComponent implements OnInit {
       
     }
   
-     deleteOperation(id: number) {
+    deleteOperation(id: number) {
       this.operationService.getOperation(id).subscribe(o =>{
         this.ELEMENT_DATA= o;});
         console.log(this.ELEMENT_DATA);
@@ -83,6 +86,7 @@ export class ListeOperationRetraitComponent implements OnInit {
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         window.location.reload();
+        // this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -115,10 +119,9 @@ export class ListeOperationRetraitComponent implements OnInit {
         }
       });
   
-      });
-
-     
+      });  
   }
+
 
 
     detailsOperation(operation:Operation){

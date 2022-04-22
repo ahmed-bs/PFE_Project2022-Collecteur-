@@ -23,7 +23,8 @@ export class OperationService {
   baseUrl7 : string = 'http://localhost:3801/operationsR';
   baseUrl8 : string = 'http://localhost:3801/getOpTank';
   baseUrl9 : string = 'http://localhost:3801/op';
-
+  baseUrl10 : string = 'http://localhost:3801/NbOpTankTotal';
+  baseUrl11 : string = 'http://localhost:3801/NbOpTank1';
   
   baseUrl14 : string = 'http://localhost:3801/nbOpRetrait';
   baseUrl15 : string = 'http://localhost:3801/nbOpRemplissage';
@@ -52,6 +53,23 @@ export class OperationService {
     let httpHeaders = new HttpHeaders({"Authorization":jwt})
     return this.http.get(`${this.baseUrl15}`,{headers:httpHeaders});
     // return this.http.get(`${this.baseUrl15}`);
+  }
+
+  getNbOpTankTotal(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl10}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+
+  getNbOpTank(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl11}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
   }
 
 
