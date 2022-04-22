@@ -43,6 +43,11 @@ export class ListeOperationComponent implements OnInit {
   err="";
   p=0;
   q=0;
+
+  test1=0;
+  test2=0;
+
+
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur','code','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
@@ -132,28 +137,39 @@ export class ListeOperationComponent implements OnInit {
   }
 
   deleteOp(id: number){
-
     this.tankService.getTanksQteGenerale().subscribe(o=>{
       console.log(o);
       this.q=o;
       this.operationService.getOperation(id).subscribe(a=>{
         console.log(a.poidsLait);
+        console.log(id);
         this.p=a.poidsLait;
 
-        if(this.p<=this.q){
-          this.deleteOperation(id);
-        }else{
+        this.operationService.getNbOpTankTotal(id).subscribe(b=>{
+          console.log(b);
+          this.test1=b;
+
+          this.operationService.getNbOpTank(id).subscribe(c=>{
+            console.log(c);
+            this.test2=c;
+  
+
+            if(this.p<=this.q && this.test1==this.test2){
+              this.deleteOperation(id);
+
+        } else {
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
-          this.Toast[1] ='Vous ne pouvez pas supprimer cette opereation, car la quantite disponible dans les tanks est inferieur a la quantite que vous voulez la supprimer !!';
+          this.Toast[1] ='Vous avez deja utiliser la quantite de laits inserée dans les tanks affectees a cette operation !!';
           this.showToast();
         }
-      });
-  
-      });
 
-    
+      });
+    });
+  });
+
+    });
   }
 
 

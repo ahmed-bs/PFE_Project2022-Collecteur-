@@ -81,6 +81,26 @@ public class OperationRestController {
 	}
 	
 		
+	@RequestMapping(value="/NbOpTankTotal/{idOperation}",method = RequestMethod.GET)
+	public int getNbOpTanksTotal(@PathVariable Integer idOperation) {
+		return operationRepository.find(idOperation).size();
+	}
+	
+	
+	@RequestMapping(value="/NbOpTank1/{idOperation}",method = RequestMethod.GET)
+	public int getNbOpTanks1(@PathVariable Integer idOperation) {
+		int j=0;
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+		OperationTank opt= operationRepository.find(idOperation).get(i);
+		if(opt.getTank().getPoidActuel()>0 && opt.getQteInsereTank()<=opt.getTank().getPoidActuel()) {
+			j=j+1;
+		}
+		}
+		return j;
+	}
+	
+	
+	
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.GET)
 	public Operation getOperation(@PathVariable Integer idOperation) {
 	Optional<Operation> op = operationRepository.findById(idOperation);
@@ -146,6 +166,7 @@ public class OperationRestController {
 				operationRepository.deleteOp(idOperation);
 			}else throw new RuntimeException("Operation introuvable ! vous ne pouvez pas le supprimer !!");
 		}
+	
 		
 	
 	
