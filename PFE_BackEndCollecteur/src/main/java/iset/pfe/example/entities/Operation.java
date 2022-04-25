@@ -1,9 +1,11 @@
 package iset.pfe.example.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,6 +25,9 @@ public class Operation implements Serializable{
 	private String dateOperation;
 	private String typeOp;
 	private Integer code;
+	@ElementCollection
+	private List<Integer> codeRemplissage;
+	
 	
 	
 	@ManyToOne
@@ -142,5 +147,26 @@ public class Operation implements Serializable{
 	public void setUsine(Usine usine) {
 		this.usine = usine;
 	}
+
+
+	public List<Integer> getCodeRemplissage() {
+		return codeRemplissage;
+	}
+
+
+	public void setCodeRemplissage(List<Integer> codeRemplissage) {
+		this.codeRemplissage = codeRemplissage;
+	}
+
+
+	public Set<OperationTank> getOperationstank() {
+		return operationstank;
+	}
+
+
+	public void setOperationstank(Set<OperationTank> operationstank) {
+		this.operationstank = operationstank;
+	}
+	
 
 }

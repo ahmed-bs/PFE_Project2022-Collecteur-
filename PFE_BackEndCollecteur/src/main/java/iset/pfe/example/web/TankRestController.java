@@ -38,12 +38,17 @@ public class TankRestController {
 			Tank t=tankRepository.findAll().get(i);
 			if(t.getPoidActuel()==0) {
 				t.setEtat("Vide");
+				tankRepository.save(t);
 			}
 			else if(t.getPoidActuel()>0 && t.getPoidActuel()<t.getPoidVide()) {
 				t.setEtat("En cours");
+				tankRepository.save(t);
 			}
 			else if(t.getPoidActuel()==t.getPoidVide()) {
 				t.setEtat("Remplis");
+//				t.setCodeTank(t.getCodeTank()+i+1);
+				tankRepository.save(t);
+				
 			}
 		}
 		

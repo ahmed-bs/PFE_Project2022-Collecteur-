@@ -56,16 +56,19 @@ public class PfeBackEndApplication implements CommandLineRunner {
 	     String currentDateTime2 = dateFormatter.format(new Date());
 		 
 		Tank t1=new Tank("tank numero 1", 120, 0, "Vide");
-//		t1.setDateIns(currentDateTime2);
+		//		t1.setDateIns(currentDateTime2);
 		tankRepository.save(t1);
+		
 		
 		Tank t2=new Tank("tank numero 2", 120, 0, "Vide");
 //		t2.setDateIns(currentDateTime);
+		
 		tankRepository.save(t2);
 		
 		
 		Tank t3=new Tank("tank numero 3", 120, 0, "Vide");
 //		t3.setDateIns(currentDateTime2);
+		
 		tankRepository.save(t3);
 		
 		
@@ -187,7 +190,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 //		}
 //	   
 		
-		
+//		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaa"+t1.getCodeTank().toString());
 		
 	}
 
