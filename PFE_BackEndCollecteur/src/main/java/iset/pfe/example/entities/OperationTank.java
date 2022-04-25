@@ -15,6 +15,7 @@ public class OperationTank implements Serializable{
 	private Integer idOpTank;
 	private String date;
 	private double qteInsereTank;
+	private Integer codeLiaison;
 	
 	@ManyToOne
 	@JoinColumn(name="idTank")
@@ -39,7 +40,17 @@ public class OperationTank implements Serializable{
 		this.operation = operation;
 	}
 	
-	
+
+	public OperationTank(String date, double qteInsereTank, Integer codeLiaison, Tank tank, Operation operation) {
+		super();
+		this.date = date;
+		this.qteInsereTank = qteInsereTank;
+		this.codeLiaison = codeLiaison;
+		this.tank = tank;
+		this.operation = operation;
+	}
+
+
 
 	public OperationTank(String date) {
 		super();
@@ -87,7 +98,17 @@ public class OperationTank implements Serializable{
 	public void setOperation(Operation operation) {
 		this.operation = operation;
 	}
-	
-	
+
+
+
+	public Integer getCodeLiaison() {
+		return codeLiaison;
+	}
+
+
+
+	public void setCodeLiaison(Integer codeLiaison) {
+		this.codeLiaison = codeLiaison;
+	}
 
 }

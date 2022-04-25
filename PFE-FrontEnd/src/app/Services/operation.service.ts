@@ -25,9 +25,12 @@ export class OperationService {
   baseUrl9 : string = 'http://localhost:3801/op';
   baseUrl10 : string = 'http://localhost:3801/NbOpTankTotal';
   baseUrl11 : string = 'http://localhost:3801/NbOpTank1';
-  
+
   baseUrl14 : string = 'http://localhost:3801/nbOpRetrait';
   baseUrl15 : string = 'http://localhost:3801/nbOpRemplissage';
+  baseUrl16 : string = 'http://localhost:3801/find';
+  baseUrl17 : string = 'http://localhost:3801/update';
+
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
@@ -58,16 +61,35 @@ export class OperationService {
   getNbOpTankTotal(id: number): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
     const url = `${this.baseUrl10}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
+
+// traja3li les operation tank eli teb3in operation bark
+  findOpTank(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    const url = `${this.baseUrl16}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+  // hedhy bech ta3mali update 3al codeLiaison , kol operation tank bech ta3tiha codeLiaison khas bih 
+  updateOpTank(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    const url = `${this.baseUrl17}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
 
 
   getNbOpTank(id: number): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
     const url = `${this.baseUrl11}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
@@ -77,7 +99,7 @@ export class OperationService {
  getOpCodeUtilise(code: number): Observable<any> {
   let jwt = this.authService.getToken();
   jwt = "Bearer "+jwt;
-  let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+  let httpHeaders = new HttpHeaders({"Authorization":jwt})
   const url = `${this.baseUrl9}/${code}`
   return this.http.get(url,{headers:httpHeaders});
 }

@@ -119,13 +119,18 @@ export class CreateOperationComponent implements OnInit {
 
           }
         )
-        .subscribe(o=>{ 
-          
+        .subscribe(o=>{
+
          this.tab = Object.values(o)
           localStorage.setItem('idOP',this.tab[0])
-
           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
           this.reLoad();
+          console.log(localStorage.getItem('idOP') || '[]');
+
+          // this.operationService.updateOpTank(this.tab[0]).subscribe(d => {
+          //   console.log(d);
+          // })
+
         },
         (error) => {
           console.log("Failed")
@@ -134,7 +139,7 @@ export class CreateOperationComponent implements OnInit {
 
       this.tankService.getTanksQteLibre().subscribe(
         o=>{
-          this.reLoad() 
+          this.reLoad()
         if(this.myForm.get('poidsLait')?.value<=o)
         this.msgErreur=0;
         else{
@@ -142,7 +147,7 @@ export class CreateOperationComponent implements OnInit {
         this.qteRsetLait=o;
         }
   var kk=JSON.parse(localStorage.getItem('idOP') || '[]') || []
-        this.operationService.getOpTank(kk).subscribe( i=>{  
+        this.operationService.getOpTank(kk).subscribe( i=>{
            this.tabTankId=Object.values(i);
          // this.length=this.ELEMENT_DATA?.length
 
@@ -174,8 +179,8 @@ export class CreateOperationComponent implements OnInit {
 
 
     const transaction = await contract.addOperationTank(this.elem0,this.count);
-      
-    await transaction.wait() ; 
+
+    await transaction.wait() ;
 
 
 
@@ -202,7 +207,7 @@ export class CreateOperationComponent implements OnInit {
       this.msgErreur=1;
       this.qteRsetLait=o;
       }
-     
+
 
   });
 

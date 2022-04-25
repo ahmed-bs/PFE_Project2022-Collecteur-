@@ -3,8 +3,10 @@ package iset.pfe.example.entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,8 @@ public class Tank implements Serializable{
 	private double poidActuel;
 	private String etat;
 	private String DateIns;
+	@ElementCollection
+	private List<Integer> codeTank;
 	
 	@OneToMany(mappedBy="tank",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
@@ -54,8 +58,8 @@ public class Tank implements Serializable{
 		this.etat = etat;
 		this.operationstank = operationstank;
 	}
-
 	
+
 	public Tank(String matricule, double poidVide, double poidActuel, String etat, String dateIns,
 			Set<OperationTank> operationstank) {
 		super();
@@ -122,6 +126,16 @@ public class Tank implements Serializable{
 	public void setDateIns(String dateIns) {
 		DateIns = dateIns;
 	}
+
+	public List<Integer> getCodeTank() {
+		return codeTank;
+	}
+
+	public void setCodeTank(List<Integer> codeTank) {
+		this.codeTank = codeTank;
+	}
+
+
 	
 	
 }
