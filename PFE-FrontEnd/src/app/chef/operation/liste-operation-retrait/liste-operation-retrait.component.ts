@@ -12,6 +12,7 @@ import { CreateOperationComponent } from '../create-operation/create-operation.c
 import { DetailsOperationRetraitComponent } from '../details-operation-retrait/details-operation-retrait.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-operation-retrait',
@@ -43,6 +44,7 @@ export class ListeOperationRetraitComponent implements OnInit {
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -79,14 +81,14 @@ export class ListeOperationRetraitComponent implements OnInit {
         this.ELEMENT_DATA= o;});
         console.log(this.ELEMENT_DATA);
         //console.log(this.id);
-      let confirmation =confirm("Êtes-vous sûr de supprimer le Operation où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'operation où son id est egale à : "+id+" ??")
       if(confirmation)
       this.operationService.deleteOperation(id).subscribe(data => {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
-        // this.onClose();
+        //window.location.reload();
+         this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -122,6 +124,20 @@ export class ListeOperationRetraitComponent implements OnInit {
       });  
   }
 
+
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialog.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
 
     detailsOperation(operation:Operation){

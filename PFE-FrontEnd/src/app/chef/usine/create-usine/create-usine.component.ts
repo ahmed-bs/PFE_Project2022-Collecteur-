@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Usine } from 'src/app/Models/usine';
 import { UsineService } from 'src/app/Services/usine.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-usine',
@@ -28,6 +29,7 @@ export class CreateUsineComponent implements OnInit {
   constructor(
      private usineService: UsineService,
      private router: Router, 
+     private location:Location,
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -67,10 +69,10 @@ export class CreateUsineComponent implements OnInit {
           "adresse":this.myForm.get('adresse')?.value,
         })
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.usine);
           localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été ajouté avec succès"]));
-          window.location.reload();      
+          this.onClose();   
         });
     }
   });
@@ -86,11 +88,19 @@ export class CreateUsineComponent implements OnInit {
   }
 
 
-  onClose() {
-    this.dialogClose.closeAll();
-    this.gotoList();
-  }
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
 
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
  get nomUsine(){
   return this.myForm.get('nomUsine') ;
 }

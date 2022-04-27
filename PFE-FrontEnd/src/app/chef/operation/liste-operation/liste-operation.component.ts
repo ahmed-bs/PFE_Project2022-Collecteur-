@@ -12,6 +12,7 @@ import { DetailsOperationComponent } from '../details-operation/details-operatio
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 import { ethers } from 'ethers';
 import { Observable } from 'rxjs';
+import {Location} from "@angular/common";
 import { OperationTank } from 'src/app/Models/operationTank';
 
 declare let require: any;
@@ -51,6 +52,7 @@ export class ListeOperationComponent implements OnInit {
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur','code','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -116,19 +118,20 @@ export class ListeOperationComponent implements OnInit {
     }
 
     deleteOperation(id: number) {
-      let confirmation =confirm("Êtes-vous sûr de supprimer l'Operation où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'operation où son id est egale à : "+id+" ??")
       if(confirmation)
       this.operationService.deleteOperation(id).subscribe(()=>{
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du Operation !!';
+        this.Toast[1] ='Échec de la suppression de l\'operation !!';
         this.showToast();
       }
     );
@@ -172,7 +175,19 @@ export class ListeOperationComponent implements OnInit {
     });
   }
 
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
 
+
+onClose() {
+  this.dialog.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();

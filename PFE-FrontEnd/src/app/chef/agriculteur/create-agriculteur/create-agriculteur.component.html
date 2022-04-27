@@ -9,7 +9,7 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom :<span style="color:red;">*</span></label>
+                <label>Nom : <span style="color:red;">*</span></label>
                 <p>(minimum 3 caracteres)</p>
                 <input type="text"
                  formControlName="nom"
@@ -31,7 +31,7 @@
             <!-- <div class="form-row"> -->
   
               <div class="col-md-6 mb-3">
-                <label>Prenom :<span style="color:red;">*</span></label>
+                <label>Prénom : <span style="color:red;">*</span></label>
                 <p>(minimum 3 caracteres)</p>
                   <input type="text"
                   class="form-control"
@@ -41,17 +41,17 @@
                     name="prenom">
     
                     <div *ngIf="prenom?.invalid && prenom?.touched || msg1==1" class="text-danger">
-                    Prenom invalide !
+                    Prénom invalide !
                     </div>
                     <div *ngIf="prenom?.valid && prenom?.touched && msg1==0" class="text-success">
-                      Prenom Valide
+                      Prénom Valide
                     </div>
   
               </div>
 
               <div *ngIf="msg1==1" class="text-danger">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Nom et prenom existe déjà  !
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; Nom et prénom existe déjà  !
               </div>
 
               <div class="col-md-12 mb-3">
@@ -75,7 +75,7 @@
             <div class="form-row">
             
             <div class="col-md-12 mb-3">
-              <label for="prix">Telephone (8 chiffres): <span style="color:red;">*</span></label>
+              <label for="prix">Téléphone(Exactement 8 chiffres): <span style="color:red;">*</span></label>
               <input type="number"
               class="form-control"
                 id="tel"
@@ -83,10 +83,10 @@
                 placeholder="12345678"
                 name="tel">
                 <div *ngIf="tel?.invalid && tel?.touched|| msg2==1 " class="text-danger">
-                  Numero de telephone invalide !
+                  Numéro de téléphone invalide !
                 </div>
                 <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
-                  Numero de telephone Valide
+                 Numéro de téléphone Valide
                 </div>
                 <div *ngIf="msg2==1" class="text-danger">
                  Numéro de  téléphone existe  déjà  !
@@ -94,7 +94,7 @@
           </div>
 
           <div class="col-md-12 mb-3">
-            <label for="prix">Matricule (min 8 caracteres): <span style="color:red;">*</span></label>
+            <label for="prix">Matricule (minimum 8 caracteres): <span style="color:red;">*</span></label>
             <input type="text"
             class="form-control"
               id="matricule"

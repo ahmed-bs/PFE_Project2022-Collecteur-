@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
+import {Location} from "@angular/common";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-agriculteur',
@@ -27,6 +29,8 @@ export class UpdateAgriculteurComponent implements OnInit {
 
    constructor(
      private dialogClose: MatDialog,
+     private location:Location,
+     private router: Router,
      private agriculteurService:AgriculteurService,
 
    ) { }
@@ -67,7 +71,8 @@ export class UpdateAgriculteurComponent implements OnInit {
          })
          .subscribe(o=>{
            localStorage.setItem('Toast', JSON.stringify(["Success","Un agriculteur a été modifié avec succes"]));
-           window.location.reload();
+          //  window.location.reload();
+          this.onClose();
            console.log(this.agriculteur);
          },
          (error) => {
@@ -99,9 +104,20 @@ get matricule(){
   return this.myForm.get('matricule') ;
 }
 
-   onClose() {
-     this.dialogClose.closeAll();
-   }
+onReload(){
+  // this.router.navigate([this.router.url]);
+  this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
+}
+
+
+onClose() {
+this.dialogClose.closeAll();
+// this.gotoList();
+this.onReload();
+}
+
 
  }
 

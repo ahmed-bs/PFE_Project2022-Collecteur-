@@ -9,6 +9,7 @@ import { DetailsUsineComponent } from '../details-usine/details-usine.component'
 import { CreateUsineComponent } from '../create-usine/create-usine.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Usine } from 'src/app/Models/usine';
+import {Location} from "@angular/common";
 import { UsineService } from 'src/app/Services/usine.service';
 
 @Component({
@@ -34,6 +35,7 @@ export class ListeUsineComponent implements OnInit {
   displayedColumns: string[] = ['idUsine','nomUsine','adresse','action'];
 
   constructor(
+    private location:Location,
     private usineService: UsineService,
     private router: Router,
     private dialog:MatDialog) { }
@@ -70,13 +72,14 @@ export class ListeUsineComponent implements OnInit {
    
 
     deleteUsine(id:number){
-      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'usine où son id est egale à : "+id+" ??")
       if(confirmation)
       this.usineService.deleteUsine(id).subscribe(()=>{
         this.Toast[0] = 'Success';
         this.Toast[1] ='Usine a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -88,7 +91,19 @@ export class ListeUsineComponent implements OnInit {
     );
   }
   
-  
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialog.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
   
     detailsUsine(usine:Usine){
       const dialogConfig = new MatDialogConfig();

@@ -7,6 +7,8 @@ import { UsineService } from 'src/app/Services/usine.service';
 import { OperationService } from 'src/app/Services/operation.service';
 import { Observable } from 'rxjs';
 import { TankService } from 'src/app/Services/tank.service';
+import {Location} from "@angular/common";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-operation-retrait',
@@ -26,6 +28,8 @@ export class UpdateOperationRetraitComponent implements OnInit {
     private dialogClose: MatDialog,
     private operationService:OperationService,
     private usineService:UsineService,
+    private location:Location,
+    private router: Router,
     private tankService:TankService,
   ) { }
 
@@ -93,8 +97,17 @@ get usine(){
 }
 
 
-  onClose() {
-    this.dialogClose.closeAll();
-  }
+onReload(){
+  // this.router.navigate([this.router.url]);
+  this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
+}
 
+
+onClose() {
+this.dialogClose.closeAll();
+// this.gotoList();
+this.onReload();
+}
 }

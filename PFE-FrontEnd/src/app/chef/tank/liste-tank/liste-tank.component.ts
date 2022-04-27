@@ -10,6 +10,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DetailsTankComponent } from '../details-tank/details-tank.component';
 import { UpdateTankComponent } from '../update-tank/update-tank.component';
 import { CreateTankComponent } from '../create-tank/create-tank.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-tank',
@@ -37,6 +38,7 @@ export class ListeTankComponent implements OnInit {
   constructor(
     private tankService: TankService,
     private router: Router,
+    private location:Location,
     private dialog:MatDialog) { }
 
 
@@ -77,7 +79,8 @@ export class ListeTankComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Tank a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -90,6 +93,19 @@ export class ListeTankComponent implements OnInit {
   }
   
   
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialog.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
   
     detailsTank(tank:Tank){
       const dialogConfig = new MatDialogConfig();

@@ -1,157 +1,151 @@
-
-<div class="main-content">
-    <div id="btnAddSearch">
-        <div>
-          <div  class="search-container">
-            <mat-form-field id="formSearch" appearance="fill" aria-autocomplete="off" (keyup)="filterData($event)">
-            <div id="search">
-                  <div><input id="inputSearch" matInput placeholder="Recherche ..."/></div>
-                  <div><span class='material-icons'>search</span></div>
-            </div>
-            </mat-form-field>
-          </div>
-        </div>
-        <div style="margin-left:386px;">
-          <button class="btn btn" id="btn" (click)="onOpenDialogCreate()">
-            <i class="fas fa-plus"></i>
-            Ajouter une operation
-          </button>
-        </div>
-  
-    </div>
-  
-<!-- testing blockchain
-    <div  *ngFor="let fff of operations | async" >
-      <span class="timeline-body">
-        /---------- idOperation:  {{fff.idOperation}}  ||
-      </span>
-      <span class="timeline-body">
-        poidsLait: {{fff.poidsLait}}   ||
-      </span>
-      <span class="timeline-body">
-        dateOperation:  {{fff.dateOperation}}   ||
-      </span>
-      <span class="timeline-body">
-        typeOp:  {{fff.typeOp}}   ||
-      </span>
-      <span class="timeline-body">
-          || code: {{fff.code}}  
-      </span>
-   <br>
-      <span class="timeline-body">
-      -------------------  idCollecteur: {{fff.collecteur.idCollecteur}}   ||
-      </span>
-      <span class="timeline-body">
-        nomCollecteur: {{fff.collecteur.nomCollecteur}}   ||
-      </span>
-      <span class="timeline-body">
-        adresse: {{fff.collecteur.adresse}}   ||
-      </span>
-      <span class="timeline-body">
-        tel: {{fff.collecteur.tel}}   ||
-      </span>
-      <br>
-      <span class="timeline-body">
-      -------------------  idAgriculteur: {{fff.sender}}   ||
-      </span>
-  
-  
-    </div>
-    -->
-  <div class="container-fluid">
+<div class="container p-30">
   <div class="row">
-    <div class="col-md-12" id="card-Table">
-      <div class="card">
+ 
+      <div class="col-md-12 main-datatable">
         <div class="card-header card-header-danger" id="title-Table">
-          <h3 class="card-title" id="titre">Table des operations de remplissage</h3><br>
+          <h3 class="card-title" id="titre">Table pour les opérations de remplissage</h3><br>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table mat-table matSort [dataSource]="dataSource!" class="table">
-              <ng-container matColumnDef="idOperation">
-                <!-- <th  mat-header-cell *matHeaderCellDef hidden> id Employee </th> -->
-                <th  mat-header-cell *matHeaderCellDef > #id  </th>
-                <td mat-cell *matCellDef="let element" > {{element.idOperation}} </td>
-              </ng-container>
-              <ng-container matColumnDef="poidsLait">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef >Quantité de Lait  </th>
-                <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{element.poidsLait}}</td>
-              </ng-container>
-              <ng-container matColumnDef="dateOperation">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef> Date Operation  </th>
-                <td mat-cell *matCellDef="let element"> {{element.dateOperation}} </td>
-              </ng-container>
+          <div class="card_body">
+              <div class="row d-flex">
+                  <div class="col-sm-4 createSegment"> 
+                   <a class="btn dim_button create_new" (click)="onOpenDialogCreate()"> <span class="glyphicon glyphicon-plus"></span><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un element </a>
+                  </div>
+                  <div class="col-sm-8 add_flex">
+                      <div class="form-group searchInput" aria-autocomplete="on" (keyup)="filterData($event)">
+                          <label for="email">Recherche:</label>
+                          <input type="search"  class="form-control" id="filterbox" matInput placeholder=" ">
+                      </div>
+                  </div> 
+              </div>
+              <div class="overflow-x">
+                  <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer"  mat-table matSort [dataSource]="dataSource!"  >
+                               <thead>
+                                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                               </thead>
+                          <tr>
+                            <ng-container matColumnDef="idOperation" >
+                                <th mat-header-cell *matHeaderCellDef  style="min-width:50px;">#ID</th>
+                                <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.idOperation}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="poidsLait" >
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantite de lait (Kg)</th>
+                              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.poidsLait}} kg</td>
+                            </ng-container>
+                            <ng-container matColumnDef="dateOperation">
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de l'opération</th>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.dateOperation}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="agriculteur">
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Matricule de l'agriculteur</th>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.agriculteur.matricule}}</td>
+                            </ng-container>
+                            <ng-container matColumnDef="code">
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Code</th>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;{{element.code}}</td>
+                            </ng-container>
+                            
+                            <ng-container matColumnDef="action">
+                              <th  mat-header-cell *matHeaderCellDef style="min-width:150px;">&nbsp;&nbsp;Action</th>
+                              <td mat-cell *matCellDef="let element">
+                                  <!-- <div class="btn-group"  style="color:#3E8D07;">
+                                      <a class="dropdown-toggle dropdown_icon"  style="color:#3E8D07;border: 1px solid #3E8D07;" data-toggle="dropdown">
+                                      <i class="fa fa-pencil-square-o fa-lg" style="color:#3E8D07;"></i> </a>
+                                      <ul class="dropdown-menu">
+                                        <li class="li2">
+                                          <a (click)="updateOperation(element)" target="_blank">
+                                            <i class="fa fa-pencil-square-o fa-lg" style="color:#3E8D07;"> Modifier </i> 
+                                          </a>
+                                      </li>
+                                   
+                                      </ul>
+                                  </div> 
+                                  &nbsp;-->
+                                  
+                                  <div class="btn-group">
+                                      <a class="dropdown-toggle dropdown_icon" style="color:#2399BF;border: 1px solid #2399BF" data-toggle="dropdown"> 
+                                          <i class="fa fa-info-circle fa-lg" ></i>
+                                      </a>
+                                      <ul class="dropdown-menu dropdown_more">
+                                          <li class="li">
+                                              <a (click)="detailsOperation(element)"target="_black">
+                                                <i class="fa fa-info-circle fa-lg" >  plus de details  </i>
+                                              </a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                                  &nbsp;
 
-              <ng-container matColumnDef="agriculteur">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp; &nbsp;Matricule de l'agriculteur </th>
-                <td id="alignement" mat-cell *matCellDef="let element" >{{element.agriculteur.matricule}}</td>
-              </ng-container>
+                                  <div class="btn-group">
+                                    <a class="dropdown-toggle dropdown_icon"style="color:#D41616;border: 1px solid #D41616"  data-toggle="dropdown"> 
+                                      <i class="fa fa-trash fa-lg" style="color:#D41616;"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown_more">
+                                        <li class="li1">
+                                         
+                                    <a (click)="deleteOp(element.idOperation)"> <i class="fa fa-trash fa-lg" style="color:#D41616;">&nbsp; <b>Supprimer</b></i></a>
+                                  </li>
+                                </ul>
+                            </div>
 
-              <ng-container matColumnDef="code">
-                <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp; &nbsp;Code de l'operation</th>
-                <td id="alignement" mat-cell *matCellDef="let element" >{{element.code}}</td>
-              </ng-container>
-  
-  
-              <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef >&nbsp;&nbsp;&nbsp; Action</th>
-                <td mat-cell *matCellDef="let element">
-                  <!-- <a (click)="updateOperation(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
-                    <i class="fas fa-edit"></i>
-                </a> -->
-  
-                <a  (click)="detailsOperation(element)" class="btn  btn-secondary" style="margin-right:15px;margin-bottom:15px;">
-                  <i class="fas fa-info"></i>
-                </a>
-  
-                <a (click)="deleteOp(element.idOperation)" class="btn  btn-danger" style="margin-right:15px;margin-bottom:15px">
-                  <!-- (click)="deleteEmployee(element.idUser)" -->
-                <i class="far fa-trash-alt"></i> 
-            </a>
-                </td>
-                </ng-container>
-  
-  
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-               </table>
-               <mat-paginator #paginator
-                              [pageSize]="3"
-                              [pageSizeOptions]="[2, 3, 5, 10, 25, 100]">
-              </mat-paginator>
-            </div>
+                              </td>
+                            </ng-container>
+                            <tbody>
+                              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            </tbody>
+                  </table>
+                  <mat-paginator #paginator
+                    [pageSize]="5"
+                    [pageSizeOptions]="[ 2, 3, 4, 5, 10, 25, 100]">
+                  </mat-paginator>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
-    
   </div>
-  
-  </div>
-  
-  
-  
-  
-  
-  <div class="toast {{ShowToast}}" id="ToastDiv">
-    <div id={{idTitle}} class="toast-header">
-    <strong class="mr-auto">
-      <span class="mr-3">
-      <i *ngIf="Toast[0] == 'Success'" class="fas fa-check"></i>
-      <i *ngIf="Toast[0] == 'Failed'" class="fas fa-exclamation-triangle"></i>
-    </span>
-      {{Toast[0]}}</strong>
-    <small style="color: gray;">
-      {{counter}} second ago</small>
-    </div>
-    <div id={{idContenu}} class="toast-body">
-    {{Toast[1]}}
-    </div>
-    </div>
-    
-
-    
-    
-  
-  
+</div>
+<div class="toast {{ShowToast}}" id="ToastDiv">
+<div id={{idTitle}} class="toast-header">
+<strong class="mr-auto">
+  <span class="mr-3">
+  <i *ngIf="Toast[0] == 'Success'" class="fas fa-check"></i>
+  <i *ngIf="Toast[0] == 'Failed'" class="fas fa-exclamation-triangle"></i>
+</span>
+  {{Toast[0]}}</strong>
+<small style="color: gray;">
+  {{counter}} second ago</small>
+</div>
+<div id={{idContenu}} class="toast-body">
+{{Toast[1]}}
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.14/js/jquery.dataTables.min.js"></script>
+<script src="js/main.js">
+$(document).ready(function() {
+var dataTable = $('#filtertable').DataTable({
+  "pageLength":5,
+  'aoColumnDefs':[{
+      'bSortable':false,
+      'aTargets':['nosort'],
+  }],
+  columnDefs:[
+      {type:'date-dd-mm-yyyy',aTargets:[5]}
+  ],
+  "aoColumns":[
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+  ],
+  "order":false,
+  "bLengthChange":false,
+  "dom":'<"top">ct<"top"p><"clear">'
+});
+$("#filterbox").keyup(function(){
+  dataTable.search(this.value).draw();
+});
+} );
+</script>

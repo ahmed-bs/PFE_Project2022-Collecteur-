@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-agriculteur',
@@ -36,6 +37,7 @@ export class CreateAgriculteurComponent implements OnInit {
   constructor(
      private agriculteurService: AgriculteurService,
      private router: Router, 
+     private location:Location,
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -97,10 +99,10 @@ export class CreateAgriculteurComponent implements OnInit {
           "tel":this.myForm.get('tel')?.value,
         })
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.agriculteur);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un agriculteur a été ajouté avec succès"]));
-          window.location.reload();      
+          this.onClose();     
         });
     }
   });
@@ -118,10 +120,20 @@ export class CreateAgriculteurComponent implements OnInit {
   }
 
 
-  onClose() {
-    this.dialogClose.closeAll();
-    this.gotoList();
-  }
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
+
 
  get nom(){
   return this.myForm.get('nom') ;

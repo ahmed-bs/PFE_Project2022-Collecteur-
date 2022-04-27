@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Tank } from 'src/app/Models/tank';
+import {Location} from "@angular/common";
 import { TankService } from 'src/app/Services/tank.service';
 
 @Component({
@@ -30,6 +31,7 @@ export class CreateTankComponent implements OnInit {
   constructor(
      private tankService: TankService,
      private router: Router,
+     private location:Location,
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -58,6 +60,7 @@ export class CreateTankComponent implements OnInit {
        else{
         this.msg1=0;
        }
+       
   
   
     if(this.myForm.get('poidVide')?.value!=null && this.myForm.get('matricule')?.value!=null 
@@ -71,10 +74,11 @@ export class CreateTankComponent implements OnInit {
           // "etat":this.myForm.get('etat')?.value,
         })
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.tank);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un Tank a été ajouté avec succès"]));
-          window.location.reload();
+          // window.location.reload();
+          this.onClose();
         });
       }
     });
@@ -89,11 +93,19 @@ export class CreateTankComponent implements OnInit {
     this.router.navigate(['chef/tank/listeTank']);
   }
 
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
 
-  onClose() {
-    this.dialogClose.closeAll();
-    this.gotoList();
-  }
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
  get matricule(){
   return this.myForm.get('matricule') ;
