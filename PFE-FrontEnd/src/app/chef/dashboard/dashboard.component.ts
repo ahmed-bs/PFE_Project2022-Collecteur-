@@ -78,8 +78,10 @@ export class DashboardComponent implements OnInit {
   showLegend = true;
   showXAxisLabel = true;
   xAxisLabel = 'Nom des tanks';
+  xAxisLabel1 = 'Date des operations';
   showYAxisLabel = true;
   yAxisLabel = 'Etat de remplissage';
+  yAxisLabel1 = 'Nombre des operations';
 
   colorScheme : any = {
     // domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
