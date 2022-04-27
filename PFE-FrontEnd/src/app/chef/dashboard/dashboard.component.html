@@ -44,66 +44,69 @@
               <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                 <div class="col-12 col-sm-6 col-md-3">
-                   <div class="info-box">
-                     <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-       
-                     <div class="info-box-content">
-                       <span class="info-box-text">CPU Traffic</span>
-                       <span class="info-box-number">
-                         10
-                         <small>%</small>
-                       </span>
-                     </div>
-                     <!-- /.info-box-content -->
-                   </div>
-                   <!-- /.info-box -->
-                 </div>
-                 <!-- /.col -->
-                 <div class="col-12 col-sm-6 col-md-3">
-                   <div class="info-box mb-3">
-                     <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-       
-                     <div class="info-box-content">
-                       <span class="info-box-text">Likes</span>
-                       <span class="info-box-number">41,410</span>
-                     </div>
-                     <!-- /.info-box-content -->
-                   </div>
-                   <!-- /.info-box -->
-                 </div>
-                 <!-- /.col -->
-       
-                 <!-- fix for small devices only --> 
-       
-                 <div class="col-12 col-sm-6 col-md-3">
-                   <div class="info-box mb-3">
-                     <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-       
-                     <div class="info-box-content">
-                       <span class="info-box-text">Sales</span>
-                       <span class="info-box-number">760</span>
-                     </div>
-                     <!-- /.info-box-content -->
-                   </div>
-                   <!-- /.info-box -->
-                 </div>
-                 <!-- /.col -->
-                 <div class="col-12 col-sm-6 col-md-3">
-                   <div class="info-box mb-3">
-                     <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-       
-                     <div class="info-box-content">
-                       <span class="info-box-text">New Members</span>
-                       <span class="info-box-number">2,000</span>
-                     </div>
-                     <!-- /.info-box-content -->
-                   </div>
-                   <!-- /.info-box -->
-                 </div>
-                 <!-- /.col -->
-               </div>
-               <!-- /.row -->
+                  <div class="col-md-4 col-sm-6 col-12">
+                    <div class="info-box" style="background-color:#EBF5FB ">
+                      <span class="info-box-icon"> <i class="ion ion-beaker" style="font-size:3em;color:#5DADE2  ;"></i></span>
+        
+                      <div class="info-box-content" >
+                        <span class="info-box-text" style="color:#5DADE2  ;"><b>Tanks totalements remplis</b></span>
+                        <span class="info-box-number" style="color:#5DADE2  ;"><h1>{{somTRemplis}}</h1></span>
+        
+                        <div class="progress" style=" height: 0.5rem">
+                          <div class="progress-bar" style="color:#5DADE2  ;width: {{prcTankRemplis}}%"></div>
+                        </div>
+                        <span class="progress-description" style="color:#5DADE2  ;">
+                          {{prcTankRemplis}}% tanks totalements remplis
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-md-4 col-sm-6 col-12">
+                    <div class="info-box" style="background-color:#EBF5FB ">
+                      <span class="info-box-icon"><i class="ion ion-beaker" style="font-size:3em;color:#5DADE2  ;"></i></span>
+        
+                      <div class="info-box-content">
+                        <span class="info-box-text" style="color:#5DADE2  ;"><b>Tanks non remplis</b></span>
+                        <span class="info-box-number" style="color:#5DADE2  ;"><h1>{{somTVide}}</h1></span>
+        
+                        <div class="progress" style=" height: 0.5rem">
+                          <div class="progress-bar" style="color:#5DADE2;width: {{prcTankNonRemplis}}%"></div>
+                        </div>
+                        <span class="progress-description" style="color:#5DADE2  ;">
+                          {{prcTankNonRemplis}} tanks non remplis
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-md-4 col-sm-6 col-12">
+                    <div class="info-box" style="background-color:#EBF5FB ">
+                      <span class="info-box-icon"><i class="ion ion-beaker" style="font-size:3em;color:#5DADE2  ;"></i></span>
+        
+                      <div class="info-box-content">
+                        <span class="info-box-text" style="color:#5DADE2 "><b>Tanks en cours de remplissage</b></span>
+                        <span class="info-box-number"  style="color:#5DADE2  "><h1>{{somTEnCours}}</h1></span>
+        
+                        <div class="progress" style="color:gris;height: 0.5rem">
+                          <div class="progress-bar" style="color:#5DADE2  ;width:{{prcTankEnCours}}%"></div>
+                        </div>
+                        <span class="progress-description"  style="color:#5DADE2  ">
+                          {{prcTankEnCours}}% tanks en cours de remplissage
+                        </span>
+                      </div>
+                      <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                  </div>
+                  <!-- /.col -->
+                  <!-- /.col -->
+                </div>
+
 
                  <div class="row">
                    <div class="col-lg-3 col-6">
@@ -211,6 +214,26 @@
 
                             <br><br><br><br><br><br><br>
 
+
+                            
+                            <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data1"
+                            [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                            [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
+                          </ngx-charts-bar-vertical>
+
+                          <br><br><br><br><br><br><br>
+                         
+
+                          <ngx-charts-line-chart
+                          [results]="data1"
+                          [legend]="true"
+                          [legendTitle]="'Rapport sur l\'etat des tanks'"
+                          [view]="[1000,400]"
+                          [scheme]="colorScheme" >
+                        </ngx-charts-line-chart>
+
+
                             <div  style="margin-top:25px;margin-left:-100px;margin-right:70px">
                             <ngx-charts-pie-chart
                             [results]="data"
@@ -221,6 +244,7 @@
                             [labels]="true" >
                             </ngx-charts-pie-chart>
                            </div>
+
 
                            <br><br>
                             <ngx-charts-advanced-pie-chart  style="margin-top:-1020px;margin-bottom:-550px;"
@@ -413,58 +437,71 @@
                 </div>
                 <!-- /.row -->
 
-                <!-- Main row -->
                 <div class="row">
-                  <!-- Left col -->
-                  <!-- <div class="col-md-8"> -->
-                    <!-- MAP & BOX PANE -->
-                    <!-- <div class="card">
+                  <div class="col-md-12">
+                    <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">US-Visitors Report</h3> -->
+                        <h2 class="card-title">Rapport recapitulatif quotidien</h2>
 
+                        <!-- <tr *ngFor="let l of list ">
+                          <td>{{l}}</td>
+                        </tr>  -->
 
-                      <!-- </div> -->
+                        <div class="card-tools">
+                          <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                          <button type="button" class="btn btn-tool" data-card-widget="remove">
+                            <i class="fas fa-times"></i>
+                          </button>
+                        </div>
+                      </div>
                       <!-- /.card-header -->
-                      <!-- <div class="card-body p-0">
-                        <div class="d-md-flex">
-                          <div class="p-1 flex-fill" style="overflow: hidden"> -->
-                            <!-- Map will be created here -->
-                            <!-- <div id="graph2" style="height: 325px; overflow: hidden">
+                      <div class="card-body">
+                        <div class="row">
+                  
 
-                              <div class="map"></div>
-                            </div> -->
+                          <div class="col-12">
+                            <!-- interactive chart -->
+                            <div class="card card-primary card-outline">
+                              <div class="card-header">
+                                <h3 class="card-title">
+                                  <i class="far fa-chart-bar"></i>
+                                  Interactive Area Chart
+                                </h3>
+                
+                                <div class="card-tools">
+                                  Real time
+                                  <div class="btn-group" id="realtime" data-toggle="btn-toggle">
+                                    <button type="button" class="btn btn-default btn-sm active" data-toggle="on">On</button>
+                                    <button type="button" class="btn btn-default btn-sm" data-toggle="off">Off</button>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-body">
+                                <div id="interactive" style="height: 300px;"></div>
+                              </div>
+                              <!-- /.card-body-->
+                            </div>
+                            <!-- /.card -->
+                
+                          </div>
 
-                            <!-- <ngx-charts-advanced-pie-chart style="padding:30px; overflow: initial !important;"
-                            [results]="data"
-                            [view]="[700,550]"
-                            [gradient]="true"
-                            [scheme]="colorScheme" >
-                      </ngx-charts-advanced-pie-chart> -->
 
-
-
-
-
-
-                            <!-- <ngx-charts-bar-vertical  [view]="[600,350]" scheme="cool" [results]="data"
-                            [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                            [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme" >
-                          </ngx-charts-bar-vertical> -->
-
-                          <!-- </div> -->
-
-                        <!-- </div> -->
-                        <!-- /.d-md-flex -->
-                      <!-- </div> -->
-                      <!-- /.card-body -->
-                    <!-- </div> -->
+                        </div>
+                        <!-- /.row -->
+                      </div>
+                      <!-- ./card-body -->
+              
+                      <!-- /.card-footer -->
+                    </div>
                     <!-- /.card -->
-
-                  <!-- </div> -->
+                  </div>
                   <!-- /.col -->
-<br>
                 </div>
+                
+                <!-- Main row -->
+        
                 <!-- /.row -->
               </div><!--/. container-fluid -->
 

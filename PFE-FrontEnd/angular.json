@@ -37,6 +37,7 @@
               "node_modules/bootstrap/dist/css/bootstrap.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "node_modules/admin-lte/plugins/fullcalendar/main.css",
               "src/styles.css"
             ],
             "scripts": [
@@ -44,7 +45,6 @@
               "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.js",
               "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.js",
               "node_modules/admin-lte/dist/js/adminlte.js",
-              "node_modules/admin-lte/dist/js/demo.js",
               "node_modules/admin-lte/plugins/jquery-mousewheel/jquery.mousewheel.js",
               "node_modules/admin-lte/plugins/raphael/raphael.js",
               "node_modules/admin-lte/plugins/jquery-mapael/jquery.mapael.js",
@@ -53,6 +53,9 @@
               "node_modules/admin-lte/plugins/jquery/jquery.min.js",
               "node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js",
               "node_modules/admin-lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+              "node_modules/admin-lte/plugins/moment/moment.min.js",
+              "node_modules/admin-lte/plugins/fullcalendar/main.js",
+              "node_modules/admin-lte/plugins/jquery-ui/jquery-ui.min.js",
               "node_modules/admin-lte/dist/js/adminlte.js"
             ]
           },

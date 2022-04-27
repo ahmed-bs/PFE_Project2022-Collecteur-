@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit {
 
   dataAxis = [];
   data:any[] = [];
+  data1:any[] = [];
   piedata: any[] = [];
   lastChart: any[] = [];
 
@@ -84,6 +85,7 @@ export class DashboardComponent implements OnInit {
     // domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
     domain: ['#ffc107', '#EE9C4A','#3772C8','#E71F2B ','#28a745', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
   };
+  
 
 
   constructor(
@@ -98,9 +100,16 @@ export class DashboardComponent implements OnInit {
       this.tankService.getTanks().subscribe( (data)=>{
         this.formateDataT(data);
         this.formatePieData(data);
+        console.log(data);
+        console.log(  this.formateDataT(data));
       })
       this.tankService.getTanks().subscribe( (data)=>{
         this.formateLastData(data)
+      })
+
+      this.operationService.getOperations().subscribe( (data1)=>{
+        this.formateData(data1);
+        console.log(data1);
       })
     }
 
@@ -142,39 +151,76 @@ export class DashboardComponent implements OnInit {
         result.push(object);
       }
       this.piedata = result;
+      console.log(this.piedata);
 
     }
 
-    // formateData(data: any[]){
-    //   const dataArrayYaxis: any[] = [];
-    //   const dataArrayXaxis: any[] = [];
+    formateData(data: any[]){
+      const dataArrayYaxis: any[] = [];
+      const dataArrayXaxis: any[] = [];
 
-    //   for (const  element of data){
-    //     const dateElement = new Date(element.dateOperation).toLocaleDateString();
-    //     if(!dataArrayYaxis.includes(dateElement) && dateElement !== "Invalid Date")dataArrayYaxis.push(dateElement);
+      for (const  element of data){
+        const dateElement = new Date(element.dateOperation).toLocaleDateString();
+        if(!dataArrayYaxis.includes(dateElement) && dateElement !== "Invalid Date")dataArrayYaxis.push(dateElement);
 
-    //   }
-    //   for(const arrayDate of dataArrayYaxis){
-    //     let i = 0;
-    //     for (const  element of data){
-    //       const dateElement = new Date(element.dateOperation).toLocaleDateString();
-    //       if(dateElement === arrayDate) i++
-    //     }
-    //     dataArrayXaxis.push(i);
-    //     i = 0;
-    //   }
-    //   const result = [];
-    //   for (const [i ,element] of dataArrayXaxis.entries()) {
-    //     const object = {
-    //       name : dataArrayYaxis[i],
-    //       value :dataArrayXaxis[i]
-    //     }
-    //     result.push(object);
-    //   }
-    //   this.data = result;
+      }
+      for(const arrayDate of dataArrayYaxis){
+        let i = 0;
+        for (const  element of data){
+          const dateElement = new Date(element.dateOperation).toLocaleDateString();
+          if(dateElement === arrayDate) i++
+        }
+        dataArrayXaxis.push(i);
+        i = 0;
+      }
+      const result = [];
+      for (const [i ,element] of dataArrayXaxis.entries()) {
+        const object = {
+          name : dataArrayYaxis[i],
+          value :dataArrayXaxis[i]
+        }
+        result.push(object);
+      }
+      this.data1 = result;
+
+console.log(this.data1)
+    }
 
 
-    // }
+    formateDataT1(data: any[]){
+      const dataArrayYaxis: any[] = [];
+      const dataArrayXaxis: any[] = [];
+
+      for (const  element of data){
+        //const dateElement = new Date(element.dateOperation).toLocaleDateString();
+        const dateElement=element.matricule;
+        if(!dataArrayYaxis.includes(dateElement) && dateElement !== "Invalid Date")dataArrayYaxis.push(dateElement);
+
+      }
+      for(const arrayDate of dataArrayYaxis){
+        let i = 0;
+        let s=0;
+        for (const  element of data){
+          //const dateElement = new Date(element.dateOperation).toLocaleDateString();
+          const dateElement=element.dateOperation;
+          if(dateElement === arrayDate){s=element.poidsLait; i++;}
+        }
+        dataArrayXaxis.push(s);
+        i = 0;
+      }
+      const result = [];
+      for (const [i ,element] of dataArrayXaxis.entries()) {
+        const object = {
+          name : dataArrayYaxis[i],
+          value :dataArrayXaxis[i]
+        }
+        result.push(object);
+      }
+      console.log(this.data);
+      this.data = result;
+      console.log(this.data);
+    }
+
 
 
 
@@ -207,13 +253,17 @@ export class DashboardComponent implements OnInit {
         }
         result.push(object);
       }
+      console.log(this.data);
       this.data = result;
-
-
+      console.log(this.data);
     }
 
 
   ngOnInit(): void {
+
+
+
+    
 
     this.getData();
 
@@ -541,4 +591,9 @@ setInterval(function () {
 option && myChart.setOption(option);
 
   }
+
+
+
+
+
 }
