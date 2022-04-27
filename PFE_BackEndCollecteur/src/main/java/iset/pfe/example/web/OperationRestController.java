@@ -196,16 +196,37 @@ public class OperationRestController {
 		
     		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
     		System.out.println(t.getIdTank());
+    		
+    		for(int j=0;j<t.getCodeTank().size();j++) {
+				o.setCodeRemplissage(null);
+				operationRepository.save(o);
+    			}
+    		
     		t.setPoidActuel((t.getPoidActuel()-opt.getQteInsereTank()));
     		tankRepository.save(t);
 //			//o.setPoidsLait(operation.getPoidsLait());
 			o.setIdOperation(idOperation);
+			o.setCodeRemplissage(null);
 			operationRepository.save(o);
 			
 			if(t.getPoidActuel()==0) {
 				t.setDateIns(null);
 				tankRepository.save(t);
 		}
+			if(t.getPoidActuel()==0) {
+				t.setEtat("Vide");
+				tankRepository.save(t);
+			}
+			
+			if(t.getPoidActuel()== t.getPoidVide()) {
+				t.setEtat("Remplis");
+				tankRepository.save(t);
+			}
+			
+			if(t.getPoidActuel()>0 && t.getPoidActuel()<t.getPoidVide()) {
+				t.setEtat("En cours");
+				tankRepository.save(t);
+			}
 		}
 		}
 		

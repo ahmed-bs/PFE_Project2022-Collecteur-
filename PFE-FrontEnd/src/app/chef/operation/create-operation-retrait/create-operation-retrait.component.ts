@@ -14,6 +14,7 @@ import { DatePipe } from '@angular/common';
 import { ethers } from 'ethers';
 import { OperationTank } from 'src/app/Models/operationTank';
 import { Chef } from 'src/app/Models/chef';
+import {Location} from "@angular/common";
 
 declare let require: any;
 declare let window: any;
@@ -52,6 +53,7 @@ export class CreateOperationRetraitComponent implements OnInit {
     private operationService: OperationService,
     private tankService:TankService,
     private router: Router,
+    private location:Location,
     private usineService:UsineService, 
     private dialogClose: MatDialog) { }
 
@@ -228,10 +230,19 @@ this.elem0[i].operation.usine=JSON.parse(localStorage.getItem('usine') || '[]') 
   }
 
 
-  onClose() {
-    this.dialogClose.closeAll();
-    this.gotoList();
-  }
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
  get poidsLait(){
   return this.myForm.get('poidsLait') ;

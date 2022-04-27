@@ -10,6 +10,7 @@ import { DetailsAgriculteurComponent } from '../details-agriculteur/details-agri
 import { UpdateAgriculteurComponent } from '../update-agriculteur/update-agriculteur.component';
 import { CreateAgriculteurComponent } from '../create-agriculteur/create-agriculteur.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-agriculteur',
@@ -36,6 +37,7 @@ export class ListeAgriculteurComponent implements OnInit {
   constructor(
     private agriculteurService: AgriculteurService,
     private router: Router,
+    private location:Location,
     private dialog:MatDialog) { }
 
 
@@ -70,24 +72,37 @@ export class ListeAgriculteurComponent implements OnInit {
    
 
     deleteagriculteur(id:number){
-      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'agriculteur où son id est egale à : "+id+" ??")
       if(confirmation)
       this.agriculteurService.deleteagriculteur(id).subscribe(()=>{
         this.Toast[0] = 'Success';
         this.Toast[1] ='agriculteur a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+       this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du agriculteur !!';
+        this.Toast[1] ='Échec de la suppression de l\'agriculteur !!';
         this.showToast();
       }
     );
   }
   
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialog.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
   
   
     detailsagriculteur(agriculteur:Agriculteur){

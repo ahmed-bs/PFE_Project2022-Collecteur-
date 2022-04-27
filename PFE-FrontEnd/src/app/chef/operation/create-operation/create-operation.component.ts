@@ -10,6 +10,7 @@ import { Tank } from 'src/app/Models/tank';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
+import {Location} from "@angular/common";
 
 import { ethers } from 'ethers';
 import { Chef } from 'src/app/Models/chef';
@@ -57,6 +58,7 @@ export class CreateOperationComponent implements OnInit {
     private tankService:TankService,
     private agriculteurService:AgriculteurService,
     private router: Router,
+    private location:Location,
     private dialogClose: MatDialog) { }
 
   async ngOnInit() {
@@ -220,10 +222,19 @@ export class CreateOperationComponent implements OnInit {
   reLoad(){
     this.router.navigate([this.router.url])
   }
-  onClose() {
-    this.dialogClose.closeAll();
-    this.gotoList();
-  }
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
  get poidsLait(){
   return this.myForm.get('poidsLait') ;

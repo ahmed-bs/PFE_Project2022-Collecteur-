@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Usine } from 'src/app/Models/usine';
 import { UsineService } from 'src/app/Services/usine.service';
+import { Router } from '@angular/router';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-usine',
@@ -24,6 +26,9 @@ export class UpdateUsineComponent implements OnInit {
    constructor(
      private dialogClose: MatDialog,
      private usineService:UsineService,
+     private location:Location,
+     private router: Router, 
+
 
    ) { }
 
@@ -55,8 +60,9 @@ export class UpdateUsineComponent implements OnInit {
          })
          .subscribe(o=>{
            localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été modifié avec succes"]));
-           window.location.reload();
+          //  window.location.reload();
            console.log(this.usine);
+           this.onClose();
          },
          (error) => {
            console.log("Failed")
@@ -73,9 +79,20 @@ export class UpdateUsineComponent implements OnInit {
   return this.myForm.get('adresse') ;
 }
 
-   onClose() {
-     this.dialogClose.closeAll();
-   }
+onReload(){
+  // this.router.navigate([this.router.url]);
+  this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
+}
+
+
+onClose() {
+this.dialogClose.closeAll();
+// this.gotoList();
+this.onReload();
+}
+
 
  }
 

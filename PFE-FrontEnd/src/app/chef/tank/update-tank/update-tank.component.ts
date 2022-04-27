@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Tank } from 'src/app/Models/tank';
 import { TankService } from 'src/app/Services/tank.service';
+import { Router } from '@angular/router';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-tank',
@@ -23,6 +25,8 @@ export class UpdateTankComponent implements OnInit {
 
 
    constructor(
+    private location:Location,
+    private router: Router, 
      private dialogClose: MatDialog,
      private tankService:TankService,
 
@@ -52,8 +56,9 @@ export class UpdateTankComponent implements OnInit {
          })
          .subscribe(o=>{
            localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été modifié avec succes"]));
-           window.location.reload();
+          //  window.location.reload();
            console.log(this.tank);
+           this.onClose();
          },
          (error) => {
            console.log("Failed")
@@ -70,9 +75,20 @@ export class UpdateTankComponent implements OnInit {
    return this.myForm.get('poidVide') ;
  }
 
-   onClose() {
-     this.dialogClose.closeAll();
-   }
+ onReload(){
+  // this.router.navigate([this.router.url]);
+  this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
+}
+
+
+onClose() {
+this.dialogClose.closeAll();
+// this.gotoList();
+this.onReload();
+}
+
 
  }
 
