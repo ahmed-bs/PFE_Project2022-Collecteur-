@@ -434,6 +434,11 @@ body{
 .mode_done{
   background-color: #03a9f3;
 }
+.mode_date{
+  background-color: #D3D5D6 ;
+}
+
+
 @media only screen and (max-width:1200px){
   .overflow-x{
       overflow-x:scroll;
