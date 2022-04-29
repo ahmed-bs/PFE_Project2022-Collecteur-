@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <b><h4 id="modal-title"><b>Modifier l'agriculteur numero: {{agriculteur.idAgriculteur}}</b></h4> </b>
+      <b><h4 id="modal-title"><b>Modifier l'agriculteur numéro: {{agriculteur.idAgriculteur}}</b></h4> </b>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -75,7 +75,7 @@
 
 
             <div class="col-md-12 mb-3">
-              <label for="prix">Telephone (8 chiffres): <span style="color:red;">*</span></label>
+              <label for="prix"> Numéro de téléphone (8 chiffres): <span style="color:red;">*</span></label>
               <input type="number"
                      class="form-control"
                      formControlName="tel"
@@ -85,17 +85,17 @@
                 <div
                      *ngIf="tel?.invalid && tel?.touched"
                       class="text-danger">
-                      Numero de téléphone invalide !
+                      Numéro de téléphone invalide !
                </div>
                <div
                     *ngIf="tel?.valid && tel?.touched"
                     class="text-success">
-                    Numero de téléphone valide !
+                    Numéro de téléphone valide !
                </div>
               </div>
 
               <div class="col-md-12 mb-3">
-                <label for="prix">Matricule (min 8 caracteres): <span style="color:red;">*</span></label>
+                <label for="prix">Matricule (minimum 8 caracteres): <span style="color:red;">*</span></label>
                 <input type="text"
                 class="form-control"
                   formControlName="matricule"

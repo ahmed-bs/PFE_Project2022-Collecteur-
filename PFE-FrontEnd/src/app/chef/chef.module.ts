@@ -12,7 +12,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale';
 import { DashboardComponent } from './dashboard/dashboard.component'
-import { NgxLineChartModule } from 'ngx-line-chart';
 
 
 

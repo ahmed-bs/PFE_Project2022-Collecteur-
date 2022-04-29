@@ -434,6 +434,7 @@ body{
 .mode_done{
   background-color: #03a9f3;
 }
+
 @media only screen and (max-width:1200px){
   .overflow-x{
       overflow-x:scroll;
