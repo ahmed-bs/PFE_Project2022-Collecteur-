@@ -12,11 +12,16 @@
   </ul>
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
+
+
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen"  role="button">
         <i class="fas fa-expand-arrows-alt"></i>
       </a>
     </li>
+    
+    <li class="nav-item">&nbsp;</li>
+    <li class="nav-item">&nbsp;</li>
 
     <li style="margin-right:5px;margin-top:6px;"> {{authService.loggedUser}}</li>
 
@@ -24,58 +29,58 @@
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="fas fa-caret-down"></i>
       </a>
-      <div class="dropdown-menu dropdown-menu-ms dropdown-menu-right" style="width: 271px;">
-        <span class="dropdown-item dropdown-header"></span>
+    </li>
+      
+    <li class="nav-item dropdown">
+      <a class="nav-link" data-toggle="dropdown" >
+        <!-- <i class="fas fa-comments"></i> -->
+        <i class="fas fa-ellipsis-v"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right"  style="width: 265px;">
+        <div class="dropdown-item">
+          <!-- Message Start -->
+          <div class="media">
+            <img src="../../assets/person.png" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+            <div class="media-body">
+              <h3 class="dropdown-item-title">
+                &nbsp; {{nom}}&nbsp;{{prenom}}
+                <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+              </h3>
+               <strong><p class="text-sm gradient-text" style="margin-top:11px;margin-left:23px;font-size: 3.8em;">Collecteur</p></strong>
+             
+            </div>
+          </div>
+          <!-- Message End -->
+        </div>
         <div class="dropdown-divider"></div>
-        <div class="media">
-          <!-- <img src="assets/Teams/Maryam.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3 ml-4 mt-1" > -->
-
-          <div class="media-body">
-            <h3 class="dropdown-item-title">
-
-            </h3>
-            <p class="text-sm text-muted" style="margin-left:25px;">
-              <span style="font-weight: bold;"><i class="fas fa-solid fa-user-check fa-lg"></i> &nbsp;Username  &nbsp;:</span> {{authService.loggedUser}} <br>
-            </p>
-            <p class="text-sm text-muted" style="margin-left:25px;">
-            <span style="font-weight: bold;"><i class="fas fa-solid fa-briefcase fa-lg"></i> &nbsp;&nbsp;Role  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;:</span> {{authService.getRole()}}
-             </p>
-
-
-            <h6 style="font-weight: bold;color:blue; padding:10px;"> &nbsp;- Autres informations : </h6>
-
-              <p class="text-sm text-muted" style="margin-left:25px;">
-              <span style="font-weight: bold; "><i class="fas fa-solid fa-file-signature fa-lg"></i> Nom&nbsp;&nbsp;:</span> {{nom}} <br>
-            </p>
-            <p class="text-sm text-muted" style="margin-left:25px;">
-            <span style="font-weight: bold; "><i class="fas fa-solid fa-file-signature fa-lg"></i> Prenom :</span> {{prenom}} <br>
-          </p>
-          <p class="text-sm text-muted" style="margin-left:25px;">
-              <span style="font-weight: bold;"><i class="fas fa-solid fa-id-card fa-lg"></i> CIN &nbsp;:</span> {{cin}} <br>
-            </p>
-            <p class="text-sm text-muted" style="margin-left:25px;">
-              <span style="font-weight: bold;"><i class="fas fa-solid fa-phone fa-lg"></i> Téléphone&nbsp;:</span> {{tel}} <br>
-            </p>
-
+        <div class="dropdown-item">
+          <!-- Message Start -->
+          <div class="media">
+            <div class="media-body">
+              <h3 class="dropdown-item-title" style="color:#FA5548 ;margin-bottom:18px;font-size:1.2em" >
+              Autres informations :
+              </h3>
+              <p class="text-sm text-muted"><i class="fas fa-solid fa-id-card " style="color:#43C6F4 ;margin-bottom:14px;"></i>&nbsp; CIN : {{cin}}</p>
+              <p class="text-sm text-muted"><i class="fas fa-solid fa-phone"  style="color:#43C6F4 "></i>&nbsp; Téléphone : +216 {{tel}}</p>
+            </div>
+          </div>
+          <!-- Message End -->
+        </div>
+        <div class="dropdown-divider"></div>
+       
+        <div class="dropdown-divider"></div>
+        <div (click) = "onLogout()" class="dropdown-item mr-3 ">
+          <span class="mr-3" style="color:#1786F5 "><i class="fas fa-sign-out-alt fa-lg"></i>  <span  class="mr-3"  style="font-size:1.1em"> Se déconnecter</span></span>
+        
         </div>
       </div>
-        <div class="dropdown-divider"></div>
-        <a href="#" class="dropdown-item mr-4 ml-1">
-        <span class="mr-3"> <i class="fas fa-cog"></i> </span>
-        <span> Settings </span>
-        </a>
-        <div  class="dropdown-divider"></div>
-        <a (click) = "onLogout()" class="dropdown-item mr-2 ml-1">
-          <span class="mr-3"><i class="fas fa-sign-out-alt"></i></span>
-          <span> Logout</span>
-        </a>
-      </div>
     </li>
+
+    
+    <li class="nav-item">&nbsp;</li>
+    <li class="nav-item">&nbsp;</li>
+    <li class="nav-item">&nbsp;</li>
+    <li class="nav-item">&nbsp;</li>
   </ul>
 </nav>
 <!-- /.navbar -->
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/docs/3.1//assets/plugins/jquery/jquery.min.js"></script>
-<script src="/docs/3.1//assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/docs/3.1//assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<script src="/docs/3.1//assets/js/adminlte.min.js"></script>
