@@ -1,103 +1,57 @@
 <div class="ContenuCard" >
-    <div class="modal-header">
-      <h2 id="modal-title"><b>Modifier le tank numero : {{tank.idTank}}</b></h2>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
-    <form [formGroup]="myForm" class="needs-validation" novalidate>
-
-      <div class="form-group">
-        <div class="col-md-12 mb-3">
-          <label>Matricule (minimum 8 caracteres): <span style="color:red;">*</span></label>
-        <input type="text"
-               class="form-control"
-               formControlName="matricule"
-               name="matricule"
-               [(ngModel)]="tank.matricule"
-               placeholder="Post Name here ..">
-          <div
-               *ngIf="matricule?.invalid && matricule?.touched"
-                class="text-danger">
-                matricule invalide !
-         </div>
-         <div
-              *ngIf="matricule?.valid && matricule?.touched"
-              class="text-success">
-               matricule valide !
-         </div>
-        </div>
-
-        <div class="col-md-12 mb-3">
-          <label for="prix">Poids vide (minimum 500L): <span style="color:red;">*</span></label>
-          <input type="number"
-                 class="form-control"
-                 formControlName="poidVide"
-                 name="poidVide"
-                 [(ngModel)]="tank.poidVide"
-                 placeholder="Post Name here ..">
-            <div
-                 *ngIf="poidVide?.invalid && poidVide?.touched"
-                  class="text-danger">
-                  Poids invalide !
-           </div>
-           <div
-                *ngIf="poidVide?.valid && poidVide?.touched"
-                class="text-success">
-                 Poids valide !
-           </div>
-          </div>
-
-
-          <!-- <div class="col-md-12 mb-3">
-            <label>Poids Actuel :</label>
-            <input type="text"
-                   class="form-control"
-                   formControlName="poidActuel"
-                   name="poidActuel"
-                   [(ngModel)]="tank.poidActuel"
-                   placeholder="Post Name here ..">
-              <div
-                   *ngIf="poidActuel?.invalid && poidActuel?.touched"
-                    class="text-danger">
-                    poids Actuel invalide !
-             </div>
-             <div
-                  *ngIf="poidActuel?.valid && poidActuel?.touched"
-                  class="text-success">
-                  poids Actuel valide !
-             </div>
-            </div> -->
-
-
-<!-- 
-          <div class="col-md-12 mb-3">
-            <label>Etat :</label>
-            <input type="text"
-                   class="form-control"
-                   formControlName="etat"
-                   name="etat"
-                   [(ngModel)]="tank.etat"
-                   placeholder="Post Name here ..">
-              <div
-                   *ngIf="etat?.invalid && etat?.touched"
-                    class="text-danger">
-                    etat invalide !
-             </div>
-             <div
-                  *ngIf="etat?.valid && etat?.touched"
-                  class="text-success">
-                  etat valide !
-             </div>
-            </div> -->
-
-    </div>
-
-      <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
-      </div>
-    </form>
-
+  <div class="modal-header">
+    <h3 id="modal-title"><b>Modifier le tank numero : {{tank.idTank}}</b></h3>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label>Contenance maximale (minimum 100 kg) : <span style="color:red;">*</span></label>
+      <input type="text"
+             class="form-control"
+             formControlName="poidVide"
+             name="poidVide"
+             [(ngModel)]="tank.poidVide"
+             placeholder="Post Name here ..">
+        <div
+             *ngIf="poidVide?.invalid && poidVide?.touched"
+              class="text-danger">
+              Contenance maximale invalide !
+       </div>
+       <div
+            *ngIf="poidVide?.valid && poidVide?.touched"
+            class="text-success">
+            Contenance maximale valide !
+       </div>
+    </div>
+
+    <div class="lg mb-3">
+      <label>Matricule : <span style="color:red;">*</span></label>
+      <input class="form-control"
+                placeholder="Description Post here ...."
+                name="matricule"
+                formControlName="matricule"
+                [(ngModel)]="tank.matricule"
+                >
+          <div
+                *ngIf="matricule?.invalid && matricule?.touched"
+                 class="text-danger">
+                 matriculeinvalide !
+          </div>
+          <div
+               *ngIf="matricule?.valid && matricule?.touched"
+               class="text-success">
+               matricule  valide !
+          </div>
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+    </div>
+  </form>
+
+</div>

@@ -29,11 +29,11 @@
                             </ng-container>
                             <ng-container matColumnDef="poidsLait" >
                               <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantite de lait (Kg)</th>
-                              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.poidsLait}} kg</td>
+                              <td mat-cell *matCellDef="let element" style="font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.poidsLait}} kg</td>
                             </ng-container>
                             <ng-container matColumnDef="dateOperation">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de l'opération</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.dateOperation}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.dateOperation}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
                             </ng-container>
                             <ng-container matColumnDef="usine">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Nom de l'usine</th>
@@ -41,7 +41,7 @@
                             </ng-container>
                             <ng-container matColumnDef="code">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Code de livraison</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span class="mode mode_process" style="font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.code}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span class="mode mode_code" style="font-size: small;font-weight:bold;color:black;">&nbsp;<b>{{element.code}}</b>&nbsp;</span></td>
                             </ng-container>
                             
                             <ng-container matColumnDef="action">
