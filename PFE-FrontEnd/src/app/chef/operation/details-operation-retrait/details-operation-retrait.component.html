@@ -19,29 +19,30 @@
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Poids Lait : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.poidsLait}}</span>
+                    <span id="titre">Quantité de lait (Kg)  : </span>
+                    <span> {{operation.poidsLait}} Kg</span>
                   </div>
 
-                   <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
+                  <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
                     <span id="titre">Code operation : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.code}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.code}}</span>
                   </div>
-
-                  <div class="text-uppercase fs-08">
-                    <span id="titre"> Nom de l'usine :</span>
-                    <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.usine.nomUsine}}</span>
-                  </div> 
-  
+                 
                     <div class="text-uppercase fs-08">
                       <span id="titre"> Type operation :</span>
-                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.typeOp}}</span>
-                    </div>    
+                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.typeOp}}</span>
+                    </div> 
                     
                     <div class="text-uppercase fs-08">
                       <span id="titre"> Date operation : </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{operation.dateOperation}}</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{operation.dateOperation}}</span>
                     </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> Nom de l'usine :</span>
+                    <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.usine.nomUsine}}</span>
+                  </div> 
+  
                 </div>
             </div>
             <br>

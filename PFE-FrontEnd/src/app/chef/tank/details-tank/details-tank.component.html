@@ -1,4 +1,47 @@
-<div class="wrapper" *ngIf="tank">
+<!-- <div class="ContenuCard"  >
+    <div class="modal-header">
+        <h1 id="modal-title"><small>Details pour le tank numero:{{idT}} </small></h1>
+  <div>
+    <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    
+  </div>
+  <br>
+  <div *ngIf="tank">
+
+    <div class="form-group text-center">
+      <label>Matricule tank :</label> 
+      <span id="interviewDate">  {{tank.matricule}} </span>
+    </div>
+  
+  <div class="form-group text-center">
+    <label>poid Vide :</label> 
+    <span id="interviewDate">  {{tank.poidVide}} </span>
+  </div>
+  
+  
+  <div class="form-group text-center">
+    <label>poid Actuel :</label> {{tank.poidActuel}}
+  </div>
+
+  <div class="form-group text-center">
+    <label>Etat :</label> {{tank.etat}}
+  </div>
+
+  </div>			
+  <div style="text-align: center;">
+    <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
+  </div>
+  </div> -->
+
+
+
+
+
+
+  <div class="wrapper" *ngIf="tank">
     <div class="card text-white">
         <div class="bg-pink"></div>
         <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter le tank numero</h5> </div>
@@ -18,26 +61,28 @@
   
                   <div class="text-uppercase fs-08">
                     <span id="titre"> Matricule : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tank.matricule}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{tank.matricule}}</span>
                   </div>
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Poids Vide :</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidVide}}</span>
+                    <span id="titre"> Etat du tank :</span>
+                    <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tank.etat}}</span>
                   </div>
-                    <div class="text-uppercase fs-08">
-                      <span id="titre"> Poids actuel :</span>
-                      <span id="titre">{{tank.poidActuel}}</span>
-                    </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre">Contenance maximale : </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidVide}} Kg </span>
+                  </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> Quantité de lait inserée : </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidActuel}} Kg </span>
+                  </div>    
+
   
-                    <div class="text-uppercase fs-08">
-                      <span id="titre"> etat : </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tank.etat}}</span>
-                    </div>                 
-                    
                 </div>
             </div>
-            <br><br>
+            <br>      <br>      <br>     
   
             <div class="details project">
               <div class="head text-uppercase">
@@ -51,3 +96,5 @@
         </div>
     </div>
   </div>
+  
+  
