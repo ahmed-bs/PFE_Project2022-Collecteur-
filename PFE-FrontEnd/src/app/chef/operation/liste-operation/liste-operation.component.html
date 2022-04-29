@@ -33,7 +33,7 @@
                             </ng-container>
                             <ng-container matColumnDef="dateOperation">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de l'opération</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_on" style="font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.dateOperation}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>                            </ng-container>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.dateOperation}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>                            </ng-container>
                             <ng-container matColumnDef="agriculteur">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Matricule de l'agriculteur</th>
                               <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.agriculteur.matricule}}</td>

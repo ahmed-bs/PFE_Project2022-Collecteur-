@@ -25,11 +25,12 @@
 
     <li style="margin-right:5px;margin-top:6px;"> {{authService.loggedUser}}</li>
 
-    <li class="nav-item dropdown" >
+    <!-- <li class="nav-item dropdown" >
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="fas fa-caret-down"></i>
       </a>
-    </li>
+    </li> -->
+    <li class="nav-item">&nbsp;</li>
       
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" >
@@ -69,10 +70,10 @@
         <div class="dropdown-divider"></div>
        
         <div class="dropdown-divider"></div>
-        <div (click) = "onLogout()" class="dropdown-item mr-3 ">
+        <button (click) = "onLogout()" class="dropdown-item mr-3 ">
           <span class="mr-3" style="color:#1786F5 "><i class="fas fa-sign-out-alt fa-lg"></i>  <span  class="mr-3"  style="font-size:1.1em"> Se déconnecter</span></span>
         
-        </div>
+        </button>
       </div>
     </li>
 
