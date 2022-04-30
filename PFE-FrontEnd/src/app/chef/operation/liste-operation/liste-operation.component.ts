@@ -62,16 +62,15 @@ export class ListeOperationComponent implements OnInit {
       if (typeof window.ethereum !== 'undefined') {
      const provider = new ethers.providers.Web3Provider(window.ethereum);
      const signer = provider.getSigner()
-     console.log(signer);
      const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
      this.operations = contract.getOperationTanks();}
      console.log('**************************4471441714144');
      console.log(this.operations);
     }
+
     ngOnInit() {
-     
       this.reloadData();
-      this.reloadData00()
+   //   this.reloadData00()
       console.log(this.tankService.getTanksQteLibre());
      
       this.idContenu = 'TostSuccessContenu';
