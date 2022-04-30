@@ -2,39 +2,38 @@
 pragma solidity >=0.4.22 <0.9.0;
 import "./Remplissage.sol";
 
-contract RemplissageCol is Remplissage {
+contract RemplissageUsine is Remplissage {
     //*********************************************************************************/
     //second app
     //******************************************************************************/
 
-    OperationTank[] public operationTank2;
-    OperationTank ss;
+    OperationTank03[] public operationTank2;
 
-    function addOperationTank(
-        OperationTank[] memory operationTank,
+    function addOperationTankUsine(
+        OperationTank03[] memory operationTank,
         uint256 count
-    ) public returns (OperationTank[] memory tt0) {
+    ) public returns (OperationTank03[] memory tt0) {
         for (uint256 i = 0; i < count; i++) {
-            ss = operationTank[i];
-            operationTank2.push(ss);
+            operationTank2.push(operationTank[i]);
         }
         return (operationTank2);
     }
 
     //get all operations
 
-    function getOperationTanks()
+    function getOperationTanksUsine()
         public
         view
-        returns (OperationTank[] memory result)
+        returns (OperationTank03[] memory result)
     {
         return operationTank2;
     }
 
-    function getOperationbycode(uint256 code)
+
+    function getOperationusinebycode(uint256 code)
         public
         view
-        returns (OperationTank memory operation)
+        returns (OperationTank03 memory operation)
     {
         for (uint256 i = 0; i < operationTank2.length; i++) {
             if (operationTank2[i].operation.code == code) {
@@ -42,4 +41,9 @@ contract RemplissageCol is Remplissage {
             }
         }
     }
+
+
+
+
+
 }
