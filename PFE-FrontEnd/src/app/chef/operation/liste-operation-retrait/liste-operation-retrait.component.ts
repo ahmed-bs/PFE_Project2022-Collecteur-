@@ -13,7 +13,12 @@ import { DetailsOperationRetraitComponent } from '../details-operation-retrait/d
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
 import {Location} from "@angular/common";
-
+import { ethers } from 'ethers';
+import { Observable } from 'rxjs';
+import { OperationTank } from 'src/app/Models/operationTank';
+declare let require: any;
+declare let window: any;
+let Remplissage = require('../../../../../build/contracts/RetraitCol.json');
 @Component({
   selector: 'app-liste-operation-retrait',
   templateUrl: './liste-operation-retrait.component.html',
@@ -50,6 +55,7 @@ export class ListeOperationRetraitComponent implements OnInit {
 
     ngOnInit() {
       this.reloadData();
+    //  this.reloadData00();
       console.log(this.tankService.getTanksQteLibre());
 
      this.idContenu = 'TostSuccessContenu';
@@ -64,7 +70,7 @@ export class ListeOperationRetraitComponent implements OnInit {
       }
   
     }
-  
+
     reloadData() {
         this.operationService.getOperationsRetraits().subscribe(o =>{
         this.ELEMENT_DATA= o;
@@ -74,6 +80,22 @@ export class ListeOperationRetraitComponent implements OnInit {
         console.log(this.dataSource);
         console.log(this.ELEMENT_DATA);});
       
+    }
+
+    operations!: Observable<OperationTank[]>;
+     reloadData00() {
+      const depKEY = Object.keys(Remplissage.networks)[0];
+      if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        console.log(signer);
+        const contract = new ethers.Contract(
+          Remplissage.networks[depKEY].address,
+          Remplissage.abi,
+          signer
+        );
+        this.operations =  contract.getOperationTanks();
+      }
     }
   
     deleteOperation(id: number) {
