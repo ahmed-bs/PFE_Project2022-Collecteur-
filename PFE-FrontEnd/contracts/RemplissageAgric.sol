@@ -11,34 +11,10 @@ contract RemplissageAgric is Remplissage {
     //create 2
     function addOperation2(Operation memory op)
         public
-        returns (Operation memory op0)
+        returns (Operation[] memory op0)
     {
-        Agriculteur memory newAgriculteur = Agriculteur(
-            op.agriculteur.idAgriculteur,
-            op.agriculteur.nom,
-            op.agriculteur.prenom,
-            op.agriculteur.username,
-            op.agriculteur.password
-        );
-
-        Collecteur memory newCollecteur = Collecteur(
-            op.collecteur.idCollecteur,
-            op.collecteur.nomCollecteur,
-            op.collecteur.adresse,
-            op.collecteur.tel
-        );
-
-        Operation memory newOperation = Operation(
-            op.idOperation,
-            op.poidsLait,
-            op.dateOperation,
-            op.typeOp,
-            op.code,
-            newCollecteur,
-            newAgriculteur
-        );
-        operations2.push(newOperation);
-        return (newOperation);
+        operations2.push(op);
+        return (operations2);
     }
 
     //get all operations

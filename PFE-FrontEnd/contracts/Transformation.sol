@@ -3,7 +3,6 @@ pragma solidity >=0.4.22 <0.9.0;
 import "./Remplissage.sol";
 
 contract Transformation is Remplissage {
-
     Operation04[] public operationTankR;
 
     function RetraitOperationTank(Operation04 memory operationTank)
@@ -25,7 +24,15 @@ contract Transformation is Remplissage {
         return operationTankR;
     }
 
-
-
-
+    function getOperationusinebycode(uint256 code)
+        public
+        view
+        returns (Operation04 memory operation)
+    {
+        for (uint256 i = 0; i < operationTankR.length; i++) {
+            if (operationTankR[i].code == code) {
+                return operationTankR[i];
+            }
+        }
+    }
 }
