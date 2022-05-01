@@ -20,6 +20,7 @@ export class UpdateUsineComponent implements OnInit {
    myForm=new  FormGroup({
     nomUsine : new FormControl(null,[Validators.required,Validators.minLength(3)]),
     adresse : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
+    tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
 })
 
 
@@ -42,7 +43,7 @@ export class UpdateUsineComponent implements OnInit {
    }
 
    updateUsine(){
-    if(this.myForm.get('nomUsine')?.value==null || this.myForm.get('adresse')?.value==null){
+    if(this.myForm.get('nomUsine')?.value==null || this.myForm.get('adresse')?.value==null ||this.myForm.get('tel')?.value==null ){
       this.msg="vous devez remplir le formulaire !!";
      }
      else{
@@ -50,13 +51,15 @@ export class UpdateUsineComponent implements OnInit {
      }
     
      if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null && 
-         this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3){
+         this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3 &&
+         this.myForm.get('tel')?.value!=null && this.myForm.get('tel')?.value.toString().length==8 ){
 
      this.usineService
      // .updateusine(this.usine.idusine,this.usine)
          .updateUsine(this.usine.idUsine,{
            "nomUsine":this.myForm.get('nomUsine')?.value,
            "adresse":this.myForm.get('adresse')?.value,
+           "tel":this.myForm.get('tel')?.value,
          })
          .subscribe(o=>{
            localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été modifié avec succes"]));
@@ -77,6 +80,10 @@ export class UpdateUsineComponent implements OnInit {
 
  get adresse(){
   return this.myForm.get('adresse') ;
+}
+
+get tel(){
+  return this.myForm.get('tel') ;
 }
 
 onReload(){

@@ -3,7 +3,7 @@
    <div class="wrapper" *ngIf="operation">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'operation numero</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'opération numéro</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idO}} </div>
         </div>
@@ -29,12 +29,12 @@
                   </div>
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">id Operation : </span>
+                    <span id="titre">Id opération : </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.operation.idOperation}}</span>
                   </div>
   
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Date operation :</span>
+                      <span id="titre">Date opération :</span>
                       <span id="titre">&nbsp;&nbsp;{{operation.date}}</span>
                     </div>       
                     
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Quantité(Inserer/Retirer) : </span>
+                      <span id="titre">Quantité(Insérer/Retirer) : </span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;{{operation.qteInsereTank}}</span>
                     </div>
                    
@@ -53,8 +53,8 @@
             <br>
             <div class="details project">
               <div class="head text-uppercase">
-                <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">
-                  Close Details
+                <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+                  Fermer les détails
                 </button>
               </div>
           </div>

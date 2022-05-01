@@ -56,6 +56,28 @@
             </div>
 
 
+            <div class="form-row">
+            <div class="col-md-12 mb-3">
+              <label for="prix"> Numéro de téléphone (Exactement 8 chiffres): <span style="color:red;">*</span></label>
+              <input type="number"
+              class="form-control"
+                id="tel"
+                formControlName="tel"
+                placeholder="12345678"
+                name="tel">
+                <div *ngIf="tel?.invalid && tel?.touched " class="text-danger">
+                  Numéro de téléphone invalide !
+                </div>
+                <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
+                 Numéro de téléphone Valide
+                </div>
+                <div *ngIf="msg2==1" class="text-danger">
+                 Numéro de  téléphone existe  déjà  !
+                </div>
+          </div>
+  
+          </div>
+
 
             <div class="form-group">
               <div class="form-check">

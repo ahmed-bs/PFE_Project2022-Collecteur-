@@ -10,7 +10,7 @@
       <div class="form-row">
         <div class="col-md-6 mb-3">
           <label>Nom :<span style="color:red;">*</span></label>
-          <p>(minimum 3 caracteres)</p>
+          <p>(minimum 3 caractéres)</p>
         <input type="text"
                class="form-control"
                formControlName="nom"
@@ -20,18 +20,18 @@
           <div
                *ngIf="nom?.invalid && nom?.touched"
                 class="text-danger">
-                nom invalide !
+                Nom invalide !
          </div>
          <div
               *ngIf="nom?.valid && nom?.touched"
               class="text-success">
-               nom valide !
+              Nom valide !
          </div>
         </div>
 
         <div class="col-md-6 mb-3">
-          <label>Prenom :<span style="color:red;">*</span></label>
-          <p>(minimum 3 caracteres)</p>
+          <label>Prénom :<span style="color:red;">*</span></label>
+          <p>(minimum 3 caractéres)</p>
           <input type="text"
                  class="form-control"
                  formControlName="prenom"
@@ -41,19 +41,19 @@
             <div
                  *ngIf="prenom?.invalid && prenom?.touched"
                   class="text-danger">
-                  prenom invalide !
+                  Prénom invalide !
            </div>
            <div
                 *ngIf="prenom?.valid && prenom?.touched"
                 class="text-success">
-                 prenom valide !
+                Prénom valide !
            </div>
           </div>
       </div>
 
         <div class="form-row">
           <div class="col-md-12 mb-3">
-            <label for="prix">Adresse (minimum 4 caracteres): <span style="color:red;">*</span></label>
+            <label for="prix">Adresse (minimum 4 caractéres): <span style="color:red;">*</span></label>
             <input type="text"
                    class="form-control"
                    formControlName="adress"
@@ -95,7 +95,7 @@
               </div>
 
               <div class="col-md-12 mb-3">
-                <label for="prix">Matricule (minimum 8 caracteres): <span style="color:red;">*</span></label>
+                <label for="prix">Matricule (minimum 8 caractéres): <span style="color:red;">*</span></label>
                 <input type="text"
                 class="form-control"
                   formControlName="matricule"

@@ -19,10 +19,12 @@ export class CreateUsineComponent implements OnInit {
   msgErreur=0;
   qteAct=0;
   msg1=0;
+  msg2=0;
 
   myForm=new  FormGroup({
       nomUsine : new FormControl(null,[Validators.required,Validators.minLength(3)]),
       adresse : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
+      tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
   })
 
 
@@ -43,7 +45,7 @@ export class CreateUsineComponent implements OnInit {
 
   save() {
 
-   if(this.myForm.get('nomUsine')?.value==null || this.myForm.get('adresse')?.value==null){
+   if(this.myForm.get('nomUsine')?.value==null || this.myForm.get('adresse')?.value==null || this.myForm.get('tel')?.value==null){
     this.msg="vous devez remplir le formulaire !!";
    }
    else{
@@ -51,7 +53,7 @@ export class CreateUsineComponent implements OnInit {
    }
 
    
-   this.usineService. getNomUsineUtilse(this.myForm.get('nomUsine')?.value).subscribe(t=>{
+   this.usineService.getNomUsineUtilse(this.myForm.get('nomUsine')?.value).subscribe(t=>{
     console.log(t);
     if(t==1){
       this.msg1=1;
@@ -59,14 +61,25 @@ export class CreateUsineComponent implements OnInit {
      else{
       this.msg1=0;
      }
+
+     this.usineService.getTelUsineUtilse(this.myForm.get('tel')?.value).subscribe(t1=>{
+      console.log(t);
+      if(t1==1){
+        this.msg2=1;
+       }
+       else{
+        this.msg2=0;
+       }
   
-   if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null && t==0 &&
-       this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3){
+   if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null && t==0 && t1==0&&
+       this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3 &&
+       this.myForm.get('tel')?.value!=null && this.myForm.get('tel')?.value.toString().length==8 ){
 
     this.usineService
         .createUsine({
           "nomUsine":this.myForm.get('nomUsine')?.value,
           "adresse":this.myForm.get('adresse')?.value,
+          "tel":this.myForm.get('tel')?.value,
         })
         .subscribe(o=>{
           // window.location.reload();
@@ -76,6 +89,7 @@ export class CreateUsineComponent implements OnInit {
         });
     }
   });
+});
   }
 
 
@@ -107,6 +121,10 @@ onClose() {
 
 get adresse(){
   return this.myForm.get('adresse') ;
+}
+
+get tel(){
+  return this.myForm.get('tel') ;
 }
 
 
