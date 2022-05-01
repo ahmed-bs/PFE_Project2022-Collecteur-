@@ -32,7 +32,7 @@ export class ListeUsineComponent implements OnInit {
   ELEMENT_DATA?:Usine[];
   usine?:Usine;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idUsine','nomUsine','adresse','action'];
+  displayedColumns: string[] = ['idUsine','nomUsine','adresse','tel','action'];
 
   constructor(
     private location:Location,

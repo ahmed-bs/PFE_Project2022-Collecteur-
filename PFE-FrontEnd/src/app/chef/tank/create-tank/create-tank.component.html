@@ -9,10 +9,12 @@
     <form [formGroup]="myForm"  novalidate >
       <div class="form-row">
         <div class="form-group col-md-6 mb-3">
-          <label>Matricule (min 8 caracteres): <span style="color:red;">*</span></label>
+          <label>Matricule : <span style="color:red;">*</span></label>
+          <p>(minimum 8 caractéres)</p>
           <input type="text"
            formControlName="matricule"
            class="form-control"
+           placeholder="1a1a1a1a"
            id="matricule"
            name="matricule">
 
@@ -23,7 +25,7 @@
             Matricule valide!
           </div>
           <div *ngIf="msg1==1"  class="text-danger">
-            &nbsp;Matricule existe deja !
+           Matricule existe deja !
           </div>
 
         </div>
@@ -32,7 +34,8 @@
       <!-- <div class="form-row"> -->
 
         <div class="col-md-6 mb-3">
-            <label for="prix">Contenance maximale (min 100L): <span style="color:red;">*</span></label>
+            <label for="prix">Contenance maximale : <span style="color:red;">*</span></label>
+            <p>(minimum 100L)</p>
             <input type="number"
             class="form-control"
               id="poidVide"
@@ -44,7 +47,7 @@
                 Contenance maximale  invalide !
               </div>
               <div *ngIf="poidVide?.valid && poidVide?.touched" class="text-success">
-                Contenance maximale  Valide
+                Contenance maximale  valide
               </div>
 
         </div>

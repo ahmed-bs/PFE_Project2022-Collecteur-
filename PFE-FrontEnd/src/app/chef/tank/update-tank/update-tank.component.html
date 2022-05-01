@@ -28,7 +28,7 @@
     </div>
 
     <div class="lg mb-3">
-      <label>Matricule : <span style="color:red;">*</span></label>
+      <label>Matricule (minimum 8 caractéres) : <span style="color:red;">*</span></label>
       <input class="form-control"
                 placeholder="Description Post here ...."
                 name="matricule"
@@ -38,12 +38,12 @@
           <div
                 *ngIf="matricule?.invalid && matricule?.touched"
                  class="text-danger">
-                 matriculeinvalide !
+                 Matricule invalide !
           </div>
           <div
                *ngIf="matricule?.valid && matricule?.touched"
                class="text-success">
-               matricule  valide !
+               Matricule  valide !
           </div>
     </div>
 

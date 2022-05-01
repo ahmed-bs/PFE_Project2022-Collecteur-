@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Creer une operation de retrait :</b></h3>
+      <h3 id="modal-title"><b>Créer une operation de retrait :</b></h3>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -28,7 +28,7 @@
 
 
               <div class="col-md-6 mb-3">
-                <label class="mr-sm-5" for="inlineFormCustomSelect">Usine : <span style="color:red;">*</span></label>
+                <label class="mr-sm-5" for="inlineFormCustomSelect">Nom de l'usine : <span style="color:red;">*</span></label>
                 <select formControlName="usine" name="usine"  class="custom-select mr-sm-2" id="usine" >
                   <option disabled selected value [ngValue]="null">Choisir une usine...</option>
                   <option *ngFor="let usine of usines | async" [value]="usine.idUsine">{{usine.nomUsine}}</option>
@@ -47,7 +47,7 @@
   
               <div *ngIf="msgErreur==1" class="text-danger">
                  La quantité de lait disponible est : {{qteActLaitTank}}L !
-                <br> Vous devez introduire une quantite moins ou egale a {{qteActLaitTank}}L .
+                <br> Vous devez introduire une quantité moins ou égale a {{qteActLaitTank}}L .
               </div>  <br><br>
 
               &nbsp;&nbsp;  <h5 style="color:blue">Voici le code de la livraison  :<strong><i> {{som}} </i> </strong> </h5><br><br>

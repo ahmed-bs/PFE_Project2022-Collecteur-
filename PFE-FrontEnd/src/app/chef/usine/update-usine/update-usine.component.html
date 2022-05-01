@@ -30,6 +30,26 @@
          </div>
         </div>
 
+        <div class="col-md-12 mb-3">
+          <label>Numéro de téléphone  (Exactement 8 chiffres) : <span style="color:red;">*</span></label>
+          <input type="number"
+                 class="form-control"
+                 formControlName="tel"
+                 name="tel"
+                 [(ngModel)]="usine.tel"
+                 placeholder="Post Name here ..">
+            <div
+                 *ngIf="tel?.invalid && tel?.touched"
+                  class="text-danger">
+                  Numéro de téléphone invalide !
+           </div>
+           <div
+                *ngIf="tel?.valid && tel?.touched"
+                class="text-success">
+                Numéro de téléphone valide !
+           </div>
+          </div>
+
 
           <div class="col-md-12 mb-3">
             <label>Adresse :<span style="color:red;">*</span></label>

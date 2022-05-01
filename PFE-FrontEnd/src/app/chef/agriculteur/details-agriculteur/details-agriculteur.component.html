@@ -1,7 +1,7 @@
 <div class="wrapper" *ngIf="agriculteur">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'agriculteur numero</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'agriculteur numéro</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idA}} </div>
         </div>
@@ -27,18 +27,18 @@
                   </div>
   
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Numéro de telephone : </span>
+                      <span id="titre">Numéro de téléphone : </span>
                       <span> &nbsp;&nbsp;&nbsp;{{agriculteur.tel}}</span>
                     </div>
                     <div class="text-uppercase fs-08">
                       <span id="titre"> Matricule : </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;{{agriculteur.matricule}}</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;
+                       {{agriculteur.matricule}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
                       <span id="titre"> Adresse : </span>
-                      <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{agriculteur.adress}}</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{agriculteur.adress}}</span>
                     </div>
                  
                     
@@ -47,8 +47,8 @@
   <br><br>
             <div class="details project">
               <div class="head text-uppercase">
-                <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">
-                  Close Details
+                <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+                  Fermer les détails
                 </button>
               </div>
           </div>
