@@ -117,8 +117,8 @@ export class CreateOperationComponent implements OnInit {
               this.operationService.getOpTank(this.tab[0]).subscribe((i) => {
                 this.tabTankId = Object.values(i);
                 localStorage.setItem('operationTank', JSON.stringify(this.tabTankId));
-                this.onReload();
               });
+              this.onReload();
             },
             (error) => {
               console.log('Failed');
