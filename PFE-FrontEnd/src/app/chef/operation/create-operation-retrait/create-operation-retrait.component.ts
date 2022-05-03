@@ -76,7 +76,10 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.operation = new Operation();
   }
 
-  save() {
+
+
+
+  async save() {
 
     if (this.myForm.get('poidsLait')?.value == null || this.myForm.get('usine')?.value == null) {
       this.msg = "vous devez remplir le formulaire !!";
@@ -86,6 +89,8 @@ export class CreateOperationRetraitComponent implements OnInit {
     }
 
     if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('usine')?.value != null && this.myForm.get('poidsLait')?.value >= 1) {
+     
+     
       this.operationService.createOperation({
         "poidsLait": this.myForm.get('poidsLait')?.value,
         "usine": {
@@ -101,9 +106,10 @@ export class CreateOperationRetraitComponent implements OnInit {
               console.log(b)
               localStorage.setItem('usine', JSON.stringify(b))
             });
-          this.operationService.getOpTank(this.tab[0]).subscribe(i => {
+          this.operationService.getOpTank(this.tab[0]).subscribe(async i => {
             this.tabTankId = Object.values(i)
             localStorage.setItem('tabTankId', JSON.stringify(this.tabTankId))
+            console.log(this.tabTankId)
           });
           this.onReload();
         },
@@ -136,6 +142,7 @@ export class CreateOperationRetraitComponent implements OnInit {
           this.msgErreur = 1;
           this.qteRsetLait = o;
         }
+        this.onReload();
       });
       this.onReload();
   }
