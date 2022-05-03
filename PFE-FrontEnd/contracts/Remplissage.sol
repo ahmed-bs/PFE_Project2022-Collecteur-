@@ -67,6 +67,7 @@ contract Remplissage {
         //string sender;
         // uint tank ;
         // Agriculteur0 agriculteur;
+        uint256[] codeRemplissage;
         Chef chef;
         Usine usine;
         //Tank tank ;
