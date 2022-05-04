@@ -7,24 +7,24 @@
       "type": "constructor"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Remplissage.sol\":\"Remplissage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Remplissage.sol\":{\"keccak256\":\"0xaeb56e7ff3d0fa940b612c8953aaa86e18dcc97906972dcb362ceba84d5b265b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cdc51bef55dc8883d859946a7d1d204e16a7d63b3aa5387dfffde3a64d51106a\",\"dweb:/ipfs/QmPpsuyGzYgGg9tBkLDLk6ba9ZmsSitLLw5uqRtcRUF4XJ\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122080048fa1787d927b85c0e2ef60f03a0b07e334dd61e7d10e51ad840888355adc64736f6c634300080b0033",
-  "deployedBytecode": "0x6080604052600080fdfea264697066735822122080048fa1787d927b85c0e2ef60f03a0b07e334dd61e7d10e51ad840888355adc64736f6c634300080b0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Remplissage.sol\":\"Remplissage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Remplissage.sol\":{\"keccak256\":\"0x91af51b1c07993af27f1e6dc6a9de10151a23d9807d67eab94293690e4027f00\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://737c940f44177a09e277ab61453ed6b50b88c453c05e858b1fccaa0181e0aa7c\",\"dweb:/ipfs/QmSRb19xnLVU1Q1x1FfYoVu9CA7GMUehDHeE6MR1arMrJZ\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212201eb2204d596e2d67314edd44ccc63935fc471b537c41cbda51398ab4d2f01a4464736f6c634300080b0033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212201eb2204d596e2d67314edd44ccc63935fc471b537c41cbda51398ab4d2f01a4464736f6c634300080b0033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "69:4480:0:-:0;;;4530:16;;;;;;;;;;69:4480;;;;;;",
-  "deployedSourceMap": "69:4480:0:-:0;;;;;",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Remplissage {\r\n    //******************************************** */\r\n    //coollector remplissage\r\n    //********************************************* */\r\n    struct Usine {\r\n        uint256 idUsine;\r\n        string nomUsine;\r\n        string adresse;\r\n    }\r\n    struct Operation0 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Agriculteur0 agriculteur;\r\n        Chef chef;\r\n    }\r\n    struct Agriculteur0 {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n    }\r\n    struct Chef {\r\n        uint256 idChef;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n        uint256 cin;\r\n        // uint tank ;\r\n        string username;\r\n        string password;\r\n    }\r\n    struct OperationTank {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation0 operation;\r\n        Tank tank;\r\n    }\r\n    //******************************************** */\r\n    //coollector retrait\r\n    //********************************************* */\r\n    struct OperationTank0 {\r\n        uint256 idOpTank;\r\n        int256 qteInsereTank;\r\n        string date;\r\n        Operation01 operation;\r\n        Tank tank;\r\n    }\r\n    struct Operation01 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        // Agriculteur0 agriculteur;\r\n        uint256[] codeRemplissage;\r\n        Chef chef;\r\n        Usine usine;\r\n        //Tank tank ;\r\n    }\r\n    struct Tank {\r\n        uint256 idTank;\r\n        string matricule;\r\n        uint256 poidVide;\r\n        uint256 poidActuel;\r\n        string etat;\r\n        uint256[] codeTank;\r\n    }\r\n    //******************************************** */\r\n    // agric\r\n    //********************************************* */\r\n    struct Agriculteur {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string username;\r\n        string password;\r\n    }\r\n\r\n    struct Operation {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Collecteur collecteur;\r\n        Agriculteur agriculteur;\r\n    }\r\n    struct Collecteur {\r\n        uint256 idCollecteur;\r\n        string nomCollecteur;\r\n        string adresse;\r\n        uint256 tel;\r\n    }\r\n    //******************************************** */\r\n    //Usine remplissage\r\n    //********************************************* */\r\n    struct OperationTank03 {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation03 operation;\r\n        Tank tank;\r\n    }\r\n\r\n    struct Operation03 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        Centre centreCollecte;\r\n        //Magasin magasin;\r\n    }\r\n\r\n    struct Centre {\r\n        uint256 idCentre;\r\n        string nomCentre;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    //******************************************** */\r\n    //Usine retrait\r\n    //********************************************* */\r\n    struct Magasin {\r\n        uint256 idMag;\r\n        string nomMag;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    struct Produit {\r\n        uint256 idProduit;\r\n        string intitule;\r\n        string libelle;\r\n        uint256 qte;\r\n    }\r\n    struct Operation02 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        //Centre centreCollecte;\r\n        Magasin magasin;\r\n        Produit produit;\r\n    }\r\n\r\n    //******************************************** */\r\n    //transformation remplissage\r\n    //********************************************* */\r\nstruct Operation04{\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        Tank tank;\r\n        Produit produit;\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    constructor() {}\r\n}\r\n",
-  "sourcePath": "C:\\Users\\ASUS\\Desktop\\pfe\\PFE_Project2022-Collecteur-\\PFE-FrontEnd\\contracts\\Remplissage.sol",
+  "sourceMap": "69:4516:0:-:0;;;4566:16;;;;;;;;;;69:4516;;;;;;",
+  "deployedSourceMap": "69:4516:0:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Remplissage {\r\n    //******************************************** */\r\n    //coollector remplissage\r\n    //********************************************* */\r\n    struct Usine {\r\n        uint256 idUsine;\r\n        string nomUsine;\r\n        string adresse;\r\n    }\r\n    struct Operation0 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Agriculteur0 agriculteur;\r\n        Chef chef;\r\n    }\r\n    struct Agriculteur0 {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n    }\r\n    struct Chef {\r\n        uint256 idChef;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n        uint256 cin;\r\n        // uint tank ;\r\n        string username;\r\n        string password;\r\n    }\r\n    struct OperationTank {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation0 operation;\r\n        Tank tank;\r\n    }\r\n    //******************************************** */\r\n    //coollector retrait\r\n    //********************************************* */\r\n    struct OperationTank0 {\r\n        uint256 idOpTank;\r\n        int256 qteInsereTank;\r\n        string date;\r\n        Operation01 operation;\r\n        Tank tank;\r\n    }\r\n    struct Operation01 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        // Agriculteur0 agriculteur;\r\n        uint256[] codeRemplissage;\r\n        Chef chef;\r\n        Usine usine;\r\n        //Tank tank ;\r\n    }\r\n    struct Tank {\r\n        uint256 idTank;\r\n        string matricule;\r\n        uint256 poidVide;\r\n        uint256 poidActuel;\r\n        string etat;\r\n        uint256[] codeTank;\r\n    }\r\n    //******************************************** */\r\n    // agric\r\n    //********************************************* */\r\n    struct Agriculteur {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string username;\r\n        string password;\r\n    }\r\n\r\n    struct Operation {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Collecteur collecteur;\r\n        Agriculteur agriculteur;\r\n    }\r\n    struct Collecteur {\r\n        uint256 idCollecteur;\r\n        string nomCollecteur;\r\n        string adresse;\r\n        uint256 tel;\r\n    }\r\n    //******************************************** */\r\n    //Usine remplissage\r\n    //********************************************* */\r\n    struct OperationTank03 {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation03 operation;\r\n        Tank tank;\r\n    }\r\n\r\n    struct Operation03 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        Centre centreCollecte;\r\n        //Magasin magasin;\r\n    }\r\n\r\n    struct Centre {\r\n        uint256 idCentre;\r\n        string nomCentre;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    //******************************************** */\r\n    //Usine retrait\r\n    //********************************************* */\r\n    struct Magasin {\r\n        uint256 idMag;\r\n        string nomMag;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    struct Produit {\r\n        uint256 idProduit;\r\n        string intitule;\r\n        string libelle;\r\n        uint256 qte;\r\n    }\r\n    struct Operation02 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        //Centre centreCollecte;\r\n        Magasin magasin;\r\n        Produit produit;\r\n    }\r\n\r\n    //******************************************** */\r\n    //transformation remplissage\r\n    //********************************************* */\r\nstruct Operation04{\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        Tank tank;\r\n        Produit produit;\r\n        uint256[] codeRemplissage;\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    constructor() {}\r\n}\r\n",
+  "sourcePath": "C:\\Users\\ASUS\\Desktop\\pfe\\PFE_Project(app4)\\PFE-FrontEnd\\contracts\\Remplissage.sol",
   "ast": {
     "absolutePath": "project:/contracts/Remplissage.sol",
     "exportedSymbols": {
       "Remplissage": [
-        251
+        254
       ]
     },
-    "id": 252,
+    "id": 255,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -49,9 +49,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 251,
+        "id": 254,
         "linearizedBaseContracts": [
-          251
+          254
         ],
         "name": "Remplissage",
         "nameLocation": "78:11:0",
@@ -146,7 +146,7 @@
             "name": "Usine",
             "nameLocation": "245:5:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "238:98:0",
             "visibility": "public"
           },
@@ -361,7 +361,7 @@
             "name": "Operation0",
             "nameLocation": "349:10:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "342:267:0",
             "visibility": "public"
           },
@@ -535,7 +535,7 @@
             "name": "Agriculteur0",
             "nameLocation": "622:12:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "615:174:0",
             "visibility": "public"
           },
@@ -790,7 +790,7 @@
             "name": "Chef",
             "nameLocation": "802:4:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "795:257:0",
             "visibility": "public"
           },
@@ -951,7 +951,7 @@
             "name": "OperationTank",
             "nameLocation": "1065:13:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1058:161:0",
             "visibility": "public"
           },
@@ -1112,7 +1112,7 @@
             "name": "OperationTank0",
             "nameLocation": "1369:14:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1362:162:0",
             "visibility": "public"
           },
@@ -1363,7 +1363,7 @@
             "name": "Operation01",
             "nameLocation": "1537:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1530:352:0",
             "visibility": "public"
           },
@@ -1546,7 +1546,7 @@
             "name": "Tank",
             "nameLocation": "1895:4:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1888:179:0",
             "visibility": "public"
           },
@@ -1693,7 +1693,7 @@
             "name": "Agriculteur",
             "nameLocation": "2205:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2198:156:0",
             "visibility": "public"
           },
@@ -1908,7 +1908,7 @@
             "name": "Operation",
             "nameLocation": "2369:9:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2362:277:0",
             "visibility": "public"
           },
@@ -2028,7 +2028,7 @@
             "name": "Collecteur",
             "nameLocation": "2652:10:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2645:135:0",
             "visibility": "public"
           },
@@ -2189,7 +2189,7 @@
             "name": "OperationTank03",
             "nameLocation": "2929:15:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2922:164:0",
             "visibility": "public"
           },
@@ -2370,7 +2370,7 @@
             "name": "Operation03",
             "nameLocation": "3101:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3094:223:0",
             "visibility": "public"
           },
@@ -2490,7 +2490,7 @@
             "name": "Centre",
             "nameLocation": "3332:6:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3325:124:0",
             "visibility": "public"
           },
@@ -2610,7 +2610,7 @@
             "name": "Magasin",
             "nameLocation": "3594:7:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3587:119:0",
             "visibility": "public"
           },
@@ -2730,7 +2730,7 @@
             "name": "Produit",
             "nameLocation": "3719:7:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3712:124:0",
             "visibility": "public"
           },
@@ -2972,13 +2972,13 @@
             "name": "Operation02",
             "nameLocation": "3849:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3842:276:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Operation04",
-            "id": 246,
+            "id": 249,
             "members": [
               {
                 "constant": false,
@@ -2987,7 +2987,7 @@
                 "name": "idOperation",
                 "nameLocation": "4304:11:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4296:19:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3014,7 +3014,7 @@
                 "name": "poidsLait",
                 "nameLocation": "4334:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4326:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3041,7 +3041,7 @@
                 "name": "dateOperation",
                 "nameLocation": "4361:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4354:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3068,7 +3068,7 @@
                 "name": "typeOp",
                 "nameLocation": "4392:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4385:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3095,7 +3095,7 @@
                 "name": "code",
                 "nameLocation": "4417:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4409:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3122,7 +3122,7 @@
                 "name": "qtePrise",
                 "nameLocation": "4440:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4432:16:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3149,7 +3149,7 @@
                 "name": "tank",
                 "nameLocation": "4464:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4459:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3183,7 +3183,7 @@
                 "name": "produit",
                 "nameLocation": "4487:7:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4479:15:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -3209,23 +3209,59 @@
                   }
                 },
                 "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 248,
+                "mutability": "mutable",
+                "name": "codeRemplissage",
+                "nameLocation": "4515:15:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 249,
+                "src": "4505:25:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 246,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4505:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 247,
+                  "nodeType": "ArrayTypeName",
+                  "src": "4505:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "visibility": "internal"
               }
             ],
             "name": "Operation04",
             "nameLocation": "4274:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
-            "src": "4267:233:0",
+            "scope": 254,
+            "src": "4267:269:0",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 249,
+              "id": 252,
               "nodeType": "Block",
-              "src": "4544:2:0",
+              "src": "4580:2:0",
               "statements": []
             },
-            "id": 250,
+            "id": 253,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -3233,39 +3269,39 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 247,
+              "id": 250,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4541:2:0"
+              "src": "4577:2:0"
             },
             "returnParameters": {
-              "id": 248,
+              "id": 251,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4544:0:0"
+              "src": "4580:0:0"
             },
-            "scope": 251,
-            "src": "4530:16:0",
+            "scope": 254,
+            "src": "4566:16:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 252,
-        "src": "69:4480:0",
+        "scope": 255,
+        "src": "69:4516:0",
         "usedErrors": []
       }
     ],
-    "src": "33:4518:0"
+    "src": "33:4554:0"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/Remplissage.sol",
     "exportedSymbols": {
       "Remplissage": [
-        251
+        254
       ]
     },
-    "id": 252,
+    "id": 255,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -3290,9 +3326,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 251,
+        "id": 254,
         "linearizedBaseContracts": [
-          251
+          254
         ],
         "name": "Remplissage",
         "nameLocation": "78:11:0",
@@ -3387,7 +3423,7 @@
             "name": "Usine",
             "nameLocation": "245:5:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "238:98:0",
             "visibility": "public"
           },
@@ -3602,7 +3638,7 @@
             "name": "Operation0",
             "nameLocation": "349:10:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "342:267:0",
             "visibility": "public"
           },
@@ -3776,7 +3812,7 @@
             "name": "Agriculteur0",
             "nameLocation": "622:12:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "615:174:0",
             "visibility": "public"
           },
@@ -4031,7 +4067,7 @@
             "name": "Chef",
             "nameLocation": "802:4:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "795:257:0",
             "visibility": "public"
           },
@@ -4192,7 +4228,7 @@
             "name": "OperationTank",
             "nameLocation": "1065:13:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1058:161:0",
             "visibility": "public"
           },
@@ -4353,7 +4389,7 @@
             "name": "OperationTank0",
             "nameLocation": "1369:14:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1362:162:0",
             "visibility": "public"
           },
@@ -4604,7 +4640,7 @@
             "name": "Operation01",
             "nameLocation": "1537:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1530:352:0",
             "visibility": "public"
           },
@@ -4787,7 +4823,7 @@
             "name": "Tank",
             "nameLocation": "1895:4:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "1888:179:0",
             "visibility": "public"
           },
@@ -4934,7 +4970,7 @@
             "name": "Agriculteur",
             "nameLocation": "2205:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2198:156:0",
             "visibility": "public"
           },
@@ -5149,7 +5185,7 @@
             "name": "Operation",
             "nameLocation": "2369:9:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2362:277:0",
             "visibility": "public"
           },
@@ -5269,7 +5305,7 @@
             "name": "Collecteur",
             "nameLocation": "2652:10:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2645:135:0",
             "visibility": "public"
           },
@@ -5430,7 +5466,7 @@
             "name": "OperationTank03",
             "nameLocation": "2929:15:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "2922:164:0",
             "visibility": "public"
           },
@@ -5611,7 +5647,7 @@
             "name": "Operation03",
             "nameLocation": "3101:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3094:223:0",
             "visibility": "public"
           },
@@ -5731,7 +5767,7 @@
             "name": "Centre",
             "nameLocation": "3332:6:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3325:124:0",
             "visibility": "public"
           },
@@ -5851,7 +5887,7 @@
             "name": "Magasin",
             "nameLocation": "3594:7:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3587:119:0",
             "visibility": "public"
           },
@@ -5971,7 +6007,7 @@
             "name": "Produit",
             "nameLocation": "3719:7:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3712:124:0",
             "visibility": "public"
           },
@@ -6213,13 +6249,13 @@
             "name": "Operation02",
             "nameLocation": "3849:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
+            "scope": 254,
             "src": "3842:276:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Operation04",
-            "id": 246,
+            "id": 249,
             "members": [
               {
                 "constant": false,
@@ -6228,7 +6264,7 @@
                 "name": "idOperation",
                 "nameLocation": "4304:11:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4296:19:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6255,7 +6291,7 @@
                 "name": "poidsLait",
                 "nameLocation": "4334:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4326:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6282,7 +6318,7 @@
                 "name": "dateOperation",
                 "nameLocation": "4361:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4354:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6309,7 +6345,7 @@
                 "name": "typeOp",
                 "nameLocation": "4392:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4385:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6336,7 +6372,7 @@
                 "name": "code",
                 "nameLocation": "4417:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4409:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6363,7 +6399,7 @@
                 "name": "qtePrise",
                 "nameLocation": "4440:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4432:16:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6390,7 +6426,7 @@
                 "name": "tank",
                 "nameLocation": "4464:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4459:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6424,7 +6460,7 @@
                 "name": "produit",
                 "nameLocation": "4487:7:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 246,
+                "scope": 249,
                 "src": "4479:15:0",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -6450,23 +6486,59 @@
                   }
                 },
                 "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 248,
+                "mutability": "mutable",
+                "name": "codeRemplissage",
+                "nameLocation": "4515:15:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 249,
+                "src": "4505:25:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                  "typeString": "uint256[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 246,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4505:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 247,
+                  "nodeType": "ArrayTypeName",
+                  "src": "4505:9:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+                    "typeString": "uint256[]"
+                  }
+                },
+                "visibility": "internal"
               }
             ],
             "name": "Operation04",
             "nameLocation": "4274:11:0",
             "nodeType": "StructDefinition",
-            "scope": 251,
-            "src": "4267:233:0",
+            "scope": 254,
+            "src": "4267:269:0",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 249,
+              "id": 252,
               "nodeType": "Block",
-              "src": "4544:2:0",
+              "src": "4580:2:0",
               "statements": []
             },
-            "id": 250,
+            "id": 253,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -6474,30 +6546,30 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 247,
+              "id": 250,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4541:2:0"
+              "src": "4577:2:0"
             },
             "returnParameters": {
-              "id": 248,
+              "id": 251,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4544:0:0"
+              "src": "4580:0:0"
             },
-            "scope": 251,
-            "src": "4530:16:0",
+            "scope": 254,
+            "src": "4566:16:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 252,
-        "src": "69:4480:0",
+        "scope": 255,
+        "src": "69:4516:0",
         "usedErrors": []
       }
     ],
-    "src": "33:4518:0"
+    "src": "33:4554:0"
   },
   "compiler": {
     "name": "solc",
@@ -6507,12 +6579,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x63fc08d5Ca607Da6722aA7b84189269934959A05",
-      "transactionHash": "0xf4fd24e07ccc483cbef679b3a043f00ec3f6e9a60713916f3bfa225ae9f535ed"
+      "address": "0x5D6D738300562Fac121cA4d141bB28114381eA59",
+      "transactionHash": "0x7bbfb6101f2c943eb5f2edac6d2c2db3fd7f54a415ae05118e5fe7731f62369b"
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-05-03T11:08:18.837Z",
+  "updatedAt": "2022-05-04T20:40:59.934Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
