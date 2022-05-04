@@ -168,6 +168,7 @@ export class CreateOperationComponent implements OnInit {
     const transaction = await contract.addOperationTank(this.elem0, this.count);
 
     await transaction.wait();
+    window.localStorage.removeItem("operationTank");
 
     this.onClose();
   }

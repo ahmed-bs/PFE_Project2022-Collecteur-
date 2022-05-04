@@ -63,7 +63,7 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.usines = this.usineService.getUsines();
     this.operationService.getNbOp().subscribe(o => {
       console.log(o);
-      this.som = 10000 + o + 1;
+      this.som = 100000000 + o + 1;
     });
 
     console.log(this.maDate);
@@ -79,7 +79,7 @@ export class CreateOperationRetraitComponent implements OnInit {
 
 
 
-  async save() {
+   save() {
 
     if (this.myForm.get('poidsLait')?.value == null || this.myForm.get('usine')?.value == null) {
       this.msg = "vous devez remplir le formulaire !!";
@@ -106,10 +106,11 @@ export class CreateOperationRetraitComponent implements OnInit {
               console.log(b)
               localStorage.setItem('usine', JSON.stringify(b))
             });
-          this.operationService.getOpTank(this.tab[0]).subscribe(async i => {
+          this.operationService.getOpTank(this.tab[0]).subscribe( i => {
             this.tabTankId = Object.values(i)
             localStorage.setItem('tabTankId', JSON.stringify(this.tabTankId))
             console.log(this.tabTankId)
+            this.onReload();
           });
           this.onReload();
         },
@@ -171,6 +172,8 @@ export class CreateOperationRetraitComponent implements OnInit {
     }
     const transaction = await contract.RetraitOperationTank(this.elem0, this.count);
     await transaction.wait();
+    window.localStorage.removeItem("tabTankId");
+    window.localStorage.removeItem("usine");
     this.onClose();
   }
 
