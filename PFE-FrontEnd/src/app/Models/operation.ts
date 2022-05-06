@@ -15,6 +15,8 @@ export class Operation{
   agriculteur!:Agriculteur;
   chef!:Chef;
   tank!:Tank;
+  codeRemplissage!:[];
+
  // collecteur!:Collecteur;
   usine!:Usine;
 }

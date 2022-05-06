@@ -67,6 +67,7 @@ contract Remplissage {
         //string sender;
         // uint tank ;
         // Agriculteur0 agriculteur;
+        uint256[] codeRemplissage;
         Chef chef;
         Usine usine;
         //Tank tank ;
@@ -173,6 +174,7 @@ struct Operation04{
         uint256 qtePrise;
         Tank tank;
         Produit produit;
+        uint256[] codeRemplissage;
   }
 
 
