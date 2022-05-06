@@ -21,6 +21,7 @@ export class CreateAgriculteurComponent implements OnInit {
   msg1=0;
   msg2=0;
   msg3=0;
+  msg4=0;
 
   myForm=new  FormGroup({
       nom : new FormControl(null,[Validators.required ,Validators.minLength(3)]),
@@ -28,6 +29,7 @@ export class CreateAgriculteurComponent implements OnInit {
       matricule : new FormControl(null,[Validators.required,Validators.minLength(8)]),
       adress : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
       tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
+      cgu: new FormControl(false, Validators.requiredTrue),
     
   })
   // produits!:Observable<Produit[]>;
@@ -52,8 +54,8 @@ export class CreateAgriculteurComponent implements OnInit {
   save() {
 
     if(this.myForm.get('nom')?.value==null || this.myForm.get('tel')?.value==null || this.myForm.get('prenom')?.value==null ||
-   this.myForm.get('adress')?.value==null ||   this.myForm.get('matricule')?.value==null ){
-    this.msg="vous devez remplir le formulaire !!";
+   this.myForm.get('adress')?.value==null ||   this.myForm.get('matricule')?.value==null  ){
+    this.msg="veuillez remplir tous les champs obligatoires (*) !!";
    }
    else{
     this.msg="";
@@ -86,7 +88,7 @@ export class CreateAgriculteurComponent implements OnInit {
            }
  
    if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && t==0 && b==0 && m==0 &&
-      this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null &&
+      this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null &&  this.myForm.get('cgu')?.value==true &&
       this.myForm.get('tel')?.value.toString().length==8 && this.myForm.get('nom')?.value.length>=3 && 
       this.myForm.get('prenom')?.value.length>=3  && this.myForm.get('adress')?.value.length>=4 &&
       this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8  ){
@@ -112,6 +114,13 @@ export class CreateAgriculteurComponent implements OnInit {
   
 
   onSubmit() {
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+
         this.save();
   }
 

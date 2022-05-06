@@ -25,27 +25,27 @@
                           <tr>
                             <ng-container matColumnDef="idAgriculteur" >
                                 <th mat-header-cell *matHeaderCellDef  style="min-width:50px;">#ID</th>
-                                <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.idAgriculteur}}</td>
+                                <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:20px;">{{element.idAgriculteur}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="nom" >
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Nom </th>
-                              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;{{element.nom}}</td>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Nom agriculteur</th>
+                              <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:30px;">{{element.nom}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="prenom" >
                               <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Prénom</th>
-                              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;{{element.prenom}}</td>
+                              <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:42px;">{{element.prenom}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="adress">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Adresse</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.adress}}</td>
+                              <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:40px;">{{element.adress}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="matricule">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Matricule</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.matricule}}</td>
+                              <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:30px;">{{element.matricule}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="tel">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Numéro de téléphone </th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_done" style="font-size: small;"><b>+216 {{element.tel}}</b>&nbsp;</span></td>
+                              <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:30px;"><span class="mode mode_done" style="font-size: small;"><b>+216 {{element.tel}}</b>&nbsp;</span></p></td>
                             </ng-container>
                             <ng-container matColumnDef="action">
                               <th  mat-header-cell *matHeaderCellDef style="min-width:150px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
@@ -97,7 +97,7 @@
                             </tbody>
                   </table>
                   <mat-paginator #paginator
-                    [pageSize]="5"
+                    [pageSize]="4"
                     [pageSizeOptions]="[ 2, 3, 4, 5, 10, 25, 100]">
                   </mat-paginator>
               </div>

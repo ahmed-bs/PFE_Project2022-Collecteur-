@@ -20,7 +20,9 @@
   color: blue;
   font-weight: bold;
 }
-
+html{
+  width: 100px;
+}
 
 @keyframes fadeIn {
   0% {

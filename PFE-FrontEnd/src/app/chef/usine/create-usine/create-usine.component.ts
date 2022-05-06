@@ -20,11 +20,13 @@ export class CreateUsineComponent implements OnInit {
   qteAct=0;
   msg1=0;
   msg2=0;
+  msg4=0;
 
   myForm=new  FormGroup({
       nomUsine : new FormControl(null,[Validators.required,Validators.minLength(3)]),
       adresse : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
       tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
+      cgu: new FormControl(false, Validators.requiredTrue),
   })
 
 
@@ -70,10 +72,12 @@ export class CreateUsineComponent implements OnInit {
        else{
         this.msg2=0;
        }
+       
   
    if( this.myForm.get('adresse')?.value!=null && this.myForm.get('nomUsine')?.value!=null && t==0 && t1==0&&
        this.myForm.get('adresse')?.value.length>=4 && this.myForm.get('nomUsine')?.value.length>=3 &&
-       this.myForm.get('tel')?.value!=null && this.myForm.get('tel')?.value.toString().length==8 ){
+       this.myForm.get('tel')?.value!=null && this.myForm.get('tel')?.value.toString().length==8 &&
+       this.myForm.get('cgu')?.value==true){
 
     this.usineService
         .createUsine({
@@ -94,6 +98,13 @@ export class CreateUsineComponent implements OnInit {
 
 
   onSubmit() {
+       
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
         this.save();
   }
 

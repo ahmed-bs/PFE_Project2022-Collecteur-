@@ -37,10 +37,12 @@ export class CreateOperationComponent implements OnInit {
   qteRsetLaitTank = 0;
   valeur1 = 0;
   valeur2 = 0;
+  msg4=0;
   myForm = new FormGroup({
     poidsLait: new FormControl(null, [Validators.required, Validators.min(1)]),
     code: new FormControl(null, [Validators.required, Validators.minLength(5)]),
     agriculteur: new FormControl(null, [Validators.required]),
+    cgu: new FormControl(false, Validators.requiredTrue),
   });
 
   tanks!: Observable<Tank[]>;
@@ -102,6 +104,7 @@ export class CreateOperationComponent implements OnInit {
         this.myForm.get('agriculteur')?.value != null &&
         this.myForm.get('code')?.value != null &&
         this.myForm.get('poidsLait')?.value >= 1 &&
+        this.myForm.get('cgu')?.value==true &&
         t == 0 &&
         this.myForm.get('code')?.value.toString().length >= 5
       ) {
@@ -152,6 +155,8 @@ export class CreateOperationComponent implements OnInit {
   elem0: OperationTank[] = [];
   //usine:Usine = new Usine();
   async saveInBc() {
+
+    
     const depKEY = Object.keys(Remplissage.networks)[0];
     await this.requestAccount();
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -168,18 +173,50 @@ export class CreateOperationComponent implements OnInit {
     const transaction = await contract.addOperationTank(this.elem0, this.count);
 
     await transaction.wait();
-
     this.onClose();
+  }
+
+
+
+  verifBc(){
+    this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
+      console.log(t);
+      if (t == 1) {
+        this.msg1 = 1;
+      } else {
+        this.msg1 = 0;
+      }
+
+      if (
+        this.myForm.get('poidsLait')?.value != null &&
+        this.myForm.get('agriculteur')?.value != null &&
+        this.myForm.get('code')?.value != null &&
+        this.myForm.get('poidsLait')?.value >= 1 &&
+        this.myForm.get('cgu')?.value==true &&
+        t == 0 &&
+        this.myForm.get('code')?.value.toString().length >= 5
+      ) {
+        this.saveInBc();
+      }
+
+    });
   }
 
   onSubmit() {
     //this.submitted = true;
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+
     this.tankService.getTanksQteLibre().subscribe((o) => {
       console.log(o);
       if (this.myForm.get('poidsLait')?.value <= o) {
         this.save();
         this.msgErreur = 0;
-        this.saveInBc();
+        this.verifBc();
       } else {
         this.msgErreur = 1;
         this.qteRsetLait = o;
