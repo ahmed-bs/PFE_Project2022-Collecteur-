@@ -38,9 +38,11 @@ export class CreateOperationRetraitComponent implements OnInit {
   qteActLaitTank = 0;
   qteMax = 0;
   som = 0;
+  msg4=0;
   myForm = new FormGroup({
     poidsLait: new FormControl(null, [Validators.required, Validators.min(1)]),
     usine: new FormControl(null, [Validators.required]),
+    cgu: new FormControl(false, Validators.requiredTrue),
 
   })
   tanks!: Observable<Tank[]>;
@@ -88,9 +90,11 @@ export class CreateOperationRetraitComponent implements OnInit {
       this.msg = "";
     }
 
+
     if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('usine')?.value != null && this.myForm.get('poidsLait')?.value >= 1) {
      
      
+
       this.operationService.createOperation({
         "poidsLait": this.myForm.get('poidsLait')?.value,
         "usine": {
@@ -178,11 +182,23 @@ export class CreateOperationRetraitComponent implements OnInit {
   }
 
 
-
+verifBc(){
+  if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('usine')?.value != null && 
+  this.myForm.get('cgu')?.value==true && this.myForm.get('poidsLait')?.value >= 1) {
+    this.saveInBc();
+  }
+}
 
 
 
   onSubmit() {
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+
     this.tankService.getQteTanks().subscribe(
       a => {
         this.tankService.getQteG().subscribe(
@@ -191,7 +207,7 @@ export class CreateOperationRetraitComponent implements OnInit {
             if (this.myForm.get('poidsLait')?.value <= o) {
               this.save();
               this.msgErreur = 0;
-              this.saveInBc();
+              this.verifBc();
             }
             else {
               this.msgErreur = 1;

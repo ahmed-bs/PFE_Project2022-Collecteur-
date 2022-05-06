@@ -22,21 +22,21 @@
                           <tr>
                             <ng-container matColumnDef="idOpTank" >
                                 <th mat-header-cell *matHeaderCellDef  style="min-width:50px;">#ID</th>
-                                <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.idOpTank}}</td>
+                                <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:20px;">{{element.idOpTank}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="operation" >
                               <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Num opération</th>
-                              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.operation.idOperation}}</td>
+                              <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:60px;">{{element.operation.idOperation}}</p></td>
                             </ng-container>
 
                             <ng-container matColumnDef="matricule">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Matricule tank</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.tank.matricule}}</td>
+                              <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:50px;">{{element.tank.matricule}}</p></td>
                             </ng-container>
 
                             <ng-container matColumnDef="qteInsereTank">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Quantité (Kg)</th>
-                              <td mat-cell *matCellDef="let element" style="font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.qteInsereTank}} Kg</td>
+                              <td mat-cell *matCellDef="let element" style="font-weight:bold"><p  style="text-align:center;padding-right:40px;">{{element.qteInsereTank}} Kg</p></td>
                             </ng-container>
 <!-- 
                             <ng-container matColumnDef="idTank">
@@ -46,7 +46,7 @@
 
                             <ng-container matColumnDef="date">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de l'opération</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.date}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+                              <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:52px;"><span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.date}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>
                             </ng-container>
                             
                             <ng-container matColumnDef="action">
