@@ -5,6 +5,7 @@ import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import {Location} from "@angular/common";
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-update-agriculteur',
@@ -31,11 +32,21 @@ export class UpdateAgriculteurComponent implements OnInit {
      private dialogClose: MatDialog,
      private location:Location,
      private router: Router,
+     private authService:AuthService,
      private agriculteurService:AgriculteurService,
 
    ) { }
 
    ngOnInit(): void {
+
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+     
+        }
+
      //this.ValidatedForm();
      this.agriculteurService.getAgriculteur(JSON.parse(localStorage.getItem('IdAgriculteur') || '[]') || []).subscribe(o =>{
        this.agriculteur = o;

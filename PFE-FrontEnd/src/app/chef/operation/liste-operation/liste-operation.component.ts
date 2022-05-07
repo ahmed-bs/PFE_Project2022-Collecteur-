@@ -14,6 +14,7 @@ import { ethers } from 'ethers';
 import { Observable } from 'rxjs';
 import {Location} from "@angular/common";
 import { OperationTank } from 'src/app/Models/operationTank';
+import { AuthService } from 'src/app/Services/auth.service';
 
 declare let require: any;
 declare let window: any;
@@ -53,6 +54,7 @@ export class ListeOperationComponent implements OnInit {
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private location:Location,
+    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -69,6 +71,15 @@ export class ListeOperationComponent implements OnInit {
     }
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+       
+          }
+
+
       this.reloadData();
    //   this.reloadData00()
       console.log(this.tankService.getTanksQteLibre());

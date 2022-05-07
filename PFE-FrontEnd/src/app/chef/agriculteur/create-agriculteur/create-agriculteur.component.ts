@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-create-agriculteur',
@@ -30,7 +31,7 @@ export class CreateAgriculteurComponent implements OnInit {
       adress : new FormControl(null,[Validators.required,Validators.minLength(4) ]),
       tel : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
       cgu: new FormControl(false, Validators.requiredTrue),
-    
+
   })
   // produits!:Observable<Produit[]>;
   // agriculteurs!:Observable<Agriculteur[]>;
@@ -38,12 +39,19 @@ export class CreateAgriculteurComponent implements OnInit {
 
   constructor(
      private agriculteurService: AgriculteurService,
-     private router: Router, 
+     private router: Router,
+     private authService:AuthService,
      private location:Location,
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
 
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
   }
 
   newAgriculteur(): void {
@@ -86,10 +94,10 @@ export class CreateAgriculteurComponent implements OnInit {
            else{
             this.msg3=0;
            }
- 
+
    if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && t==0 && b==0 && m==0 &&
       this.myForm.get('adress')?.value!=null && this.myForm.get('tel')?.value!=null &&  this.myForm.get('cgu')?.value==true &&
-      this.myForm.get('tel')?.value.toString().length==8 && this.myForm.get('nom')?.value.length>=3 && 
+      this.myForm.get('tel')?.value.toString().length==8 && this.myForm.get('nom')?.value.length>=3 &&
       this.myForm.get('prenom')?.value.length>=3  && this.myForm.get('adress')?.value.length>=4 &&
       this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8  ){
     this.agriculteurService
@@ -104,14 +112,14 @@ export class CreateAgriculteurComponent implements OnInit {
           // window.location.reload();
           console.log(this.agriculteur);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un agriculteur a été ajouté avec succès"]));
-          this.onClose();     
+          this.onClose();
         });
     }
   });
 });
 });
   }
-  
+
 
   onSubmit() {
     if(this.myForm.get('cgu')?.value==true){

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 @Component({
@@ -19,10 +20,21 @@ export class DetailsAgriculteurComponent implements OnInit {
   constructor(
     private dialogClose: MatDialog,
     private route: ActivatedRoute,
+    private authService:AuthService,
     private router: Router,
     private agriculteurService: AgriculteurService) { }
 
   ngOnInit() {
+
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+     
+        }
+
+
     this.id = this.route.snapshot.params['id'];
   
     this.agriculteurService.getAgriculteur(JSON.parse(localStorage.getItem('IdAgriculteur') || '[]') || []).subscribe(o =>{

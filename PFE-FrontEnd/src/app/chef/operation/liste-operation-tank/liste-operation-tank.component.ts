@@ -9,6 +9,7 @@ import { OperationTank } from 'src/app/Models/operationTank';
 import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
 import { DetailsOperationTankComponent } from '../details-operation-tank/details-operation-tank.component';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-liste-operation-tank',
@@ -38,10 +39,19 @@ export class ListeOperationTankComponent implements OnInit {
   constructor(
     private operationService: OperationService, 
     private tankService:TankService, 
+    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+       
+          }
+
       this.reloadData();
       console.log(this.tankService.getTanksQteLibre());
 

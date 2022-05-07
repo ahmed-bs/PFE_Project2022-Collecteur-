@@ -10,7 +10,7 @@ import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
 import { UsineService } from 'src/app/Services/usine.service';
 import { DatePipe } from '@angular/common';
-
+import { AuthService } from 'src/app/Services/auth.service';
 import { ethers } from 'ethers';
 import { OperationTank } from 'src/app/Models/operationTank';
 import { Chef } from 'src/app/Models/chef';
@@ -57,9 +57,18 @@ export class CreateOperationRetraitComponent implements OnInit {
     private router: Router,
     private location: Location,
     private usineService: UsineService,
+    private authService:AuthService,
     private dialogClose: MatDialog) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     //this.ValidatedForm();
     this.tanks = this.tankService.getTanksFiltres();
     this.usines = this.usineService.getUsines();
@@ -91,8 +100,8 @@ export class CreateOperationRetraitComponent implements OnInit {
     }
 
 
-    if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('usine')?.value != null && this.myForm.get('poidsLait')?.value >= 1) {
-     
+    if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('usine')?.value != null && 
+    this.myForm.get('cgu')?.value==true && this.myForm.get('poidsLait')?.value >= 1) {
      
 
       this.operationService.createOperation({

@@ -16,6 +16,7 @@ import {Location} from "@angular/common";
 import { ethers } from 'ethers';
 import { Observable } from 'rxjs';
 import { OperationTank } from 'src/app/Models/operationTank';
+import { AuthService } from 'src/app/Services/auth.service';
 declare let require: any;
 declare let window: any;
 let Remplissage = require('../../../../../build/contracts/RetraitCol.json');
@@ -49,11 +50,22 @@ export class ListeOperationRetraitComponent implements OnInit {
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
+    private authService:AuthService,
     private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+       
+          }
+
+
       this.reloadData();
     //  this.reloadData00();
       console.log(this.tankService.getTanksQteLibre());

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Services/operation.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-details-operation-retrait',
@@ -16,10 +17,22 @@ export class DetailsOperationRetraitComponent implements OnInit {
 
   constructor(
     private dialogClose: MatDialog,
+    private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
     private operationService: OperationService) { }
 
   ngOnInit() {
+
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
+
+
     this.id = this.route.snapshot.params['id'];
   
     this.operationService.getOperation(JSON.parse(localStorage.getItem('IdOperation') || '[]') || []).subscribe(o =>{
