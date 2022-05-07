@@ -11,6 +11,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Usine } from 'src/app/Models/usine';
 import {Location} from "@angular/common";
 import { UsineService } from 'src/app/Services/usine.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-liste-usine',
@@ -38,10 +39,20 @@ export class ListeUsineComponent implements OnInit {
     private location:Location,
     private usineService: UsineService,
     private router: Router,
+    private authService:AuthService,
     private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+       
+          }
+
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';

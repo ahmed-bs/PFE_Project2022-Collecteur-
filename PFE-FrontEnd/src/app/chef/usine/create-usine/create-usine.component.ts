@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usine } from 'src/app/Models/usine';
 import { UsineService } from 'src/app/Services/usine.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-create-usine',
@@ -33,11 +34,18 @@ export class CreateUsineComponent implements OnInit {
   constructor(
      private usineService: UsineService,
      private router: Router, 
+     private authService:AuthService,
      private location:Location,
      private dialogClose: MatDialog,) { }
 
   ngOnInit() {
 
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
   }
 
   newUsine(): void {

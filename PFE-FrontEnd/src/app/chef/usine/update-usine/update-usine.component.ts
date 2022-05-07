@@ -5,6 +5,7 @@ import { Usine } from 'src/app/Models/usine';
 import { UsineService } from 'src/app/Services/usine.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-update-usine',
@@ -27,6 +28,7 @@ export class UpdateUsineComponent implements OnInit {
    constructor(
      private dialogClose: MatDialog,
      private usineService:UsineService,
+     private authService:AuthService,
      private location:Location,
      private router: Router, 
 
@@ -34,6 +36,14 @@ export class UpdateUsineComponent implements OnInit {
    ) { }
 
    ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+    
      //this.ValidatedForm();
      this.usineService.getUsine(JSON.parse(localStorage.getItem('IdUsine') || '[]') || []).subscribe(o =>{
        this.usine = o;

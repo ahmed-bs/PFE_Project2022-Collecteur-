@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Usine } from 'src/app/Models/usine';
 import { UsineService } from 'src/app/Services/usine.service';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-details-usine',
@@ -18,10 +19,21 @@ export class DetailsUsineComponent implements OnInit {
   constructor(
     private dialogClose: MatDialog,
     private route: ActivatedRoute,
+    private authService:AuthService,
     private router: Router,
     private usineService: UsineService) { }
 
   ngOnInit() {
+
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
+
     this.id = this.route.snapshot.params['id'];
 
     this.usineService.getUsine(JSON.parse(localStorage.getItem('IdUsine') || '[]') || []).subscribe(o =>{

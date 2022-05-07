@@ -14,6 +14,8 @@ import { Location } from '@angular/common';
 import { ethers } from 'ethers';
 import { Chef } from 'src/app/Models/chef';
 import { Usine } from 'src/app/Models/usine';
+import { AuthService } from 'src/app/Services/auth.service';
+
 
 declare let require: any;
 declare let window: any;
@@ -58,12 +60,21 @@ export class CreateOperationComponent implements OnInit {
     private operationService: OperationService,
     private tankService: TankService,
     private agriculteurService: AgriculteurService,
+    private authService:AuthService,
     private router: Router,
     private location: Location,
-    private dialogClose: MatDialog
+    private dialogClose: MatDialog,
   ) { }
 
   async ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     //this.ValidatedForm();
     this.tanks = this.tankService.getTanks();
     this.agriculteurs = this.agriculteurService.getAgriculteurs();

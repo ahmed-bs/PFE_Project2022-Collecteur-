@@ -11,6 +11,8 @@ import { UpdateAgriculteurComponent } from '../update-agriculteur/update-agricul
 import { CreateAgriculteurComponent } from '../create-agriculteur/create-agriculteur.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Services/auth.service';
+
 
 @Component({
   selector: 'app-liste-agriculteur',
@@ -37,11 +39,20 @@ export class ListeAgriculteurComponent implements OnInit {
   constructor(
     private agriculteurService: AgriculteurService,
     private router: Router,
+    private authService:AuthService,
     private location:Location,
     private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+       
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';

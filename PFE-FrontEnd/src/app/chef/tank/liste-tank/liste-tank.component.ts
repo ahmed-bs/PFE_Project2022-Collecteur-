@@ -11,6 +11,7 @@ import { DetailsTankComponent } from '../details-tank/details-tank.component';
 import { UpdateTankComponent } from '../update-tank/update-tank.component';
 import { CreateTankComponent } from '../create-tank/create-tank.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-liste-tank',
@@ -38,11 +39,21 @@ export class ListeTankComponent implements OnInit {
   constructor(
     private tankService: TankService,
     private router: Router,
+    private authService:AuthService,
     private location:Location,
     private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+       
+          }
+
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
