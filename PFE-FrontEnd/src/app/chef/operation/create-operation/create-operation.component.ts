@@ -136,7 +136,7 @@ export class CreateOperationComponent implements OnInit {
             },
             (error) => {
               console.log('Failed');
-            });    
+            });
           this.tankService.getTanksQteLibre().subscribe((o) => {
           if (this.myForm.get('poidsLait')?.value <= o) this.msgErreur = 0;
           else {
@@ -167,28 +167,45 @@ export class CreateOperationComponent implements OnInit {
   //usine:Usine = new Usine();
   async saveInBc() {
 
-    
-    const depKEY = Object.keys(Remplissage.networks)[0];
-    await this.requestAccount();
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const contract = new ethers.Contract(
-      Remplissage.networks[depKEY].address,
-      Remplissage.abi,
-      signer
-    );
-    this.elem0 = JSON.parse(localStorage.getItem('operationTank') || '[]') || [];
-
-    this.count = this.elem0.length;
-
-    const transaction = await contract.addOperationTank(this.elem0, this.count);
-
-    await transaction.wait();
-
-    window.localStorage.removeItem("operationTank");
 
 
-    this.onClose();
+
+
+    // this.onClose();
+
+    try {
+      const depKEY = Object.keys(Remplissage.networks)[0];
+      await this.requestAccount();
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        Remplissage.networks[depKEY].address,
+        Remplissage.abi,
+        signer
+      );
+      this.elem0 = JSON.parse(localStorage.getItem('operationTank') || '[]') || [];
+
+      this.count = this.elem0.length;
+
+      const transaction = await contract.addOperationTank(this.elem0, this.count);
+
+      await transaction.wait();
+
+      window.localStorage.removeItem("operationTank");
+      console.log("transactions succsessfull ")
+     let  error:any;
+      console.log(error);
+      console.log(error.code);
+      this.onClose();
+
+    }catch(error:any){
+        if (error.code === 4001){
+             //user rejected the transaction
+
+             console.log("transactions rejected ")
+        }
+    };
+
   }
 
 

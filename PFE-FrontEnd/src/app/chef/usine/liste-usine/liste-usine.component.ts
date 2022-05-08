@@ -83,6 +83,14 @@ export class ListeUsineComponent implements OnInit {
    
 
     deleteUsine(id:number){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer l'usine où son id est egale à : "+id+" ??")
       if(confirmation)
       this.usineService.deleteUsine(id).subscribe(()=>{
@@ -117,6 +125,14 @@ onClose() {
 }
   
     detailsUsine(usine:Usine){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -126,6 +142,14 @@ onClose() {
     }
   
     updateUsine(usine:Usine){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -135,6 +159,14 @@ onClose() {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

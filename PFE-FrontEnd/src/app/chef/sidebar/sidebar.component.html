@@ -30,7 +30,7 @@
         </div>
       </div>
   
-      <nav class="mt-2">
+      <nav class="mt-2" >
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
@@ -75,7 +75,7 @@
           <!-- Partie Interviews List lel Interviewr wel admin -->
 
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a  routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active" >
               <i class="nav-icon fas fa-plus"></i>
               <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
@@ -87,7 +87,29 @@
               <i class="nav-icon fas fa-minus"></i>
               <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; de retrait</p>
             </a>
-          </li>
+          </li> -->
+
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link" routerLinkActive="active">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Gestion des operations<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Remplissage</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  routerLink="operation/listeOperationRetrait" class="nav-link" routerLinkActive="active">
+                  <i class="nav-icon fas fa-minus"></i>
+                  <p>Retrait</p>
+                </a>
+              </li>
+            </ul>
+            </li>
 
           <li class="nav-item">
             <a routerLink="operation/listeOperationTank" class="nav-link" routerLinkActive="active" >

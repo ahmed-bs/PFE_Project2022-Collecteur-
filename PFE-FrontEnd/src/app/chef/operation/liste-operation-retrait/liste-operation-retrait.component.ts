@@ -111,6 +111,7 @@ export class ListeOperationRetraitComponent implements OnInit {
     }
   
     deleteOperation(id: number) {
+      
       this.operationService.getOperation(id).subscribe(o =>{
         this.ELEMENT_DATA= o;});
         console.log(this.ELEMENT_DATA);
@@ -136,7 +137,14 @@ export class ListeOperationRetraitComponent implements OnInit {
   
 
   deleteOp(id: number){
-
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.onClose();
+          this.router.navigate(['/login']);
+          this.onClose();
+     
+        }
     this.tankService.getTanksQteLibre().subscribe(o=>{
       console.log(o);
       this.q=o;
@@ -175,6 +183,14 @@ onClose() {
 
 
     detailsOperation(operation:Operation){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -184,6 +200,14 @@ onClose() {
     }
   
     updateOperationR(operation:Operation){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -193,6 +217,14 @@ onClose() {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       this.tankService.getQteG().subscribe(
 
         o=>{
@@ -215,6 +247,14 @@ onClose() {
 }
   
     onOpenDialogCreate2():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

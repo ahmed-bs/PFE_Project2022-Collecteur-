@@ -10,6 +10,7 @@ import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
 import { DetailsOperationTankComponent } from '../details-operation-tank/details-operation-tank.component';
 import { AuthService } from 'src/app/Services/auth.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-operation-tank',
@@ -39,6 +40,7 @@ export class ListeOperationTankComponent implements OnInit {
   constructor(
     private operationService: OperationService, 
     private tankService:TankService, 
+    private location:Location,
     private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
@@ -80,6 +82,14 @@ export class ListeOperationTankComponent implements OnInit {
     }
   
     detailsOperationTank(operation:OperationTank){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -114,6 +124,21 @@ export class ListeOperationTankComponent implements OnInit {
       this.counter=0
   
     }
+
+    
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
+}
+
+
+onClose() {
+  this.dialog.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
   
   }
 
