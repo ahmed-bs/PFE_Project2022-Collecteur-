@@ -83,6 +83,14 @@ export class ListeAgriculteurComponent implements OnInit {
    
 
     deleteagriculteur(id:number){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer l'agriculteur où son id est egale à : "+id+" ??")
       if(confirmation)
       this.agriculteurService.deleteagriculteur(id).subscribe(()=>{
@@ -117,6 +125,14 @@ onClose() {
   
   
     detailsagriculteur(agriculteur:Agriculteur){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -126,6 +142,14 @@ onClose() {
     }
   
     updateagriculteur(agriculteur:Agriculteur){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -135,6 +159,14 @@ onClose() {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

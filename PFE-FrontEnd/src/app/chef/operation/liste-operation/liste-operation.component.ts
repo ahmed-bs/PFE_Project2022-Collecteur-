@@ -128,6 +128,14 @@ export class ListeOperationComponent implements OnInit {
     }
 
     deleteOperation(id: number) {
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer l'operation où son id est egale à : "+id+" ??")
       if(confirmation)
       this.operationService.deleteOperation(id).subscribe(()=>{
@@ -150,6 +158,14 @@ export class ListeOperationComponent implements OnInit {
   }
 
   deleteOp(id: number){
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.onClose();
+          this.router.navigate(['/login']);
+          this.onClose();
+     
+        }
     this.tankService.getTanksQteGenerale().subscribe(o=>{
       console.log(o);
       this.q=o;
@@ -200,6 +216,14 @@ onClose() {
 }
 
     detailsOperation(operation:Operation){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -209,6 +233,14 @@ onClose() {
     }
 
     updateOperation(operation:Operation){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -218,6 +250,14 @@ onClose() {
     }
 
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       this.tankService.getQteLibreAujourdhui().subscribe(
 
         o=>{
@@ -241,6 +281,14 @@ onClose() {
     }
 
     onOpenDialogCreate2():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null || 
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+       
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

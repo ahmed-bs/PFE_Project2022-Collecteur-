@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ChefService } from 'src/app/Services/chef.service';
 import { Chef } from 'src/app/Models/chef';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-navbar',
@@ -23,9 +24,19 @@ isLoggedin?: boolean ;
   constructor(
   public authService: AuthService,
   private chefService:ChefService,
+  private dialog: MatDialog,
    private router: Router) {} 
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.dialog.closeAll();
+          this.router.navigate(['/login']);
+     
+        }
+
   this.chefService.getUser(JSON.parse(localStorage.getItem('IdUser') || '[]') || []).subscribe(o=>{
     this.cin = o.cin;
     this.tel = o.tel;
