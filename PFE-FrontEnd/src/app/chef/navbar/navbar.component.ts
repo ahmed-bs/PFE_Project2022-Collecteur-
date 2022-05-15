@@ -4,6 +4,8 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { ChefService } from 'src/app/Services/chef.service';
 import { Chef } from 'src/app/Models/chef';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-navbar',
@@ -15,20 +17,24 @@ export class NavbarComponent implements OnInit {
 isLoggedin?: boolean ;
   user?:Chef;
 
+  lang?: any;
   cin?:number;
   tel?:number;
   prenom?:String;
   nom?:String;
 
 
-  constructor(
+  constructor(private translateService :TranslateService,
   public authService: AuthService,
   private chefService:ChefService,
   private dialog: MatDialog,
-   private router: Router) {} 
+   private router: Router) {
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+   } 
 
   ngOnInit(): void {
-
+    this.lang = localStorage.getItem('lang') || 'en';
     this.authService.loadToken();
     if (this.authService.getToken()==null || 
         this.authService.isTokenExpired()){
@@ -42,11 +48,14 @@ isLoggedin?: boolean ;
     this.tel = o.tel;
     this.nom = o.nom;
     this.prenom = o.prenom;
-    console.log("#################################################");
-    console.log(o);
-    console.log(o.idChef);
-    console.log("#################################################");
   });
+  }
+
+
+
+  changeLang(lang: any){
+    localStorage.setItem("lang",lang);
+    location.reload();
   }
 
   onLogout(){

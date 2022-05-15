@@ -17,7 +17,7 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1 class="m-0 text-dark">Tableau de bord</h1>
+           <h1 class="m-0 text-dark">{{'boardTable' | translate }}</h1>
          </div><!-- /.col -->
        </div><!-- /.row -->
      </div><!-- /.container-fluid -->
@@ -49,14 +49,14 @@
                       <span class="info-box-icon"> <i class="ion ion-beaker" style="font-size:3em;color:#5DADE2  ;"></i></span>
         
                       <div class="info-box-content" >
-                        <span class="info-box-text" style="color:#5DADE2  ;"><b>Tanks totalements remplis</b></span>
+                        <span class="info-box-text" style="color:#5DADE2  ;"><b>{{'tanks completely filled' | translate }}</b></span>
                         <span class="info-box-number" style="color:#5DADE2  ;"><h1>{{somTRemplis}}</h1></span>
         
                         <div class="progress" style=" height: 0.5rem">
-                          <div class="progress-bar" style="color:#5DADE2  ;width: {{prcTankRemplis}}%"></div>
+                          <div class="progress-bar" style="color:#5DADE2  ;width: 75%"></div>
                         </div>
                         <span class="progress-description" style="color:#5DADE2  ;">
-                          {{prcTankRemplis}}% tanks totalements remplis
+                          {{prcTankRemplis}}% {{'tanks completely filled' | translate }}
                         </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -69,14 +69,14 @@
                       <span class="info-box-icon"><i class="ion ion-beaker" style="font-size:3em;color:#5DADE2  ;"></i></span>
         
                       <div class="info-box-content">
-                        <span class="info-box-text" style="color:#5DADE2  ;"><b>Tanks non remplis</b></span>
+                        <span class="info-box-text" style="color:#5DADE2  ;"><b>{{'Unfilled tanks' | translate }}</b></span>
                         <span class="info-box-number" style="color:#5DADE2  ;"><h1>{{somTVide}}</h1></span>
         
                         <div class="progress" style=" height: 0.5rem">
-                          <div class="progress-bar" style="color:#5DADE2;width: {{prcTankNonRemplis}}%"></div>
+                          <div class="progress-bar" style="color:#5DADE2;width: 75%"></div>
                         </div>
                         <span class="progress-description" style="color:#5DADE2  ;">
-                          {{prcTankNonRemplis}} tanks non remplis
+                          {{prcTankNonRemplis}} {{'Unfilled tanks' | translate }}
                         </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -89,14 +89,14 @@
                       <span class="info-box-icon"><i class="ion ion-beaker" style="font-size:3em;color:#5DADE2  ;"></i></span>
         
                       <div class="info-box-content">
-                        <span class="info-box-text" style="color:#5DADE2 "><b>Tanks en cours de remplissage</b></span>
+                        <span class="info-box-text" style="color:#5DADE2 "><b>{{'Tanks being filled' | translate }}</b></span>
                         <span class="info-box-number"  style="color:#5DADE2  "><h1>{{somTEnCours}}</h1></span>
         
                         <div class="progress" style="color:gris;height: 0.5rem">
-                          <div class="progress-bar" style="color:#5DADE2  ;width:{{prcTankEnCours}}%"></div>
+                          <div class="progress-bar" style="color:#5DADE2  ;width:75%"></div>
                         </div>
                         <span class="progress-description"  style="color:#5DADE2  ">
-                          {{prcTankEnCours}}% tanks en cours de remplissage
+                          {{prcTankEnCours}}% {{'Tanks being filled' | translate }}
                         </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -120,7 +120,7 @@
                        <div class="icon">
                          <i class="ion ion-ios-list-outline"></i>
                        </div>
-                       <a href="" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a href="" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
 
@@ -137,7 +137,7 @@
                         <i class="ion ion-beaker"></i>
                          <!-- <i class="ion ion-person-stalker"></i> -->
                        </div>
-                       <a href="chef/tank/listeTank" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a href="chef/tank/listeTank" class="small-box-footer">{{'More_information' | translate }}<i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <!-- ./col -->
@@ -147,12 +147,12 @@
                        <div class="inner">
                          <h3 style="color: white;">   {{somAgriculteur}}</h3>
 
-                         <p style="color: white;">Agriculteurs</p>
+                         <p style="color: white;">{{'Farmers' | translate }}</p>
                        </div>
                        <div class="icon" style="color: white;">
                          <i class="ion  ion-person-stalker"></i>
                        </div>
-                       <a style="color: white;" href="chef/tank/listeTank" class="small-box-footer" >  Plus d'informations <i style="color: white;" class="fas fa-arrow-circle-right"></i></a>
+                       <a style="color: white;" href="chef/tank/listeTank" class="small-box-footer" >{{'More_information' | translate }}<i style="color: white;" class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <!-- ./col -->
@@ -162,12 +162,12 @@
                        <div class="inner">
                          <h3>{{somUsine}}</h3>
 
-                         <p>Usines</p>
+                         <p> {{'Factories' | translate }}</p>
                        </div>
                        <div class="icon">
                          <i class="ion ion-home"></i>
                        </div>
-                       <a href="chef/usine/listeUsineyyyyyyyyy" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a href="chef/usine/listeUsineyyyyyyyyy" class="small-box-footer"> {{'More_information' | translate }}<i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                   
@@ -181,7 +181,7 @@
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-header">
-                        <h2 class="card-title">Rapport recapitulatif quotidien</h2>
+                        <h2 class="card-title">{{'daily summary report' | translate }}</h2>
 
                         <!-- <tr *ngFor="let l of list ">
                           <td>{{l}}</td>
@@ -208,7 +208,9 @@
 
                               <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data"
                               [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                              [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                              [showXAxisLabel]="showXAxisLabel" 
+                              xAxisLabel="{{'Tank numbers' | translate }}"
+                              yAxisLabel="{{'Filling state' | translate }}"
                               [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
                             </ngx-charts-bar-vertical>
 
@@ -217,8 +219,10 @@
 
                             <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data1"
                             [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                            [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel1"
-                            [yAxisLabel]="yAxisLabel1"   [scheme]="colorScheme"  >
+                            [showXAxisLabel]="showXAxisLabel" 
+                            [showYAxisLabel]="showYAxisLabel" 
+                            xAxisLabel="{{ 'Date of operations' | translate }}"
+                            yAxisLabel="{{'Number of operations'  | translate }}"   [scheme]="colorScheme"  >
                           </ngx-charts-bar-vertical>
 
                           <br><br><br><br><br><br><br><br><br><br><br>
@@ -238,7 +242,7 @@
                             <ngx-charts-pie-chart
                             [results]="data"
                             [legend]="true"
-                            [legendTitle]="'Rapport sur l\'etat des tanks'"
+                            legendTitle= "{{'Tank Status Report' | translate }}"
                             [view]="[1150,400]"
                             [scheme]="colorScheme"
                             [labels]="true" >
@@ -275,7 +279,7 @@
                               <div class="info-box mb-3 bg-warning">
                                 <span class="info-box-icon"><i class="ion ion-ios-person" style="color: white"></i></span>
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des agriculteurs</span>
+                                  <span class="info-box-text"> {{'Number of farmers' | translate }}</span>
                                   <span class="info-box-number">{{somAgriculteur}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -285,7 +289,7 @@
                                 <span class="info-box-icon"> <i class="ion ion-beaker"></i></span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des tanks</span>
+                                  <span class="info-box-text">{{'Number of tanks' | translate }}</span>
                                   <span class="info-box-number">{{somTank}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -296,7 +300,7 @@
                                 <span class="info-box-icon">  <i class="ion ion-ios-home"></i></span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des usines</span>
+                                  <span class="info-box-text">{{'Number of factories' | translate }}</span>
                                   <span class="info-box-number">{{somUsine}} </span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -317,7 +321,7 @@
                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
 
                                <div class="info-box-content">
-                                 <span class="info-box-text">Nombre des operations de remplissage</span>
+                                 <span class="info-box-text">{{'Number of filling operations' | translate }}</span>
                                  <span class="info-box-number">{{somOpRemplissage}}</span>
                                </div>
                                <!-- /.info-box-content -->
@@ -327,7 +331,7 @@
                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
 
                                <div class="info-box-content">
-                                 <span class="info-box-text">Nombre des operations de retrait</span>
+                                 <span class="info-box-text">{{'Number of withdrawal operations' | translate }}</span>
                                  <span class="info-box-number">{{somOpRetrait}}</span>
                                </div>
                                <!-- /.info-box-content -->
@@ -369,7 +373,7 @@
                            <div class="description-block border-right">
                              <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankRemplis}}%</span>
                              <h5 class="description-header">{{somTRemplis}}</h5>
-                             <span class="description-text">TOTAL TANKS REMPLIS</span>
+                             <span class="description-text">{{'TOTAL TANKS FILLED' | translate }}</span>
                            </div>
                            <!-- /.description-block -->
                          </div>
@@ -381,7 +385,7 @@
                          <div class="description-block border-right">
                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankNonRemplis}}%</span>
                            <h5 class="description-header">{{somTVide}}</h5>
-                           <span class="description-text">TOTAL TANKS VIDES</span>
+                           <span class="description-text">{{'TOTAL EMPTY TANKS' | translate }}</span>
                          </div>
                          <!-- /.description-block -->
                          </div>
@@ -394,7 +398,7 @@
                          <div class="description-block border-right">
                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankEnCours}}%</span>
                            <h5 class="description-header">{{somTEnCours}}</h5>
-                           <span class="description-text">TOTAL TANKS EN COURS DE REMPLISSAGE</span>
+                           <span class="description-text"> {{'TOTAL TANKS FILLING UP' | translate }}</span>
                          </div>
                          <!-- /.description-block -->
                          </div>
@@ -406,7 +410,7 @@
                             <div class="description-block border-right">
                               <span class="description-percentage  text-primary"><i class="fas fa-caret-up"></i> {{prcOpRetrait}}%</span>
                               <h5 class="description-header">{{somOpRetrait}}</h5>
-                              <span class="description-text">TOTAL OPERATIONS DE RETARITS</span>
+                              <span class="description-text">{{'TOTAL WITHDRAWAL OPERATIONS' | translate }}</span>
                             </div>
                             <!-- /.description-block -->
                           </div>
@@ -415,7 +419,7 @@
                             <div class="description-block border-right">
                               <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i>{{prcOpRemplissage}}%</span>
                               <h5 class="description-header">{{somOpRemplissage}}</h5>
-                              <span class="description-text">TOTAL  OPERATIONS DE REMPLISSAGES</span>
+                              <span class="description-text"> {{'TOTAL FILLING OPERATIONS' | translate }}</span>
                             </div>
                             <!-- /.description-block -->
                           </div>

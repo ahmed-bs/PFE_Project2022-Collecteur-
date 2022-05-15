@@ -7,6 +7,7 @@ import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import { UsineService } from 'src/app/Services/usine.service';
 import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 var test: string = "test";
@@ -90,12 +91,15 @@ export class DashboardComponent implements OnInit {
   
 
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private operationService: OperationService,
     private tankService:TankService,
      private usineService:UsineService,
      private agriculteurService:AgriculteurService,
-    private router: Router) {}
+    private router: Router) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en');
+    }
 
 
     getData(){

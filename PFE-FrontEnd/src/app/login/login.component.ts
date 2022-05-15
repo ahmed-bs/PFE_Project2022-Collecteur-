@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Chef } from '../Models/chef';
 import { AuthService } from '../Services/auth.service';
 import { ChefService } from '../Services/chef.service';
@@ -13,9 +14,14 @@ export class LoginComponent implements OnInit {
   user =new Chef();
   err:number=0;
 
-    constructor(private authService: AuthService, 
+    constructor(
+      private translateService :TranslateService,
+      private authService: AuthService, 
       public router:Router,
-      private chefService:ChefService, ) { }
+      private chefService:ChefService, ) { 
+        this.translateService.setDefaultLang('en');
+        this.translateService.use(localStorage.getItem('lang') || 'en')
+      }
 
 
 

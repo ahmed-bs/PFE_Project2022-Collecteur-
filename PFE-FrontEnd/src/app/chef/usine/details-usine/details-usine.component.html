@@ -1,7 +1,7 @@
 <div class="wrapper" *ngIf="usine">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'usine numéro</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult factory number' | translate}}</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idU}} </div>
         </div>
@@ -13,21 +13,21 @@
                 </div>
             </div>
             <div class="skills">
-                <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
+                <div class=" head text-uppercase"><h5>{{'Other Information' | translate}}:</h5></div>
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Nom de l'usine :</span>
+                    <span id="titre"> {{'Factory name' | translate}}:</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{usine.nomUsine}}</span>
                   </div>
      
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Numéro de téléphone :</span>
+                    <span id="titre"> {{'Phone number' | translate}}:</span>
                     <span>{{usine.tel}}</span>
                   </div> 
 
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Adresse : </span>
+                    <span id="titre"> {{'Adress' | translate}} : </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{usine.adresse}}</span>
                   </div>
                   
@@ -37,7 +37,7 @@
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  Fermer les détails
+                  {{'Close details' | translate}}
                 </button>
               </div>
           </div>

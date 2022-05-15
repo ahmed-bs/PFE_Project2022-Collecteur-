@@ -1,14 +1,14 @@
 <div class="ContenuCard" >
   <div class="modal-header">
-    <h3 id="modal-title"><b>Modifier le tank numero : {{tank.idTank}}</b></h3>
+    <h3 id="modal-title"><b>{{'Modify the tank number' | translate}} : {{tank.idTank}}</b></h3>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
   <form [formGroup]="myForm" class="needs-validation" novalidate>
     <div class="form-group">
-      <label>Contenance maximale (minimum 100 kg) : <span style="color:red;">*</span></label>
+      <label>{{'Maximum capacity' | translate}}(minimum 30 kg) : <span style="color:red;">*</span></label>
       <input type="text"
              class="form-control"
              formControlName="poidVide"
@@ -18,17 +18,17 @@
         <div
              *ngIf="poidVide?.invalid && poidVide?.touched"
               class="text-danger">
-              Contenance maximale invalide !
+              {{'Invalid maximum capacity' | translate}} !
        </div>
        <div
             *ngIf="poidVide?.valid && poidVide?.touched"
             class="text-success">
-            Contenance maximale valide !
+            {{'Maximum valid capacity' | translate}} !
        </div>
     </div>
 
     <div class="lg mb-3">
-      <label>Matricule (minimum 8 caractéres) : <span style="color:red;">*</span></label>
+      <label>{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}} : <span style="color:red;">*</span></label>
       <input class="form-control"
                 placeholder="Description Post here ...."
                 name="matricule"
@@ -38,19 +38,19 @@
           <div
                 *ngIf="matricule?.invalid && matricule?.touched"
                  class="text-danger">
-                 Matricule invalide !
+                 {{'Invalid registration number' | translate}} !
           </div>
           <div
                *ngIf="matricule?.valid && matricule?.touched"
                class="text-success">
-               Matricule  valide !
+               {{'Valid registration number' | translate}} !
           </div>
     </div>
 
 
     <div class="modal-footer">
-      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-      <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+      <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' | translate}} </button>
     </div>
   </form>
 

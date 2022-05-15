@@ -6,6 +6,7 @@ import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import {Location} from "@angular/common";
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-agriculteur',
@@ -28,14 +29,17 @@ export class UpdateAgriculteurComponent implements OnInit {
 })
 
 
-   constructor(
+   constructor(private translateService :TranslateService,
      private dialogClose: MatDialog,
      private location:Location,
      private router: Router,
      private authService:AuthService,
      private agriculteurService:AgriculteurService,
 
-   ) { }
+   ) {
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
    ngOnInit(): void {
 

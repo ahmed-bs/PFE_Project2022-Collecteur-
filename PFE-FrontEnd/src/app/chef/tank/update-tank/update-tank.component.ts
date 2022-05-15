@@ -6,6 +6,7 @@ import { TankService } from 'src/app/Services/tank.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-tank',
@@ -26,13 +27,18 @@ export class UpdateTankComponent implements OnInit {
 
 
    constructor(
+    private translateService :TranslateService,
     private location:Location,
     private authService:AuthService,
     private router: Router, 
      private dialogClose: MatDialog,
      private tankService:TankService,
 
-   ) { }
+   ) { 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+
+   }
 
    ngOnInit(): void {
 

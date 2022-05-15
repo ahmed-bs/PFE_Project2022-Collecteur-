@@ -6,6 +6,7 @@ import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Services/agriculteur.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-agriculteur',
@@ -37,12 +38,15 @@ export class CreateAgriculteurComponent implements OnInit {
   // agriculteurs!:Observable<Agriculteur[]>;
   // fournisseurs!:Observable<Fournisseur[]>;
 
-  constructor(
+  constructor(private translateService :TranslateService,
      private agriculteurService: AgriculteurService,
      private router: Router,
      private authService:AuthService,
      private location:Location,
-     private dialogClose: MatDialog,) { }
+     private dialogClose: MatDialog,) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+      }
 
   ngOnInit() {
 

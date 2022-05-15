@@ -6,6 +6,7 @@ import { Tank } from 'src/app/Models/tank';
 import {Location} from "@angular/common";
 import { TankService } from 'src/app/Services/tank.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-tank',
@@ -31,12 +32,16 @@ export class CreateTankComponent implements OnInit {
   // Tanks!:Observable<Tank[]>;
   // fournisseurs!:Observable<Fournisseur[]>;
 
-  constructor(
+  constructor(  
+     private translateService :TranslateService,
      private tankService: TankService,
      private router: Router,
      private authService:AuthService,
      private location:Location,
-     private dialogClose: MatDialog,) { }
+     private dialogClose: MatDialog,) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
   ngOnInit() {
     this.authService.loadToken();

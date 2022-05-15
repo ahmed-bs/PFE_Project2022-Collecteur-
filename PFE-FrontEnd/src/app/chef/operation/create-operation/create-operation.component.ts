@@ -15,6 +15,7 @@ import { ethers } from 'ethers';
 import { Chef } from 'src/app/Models/chef';
 import { Usine } from 'src/app/Models/usine';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 declare let require: any;
@@ -56,7 +57,7 @@ export class CreateOperationComponent implements OnInit {
 
   tab!: any[];
   tabTankId!: any[];
-  constructor(
+  constructor(private translateService :TranslateService,
     private operationService: OperationService,
     private tankService: TankService,
     private agriculteurService: AgriculteurService,
@@ -64,7 +65,9 @@ export class CreateOperationComponent implements OnInit {
     private router: Router,
     private location: Location,
     private dialogClose: MatDialog,
-  ) { }
+  ) {    
+    this.translateService.setDefaultLang('en');
+  this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   async ngOnInit() {
 

@@ -12,6 +12,7 @@ import { CreateAgriculteurComponent } from '../create-agriculteur/create-agricul
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -36,12 +37,15 @@ export class ListeAgriculteurComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idAgriculteur','nom','prenom','matricule','adress','tel','action'];
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private agriculteurService: AgriculteurService,
     private router: Router,
     private authService:AuthService,
     private location:Location,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
 
     ngOnInit() {

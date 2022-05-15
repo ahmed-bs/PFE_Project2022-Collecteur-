@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { TankService } from 'src/app/Services/tank.service';
 import {Location} from "@angular/common";
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-operation-retrait',
@@ -25,13 +26,17 @@ export class UpdateOperationRetraitComponent implements OnInit {
   qte=0;
 
   constructor(
+    private translateService: TranslateService,
     private dialogClose: MatDialog,
     private operationService:OperationService,
     private usineService:UsineService,
     private location:Location,
     private router: Router,
     private tankService:TankService,
-  ) { }
+  ) { 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+  }
 
   ngOnInit(): void {
 

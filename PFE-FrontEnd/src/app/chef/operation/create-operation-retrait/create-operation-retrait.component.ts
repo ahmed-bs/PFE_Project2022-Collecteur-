@@ -15,6 +15,7 @@ import { ethers } from 'ethers';
 import { OperationTank } from 'src/app/Models/operationTank';
 import { Chef } from 'src/app/Models/chef';
 import { Location } from "@angular/common";
+import { TranslateService } from '@ngx-translate/core';
 
 declare let require: any;
 declare let window: any;
@@ -51,14 +52,17 @@ export class CreateOperationRetraitComponent implements OnInit {
   maDate = new Date();
 
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private operationService: OperationService,
     private tankService: TankService,
     private router: Router,
     private location: Location,
     private usineService: UsineService,
     private authService:AuthService,
-    private dialogClose: MatDialog) { }
+    private dialogClose: MatDialog) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
   ngOnInit() {
 

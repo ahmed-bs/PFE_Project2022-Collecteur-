@@ -3,16 +3,16 @@
  
       <div class="col-md-12 main-datatable">
         <div class="card-header card-header-danger" id="title-Table">
-          <h3 class="card-title" id="titre">Table pour les opérations de remplissage</h3><br>
+          <h3 class="card-title" id="titre">{{'Table for filling operations' | translate}}</h3><br>
         </div>
           <div class="card_body">
               <div class="row d-flex">
                   <div class="col-sm-4 createSegment"> 
-                   <a class="btn dim_button create_new" (click)="onOpenDialogCreate()"> <span class="glyphicon glyphicon-plus"></span><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un element </a>
+                   <a class="btn dim_button create_new" (click)="onOpenDialogCreate()"> <span class="glyphicon glyphicon-plus"></span><i class="fa fa-plus" aria-hidden="true"></i>{{'Add item' | translate}} </a>
                   </div>
                   <div class="col-sm-8 add_flex">
                       <div class="form-group searchInput" aria-autocomplete="on" (keyup)="filterData($event)">
-                          <label for="email">Recherche:</label>
+                          <label for="email">{{'Research' | translate}}:</label>
                           <input type="search"  class="form-control" id="filterbox" matInput placeholder=" ">
                       </div>
                   </div> 
@@ -28,19 +28,19 @@
                                 <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:20px;">{{element.idOperation}}</td>
                             </ng-container>
                             <ng-container matColumnDef="poidsLait" >
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantité de lait (Kg)</th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">{{'Quantity of milk (Kg)' | translate}}</th>
                               <td mat-cell *matCellDef="let element" style="font-weight:bold"><p  style="text-align:center;padding-right:20px;">{{element.poidsLait}} kg</p></td>
                             </ng-container>
                             <ng-container matColumnDef="dateOperation">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date operation</th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'Operation Date' | translate}}</th>
                               <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:40px;"><span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.dateOperation}}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p></td>    
                              </ng-container>
                             <ng-container matColumnDef="agriculteur">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Matricule agriculteur</th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{ 'FarmerNumber' | translate}}</th>
                               <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:20px;">{{element.agriculteur.matricule}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="code">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Code commande</th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'Order code' | translate}}</th>
                               <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:20px;"><span class="mode mode_code" style="font-size: small;font-weight:bold;color:black;">&nbsp;<b>{{element.code}}</b>&nbsp;</span></p></td>
                             </ng-container>
                             
@@ -68,7 +68,7 @@
                                       <ul class="dropdown-menu dropdown_more">
                                           <li class="li">
                                               <a (click)="detailsOperation(element)"target="_black">
-                                                <i class="fa fa-info-circle fa-lg" >  plus de details  </i>
+                                                <i class="fa fa-info-circle fa-lg" > {{'More_information' | translate}} </i>
                                               </a>
                                           </li>
                                       </ul>
@@ -82,7 +82,7 @@
                                     <ul class="dropdown-menu dropdown_more">
                                         <li class="li1">
                                          
-                                    <a (click)="deleteOp(element.idOperation)"> <i class="fa fa-trash fa-lg" style="color:#D41616;">&nbsp; <b>Supprimer</b></i></a>
+                                    <a (click)="deleteOp(element.idOperation)"> <i class="fa fa-trash fa-lg" style="color:#D41616;">&nbsp; <b>{{'DELETE' | translate}}</b></i></a>
                                   </li>
                                 </ul>
                             </div>

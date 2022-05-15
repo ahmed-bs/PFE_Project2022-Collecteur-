@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Tank } from 'src/app/Models/tank';
 import { TankService } from 'src/app/Services/tank.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-tank',
@@ -17,11 +18,15 @@ export class DetailsTankComponent implements OnInit {
   tank?:Tank = new Tank();
 
   constructor(
+    private translateService :TranslateService,
     private dialogClose: MatDialog,
     private route: ActivatedRoute,
     private authService:AuthService,
     private router: Router,
-    private tankService: TankService) { }
+    private tankService: TankService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
   ngOnInit() {
 

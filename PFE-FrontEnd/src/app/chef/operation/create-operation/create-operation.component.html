@@ -1,51 +1,51 @@
 <div class="ContenuCard" >
   <div class="modal-header">
-    <h4 id="modal-title"><b>Créer une operation de remplissage :</b></h4>
+    <h4 id="modal-title"><b>{{'Create a fill operation' | translate}}</b></h4>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
   <form [formGroup]="myForm"  novalidate >
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label>Quantité de Lait(minimum 1L):<span style="color:red;">*</span></label>
+        <label>{{'Quantity of milk (minimum 1Kg)' | translate}}:<span style="color:red;">*</span></label>
               <input type="number"
                formControlName="poidsLait"
                class="form-control"
                id="poidsLait"
-               placeholder="exp : 5 Litres .. "
+               placeholder="exp : 5 Kg .. "
                name="poidsLait">
 
                <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
-                Quantité invalide !
+                {{'Invalid quantity' | translate}} !
               </div>
               <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0"  class="text-success">
-                Quantité valide!
+                {{'Valid quantity' | translate}}!
               </div>
               
               <div *ngIf="msgErreur==1" class="text-danger">
-                La quantite disponible que tu peut l'inserer dans les tanks est : {{qteRsetLait}}L !!
+                {{'pp' | translate}}: {{qteRsetLait}}Kg !!
               </div>
 
             </div>
 
 
             <div class="col-md-6 mb-3">
-              <label  for="inlineFormCustomSelect">Matricule de l'agriculteur : <span style="color:red;">*</span></label>
+              <label  for="inlineFormCustomSelect">{{'FarmerNumber' | translate}} : <span style="color:red;">*</span></label>
               <select formControlName="agriculteur" name="agriculteur"  class="custom-select mr-sm-2" id="agriculteur" >
-                <option disabled selected value [ngValue]="null">Choisir un agriculteur...</option>
+                <option disabled selected value [ngValue]="null">{{'Choose a' | translate}}{{'Farmer' | translate}}...</option>
                 <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">{{agriculteur.matricule}}</option>
               </select>
               <div
               *ngIf="agriculteur?.invalid && agriculteur?.touched"
                class="text-danger">
-                  Invalide agriculteur!
+                   {{'invalid farmer' | translate}}!
            </div>
              <div
              *ngIf="agriculteur?.valid && agriculteur?.touched"
              class="text-success">
-             Agriculteur valide!
+             {{'valid farmer' | translate}}!
            </div>
             </div>
 
@@ -63,13 +63,13 @@
        name="code">
 
        <div *ngIf="code?.invalid && code?.touched" class="text-danger">
-        Code invalide !
+        {{'Invalid code' | translate}} !
       </div>
       <div *ngIf="code?.valid && code?.touched  && msg1==0 " class="text-success">
-        Code valide!
+        {{'valid code' | translate}}!
       </div>
       <div *ngIf="msg1==1"  class="text-danger">
-        &nbsp;Code existe deja !
+        &nbsp; {{'Code already exists' | translate}}!
       </div>
 
     </div>
@@ -79,16 +79,16 @@
           <div class="form-group">
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-              <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">J'accepte les conditions générales d'utilisation</label>
-              <label class="form-check-label" for="cgu" *ngIf="msg4==0" >J'accepte les conditions générales d'utilisation</label>
+              <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+              <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
               <br>      <br>
-              <span style="color:red;margin-bottom:45px;font-size:1.1em">{{msg}}</span>
-              <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+              <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
+              <div class="invalid-feedback">{{'p3' | translate}}</div>
             </div>
           </div>
-          <button class="btn btn-primary" style="margin:20px" (click)="onSubmit()"  type="submit">Envoyer</button>
+          <button class="btn btn-primary" style="margin:20px" (click)="onSubmit()"  type="submit">{{'Send' | translate}}</button>
           <!-- close popup -->
-          <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
         </form>
       </div>
 

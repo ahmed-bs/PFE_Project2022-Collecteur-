@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Usine } from 'src/app/Models/usine';
 import { UsineService } from 'src/app/Services/usine.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-usine',
@@ -17,11 +18,15 @@ export class DetailsUsineComponent implements OnInit {
   usine?:Usine = new Usine();
 
   constructor(
+    private translateService :TranslateService,
     private dialogClose: MatDialog,
     private route: ActivatedRoute,
     private authService:AuthService,
     private router: Router,
-    private usineService: UsineService) { }
+    private usineService: UsineService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
   ngOnInit() {
 
