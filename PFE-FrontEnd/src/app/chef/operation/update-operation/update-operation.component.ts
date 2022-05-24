@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { TankService } from 'src/app/Services/tank.service';
 import {Location} from "@angular/common";
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-operation',
@@ -29,14 +30,18 @@ export class UpdateOperationComponent implements OnInit {
     msgErreur2=0;
     RestQte=0;
 
-  constructor(
+  constructor(   
+    private translateService: TranslateService,
     private dialogClose: MatDialog,
     private operationService:OperationService,
     private agriculteurService:AgriculteurService,
     private location:Location,
     private router: Router,
     private tankService:TankService,
-  ) { }
+  ) { 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+  }
 
   ngOnInit(): void {
 

@@ -6,13 +6,27 @@
       <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a class="nav-link">Tableau de bord</a>
+      <a class="nav-link">{{ "boardTable" | translate }}</a>
     </li>
 
   </ul>
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-
+    <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+      
+      <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'en'">
+          <img src="./../../../assets/img/us_flag.jpg" class="mr-2" height="12" alt="" /> English <span class="mdi mdi-chevron-down"></span>
+      </a>
+      <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'fr'">
+        <img src="./../../../assets/img/french_flag.jpg" class="mr-2" height="12" alt="" /> French <span class="mdi mdi-chevron-down"></span>
+    </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'en'">
+          <a class="dropdown-item" (click) ="changeLang();"><img src="./../../../assets/img/french_flag.jpg" alt="" height="16" /><span> French </span></a>
+      </div>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'fr'">
+        <a class="dropdown-item" (click) ="changeLang()"><img src="./../../../assets/img/us_flag.jpg" alt="" height="16" /><span> English </span></a>
+    </div>
+  </li>
 
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen"  role="button">
@@ -47,7 +61,7 @@
                 &nbsp; {{nom}}&nbsp;{{prenom}}
                 <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
               </h3>
-               <strong><p class="text-sm gradient-text" style="margin-top:11px;margin-left:23px;font-size: 3.8em;">Collecteur</p></strong>
+               <strong><p class="text-sm gradient-text" style="margin-top:11px;margin-left:23px;font-size: 3.8em;">{{ "collector" | translate }}</p></strong>
              
             </div>
           </div>
@@ -59,10 +73,10 @@
           <div class="media">
             <div class="media-body">
               <h3 class="dropdown-item-title" style="color:#FA5548 ;margin-bottom:18px;font-size:1.2em" >
-              Autres informations :
+              {{ "Other Information" | translate }} :
               </h3>
               <p class="text-sm text-muted"><i class="fas fa-solid fa-id-card " style="color:#43C6F4 ;margin-bottom:14px;"></i>&nbsp; CIN : {{cin}}</p>
-              <p class="text-sm text-muted"><i class="fas fa-solid fa-phone"  style="color:#43C6F4 "></i>&nbsp; Téléphone : +216 {{tel}}</p>
+              <p class="text-sm text-muted"><i class="fas fa-solid fa-phone"  style="color:#43C6F4 "></i>&nbsp; {{ "Phone" | translate }} : +216 {{tel}}</p>
             </div>
           </div>
           <!-- Message End -->
@@ -71,7 +85,7 @@
        
         <div class="dropdown-divider"></div>
         <button (click) = "onLogout()" class="dropdown-item mr-3 ">
-          <span class="mr-3" style="color:#1786F5 "><i class="fas fa-sign-out-alt fa-lg"></i>  <span  class="mr-3"  style="font-size:1.1em"> Se déconnecter</span></span>
+          <span class="mr-3" style="color:#1786F5 "><i class="fas fa-sign-out-alt fa-lg"></i>  <span  class="mr-3"  style="font-size:1.1em"> {{ "Sign out" | translate }}</span></span>
         
         </button>
       </div>

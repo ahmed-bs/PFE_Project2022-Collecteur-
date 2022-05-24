@@ -1,16 +1,16 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h2 id="modal-title"><b>Ajouter un nouveau tank :</b></h2>
+      <h2 id="modal-title"><b>{{'Add a new tank' | translate}}:</b></h2>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
     <form [formGroup]="myForm"  novalidate >
       <div class="form-row">
         <div class="form-group col-md-6 mb-3">
-          <label>Matricule : <span style="color:red;">*</span></label>
-          <p>(minimum 8 caractéres)</p>
+          <label>{{'Registration number' | translate}} : <span style="color:red;">*</span></label>
+          <p>{{'(minimum 8 characters)' | translate}}</p>
           <input type="text"
            formControlName="matricule"
            class="form-control"
@@ -19,13 +19,13 @@
            name="matricule">
 
           <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
-            Matricule invalide !
+            {{'Invalid registration number' | translate}} !
           </div>
           <div *ngIf="matricule?.valid && matricule?.touched && msg1==0 " class="text-success">
-            Matricule valide!
+            {{'Valid registration number' | translate}} !
           </div>
           <div *ngIf="msg1==1"  class="text-danger">
-           Matricule existe deja !
+            {{'Registration number already exists' | translate}} !
           </div>
 
         </div>
@@ -34,20 +34,20 @@
       <!-- <div class="form-row"> -->
 
         <div class="col-md-6 mb-3">
-            <label for="prix">Contenance maximale : <span style="color:red;">*</span></label>
-            <p>(minimum 100L)</p>
+            <label for="prix">{{'Maximum capacity' | translate}} : <span style="color:red;">*</span></label>
+            <p>(minimum 30 kg)</p>
             <input type="number"
             class="form-control"
               id="poidVide"
               formControlName="poidVide"
-              placeholder="exp : 100 Litres .."
+              placeholder="exp : 100 kg .."
               name="poidVide">
 
               <div *ngIf="poidVide?.invalid && poidVide?.touched" class="text-danger">
-                Contenance maximale  invalide !
+                {{'Invalid maximum capacity' | translate}} !
               </div>
               <div *ngIf="poidVide?.valid && poidVide?.touched" class="text-success">
-                Contenance maximale  valide
+                {{'Maximum valid capacity' | translate}} !
               </div>
 
         </div>
@@ -58,16 +58,16 @@
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">J'accepte les conditions générales d'utilisation</label>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >J'accepte les conditions générales d'utilisation</label>
+                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
                 <br>    <br>
-                <span style="color:red;margin-bottom:45px;font-size:1.1em">{{msg}}</span>
-                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
+                <div class="invalid-feedback">{{'p3' | translate}}</div>
               </div>
             </div>
-            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
+            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">{{'Send' | translate}}</button>
             <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
 
           </form>
         </div>

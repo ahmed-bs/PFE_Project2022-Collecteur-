@@ -7,24 +7,24 @@
       "type": "constructor"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Remplissage.sol\":\"Remplissage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Remplissage.sol\":{\"keccak256\":\"0x91af51b1c07993af27f1e6dc6a9de10151a23d9807d67eab94293690e4027f00\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://737c940f44177a09e277ab61453ed6b50b88c453c05e858b1fccaa0181e0aa7c\",\"dweb:/ipfs/QmSRb19xnLVU1Q1x1FfYoVu9CA7GMUehDHeE6MR1arMrJZ\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212201eb2204d596e2d67314edd44ccc63935fc471b537c41cbda51398ab4d2f01a4464736f6c634300080b0033",
-  "deployedBytecode": "0x6080604052600080fdfea26469706673582212201eb2204d596e2d67314edd44ccc63935fc471b537c41cbda51398ab4d2f01a4464736f6c634300080b0033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.11+commit.d7f03943\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Remplissage.sol\":\"Remplissage\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Remplissage.sol\":{\"keccak256\":\"0x57b36f43aa0886aa532570e5cc1d05100b23435f308a24390e38a2084e2c1ddb\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3e63826ef7b5d38971aea273ab9bfac153fb5891cde8c31e27668f6ae1cd05a6\",\"dweb:/ipfs/QmYA4W86XC5ijoxAqjtna4rdSvmeEUJTo2V59VthNvxYGA\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea264697066735822122093bb5928891aa8e6620c753521c91fbf456d369ca09f466d881a7ec344fc744864736f6c634300080b0033",
+  "deployedBytecode": "0x6080604052600080fdfea264697066735822122093bb5928891aa8e6620c753521c91fbf456d369ca09f466d881a7ec344fc744864736f6c634300080b0033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [],
-  "sourceMap": "69:4516:0:-:0;;;4566:16;;;;;;;;;;69:4516;;;;;;",
-  "deployedSourceMap": "69:4516:0:-:0;;;;;",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Remplissage {\r\n    //******************************************** */\r\n    //coollector remplissage\r\n    //********************************************* */\r\n    struct Usine {\r\n        uint256 idUsine;\r\n        string nomUsine;\r\n        string adresse;\r\n    }\r\n    struct Operation0 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Agriculteur0 agriculteur;\r\n        Chef chef;\r\n    }\r\n    struct Agriculteur0 {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n    }\r\n    struct Chef {\r\n        uint256 idChef;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n        uint256 cin;\r\n        // uint tank ;\r\n        string username;\r\n        string password;\r\n    }\r\n    struct OperationTank {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation0 operation;\r\n        Tank tank;\r\n    }\r\n    //******************************************** */\r\n    //coollector retrait\r\n    //********************************************* */\r\n    struct OperationTank0 {\r\n        uint256 idOpTank;\r\n        int256 qteInsereTank;\r\n        string date;\r\n        Operation01 operation;\r\n        Tank tank;\r\n    }\r\n    struct Operation01 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        // Agriculteur0 agriculteur;\r\n        uint256[] codeRemplissage;\r\n        Chef chef;\r\n        Usine usine;\r\n        //Tank tank ;\r\n    }\r\n    struct Tank {\r\n        uint256 idTank;\r\n        string matricule;\r\n        uint256 poidVide;\r\n        uint256 poidActuel;\r\n        string etat;\r\n        uint256[] codeTank;\r\n    }\r\n    //******************************************** */\r\n    // agric\r\n    //********************************************* */\r\n    struct Agriculteur {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string username;\r\n        string password;\r\n    }\r\n\r\n    struct Operation {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Collecteur collecteur;\r\n        Agriculteur agriculteur;\r\n    }\r\n    struct Collecteur {\r\n        uint256 idCollecteur;\r\n        string nomCollecteur;\r\n        string adresse;\r\n        uint256 tel;\r\n    }\r\n    //******************************************** */\r\n    //Usine remplissage\r\n    //********************************************* */\r\n    struct OperationTank03 {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation03 operation;\r\n        Tank tank;\r\n    }\r\n\r\n    struct Operation03 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        Centre centreCollecte;\r\n        //Magasin magasin;\r\n    }\r\n\r\n    struct Centre {\r\n        uint256 idCentre;\r\n        string nomCentre;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    //******************************************** */\r\n    //Usine retrait\r\n    //********************************************* */\r\n    struct Magasin {\r\n        uint256 idMag;\r\n        string nomMag;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    struct Produit {\r\n        uint256 idProduit;\r\n        string intitule;\r\n        string libelle;\r\n        uint256 qte;\r\n    }\r\n    struct Operation02 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        //Centre centreCollecte;\r\n        Magasin magasin;\r\n        Produit produit;\r\n    }\r\n\r\n    //******************************************** */\r\n    //transformation remplissage\r\n    //********************************************* */\r\nstruct Operation04{\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        Tank tank;\r\n        Produit produit;\r\n        uint256[] codeRemplissage;\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    constructor() {}\r\n}\r\n",
-  "sourcePath": "C:\\Users\\ASUS\\Desktop\\pfe\\PFE_Project(app4)\\PFE-FrontEnd\\contracts\\Remplissage.sol",
+  "sourceMap": "69:4610:0:-:0;;;4660:16;;;;;;;;;;69:4610;;;;;;",
+  "deployedSourceMap": "69:4610:0:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\ncontract Remplissage {\r\n    //******************************************** */\r\n    //coollector remplissage\r\n    //********************************************* */\r\n    struct Usine {\r\n        uint256 idUsine;\r\n        string nomUsine;\r\n        string adresse;\r\n    }\r\n    struct Operation0 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        Agriculteur0 agriculteur;\r\n        Chef chef;\r\n    }\r\n    struct Agriculteur0 {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n    }\r\n    struct Chef {\r\n        uint256 idChef;\r\n        string nom;\r\n        string prenom;\r\n        string email;\r\n        string adress;\r\n        uint256 tel;\r\n        uint256 cin;\r\n        // uint tank ;\r\n        string username;\r\n        string password;\r\n    }\r\n    struct OperationTank {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation0 operation;\r\n        Tank tank;\r\n    }\r\n    //******************************************** */\r\n    //coollector retrait\r\n    //********************************************* */\r\n    struct OperationTank0 {\r\n        uint256 idOpTank;\r\n        int256 qteInsereTank;\r\n        string date;\r\n        Operation01 operation;\r\n        Tank tank;\r\n    }\r\n    struct Operation01 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        //string sender;\r\n        // uint tank ;\r\n        // Agriculteur0 agriculteur;\r\n        uint256[] codeRemplissage;\r\n        Chef chef;\r\n        Usine usine;\r\n        //Tank tank ;\r\n    }\r\n    struct Tank {\r\n        uint256 idTank;\r\n        string matricule;\r\n        uint256 poidVide;\r\n        uint256 poidActuel;\r\n        string etat;\r\n        uint256[] codeTank;\r\n    }\r\n    //******************************************** */\r\n    // agric\r\n    //********************************************* */\r\n    struct Agriculteur {\r\n        uint256 idAgriculteur;\r\n        string nom;\r\n        string prenom;\r\n        string username;\r\n        string password;\r\n    }\r\n\r\n    struct Operation {\r\n        uint256 idOperation;\r\n        uint256 code;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 poidsLait;\r\n        Agriculteur agriculteur;\r\n        Collecteur collecteur;\r\n   \r\n        //string sender;\r\n        // uint tank ;\r\n        \r\n     \r\n    }\r\n    struct Collecteur {\r\n        uint256 idCollecteur;\r\n        string nomCollecteur;\r\n        string prenomCollecteur;\r\n         string matricule ;\r\n        string adresse;\r\n        uint256 tel;\r\n       \r\n    }\r\n    //******************************************** */\r\n    //Usine remplissage\r\n    //********************************************* */\r\n    struct OperationTank03 {\r\n        uint256 idOpTank;\r\n        uint256 qteInsereTank;\r\n        string date;\r\n        Operation03 operation;\r\n        Tank tank;\r\n    }\r\n\r\n    struct Operation03 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        Centre centreCollecte;\r\n        //Magasin magasin;\r\n    }\r\n\r\n    struct Centre {\r\n        uint256 idCentre;\r\n        string nomCentre;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    //******************************************** */\r\n    //Usine retrait\r\n    //********************************************* */\r\n    struct Magasin {\r\n        uint256 idMag;\r\n        string nomMag;\r\n        string adresse;\r\n        string ville;\r\n    }\r\n    struct Produit {\r\n        uint256 idProduit;\r\n        string intitule;\r\n        string libelle;\r\n        uint256 qte;\r\n    }\r\n    struct Operation02 {\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        //Centre centreCollecte;\r\n        Magasin magasin;\r\n        Produit produit;\r\n    }\r\n\r\n    //******************************************** */\r\n    //transformation remplissage\r\n    //********************************************* */\r\nstruct Operation04{\r\n        uint256 idOperation;\r\n        uint256 poidsLait;\r\n        string dateOperation;\r\n        string typeOp;\r\n        uint256 code;\r\n        uint256 qtePrise;\r\n        Tank tank;\r\n        Produit produit;\r\n        uint256[] codeRemplissage;\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    constructor() {}\r\n}\r\n",
+  "sourcePath": "C:\\Users\\ASUS\\Desktop\\pfe\\PFE_Project2022(agric)\\PFE_Project2022\\PFE-FrontEnd\\contracts\\Remplissage.sol",
   "ast": {
     "absolutePath": "project:/contracts/Remplissage.sol",
     "exportedSymbols": {
       "Remplissage": [
-        254
+        258
       ]
     },
-    "id": 255,
+    "id": 259,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -49,9 +49,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 254,
+        "id": 258,
         "linearizedBaseContracts": [
-          254
+          258
         ],
         "name": "Remplissage",
         "nameLocation": "78:11:0",
@@ -146,7 +146,7 @@
             "name": "Usine",
             "nameLocation": "245:5:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "238:98:0",
             "visibility": "public"
           },
@@ -361,7 +361,7 @@
             "name": "Operation0",
             "nameLocation": "349:10:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "342:267:0",
             "visibility": "public"
           },
@@ -535,7 +535,7 @@
             "name": "Agriculteur0",
             "nameLocation": "622:12:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "615:174:0",
             "visibility": "public"
           },
@@ -790,7 +790,7 @@
             "name": "Chef",
             "nameLocation": "802:4:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "795:257:0",
             "visibility": "public"
           },
@@ -951,7 +951,7 @@
             "name": "OperationTank",
             "nameLocation": "1065:13:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1058:161:0",
             "visibility": "public"
           },
@@ -1112,7 +1112,7 @@
             "name": "OperationTank0",
             "nameLocation": "1369:14:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1362:162:0",
             "visibility": "public"
           },
@@ -1363,7 +1363,7 @@
             "name": "Operation01",
             "nameLocation": "1537:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1530:352:0",
             "visibility": "public"
           },
@@ -1546,7 +1546,7 @@
             "name": "Tank",
             "nameLocation": "1895:4:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1888:179:0",
             "visibility": "public"
           },
@@ -1693,7 +1693,7 @@
             "name": "Agriculteur",
             "nameLocation": "2205:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "2198:156:0",
             "visibility": "public"
           },
@@ -1732,11 +1732,11 @@
                 "constant": false,
                 "id": 132,
                 "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "2428:9:0",
+                "name": "code",
+                "nameLocation": "2428:4:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2420:17:0",
+                "src": "2420:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1760,10 +1760,10 @@
                 "id": 134,
                 "mutability": "mutable",
                 "name": "dateOperation",
-                "nameLocation": "2455:13:0",
+                "nameLocation": "2450:13:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2448:20:0",
+                "src": "2443:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1774,7 +1774,7 @@
                   "id": 133,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2448:6:0",
+                  "src": "2443:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -1787,10 +1787,10 @@
                 "id": 136,
                 "mutability": "mutable",
                 "name": "typeOp",
-                "nameLocation": "2486:6:0",
+                "nameLocation": "2481:6:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2479:13:0",
+                "src": "2474:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1801,7 +1801,7 @@
                   "id": 135,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2479:6:0",
+                  "src": "2474:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -1813,11 +1813,11 @@
                 "constant": false,
                 "id": 138,
                 "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "2511:4:0",
+                "name": "poidsLait",
+                "nameLocation": "2506:9:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2503:12:0",
+                "src": "2498:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1828,7 +1828,7 @@
                   "id": 137,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2503:7:0",
+                  "src": "2498:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1840,32 +1840,32 @@
                 "constant": false,
                 "id": 141,
                 "mutability": "mutable",
-                "name": "collecteur",
-                "nameLocation": "2587:10:0",
+                "name": "agriculteur",
+                "nameLocation": "2538:11:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2576:21:0",
+                "src": "2526:23:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Collecteur_$154_storage_ptr",
-                  "typeString": "struct Remplissage.Collecteur"
+                  "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
+                  "typeString": "struct Remplissage.Agriculteur"
                 },
                 "typeName": {
                   "id": 140,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
                     "id": 139,
-                    "name": "Collecteur",
+                    "name": "Agriculteur",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 154,
-                    "src": "2576:10:0"
+                    "referencedDeclaration": 128,
+                    "src": "2526:11:0"
                   },
-                  "referencedDeclaration": 154,
-                  "src": "2576:10:0",
+                  "referencedDeclaration": 128,
+                  "src": "2526:11:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Collecteur_$154_storage_ptr",
-                    "typeString": "struct Remplissage.Collecteur"
+                    "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
+                    "typeString": "struct Remplissage.Agriculteur"
                   }
                 },
                 "visibility": "internal"
@@ -1874,32 +1874,32 @@
                 "constant": false,
                 "id": 144,
                 "mutability": "mutable",
-                "name": "agriculteur",
-                "nameLocation": "2620:11:0",
+                "name": "collecteur",
+                "nameLocation": "2571:10:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2608:23:0",
+                "src": "2560:21:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
-                  "typeString": "struct Remplissage.Agriculteur"
+                  "typeIdentifier": "t_struct$_Collecteur_$158_storage_ptr",
+                  "typeString": "struct Remplissage.Collecteur"
                 },
                 "typeName": {
                   "id": 143,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
                     "id": 142,
-                    "name": "Agriculteur",
+                    "name": "Collecteur",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 128,
-                    "src": "2608:11:0"
+                    "referencedDeclaration": 158,
+                    "src": "2560:10:0"
                   },
-                  "referencedDeclaration": 128,
-                  "src": "2608:11:0",
+                  "referencedDeclaration": 158,
+                  "src": "2560:10:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
-                    "typeString": "struct Remplissage.Agriculteur"
+                    "typeIdentifier": "t_struct$_Collecteur_$158_storage_ptr",
+                    "typeString": "struct Remplissage.Collecteur"
                   }
                 },
                 "visibility": "internal"
@@ -1908,23 +1908,23 @@
             "name": "Operation",
             "nameLocation": "2369:9:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "2362:277:0",
+            "scope": 258,
+            "src": "2362:299:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Collecteur",
-            "id": 154,
+            "id": 158,
             "members": [
               {
                 "constant": false,
                 "id": 147,
                 "mutability": "mutable",
                 "name": "idCollecteur",
-                "nameLocation": "2682:12:0",
+                "nameLocation": "2704:12:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2674:20:0",
+                "scope": 158,
+                "src": "2696:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1935,7 +1935,7 @@
                   "id": 146,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2674:7:0",
+                  "src": "2696:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -1948,10 +1948,10 @@
                 "id": 149,
                 "mutability": "mutable",
                 "name": "nomCollecteur",
-                "nameLocation": "2712:13:0",
+                "nameLocation": "2734:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2705:20:0",
+                "scope": 158,
+                "src": "2727:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1962,7 +1962,7 @@
                   "id": 148,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2705:6:0",
+                  "src": "2727:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -1974,11 +1974,11 @@
                 "constant": false,
                 "id": 151,
                 "mutability": "mutable",
-                "name": "adresse",
-                "nameLocation": "2743:7:0",
+                "name": "prenomCollecteur",
+                "nameLocation": "2765:16:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2736:14:0",
+                "scope": 158,
+                "src": "2758:23:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -1989,7 +1989,7 @@
                   "id": 150,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2736:6:0",
+                  "src": "2758:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2001,11 +2001,65 @@
                 "constant": false,
                 "id": 153,
                 "mutability": "mutable",
-                "name": "tel",
-                "nameLocation": "2769:3:0",
+                "name": "matricule",
+                "nameLocation": "2800:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2761:11:0",
+                "scope": 158,
+                "src": "2793:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 152,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2793:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 155,
+                "mutability": "mutable",
+                "name": "adresse",
+                "nameLocation": "2828:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 158,
+                "src": "2821:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 154,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2821:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 157,
+                "mutability": "mutable",
+                "name": "tel",
+                "nameLocation": "2854:3:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 158,
+                "src": "2846:11:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2013,10 +2067,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 152,
+                  "id": 156,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2761:7:0",
+                  "src": "2846:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2026,79 +2080,79 @@
               }
             ],
             "name": "Collecteur",
-            "nameLocation": "2652:10:0",
+            "nameLocation": "2674:10:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "2645:135:0",
+            "scope": 258,
+            "src": "2667:207:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.OperationTank03",
-            "id": 167,
+            "id": 171,
             "members": [
-              {
-                "constant": false,
-                "id": 156,
-                "mutability": "mutable",
-                "name": "idOpTank",
-                "nameLocation": "2964:8:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "2956:16:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 155,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2956:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 158,
-                "mutability": "mutable",
-                "name": "qteInsereTank",
-                "nameLocation": "2991:13:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "2983:21:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 157,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2983:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
               {
                 "constant": false,
                 "id": 160,
                 "mutability": "mutable",
-                "name": "date",
-                "nameLocation": "3022:4:0",
+                "name": "idOpTank",
+                "nameLocation": "3058:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "3015:11:0",
+                "scope": 171,
+                "src": "3050:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 159,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3050:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 162,
+                "mutability": "mutable",
+                "name": "qteInsereTank",
+                "nameLocation": "3085:13:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 171,
+                "src": "3077:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 161,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3077:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 164,
+                "mutability": "mutable",
+                "name": "date",
+                "nameLocation": "3116:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 171,
+                "src": "3109:11:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2106,10 +2160,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 159,
+                  "id": 163,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3015:6:0",
+                  "src": "3109:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2119,33 +2173,33 @@
               },
               {
                 "constant": false,
-                "id": 163,
+                "id": 167,
                 "mutability": "mutable",
                 "name": "operation",
-                "nameLocation": "3049:9:0",
+                "nameLocation": "3143:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "3037:21:0",
+                "scope": 171,
+                "src": "3131:21:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Operation03_$181_storage_ptr",
+                  "typeIdentifier": "t_struct$_Operation03_$185_storage_ptr",
                   "typeString": "struct Remplissage.Operation03"
                 },
                 "typeName": {
-                  "id": 162,
+                  "id": 166,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 161,
+                    "id": 165,
                     "name": "Operation03",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 181,
-                    "src": "3037:11:0"
+                    "referencedDeclaration": 185,
+                    "src": "3131:11:0"
                   },
-                  "referencedDeclaration": 181,
-                  "src": "3037:11:0",
+                  "referencedDeclaration": 185,
+                  "src": "3131:11:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Operation03_$181_storage_ptr",
+                    "typeIdentifier": "t_struct$_Operation03_$185_storage_ptr",
                     "typeString": "struct Remplissage.Operation03"
                   }
                 },
@@ -2153,13 +2207,13 @@
               },
               {
                 "constant": false,
-                "id": 166,
+                "id": 170,
                 "mutability": "mutable",
                 "name": "tank",
-                "nameLocation": "3074:4:0",
+                "nameLocation": "3168:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "3069:9:0",
+                "scope": 171,
+                "src": "3163:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2167,17 +2221,17 @@
                   "typeString": "struct Remplissage.Tank"
                 },
                 "typeName": {
-                  "id": 165,
+                  "id": 169,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 164,
+                    "id": 168,
                     "name": "Tank",
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 117,
-                    "src": "3069:4:0"
+                    "src": "3163:4:0"
                   },
                   "referencedDeclaration": 117,
-                  "src": "3069:4:0",
+                  "src": "3163:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_struct$_Tank_$117_storage_ptr",
                     "typeString": "struct Remplissage.Tank"
@@ -2187,93 +2241,39 @@
               }
             ],
             "name": "OperationTank03",
-            "nameLocation": "2929:15:0",
+            "nameLocation": "3023:15:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "2922:164:0",
+            "scope": 258,
+            "src": "3016:164:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Operation03",
-            "id": 181,
+            "id": 185,
             "members": [
-              {
-                "constant": false,
-                "id": 169,
-                "mutability": "mutable",
-                "name": "idOperation",
-                "nameLocation": "3132:11:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3124:19:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 168,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3124:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 171,
-                "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "3162:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3154:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 170,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3154:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
               {
                 "constant": false,
                 "id": 173,
                 "mutability": "mutable",
-                "name": "dateOperation",
-                "nameLocation": "3189:13:0",
+                "name": "idOperation",
+                "nameLocation": "3226:11:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3182:20:0",
+                "scope": 185,
+                "src": "3218:19:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 172,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3182:6:0",
+                  "src": "3218:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -2282,25 +2282,25 @@
                 "constant": false,
                 "id": 175,
                 "mutability": "mutable",
-                "name": "typeOp",
-                "nameLocation": "3220:6:0",
+                "name": "poidsLait",
+                "nameLocation": "3256:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3213:13:0",
+                "scope": 185,
+                "src": "3248:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 174,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3213:6:0",
+                  "src": "3248:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -2309,11 +2309,65 @@
                 "constant": false,
                 "id": 177,
                 "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "3245:4:0",
+                "name": "dateOperation",
+                "nameLocation": "3283:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3237:12:0",
+                "scope": 185,
+                "src": "3276:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 176,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3276:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 179,
+                "mutability": "mutable",
+                "name": "typeOp",
+                "nameLocation": "3314:6:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 185,
+                "src": "3307:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 178,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3307:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 181,
+                "mutability": "mutable",
+                "name": "code",
+                "nameLocation": "3339:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 185,
+                "src": "3331:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2321,10 +2375,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 176,
+                  "id": 180,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3237:7:0",
+                  "src": "3331:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2334,33 +2388,33 @@
               },
               {
                 "constant": false,
-                "id": 180,
+                "id": 184,
                 "mutability": "mutable",
                 "name": "centreCollecte",
-                "nameLocation": "3267:14:0",
+                "nameLocation": "3361:14:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3260:21:0",
+                "scope": 185,
+                "src": "3354:21:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Centre_$190_storage_ptr",
+                  "typeIdentifier": "t_struct$_Centre_$194_storage_ptr",
                   "typeString": "struct Remplissage.Centre"
                 },
                 "typeName": {
-                  "id": 179,
+                  "id": 183,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 178,
+                    "id": 182,
                     "name": "Centre",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 190,
-                    "src": "3260:6:0"
+                    "referencedDeclaration": 194,
+                    "src": "3354:6:0"
                   },
-                  "referencedDeclaration": 190,
-                  "src": "3260:6:0",
+                  "referencedDeclaration": 194,
+                  "src": "3354:6:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Centre_$190_storage_ptr",
+                    "typeIdentifier": "t_struct$_Centre_$194_storage_ptr",
                     "typeString": "struct Remplissage.Centre"
                   }
                 },
@@ -2368,25 +2422,25 @@
               }
             ],
             "name": "Operation03",
-            "nameLocation": "3101:11:0",
+            "nameLocation": "3195:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3094:223:0",
+            "scope": 258,
+            "src": "3188:223:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Centre",
-            "id": 190,
+            "id": 194,
             "members": [
               {
                 "constant": false,
-                "id": 183,
+                "id": 187,
                 "mutability": "mutable",
                 "name": "idCentre",
-                "nameLocation": "3358:8:0",
+                "nameLocation": "3452:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3350:16:0",
+                "scope": 194,
+                "src": "3444:16:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2394,67 +2448,13 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 182,
+                  "id": 186,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3350:7:0",
+                  "src": "3444:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 185,
-                "mutability": "mutable",
-                "name": "nomCentre",
-                "nameLocation": "3384:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3377:16:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 184,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3377:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 187,
-                "mutability": "mutable",
-                "name": "adresse",
-                "nameLocation": "3411:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3404:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 186,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3404:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
                   }
                 },
                 "visibility": "internal"
@@ -2463,11 +2463,11 @@
                 "constant": false,
                 "id": 189,
                 "mutability": "mutable",
-                "name": "ville",
-                "nameLocation": "3436:5:0",
+                "name": "nomCentre",
+                "nameLocation": "3478:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3429:12:0",
+                "scope": 194,
+                "src": "3471:16:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2478,7 +2478,61 @@
                   "id": 188,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3429:6:0",
+                  "src": "3471:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 191,
+                "mutability": "mutable",
+                "name": "adresse",
+                "nameLocation": "3505:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 194,
+                "src": "3498:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 190,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3498:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 193,
+                "mutability": "mutable",
+                "name": "ville",
+                "nameLocation": "3530:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 194,
+                "src": "3523:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 192,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3523:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2488,25 +2542,25 @@
               }
             ],
             "name": "Centre",
-            "nameLocation": "3332:6:0",
+            "nameLocation": "3426:6:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3325:124:0",
+            "scope": 258,
+            "src": "3419:124:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Magasin",
-            "id": 199,
+            "id": 203,
             "members": [
               {
                 "constant": false,
-                "id": 192,
+                "id": 196,
                 "mutability": "mutable",
                 "name": "idMag",
-                "nameLocation": "3621:5:0",
+                "nameLocation": "3715:5:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3613:13:0",
+                "scope": 203,
+                "src": "3707:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2514,10 +2568,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 191,
+                  "id": 195,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3613:7:0",
+                  "src": "3707:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2527,67 +2581,13 @@
               },
               {
                 "constant": false,
-                "id": 194,
-                "mutability": "mutable",
-                "name": "nomMag",
-                "nameLocation": "3644:6:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3637:13:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 193,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3637:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 196,
-                "mutability": "mutable",
-                "name": "adresse",
-                "nameLocation": "3668:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3661:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 195,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3661:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
                 "id": 198,
                 "mutability": "mutable",
-                "name": "ville",
-                "nameLocation": "3693:5:0",
+                "name": "nomMag",
+                "nameLocation": "3738:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3686:12:0",
+                "scope": 203,
+                "src": "3731:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2598,7 +2598,61 @@
                   "id": 197,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3686:6:0",
+                  "src": "3731:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 200,
+                "mutability": "mutable",
+                "name": "adresse",
+                "nameLocation": "3762:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 203,
+                "src": "3755:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 199,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3755:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 202,
+                "mutability": "mutable",
+                "name": "ville",
+                "nameLocation": "3787:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 203,
+                "src": "3780:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 201,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3780:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -2608,25 +2662,25 @@
               }
             ],
             "name": "Magasin",
-            "nameLocation": "3594:7:0",
+            "nameLocation": "3688:7:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3587:119:0",
+            "scope": 258,
+            "src": "3681:119:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Produit",
-            "id": 208,
+            "id": 212,
             "members": [
               {
                 "constant": false,
-                "id": 201,
+                "id": 205,
                 "mutability": "mutable",
                 "name": "idProduit",
-                "nameLocation": "3746:9:0",
+                "nameLocation": "3840:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3738:17:0",
+                "scope": 212,
+                "src": "3832:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2634,10 +2688,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 200,
+                  "id": 204,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3738:7:0",
+                  "src": "3832:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2647,67 +2701,67 @@
               },
               {
                 "constant": false,
-                "id": 203,
-                "mutability": "mutable",
-                "name": "intitule",
-                "nameLocation": "3773:8:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3766:15:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 202,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3766:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 205,
-                "mutability": "mutable",
-                "name": "libelle",
-                "nameLocation": "3799:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3792:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 204,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3792:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
                 "id": 207,
                 "mutability": "mutable",
-                "name": "qte",
-                "nameLocation": "3825:3:0",
+                "name": "intitule",
+                "nameLocation": "3867:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3817:11:0",
+                "scope": 212,
+                "src": "3860:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 206,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3860:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 209,
+                "mutability": "mutable",
+                "name": "libelle",
+                "nameLocation": "3893:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 212,
+                "src": "3886:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 208,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3886:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 211,
+                "mutability": "mutable",
+                "name": "qte",
+                "nameLocation": "3919:3:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 212,
+                "src": "3911:11:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -2715,10 +2769,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 206,
+                  "id": 210,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3817:7:0",
+                  "src": "3911:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -2728,93 +2782,39 @@
               }
             ],
             "name": "Produit",
-            "nameLocation": "3719:7:0",
+            "nameLocation": "3813:7:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3712:124:0",
+            "scope": 258,
+            "src": "3806:124:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Operation02",
-            "id": 227,
+            "id": 231,
             "members": [
-              {
-                "constant": false,
-                "id": 210,
-                "mutability": "mutable",
-                "name": "idOperation",
-                "nameLocation": "3880:11:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3872:19:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 209,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3872:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 212,
-                "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "3910:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3902:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 211,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3902:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
               {
                 "constant": false,
                 "id": 214,
                 "mutability": "mutable",
-                "name": "dateOperation",
-                "nameLocation": "3937:13:0",
+                "name": "idOperation",
+                "nameLocation": "3974:11:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3930:20:0",
+                "scope": 231,
+                "src": "3966:19:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 213,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3930:6:0",
+                  "src": "3966:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -2823,25 +2823,25 @@
                 "constant": false,
                 "id": 216,
                 "mutability": "mutable",
-                "name": "typeOp",
-                "nameLocation": "3968:6:0",
+                "name": "poidsLait",
+                "nameLocation": "4004:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3961:13:0",
+                "scope": 231,
+                "src": "3996:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 215,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3961:6:0",
+                  "src": "3996:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -2850,25 +2850,25 @@
                 "constant": false,
                 "id": 218,
                 "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "3993:4:0",
+                "name": "dateOperation",
+                "nameLocation": "4031:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3985:12:0",
+                "scope": 231,
+                "src": "4024:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 217,
-                  "name": "uint256",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3985:7:0",
+                  "src": "4024:6:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "visibility": "internal"
@@ -2877,172 +2877,11 @@
                 "constant": false,
                 "id": 220,
                 "mutability": "mutable",
-                "name": "qtePrise",
-                "nameLocation": "4016:8:0",
+                "name": "typeOp",
+                "nameLocation": "4062:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "4008:16:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 219,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4008:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 223,
-                "mutability": "mutable",
-                "name": "magasin",
-                "nameLocation": "4077:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "4069:15:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Magasin_$199_storage_ptr",
-                  "typeString": "struct Remplissage.Magasin"
-                },
-                "typeName": {
-                  "id": 222,
-                  "nodeType": "UserDefinedTypeName",
-                  "pathNode": {
-                    "id": 221,
-                    "name": "Magasin",
-                    "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 199,
-                    "src": "4069:7:0"
-                  },
-                  "referencedDeclaration": 199,
-                  "src": "4069:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Magasin_$199_storage_ptr",
-                    "typeString": "struct Remplissage.Magasin"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 226,
-                "mutability": "mutable",
-                "name": "produit",
-                "nameLocation": "4103:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "4095:15:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
-                  "typeString": "struct Remplissage.Produit"
-                },
-                "typeName": {
-                  "id": 225,
-                  "nodeType": "UserDefinedTypeName",
-                  "pathNode": {
-                    "id": 224,
-                    "name": "Produit",
-                    "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 208,
-                    "src": "4095:7:0"
-                  },
-                  "referencedDeclaration": 208,
-                  "src": "4095:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
-                    "typeString": "struct Remplissage.Produit"
-                  }
-                },
-                "visibility": "internal"
-              }
-            ],
-            "name": "Operation02",
-            "nameLocation": "3849:11:0",
-            "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3842:276:0",
-            "visibility": "public"
-          },
-          {
-            "canonicalName": "Remplissage.Operation04",
-            "id": 249,
-            "members": [
-              {
-                "constant": false,
-                "id": 229,
-                "mutability": "mutable",
-                "name": "idOperation",
-                "nameLocation": "4304:11:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4296:19:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 228,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4296:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 231,
-                "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "4334:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4326:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 230,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4326:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 233,
-                "mutability": "mutable",
-                "name": "dateOperation",
-                "nameLocation": "4361:13:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4354:20:0",
+                "scope": 231,
+                "src": "4055:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -3050,13 +2889,174 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 232,
+                  "id": 219,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "4354:6:0",
+                  "src": "4055:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 222,
+                "mutability": "mutable",
+                "name": "code",
+                "nameLocation": "4087:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4079:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 221,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4079:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 224,
+                "mutability": "mutable",
+                "name": "qtePrise",
+                "nameLocation": "4110:8:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4102:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 223,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4102:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 227,
+                "mutability": "mutable",
+                "name": "magasin",
+                "nameLocation": "4171:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4163:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Magasin_$203_storage_ptr",
+                  "typeString": "struct Remplissage.Magasin"
+                },
+                "typeName": {
+                  "id": 226,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 225,
+                    "name": "Magasin",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 203,
+                    "src": "4163:7:0"
+                  },
+                  "referencedDeclaration": 203,
+                  "src": "4163:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Magasin_$203_storage_ptr",
+                    "typeString": "struct Remplissage.Magasin"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 230,
+                "mutability": "mutable",
+                "name": "produit",
+                "nameLocation": "4197:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4189:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
+                  "typeString": "struct Remplissage.Produit"
+                },
+                "typeName": {
+                  "id": 229,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 228,
+                    "name": "Produit",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 212,
+                    "src": "4189:7:0"
+                  },
+                  "referencedDeclaration": 212,
+                  "src": "4189:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
+                    "typeString": "struct Remplissage.Produit"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Operation02",
+            "nameLocation": "3943:11:0",
+            "nodeType": "StructDefinition",
+            "scope": 258,
+            "src": "3936:276:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Remplissage.Operation04",
+            "id": 253,
+            "members": [
+              {
+                "constant": false,
+                "id": 233,
+                "mutability": "mutable",
+                "name": "idOperation",
+                "nameLocation": "4398:11:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4390:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 232,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4390:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -3065,11 +3065,38 @@
                 "constant": false,
                 "id": 235,
                 "mutability": "mutable",
-                "name": "typeOp",
-                "nameLocation": "4392:6:0",
+                "name": "poidsLait",
+                "nameLocation": "4428:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4385:13:0",
+                "scope": 253,
+                "src": "4420:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 234,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4420:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 237,
+                "mutability": "mutable",
+                "name": "dateOperation",
+                "nameLocation": "4455:13:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4448:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -3077,10 +3104,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 234,
+                  "id": 236,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "4385:6:0",
+                  "src": "4448:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -3090,51 +3117,51 @@
               },
               {
                 "constant": false,
-                "id": 237,
-                "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "4417:4:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4409:12:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 236,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4409:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
                 "id": 239,
                 "mutability": "mutable",
-                "name": "qtePrise",
-                "nameLocation": "4440:8:0",
+                "name": "typeOp",
+                "nameLocation": "4486:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4432:16:0",
+                "scope": 253,
+                "src": "4479:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 238,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4479:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 241,
+                "mutability": "mutable",
+                "name": "code",
+                "nameLocation": "4511:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4503:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 240,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "4432:7:0",
+                  "src": "4503:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -3144,13 +3171,40 @@
               },
               {
                 "constant": false,
-                "id": 242,
+                "id": 243,
+                "mutability": "mutable",
+                "name": "qtePrise",
+                "nameLocation": "4534:8:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4526:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 242,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4526:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 246,
                 "mutability": "mutable",
                 "name": "tank",
-                "nameLocation": "4464:4:0",
+                "nameLocation": "4558:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4459:9:0",
+                "scope": 253,
+                "src": "4553:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -3158,17 +3212,17 @@
                   "typeString": "struct Remplissage.Tank"
                 },
                 "typeName": {
-                  "id": 241,
+                  "id": 245,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 240,
+                    "id": 244,
                     "name": "Tank",
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 117,
-                    "src": "4459:4:0"
+                    "src": "4553:4:0"
                   },
                   "referencedDeclaration": 117,
-                  "src": "4459:4:0",
+                  "src": "4553:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_struct$_Tank_$117_storage_ptr",
                     "typeString": "struct Remplissage.Tank"
@@ -3178,33 +3232,33 @@
               },
               {
                 "constant": false,
-                "id": 245,
+                "id": 249,
                 "mutability": "mutable",
                 "name": "produit",
-                "nameLocation": "4487:7:0",
+                "nameLocation": "4581:7:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4479:15:0",
+                "scope": 253,
+                "src": "4573:15:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
+                  "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
                   "typeString": "struct Remplissage.Produit"
                 },
                 "typeName": {
-                  "id": 244,
+                  "id": 248,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 243,
+                    "id": 247,
                     "name": "Produit",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 208,
-                    "src": "4479:7:0"
+                    "referencedDeclaration": 212,
+                    "src": "4573:7:0"
                   },
-                  "referencedDeclaration": 208,
-                  "src": "4479:7:0",
+                  "referencedDeclaration": 212,
+                  "src": "4573:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
+                    "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
                     "typeString": "struct Remplissage.Produit"
                   }
                 },
@@ -3212,13 +3266,13 @@
               },
               {
                 "constant": false,
-                "id": 248,
+                "id": 252,
                 "mutability": "mutable",
                 "name": "codeRemplissage",
-                "nameLocation": "4515:15:0",
+                "nameLocation": "4609:15:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4505:25:0",
+                "scope": 253,
+                "src": "4599:25:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -3227,18 +3281,18 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 246,
+                    "id": 250,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4505:7:0",
+                    "src": "4599:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 247,
+                  "id": 251,
                   "nodeType": "ArrayTypeName",
-                  "src": "4505:9:0",
+                  "src": "4599:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                     "typeString": "uint256[]"
@@ -3248,20 +3302,20 @@
               }
             ],
             "name": "Operation04",
-            "nameLocation": "4274:11:0",
+            "nameLocation": "4368:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "4267:269:0",
+            "scope": 258,
+            "src": "4361:269:0",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 252,
+              "id": 256,
               "nodeType": "Block",
-              "src": "4580:2:0",
+              "src": "4674:2:0",
               "statements": []
             },
-            "id": 253,
+            "id": 257,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -3269,39 +3323,39 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 250,
+              "id": 254,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4577:2:0"
+              "src": "4671:2:0"
             },
             "returnParameters": {
-              "id": 251,
+              "id": 255,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4580:0:0"
+              "src": "4674:0:0"
             },
-            "scope": 254,
-            "src": "4566:16:0",
+            "scope": 258,
+            "src": "4660:16:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 255,
-        "src": "69:4516:0",
+        "scope": 259,
+        "src": "69:4610:0",
         "usedErrors": []
       }
     ],
-    "src": "33:4554:0"
+    "src": "33:4648:0"
   },
   "legacyAST": {
     "absolutePath": "project:/contracts/Remplissage.sol",
     "exportedSymbols": {
       "Remplissage": [
-        254
+        258
       ]
     },
-    "id": 255,
+    "id": 259,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
@@ -3326,9 +3380,9 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "fullyImplemented": true,
-        "id": 254,
+        "id": 258,
         "linearizedBaseContracts": [
-          254
+          258
         ],
         "name": "Remplissage",
         "nameLocation": "78:11:0",
@@ -3423,7 +3477,7 @@
             "name": "Usine",
             "nameLocation": "245:5:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "238:98:0",
             "visibility": "public"
           },
@@ -3638,7 +3692,7 @@
             "name": "Operation0",
             "nameLocation": "349:10:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "342:267:0",
             "visibility": "public"
           },
@@ -3812,7 +3866,7 @@
             "name": "Agriculteur0",
             "nameLocation": "622:12:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "615:174:0",
             "visibility": "public"
           },
@@ -4067,7 +4121,7 @@
             "name": "Chef",
             "nameLocation": "802:4:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "795:257:0",
             "visibility": "public"
           },
@@ -4228,7 +4282,7 @@
             "name": "OperationTank",
             "nameLocation": "1065:13:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1058:161:0",
             "visibility": "public"
           },
@@ -4389,7 +4443,7 @@
             "name": "OperationTank0",
             "nameLocation": "1369:14:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1362:162:0",
             "visibility": "public"
           },
@@ -4640,7 +4694,7 @@
             "name": "Operation01",
             "nameLocation": "1537:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1530:352:0",
             "visibility": "public"
           },
@@ -4823,7 +4877,7 @@
             "name": "Tank",
             "nameLocation": "1895:4:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "1888:179:0",
             "visibility": "public"
           },
@@ -4970,7 +5024,7 @@
             "name": "Agriculteur",
             "nameLocation": "2205:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
+            "scope": 258,
             "src": "2198:156:0",
             "visibility": "public"
           },
@@ -5009,11 +5063,11 @@
                 "constant": false,
                 "id": 132,
                 "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "2428:9:0",
+                "name": "code",
+                "nameLocation": "2428:4:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2420:17:0",
+                "src": "2420:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5037,10 +5091,10 @@
                 "id": 134,
                 "mutability": "mutable",
                 "name": "dateOperation",
-                "nameLocation": "2455:13:0",
+                "nameLocation": "2450:13:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2448:20:0",
+                "src": "2443:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5051,7 +5105,7 @@
                   "id": 133,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2448:6:0",
+                  "src": "2443:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5064,10 +5118,10 @@
                 "id": 136,
                 "mutability": "mutable",
                 "name": "typeOp",
-                "nameLocation": "2486:6:0",
+                "nameLocation": "2481:6:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2479:13:0",
+                "src": "2474:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5078,7 +5132,7 @@
                   "id": 135,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2479:6:0",
+                  "src": "2474:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5090,11 +5144,11 @@
                 "constant": false,
                 "id": 138,
                 "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "2511:4:0",
+                "name": "poidsLait",
+                "nameLocation": "2506:9:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2503:12:0",
+                "src": "2498:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5105,7 +5159,7 @@
                   "id": 137,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2503:7:0",
+                  "src": "2498:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -5117,32 +5171,32 @@
                 "constant": false,
                 "id": 141,
                 "mutability": "mutable",
-                "name": "collecteur",
-                "nameLocation": "2587:10:0",
+                "name": "agriculteur",
+                "nameLocation": "2538:11:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2576:21:0",
+                "src": "2526:23:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Collecteur_$154_storage_ptr",
-                  "typeString": "struct Remplissage.Collecteur"
+                  "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
+                  "typeString": "struct Remplissage.Agriculteur"
                 },
                 "typeName": {
                   "id": 140,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
                     "id": 139,
-                    "name": "Collecteur",
+                    "name": "Agriculteur",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 154,
-                    "src": "2576:10:0"
+                    "referencedDeclaration": 128,
+                    "src": "2526:11:0"
                   },
-                  "referencedDeclaration": 154,
-                  "src": "2576:10:0",
+                  "referencedDeclaration": 128,
+                  "src": "2526:11:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Collecteur_$154_storage_ptr",
-                    "typeString": "struct Remplissage.Collecteur"
+                    "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
+                    "typeString": "struct Remplissage.Agriculteur"
                   }
                 },
                 "visibility": "internal"
@@ -5151,32 +5205,32 @@
                 "constant": false,
                 "id": 144,
                 "mutability": "mutable",
-                "name": "agriculteur",
-                "nameLocation": "2620:11:0",
+                "name": "collecteur",
+                "nameLocation": "2571:10:0",
                 "nodeType": "VariableDeclaration",
                 "scope": 145,
-                "src": "2608:23:0",
+                "src": "2560:21:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
-                  "typeString": "struct Remplissage.Agriculteur"
+                  "typeIdentifier": "t_struct$_Collecteur_$158_storage_ptr",
+                  "typeString": "struct Remplissage.Collecteur"
                 },
                 "typeName": {
                   "id": 143,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
                     "id": 142,
-                    "name": "Agriculteur",
+                    "name": "Collecteur",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 128,
-                    "src": "2608:11:0"
+                    "referencedDeclaration": 158,
+                    "src": "2560:10:0"
                   },
-                  "referencedDeclaration": 128,
-                  "src": "2608:11:0",
+                  "referencedDeclaration": 158,
+                  "src": "2560:10:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Agriculteur_$128_storage_ptr",
-                    "typeString": "struct Remplissage.Agriculteur"
+                    "typeIdentifier": "t_struct$_Collecteur_$158_storage_ptr",
+                    "typeString": "struct Remplissage.Collecteur"
                   }
                 },
                 "visibility": "internal"
@@ -5185,23 +5239,23 @@
             "name": "Operation",
             "nameLocation": "2369:9:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "2362:277:0",
+            "scope": 258,
+            "src": "2362:299:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Collecteur",
-            "id": 154,
+            "id": 158,
             "members": [
               {
                 "constant": false,
                 "id": 147,
                 "mutability": "mutable",
                 "name": "idCollecteur",
-                "nameLocation": "2682:12:0",
+                "nameLocation": "2704:12:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2674:20:0",
+                "scope": 158,
+                "src": "2696:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5212,7 +5266,7 @@
                   "id": 146,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2674:7:0",
+                  "src": "2696:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -5225,10 +5279,10 @@
                 "id": 149,
                 "mutability": "mutable",
                 "name": "nomCollecteur",
-                "nameLocation": "2712:13:0",
+                "nameLocation": "2734:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2705:20:0",
+                "scope": 158,
+                "src": "2727:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5239,7 +5293,7 @@
                   "id": 148,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2705:6:0",
+                  "src": "2727:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5251,11 +5305,11 @@
                 "constant": false,
                 "id": 151,
                 "mutability": "mutable",
-                "name": "adresse",
-                "nameLocation": "2743:7:0",
+                "name": "prenomCollecteur",
+                "nameLocation": "2765:16:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2736:14:0",
+                "scope": 158,
+                "src": "2758:23:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5266,7 +5320,7 @@
                   "id": 150,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2736:6:0",
+                  "src": "2758:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5278,11 +5332,65 @@
                 "constant": false,
                 "id": 153,
                 "mutability": "mutable",
-                "name": "tel",
-                "nameLocation": "2769:3:0",
+                "name": "matricule",
+                "nameLocation": "2800:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 154,
-                "src": "2761:11:0",
+                "scope": 158,
+                "src": "2793:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 152,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2793:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 155,
+                "mutability": "mutable",
+                "name": "adresse",
+                "nameLocation": "2828:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 158,
+                "src": "2821:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 154,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2821:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 157,
+                "mutability": "mutable",
+                "name": "tel",
+                "nameLocation": "2854:3:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 158,
+                "src": "2846:11:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5290,10 +5398,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 152,
+                  "id": 156,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "2761:7:0",
+                  "src": "2846:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -5303,79 +5411,79 @@
               }
             ],
             "name": "Collecteur",
-            "nameLocation": "2652:10:0",
+            "nameLocation": "2674:10:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "2645:135:0",
+            "scope": 258,
+            "src": "2667:207:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.OperationTank03",
-            "id": 167,
+            "id": 171,
             "members": [
-              {
-                "constant": false,
-                "id": 156,
-                "mutability": "mutable",
-                "name": "idOpTank",
-                "nameLocation": "2964:8:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "2956:16:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 155,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2956:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 158,
-                "mutability": "mutable",
-                "name": "qteInsereTank",
-                "nameLocation": "2991:13:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "2983:21:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 157,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "2983:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
               {
                 "constant": false,
                 "id": 160,
                 "mutability": "mutable",
-                "name": "date",
-                "nameLocation": "3022:4:0",
+                "name": "idOpTank",
+                "nameLocation": "3058:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "3015:11:0",
+                "scope": 171,
+                "src": "3050:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 159,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3050:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 162,
+                "mutability": "mutable",
+                "name": "qteInsereTank",
+                "nameLocation": "3085:13:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 171,
+                "src": "3077:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 161,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3077:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 164,
+                "mutability": "mutable",
+                "name": "date",
+                "nameLocation": "3116:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 171,
+                "src": "3109:11:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5383,10 +5491,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 159,
+                  "id": 163,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3015:6:0",
+                  "src": "3109:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5396,33 +5504,33 @@
               },
               {
                 "constant": false,
-                "id": 163,
+                "id": 167,
                 "mutability": "mutable",
                 "name": "operation",
-                "nameLocation": "3049:9:0",
+                "nameLocation": "3143:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "3037:21:0",
+                "scope": 171,
+                "src": "3131:21:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Operation03_$181_storage_ptr",
+                  "typeIdentifier": "t_struct$_Operation03_$185_storage_ptr",
                   "typeString": "struct Remplissage.Operation03"
                 },
                 "typeName": {
-                  "id": 162,
+                  "id": 166,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 161,
+                    "id": 165,
                     "name": "Operation03",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 181,
-                    "src": "3037:11:0"
+                    "referencedDeclaration": 185,
+                    "src": "3131:11:0"
                   },
-                  "referencedDeclaration": 181,
-                  "src": "3037:11:0",
+                  "referencedDeclaration": 185,
+                  "src": "3131:11:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Operation03_$181_storage_ptr",
+                    "typeIdentifier": "t_struct$_Operation03_$185_storage_ptr",
                     "typeString": "struct Remplissage.Operation03"
                   }
                 },
@@ -5430,13 +5538,13 @@
               },
               {
                 "constant": false,
-                "id": 166,
+                "id": 170,
                 "mutability": "mutable",
                 "name": "tank",
-                "nameLocation": "3074:4:0",
+                "nameLocation": "3168:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 167,
-                "src": "3069:9:0",
+                "scope": 171,
+                "src": "3163:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5444,17 +5552,17 @@
                   "typeString": "struct Remplissage.Tank"
                 },
                 "typeName": {
-                  "id": 165,
+                  "id": 169,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 164,
+                    "id": 168,
                     "name": "Tank",
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 117,
-                    "src": "3069:4:0"
+                    "src": "3163:4:0"
                   },
                   "referencedDeclaration": 117,
-                  "src": "3069:4:0",
+                  "src": "3163:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_struct$_Tank_$117_storage_ptr",
                     "typeString": "struct Remplissage.Tank"
@@ -5464,93 +5572,39 @@
               }
             ],
             "name": "OperationTank03",
-            "nameLocation": "2929:15:0",
+            "nameLocation": "3023:15:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "2922:164:0",
+            "scope": 258,
+            "src": "3016:164:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Operation03",
-            "id": 181,
+            "id": 185,
             "members": [
-              {
-                "constant": false,
-                "id": 169,
-                "mutability": "mutable",
-                "name": "idOperation",
-                "nameLocation": "3132:11:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3124:19:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 168,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3124:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 171,
-                "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "3162:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3154:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 170,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3154:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
               {
                 "constant": false,
                 "id": 173,
                 "mutability": "mutable",
-                "name": "dateOperation",
-                "nameLocation": "3189:13:0",
+                "name": "idOperation",
+                "nameLocation": "3226:11:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3182:20:0",
+                "scope": 185,
+                "src": "3218:19:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 172,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3182:6:0",
+                  "src": "3218:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -5559,25 +5613,25 @@
                 "constant": false,
                 "id": 175,
                 "mutability": "mutable",
-                "name": "typeOp",
-                "nameLocation": "3220:6:0",
+                "name": "poidsLait",
+                "nameLocation": "3256:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3213:13:0",
+                "scope": 185,
+                "src": "3248:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 174,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3213:6:0",
+                  "src": "3248:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -5586,11 +5640,65 @@
                 "constant": false,
                 "id": 177,
                 "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "3245:4:0",
+                "name": "dateOperation",
+                "nameLocation": "3283:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3237:12:0",
+                "scope": 185,
+                "src": "3276:20:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 176,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3276:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 179,
+                "mutability": "mutable",
+                "name": "typeOp",
+                "nameLocation": "3314:6:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 185,
+                "src": "3307:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 178,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3307:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 181,
+                "mutability": "mutable",
+                "name": "code",
+                "nameLocation": "3339:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 185,
+                "src": "3331:12:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5598,10 +5706,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 176,
+                  "id": 180,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3237:7:0",
+                  "src": "3331:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -5611,33 +5719,33 @@
               },
               {
                 "constant": false,
-                "id": 180,
+                "id": 184,
                 "mutability": "mutable",
                 "name": "centreCollecte",
-                "nameLocation": "3267:14:0",
+                "nameLocation": "3361:14:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 181,
-                "src": "3260:21:0",
+                "scope": 185,
+                "src": "3354:21:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Centre_$190_storage_ptr",
+                  "typeIdentifier": "t_struct$_Centre_$194_storage_ptr",
                   "typeString": "struct Remplissage.Centre"
                 },
                 "typeName": {
-                  "id": 179,
+                  "id": 183,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 178,
+                    "id": 182,
                     "name": "Centre",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 190,
-                    "src": "3260:6:0"
+                    "referencedDeclaration": 194,
+                    "src": "3354:6:0"
                   },
-                  "referencedDeclaration": 190,
-                  "src": "3260:6:0",
+                  "referencedDeclaration": 194,
+                  "src": "3354:6:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Centre_$190_storage_ptr",
+                    "typeIdentifier": "t_struct$_Centre_$194_storage_ptr",
                     "typeString": "struct Remplissage.Centre"
                   }
                 },
@@ -5645,25 +5753,25 @@
               }
             ],
             "name": "Operation03",
-            "nameLocation": "3101:11:0",
+            "nameLocation": "3195:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3094:223:0",
+            "scope": 258,
+            "src": "3188:223:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Centre",
-            "id": 190,
+            "id": 194,
             "members": [
               {
                 "constant": false,
-                "id": 183,
+                "id": 187,
                 "mutability": "mutable",
                 "name": "idCentre",
-                "nameLocation": "3358:8:0",
+                "nameLocation": "3452:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3350:16:0",
+                "scope": 194,
+                "src": "3444:16:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5671,67 +5779,13 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 182,
+                  "id": 186,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3350:7:0",
+                  "src": "3444:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 185,
-                "mutability": "mutable",
-                "name": "nomCentre",
-                "nameLocation": "3384:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3377:16:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 184,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3377:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 187,
-                "mutability": "mutable",
-                "name": "adresse",
-                "nameLocation": "3411:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3404:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 186,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3404:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
                   }
                 },
                 "visibility": "internal"
@@ -5740,11 +5794,11 @@
                 "constant": false,
                 "id": 189,
                 "mutability": "mutable",
-                "name": "ville",
-                "nameLocation": "3436:5:0",
+                "name": "nomCentre",
+                "nameLocation": "3478:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 190,
-                "src": "3429:12:0",
+                "scope": 194,
+                "src": "3471:16:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5755,7 +5809,61 @@
                   "id": 188,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3429:6:0",
+                  "src": "3471:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 191,
+                "mutability": "mutable",
+                "name": "adresse",
+                "nameLocation": "3505:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 194,
+                "src": "3498:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 190,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3498:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 193,
+                "mutability": "mutable",
+                "name": "ville",
+                "nameLocation": "3530:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 194,
+                "src": "3523:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 192,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3523:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5765,25 +5873,25 @@
               }
             ],
             "name": "Centre",
-            "nameLocation": "3332:6:0",
+            "nameLocation": "3426:6:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3325:124:0",
+            "scope": 258,
+            "src": "3419:124:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Magasin",
-            "id": 199,
+            "id": 203,
             "members": [
               {
                 "constant": false,
-                "id": 192,
+                "id": 196,
                 "mutability": "mutable",
                 "name": "idMag",
-                "nameLocation": "3621:5:0",
+                "nameLocation": "3715:5:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3613:13:0",
+                "scope": 203,
+                "src": "3707:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5791,10 +5899,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 191,
+                  "id": 195,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3613:7:0",
+                  "src": "3707:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -5804,67 +5912,13 @@
               },
               {
                 "constant": false,
-                "id": 194,
-                "mutability": "mutable",
-                "name": "nomMag",
-                "nameLocation": "3644:6:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3637:13:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 193,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3637:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 196,
-                "mutability": "mutable",
-                "name": "adresse",
-                "nameLocation": "3668:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3661:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 195,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3661:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
                 "id": 198,
                 "mutability": "mutable",
-                "name": "ville",
-                "nameLocation": "3693:5:0",
+                "name": "nomMag",
+                "nameLocation": "3738:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 199,
-                "src": "3686:12:0",
+                "scope": 203,
+                "src": "3731:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5875,7 +5929,61 @@
                   "id": 197,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3686:6:0",
+                  "src": "3731:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 200,
+                "mutability": "mutable",
+                "name": "adresse",
+                "nameLocation": "3762:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 203,
+                "src": "3755:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 199,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3755:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 202,
+                "mutability": "mutable",
+                "name": "ville",
+                "nameLocation": "3787:5:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 203,
+                "src": "3780:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 201,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3780:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -5885,25 +5993,25 @@
               }
             ],
             "name": "Magasin",
-            "nameLocation": "3594:7:0",
+            "nameLocation": "3688:7:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3587:119:0",
+            "scope": 258,
+            "src": "3681:119:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Produit",
-            "id": 208,
+            "id": 212,
             "members": [
               {
                 "constant": false,
-                "id": 201,
+                "id": 205,
                 "mutability": "mutable",
                 "name": "idProduit",
-                "nameLocation": "3746:9:0",
+                "nameLocation": "3840:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3738:17:0",
+                "scope": 212,
+                "src": "3832:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5911,10 +6019,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 200,
+                  "id": 204,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3738:7:0",
+                  "src": "3832:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -5924,67 +6032,67 @@
               },
               {
                 "constant": false,
-                "id": 203,
-                "mutability": "mutable",
-                "name": "intitule",
-                "nameLocation": "3773:8:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3766:15:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 202,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3766:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 205,
-                "mutability": "mutable",
-                "name": "libelle",
-                "nameLocation": "3799:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3792:14:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
-                },
-                "typeName": {
-                  "id": 204,
-                  "name": "string",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3792:6:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
                 "id": 207,
                 "mutability": "mutable",
-                "name": "qte",
-                "nameLocation": "3825:3:0",
+                "name": "intitule",
+                "nameLocation": "3867:8:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 208,
-                "src": "3817:11:0",
+                "scope": 212,
+                "src": "3860:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 206,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3860:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 209,
+                "mutability": "mutable",
+                "name": "libelle",
+                "nameLocation": "3893:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 212,
+                "src": "3886:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 208,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "3886:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 211,
+                "mutability": "mutable",
+                "name": "qte",
+                "nameLocation": "3919:3:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 212,
+                "src": "3911:11:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -5992,10 +6100,10 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 206,
+                  "id": 210,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3817:7:0",
+                  "src": "3911:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -6005,93 +6113,39 @@
               }
             ],
             "name": "Produit",
-            "nameLocation": "3719:7:0",
+            "nameLocation": "3813:7:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3712:124:0",
+            "scope": 258,
+            "src": "3806:124:0",
             "visibility": "public"
           },
           {
             "canonicalName": "Remplissage.Operation02",
-            "id": 227,
+            "id": 231,
             "members": [
-              {
-                "constant": false,
-                "id": 210,
-                "mutability": "mutable",
-                "name": "idOperation",
-                "nameLocation": "3880:11:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3872:19:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 209,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3872:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 212,
-                "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "3910:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3902:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 211,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "3902:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
               {
                 "constant": false,
                 "id": 214,
                 "mutability": "mutable",
-                "name": "dateOperation",
-                "nameLocation": "3937:13:0",
+                "name": "idOperation",
+                "nameLocation": "3974:11:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3930:20:0",
+                "scope": 231,
+                "src": "3966:19:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 213,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3930:6:0",
+                  "src": "3966:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -6100,25 +6154,25 @@
                 "constant": false,
                 "id": 216,
                 "mutability": "mutable",
-                "name": "typeOp",
-                "nameLocation": "3968:6:0",
+                "name": "poidsLait",
+                "nameLocation": "4004:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3961:13:0",
+                "scope": 231,
+                "src": "3996:17:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_string_storage_ptr",
-                  "typeString": "string"
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
                 },
                 "typeName": {
                   "id": 215,
-                  "name": "string",
+                  "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3961:6:0",
+                  "src": "3996:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_string_storage_ptr",
-                    "typeString": "string"
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -6127,25 +6181,25 @@
                 "constant": false,
                 "id": 218,
                 "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "3993:4:0",
+                "name": "dateOperation",
+                "nameLocation": "4031:13:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "3985:12:0",
+                "scope": 231,
+                "src": "4024:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 217,
-                  "name": "uint256",
+                  "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "3985:7:0",
+                  "src": "4024:6:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "visibility": "internal"
@@ -6154,172 +6208,11 @@
                 "constant": false,
                 "id": 220,
                 "mutability": "mutable",
-                "name": "qtePrise",
-                "nameLocation": "4016:8:0",
+                "name": "typeOp",
+                "nameLocation": "4062:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "4008:16:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 219,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4008:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 223,
-                "mutability": "mutable",
-                "name": "magasin",
-                "nameLocation": "4077:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "4069:15:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Magasin_$199_storage_ptr",
-                  "typeString": "struct Remplissage.Magasin"
-                },
-                "typeName": {
-                  "id": 222,
-                  "nodeType": "UserDefinedTypeName",
-                  "pathNode": {
-                    "id": 221,
-                    "name": "Magasin",
-                    "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 199,
-                    "src": "4069:7:0"
-                  },
-                  "referencedDeclaration": 199,
-                  "src": "4069:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Magasin_$199_storage_ptr",
-                    "typeString": "struct Remplissage.Magasin"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 226,
-                "mutability": "mutable",
-                "name": "produit",
-                "nameLocation": "4103:7:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 227,
-                "src": "4095:15:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
-                  "typeString": "struct Remplissage.Produit"
-                },
-                "typeName": {
-                  "id": 225,
-                  "nodeType": "UserDefinedTypeName",
-                  "pathNode": {
-                    "id": 224,
-                    "name": "Produit",
-                    "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 208,
-                    "src": "4095:7:0"
-                  },
-                  "referencedDeclaration": 208,
-                  "src": "4095:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
-                    "typeString": "struct Remplissage.Produit"
-                  }
-                },
-                "visibility": "internal"
-              }
-            ],
-            "name": "Operation02",
-            "nameLocation": "3849:11:0",
-            "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "3842:276:0",
-            "visibility": "public"
-          },
-          {
-            "canonicalName": "Remplissage.Operation04",
-            "id": 249,
-            "members": [
-              {
-                "constant": false,
-                "id": 229,
-                "mutability": "mutable",
-                "name": "idOperation",
-                "nameLocation": "4304:11:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4296:19:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 228,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4296:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 231,
-                "mutability": "mutable",
-                "name": "poidsLait",
-                "nameLocation": "4334:9:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4326:17:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 230,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4326:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
-                "id": 233,
-                "mutability": "mutable",
-                "name": "dateOperation",
-                "nameLocation": "4361:13:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4354:20:0",
+                "scope": 231,
+                "src": "4055:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -6327,13 +6220,174 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 232,
+                  "id": 219,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "4354:6:0",
+                  "src": "4055:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 222,
+                "mutability": "mutable",
+                "name": "code",
+                "nameLocation": "4087:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4079:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 221,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4079:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 224,
+                "mutability": "mutable",
+                "name": "qtePrise",
+                "nameLocation": "4110:8:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4102:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 223,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4102:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 227,
+                "mutability": "mutable",
+                "name": "magasin",
+                "nameLocation": "4171:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4163:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Magasin_$203_storage_ptr",
+                  "typeString": "struct Remplissage.Magasin"
+                },
+                "typeName": {
+                  "id": 226,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 225,
+                    "name": "Magasin",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 203,
+                    "src": "4163:7:0"
+                  },
+                  "referencedDeclaration": 203,
+                  "src": "4163:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Magasin_$203_storage_ptr",
+                    "typeString": "struct Remplissage.Magasin"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 230,
+                "mutability": "mutable",
+                "name": "produit",
+                "nameLocation": "4197:7:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 231,
+                "src": "4189:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
+                  "typeString": "struct Remplissage.Produit"
+                },
+                "typeName": {
+                  "id": 229,
+                  "nodeType": "UserDefinedTypeName",
+                  "pathNode": {
+                    "id": 228,
+                    "name": "Produit",
+                    "nodeType": "IdentifierPath",
+                    "referencedDeclaration": 212,
+                    "src": "4189:7:0"
+                  },
+                  "referencedDeclaration": 212,
+                  "src": "4189:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
+                    "typeString": "struct Remplissage.Produit"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Operation02",
+            "nameLocation": "3943:11:0",
+            "nodeType": "StructDefinition",
+            "scope": 258,
+            "src": "3936:276:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Remplissage.Operation04",
+            "id": 253,
+            "members": [
+              {
+                "constant": false,
+                "id": 233,
+                "mutability": "mutable",
+                "name": "idOperation",
+                "nameLocation": "4398:11:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4390:19:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 232,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4390:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
                   }
                 },
                 "visibility": "internal"
@@ -6342,11 +6396,38 @@
                 "constant": false,
                 "id": 235,
                 "mutability": "mutable",
-                "name": "typeOp",
-                "nameLocation": "4392:6:0",
+                "name": "poidsLait",
+                "nameLocation": "4428:9:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4385:13:0",
+                "scope": 253,
+                "src": "4420:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 234,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4420:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 237,
+                "mutability": "mutable",
+                "name": "dateOperation",
+                "nameLocation": "4455:13:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4448:20:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -6354,10 +6435,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 234,
+                  "id": 236,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "4385:6:0",
+                  "src": "4448:6:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -6367,51 +6448,51 @@
               },
               {
                 "constant": false,
-                "id": 237,
-                "mutability": "mutable",
-                "name": "code",
-                "nameLocation": "4417:4:0",
-                "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4409:12:0",
-                "stateVariable": false,
-                "storageLocation": "default",
-                "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
-                },
-                "typeName": {
-                  "id": 236,
-                  "name": "uint256",
-                  "nodeType": "ElementaryTypeName",
-                  "src": "4409:7:0",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  }
-                },
-                "visibility": "internal"
-              },
-              {
-                "constant": false,
                 "id": 239,
                 "mutability": "mutable",
-                "name": "qtePrise",
-                "nameLocation": "4440:8:0",
+                "name": "typeOp",
+                "nameLocation": "4486:6:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4432:16:0",
+                "scope": 253,
+                "src": "4479:13:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_uint256",
-                  "typeString": "uint256"
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
                 },
                 "typeName": {
                   "id": 238,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4479:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 241,
+                "mutability": "mutable",
+                "name": "code",
+                "nameLocation": "4511:4:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4503:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 240,
                   "name": "uint256",
                   "nodeType": "ElementaryTypeName",
-                  "src": "4432:7:0",
+                  "src": "4503:7:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -6421,13 +6502,40 @@
               },
               {
                 "constant": false,
-                "id": 242,
+                "id": 243,
+                "mutability": "mutable",
+                "name": "qtePrise",
+                "nameLocation": "4534:8:0",
+                "nodeType": "VariableDeclaration",
+                "scope": 253,
+                "src": "4526:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 242,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "4526:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 246,
                 "mutability": "mutable",
                 "name": "tank",
-                "nameLocation": "4464:4:0",
+                "nameLocation": "4558:4:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4459:9:0",
+                "scope": 253,
+                "src": "4553:9:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -6435,17 +6543,17 @@
                   "typeString": "struct Remplissage.Tank"
                 },
                 "typeName": {
-                  "id": 241,
+                  "id": 245,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 240,
+                    "id": 244,
                     "name": "Tank",
                     "nodeType": "IdentifierPath",
                     "referencedDeclaration": 117,
-                    "src": "4459:4:0"
+                    "src": "4553:4:0"
                   },
                   "referencedDeclaration": 117,
-                  "src": "4459:4:0",
+                  "src": "4553:4:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_struct$_Tank_$117_storage_ptr",
                     "typeString": "struct Remplissage.Tank"
@@ -6455,33 +6563,33 @@
               },
               {
                 "constant": false,
-                "id": 245,
+                "id": 249,
                 "mutability": "mutable",
                 "name": "produit",
-                "nameLocation": "4487:7:0",
+                "nameLocation": "4581:7:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4479:15:0",
+                "scope": 253,
+                "src": "4573:15:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
+                  "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
                   "typeString": "struct Remplissage.Produit"
                 },
                 "typeName": {
-                  "id": 244,
+                  "id": 248,
                   "nodeType": "UserDefinedTypeName",
                   "pathNode": {
-                    "id": 243,
+                    "id": 247,
                     "name": "Produit",
                     "nodeType": "IdentifierPath",
-                    "referencedDeclaration": 208,
-                    "src": "4479:7:0"
+                    "referencedDeclaration": 212,
+                    "src": "4573:7:0"
                   },
-                  "referencedDeclaration": 208,
-                  "src": "4479:7:0",
+                  "referencedDeclaration": 212,
+                  "src": "4573:7:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Produit_$208_storage_ptr",
+                    "typeIdentifier": "t_struct$_Produit_$212_storage_ptr",
                     "typeString": "struct Remplissage.Produit"
                   }
                 },
@@ -6489,13 +6597,13 @@
               },
               {
                 "constant": false,
-                "id": 248,
+                "id": 252,
                 "mutability": "mutable",
                 "name": "codeRemplissage",
-                "nameLocation": "4515:15:0",
+                "nameLocation": "4609:15:0",
                 "nodeType": "VariableDeclaration",
-                "scope": 249,
-                "src": "4505:25:0",
+                "scope": 253,
+                "src": "4599:25:0",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -6504,18 +6612,18 @@
                 },
                 "typeName": {
                   "baseType": {
-                    "id": 246,
+                    "id": 250,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "4505:7:0",
+                    "src": "4599:7:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 247,
+                  "id": 251,
                   "nodeType": "ArrayTypeName",
-                  "src": "4505:9:0",
+                  "src": "4599:9:0",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
                     "typeString": "uint256[]"
@@ -6525,20 +6633,20 @@
               }
             ],
             "name": "Operation04",
-            "nameLocation": "4274:11:0",
+            "nameLocation": "4368:11:0",
             "nodeType": "StructDefinition",
-            "scope": 254,
-            "src": "4267:269:0",
+            "scope": 258,
+            "src": "4361:269:0",
             "visibility": "public"
           },
           {
             "body": {
-              "id": 252,
+              "id": 256,
               "nodeType": "Block",
-              "src": "4580:2:0",
+              "src": "4674:2:0",
               "statements": []
             },
-            "id": 253,
+            "id": 257,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -6546,30 +6654,30 @@
             "nameLocation": "-1:-1:-1",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 250,
+              "id": 254,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4577:2:0"
+              "src": "4671:2:0"
             },
             "returnParameters": {
-              "id": 251,
+              "id": 255,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "4580:0:0"
+              "src": "4674:0:0"
             },
-            "scope": 254,
-            "src": "4566:16:0",
+            "scope": 258,
+            "src": "4660:16:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 255,
-        "src": "69:4516:0",
+        "scope": 259,
+        "src": "69:4610:0",
         "usedErrors": []
       }
     ],
-    "src": "33:4554:0"
+    "src": "33:4648:0"
   },
   "compiler": {
     "name": "solc",
@@ -6579,12 +6687,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x5D6D738300562Fac121cA4d141bB28114381eA59",
-      "transactionHash": "0x7bbfb6101f2c943eb5f2edac6d2c2db3fd7f54a415ae05118e5fe7731f62369b"
+      "address": "0x084845796334ce83B34E0f67576Af3319Ce1398F",
+      "transactionHash": "0xe53341bdb4136db9e73d4fce187fa367d6f1a4d7b7b2644bf2e3f98dbc869df0"
     }
   },
   "schemaVersion": "3.4.5",
-  "updatedAt": "2022-05-04T20:40:59.934Z",
+  "updatedAt": "2022-05-21T23:01:19.587Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

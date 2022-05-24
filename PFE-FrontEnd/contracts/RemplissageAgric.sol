@@ -11,7 +11,7 @@ contract RemplissageAgric is Remplissage {
     //create 2
     function addOperation2(Operation memory op)
         public
-        returns (Operation[] memory op0)
+        returns (Operation[] memory op0   )
     {
         operations2.push(op);
         return (operations2);

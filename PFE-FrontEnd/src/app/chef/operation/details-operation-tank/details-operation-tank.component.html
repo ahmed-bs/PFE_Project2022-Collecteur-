@@ -3,7 +3,7 @@
    <div class="wrapper" *ngIf="operation">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'opération numéro</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult the operation number' | translate}}</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idO}} </div>
         </div>
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="skills">
-                <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
+                <div class=" head text-uppercase"><h5>{{'Other Information' | translate}} :</h5></div>
                 <div class=" pb-5 pt-3">
 
                   <div class="text-uppercase fs-08">
@@ -24,27 +24,27 @@
                   </div>
 
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Matricule tank : </span>
+                    <span id="titre">{{'Tank registration number' | translate}}: </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.tank.matricule}}</span>
                   </div>
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Id opération : </span>
+                    <span id="titre">{{'Operation ID' | translate}}: </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.operation.idOperation}}</span>
                   </div>
   
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Date opération :</span>
+                      <span id="titre">{{'Operation Date' | translate}} :</span>
                       <span id="titre">&nbsp;&nbsp;{{operation.date}}</span>
                     </div>       
                     
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Type de l'opération :</span>
+                      <span id="titre">{{'Operation type' | translate}} :</span>
                       <span>{{operation.operation.typeOp}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Quantité(Insérer/Retirer) : </span>
+                      <span id="titre"> {{'Quantity(Insert/Remove)' | translate}}: </span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;{{operation.qteInsereTank}}</span>
                     </div>
                    
@@ -54,7 +54,7 @@
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  Fermer les détails
+                  {{'Close details' | translate}}
                 </button>
               </div>
           </div>

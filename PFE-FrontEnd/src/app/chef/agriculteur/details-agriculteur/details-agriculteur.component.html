@@ -1,7 +1,7 @@
 <div class="wrapper" *ngIf="agriculteur">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter l'agriculteur numéro</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult the farmer number' | translate }}</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idA}} </div>
         </div>
@@ -13,31 +13,31 @@
                 </div>
             </div>
             <div class="skills">
-                <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
+                <div class=" head text-uppercase"><h5>{{'Other Information' | translate }}:</h5></div>
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Nom de l'agriculteur : </span>
+                    <span id="titre"> {{'Farmer name' | translate }}: </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{agriculteur.nom}}</span>
                   </div>
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Prénom de l'agriculteur : </span>
+                    <span id="titre"> {{'Farmers first name' | translate }}: </span>
                     <span>{{agriculteur.prenom}}</span>
                   </div>
   
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Numéro de téléphone : </span>
+                      <span id="titre">{{'Phone number' | translate }} : </span>
                       <span> &nbsp;&nbsp;&nbsp;{{agriculteur.tel}}</span>
                     </div>
                     <div class="text-uppercase fs-08">
-                      <span id="titre"> Matricule : </span>
+                      <span id="titre">  {{'Registration number' | translate }}: </span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;
                        {{agriculteur.matricule}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
-                      <span id="titre"> Adresse : </span>
+                      <span id="titre"> {{'Adress' | translate }} : </span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{agriculteur.adress}}</span>
                     </div>
                  
@@ -48,7 +48,7 @@
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  Fermer les détails
+                    {{'Close details' | translate }}
                 </button>
               </div>
           </div>

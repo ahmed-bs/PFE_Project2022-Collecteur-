@@ -6,6 +6,7 @@ import { UsineService } from 'src/app/Services/usine.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-usine',
@@ -26,6 +27,7 @@ export class UpdateUsineComponent implements OnInit {
 
 
    constructor(
+    private translateService :TranslateService,
      private dialogClose: MatDialog,
      private usineService:UsineService,
      private authService:AuthService,
@@ -33,7 +35,10 @@ export class UpdateUsineComponent implements OnInit {
      private router: Router, 
 
 
-   ) { }
+   ) { 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+   }
 
    ngOnInit(): void {
 

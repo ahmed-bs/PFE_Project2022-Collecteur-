@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Services/operation.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-operation-retrait',
@@ -15,11 +16,14 @@ export class DetailsOperationRetraitComponent implements OnInit {
   idO!: any;
   operation?:Operation = new Operation();
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private dialogClose: MatDialog,
     private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
-    private operationService: OperationService) { }
+    private operationService: OperationService) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
   ngOnInit() {
 

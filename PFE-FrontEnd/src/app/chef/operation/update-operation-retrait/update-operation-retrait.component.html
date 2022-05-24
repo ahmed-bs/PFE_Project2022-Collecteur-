@@ -1,13 +1,13 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Modifier l'operation numero: {{operation.idOperation}}</b></h3>
+      <h3 id="modal-title"><b>{{'Modify operation number' | translate}}: {{operation.idOperation}}</b></h3>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>Poids Lait :</label>
+        <label>{{'Milk weight' | translate}} :</label>
         <input type="number"
                class="form-control"
                formControlName="poidsLait"
@@ -17,14 +17,14 @@
           <div
                *ngIf="poidsLait?.invalid && poidsLait?.touched"
                 class="text-danger">
-                Poids invalide !
+                {{'Invalid weight' | translate}} !
          </div>
          <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
-          Poids valide!
+          {{'Valid weight' | translate}}!
         </div>
         <div *ngIf="msgErreur==1" class="text-danger">
-          Vous ne pouvez pas prendre cette quantité !! car la quantité de lait disponible est: {{qteActLaitTank}} !
-          <br> Vous devez introduire une quantite moins ou egale a {{qteActLaitTank}} .
+          {{'p0' | translate}}: {{qteActLaitTank}} !
+          <br> {{'p1' | translate}} {{qteActLaitTank}} .
         </div>
       </div>
   
@@ -50,27 +50,27 @@
   
   
       <div class="lg mb-3">
-        <label class="mr-sm-5" for="inlineFormCustomSelect">Usine : <span style="color:red;">*</span></label>
+        <label class="mr-sm-5" for="inlineFormCustomSelect"> {{'Factorie' | translate}}: <span style="color:red;">*</span></label>
                 <select formControlName="usine" name="usine"    [(ngModel)]="operation.usine.idUsine" class="custom-select mr-sm-2" id="usine" >
-                  <option selected>Choisir un fournisseur...</option>
+                  <option selected>{{'Choose a' | translate}}{{'supplier' | translate}}...</option>
                   <option *ngFor="let usine of usines | async" [value]="usine.idUsine">{{usine.nomUsine}}</option>
                 </select>
                 <div
                 *ngIf="usine?.invalid && usine?.touched"
                  class="text-danger">
-                    invalide usine!
+                {{'invalid factory' | translate}}!
              </div>
                <div
                *ngIf="usine?.valid && usine?.touched"
                class="text-success">
-               usine valide!
+               {{'Valid factory' | translate}}!
              </div>
       </div>
   
   
       <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" (click)="updateOperation()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+        <button type="submit" (click)="updateOperation()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save' | translate}} </button>
       </div>
     </form>
   

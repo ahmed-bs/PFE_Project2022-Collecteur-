@@ -12,6 +12,7 @@ import { Usine } from 'src/app/Models/usine';
 import {Location} from "@angular/common";
 import { UsineService } from 'src/app/Services/usine.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-usine',
@@ -36,11 +37,15 @@ export class ListeUsineComponent implements OnInit {
   displayedColumns: string[] = ['idUsine','nomUsine','adresse','tel','action'];
 
   constructor(
+    private translateService :TranslateService,
     private location:Location,
     private usineService: UsineService,
     private router: Router,
     private authService:AuthService,
-    private dialog:MatDialog) { }
+    private dialog:MatDialog) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
 
     ngOnInit() {

@@ -1,16 +1,16 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h2 id="modal-title"><b>Ajouter une nouvelle usine :</b></h2>
+      <h2 id="modal-title"><b> {{'Add a new factory' | translate}}:</b></h2>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom de l'usine :<span style="color:red;">*</span></label>
-                <p>(minimum 3 caracteres)</p>
+                <label> {{'Factory name' | translate}}:<span style="color:red;">*</span></label>
+                <p> {{'(minimum 3 characters)' | translate}}</p>
                 <input type="text"
                  formControlName="nomUsine"
                  placeholder="Nom de l'usine .."
@@ -19,13 +19,13 @@
                  name="nomUsine">
 
                 <div *ngIf="nomUsine?.invalid && nomUsine?.touched" class="text-danger">
-                  Nom de l'usine invalide !
+                   {{'Invalid factory name' | translate}}!
                 </div>
                 <div *ngIf="nomUsine?.valid && nomUsine?.touched && msg1==0 " class="text-success">
-                  Nom de l'usine valide!
+                  {{'Valid factory name' | translate}}!
                 </div>
                 <div *ngIf="msg1==1"  class="text-danger">
-                  Nom de l'usine existe deja !
+                  {{'Factory name already exists' | translate}} !
                 </div>
               </div>
 
@@ -34,8 +34,8 @@
 
 
               <div class="col-md-6 mb-3">
-                <label>Adresse :<span style="color:red;">*</span></label>
-                <p>(minimum 4 caracteres)</p>
+                <label>  {{'Adress' | translate}}:<span style="color:red;">*</span></label>
+                <p>{{'(minimum 4 characters)' | translate}}</p>
                 <input type="text"
                   class="form-control"
                   id="adresse"
@@ -44,10 +44,10 @@
                   name="adresse">
 
                   <div *ngIf="adresse?.invalid && adresse?.touched" class="text-danger">
-                    Adresse invalide !
+                    Invalid address !
                   </div>
                   <div *ngIf="adresse?.valid && adresse?.touched" class="text-success">
-                    Adresse Valide
+                    Valid address
                   </div>
 
             </div>
@@ -58,7 +58,7 @@
 
             <div class="form-row">
             <div class="col-md-12 mb-3">
-              <label for="prix"> Numéro de téléphone (Exactement 8 chiffres): <span style="color:red;">*</span></label>
+              <label for="prix"> {{'Phone number (8 digits)' | translate}}: <span style="color:red;">*</span></label>
               <input type="number"
               class="form-control"
                 id="tel"
@@ -66,13 +66,13 @@
                 placeholder="12345678"
                 name="tel">
                 <div *ngIf="tel?.invalid && tel?.touched " class="text-danger">
-                  Numéro de téléphone invalide !
+                   {{'Invalid phone number' | translate}}!
                 </div>
                 <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
-                 Numéro de téléphone Valide
+                 {{'Valid phone number' | translate}}
                 </div>
                 <div *ngIf="msg2==1" class="text-danger">
-                 Numéro de  téléphone existe  déjà  !
+                  {{'Phone number already exists' | translate}} !
                 </div>
           </div>
   
@@ -82,17 +82,17 @@
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">J'accepte les conditions générales d'utilisation</label>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >J'accepte les conditions générales d'utilisation</label>
+                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
                 <br>
                 <br>
-                <span style="color:red;margin-bottom:45px;font-size:1.1em">{{msg}}</span>
-                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
+                <div class="invalid-feedback"> {{'p3' | translate}}</div>
               </div>
             </div>
-            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
+            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit"> {{'Save' | translate}}</button>
             <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal"> {{'Close' | translate}}</button>
 
           </form>
         </div>

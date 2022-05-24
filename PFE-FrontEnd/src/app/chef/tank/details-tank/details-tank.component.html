@@ -44,7 +44,7 @@
   <div class="wrapper" *ngIf="tank">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter le tank numéro</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult tank number' | translate}}</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idT}} </div>
         </div>
@@ -56,26 +56,26 @@
                 </div>
             </div>
             <div class="skills">
-                <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
+                <div class=" head text-uppercase"><h5>{{'Other Information' | translate}} :</h5></div>
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Matricule : </span>
+                    <span id="titre"> {{'Registration number' | translate}} : </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{tank.matricule}}</span>
                   </div>
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Etat du tank :</span>
+                    <span id="titre"> {{'tank status' | translate}} :</span>
                     <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tank.etat}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Contenance maximale : </span>
+                    <span id="titre">{{'Maximum capacity' | translate}} : </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidVide}} Kg </span>
                   </div>
 
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Quantité de lait inserée : </span>
+                    <span id="titre"> {{'Amount of milk inserted' | translate}} : </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidActuel}} Kg </span>
                   </div>    
 
@@ -87,7 +87,7 @@
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  Fermer les détails
+                  {{'Close details' | translate}}
                 </button>
               </div>
           </div>
