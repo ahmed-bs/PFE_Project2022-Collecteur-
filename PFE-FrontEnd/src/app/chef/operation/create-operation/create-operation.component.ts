@@ -16,6 +16,7 @@ import { Chef } from 'src/app/Models/chef';
 import { Usine } from 'src/app/Models/usine';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 
 declare let require: any;
@@ -94,7 +95,10 @@ export class CreateOperationComponent implements OnInit {
     this.operation = new Operation();
   }
 
+
   save() {
+    environment.wating = 'startwaiting';
+    this.onReload();
     if (
       this.myForm.get('poidsLait')?.value == null ||
       this.myForm.get('agriculteur')?.value == null ||
@@ -128,14 +132,30 @@ export class CreateOperationComponent implements OnInit {
           agriculteur: {
             idAgriculteur: this.myForm.get('agriculteur')?.value,
           },
-        }).subscribe((o) => {
-              this.tab = Object.values(o);
-              localStorage.setItem('Toast', JSON.stringify(['Success', 'Une operation a été ajouté avec succès',]));
-              this.operationService.getOpTank(this.tab[0]).subscribe((i) => {
+        }).subscribe(async (o) => {
+              this.tab = Object.values(o);           
+              this.operationService.getOpTank(this.tab[0]).subscribe(async (i) => {
                 this.tabTankId = Object.values(i);
-                localStorage.setItem('operationTank', JSON.stringify(this.tabTankId));
+                await this.saveInBc(this.tabTankId,this.tabTankId.length)
+                if (this.confirmation == 'rejected') {
+                  localStorage.setItem(
+                    'Toast',
+                    JSON.stringify([
+                      'Failed',
+                      "l'opération a été rejetée",
+                    ])
+                  );
+             
+                }else{
+                  localStorage.setItem(
+                    'Toast',
+                    JSON.stringify([
+                      'Success',
+                      'Une operation a été ajouté avec succès',
+                    ])
+                  );
+                }  
               });
-              this.onReload();
             },
             (error) => {
               console.log('Failed');
@@ -146,37 +166,16 @@ export class CreateOperationComponent implements OnInit {
             this.msgErreur = 1;
             this.qteRsetLait = o;
           }
-          /*  var kk = JSON.parse(localStorage.getItem('idOP') || '[]') || []
-          this.operationService.getOpTank(kk).subscribe(i => {
-            this.tabTankId = Object.values(i);
-            // this.length=this.ELEMENT_DATA?.length
-
-            localStorage.setItem('tabTankId', JSON.stringify(this.tabTankId));
-            this.reLoad();
-            console.log("this.tabTankId---------------------------------");
-            console.log(this.tabTankId);
-            this.reLoad();
-          });*/
         });
-        this.onReload();
       }
-      this.onReload();
     });
-    this.onReload();
   }
 
-  count!: number;
-  elem0: OperationTank[] = [];
-  //usine:Usine = new Usine();
-  async saveInBc() {
+  confirmation: string = 'confirmed';
 
+  async saveInBc(elem0 : OperationTank[],count : number) {
+    this.onReload();
 
-
-
-
-    // this.onClose();
-
-    try {
       const depKEY = Object.keys(Remplissage.networks)[0];
       await this.requestAccount();
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -186,56 +185,50 @@ export class CreateOperationComponent implements OnInit {
         Remplissage.abi,
         signer
       );
-      this.elem0 = JSON.parse(localStorage.getItem('operationTank') || '[]') || [];
-
-      this.count = this.elem0.length;
-
-      const transaction = await contract.addOperationTank(this.elem0, this.count);
-
+      try {
+      const transaction = await contract.addOperationTank(elem0, count);
       await transaction.wait();
-
-      window.localStorage.removeItem("operationTank");
-      console.log("transactions succsessfull ")
-     let  error:any;
-      console.log(error);
-      console.log(error.code);
-      this.onClose();
-
+      environment.wating = 'confirmed';
     }catch(error:any){
-        if (error.code === 4001){
-             //user rejected the transaction
-
-             console.log("transactions rejected ")
-        }
+      this.confirmation = 'rejected';
+      console.log('rejected');
     };
-
+    if (this.confirmation == 'confirmed') {
+      environment.wating = 'confirmed';
+    }
+    if (this.confirmation == 'rejected') {
+      environment.wating = 'rejected';
+      this.operationService
+        .deleteOperation(elem0[0].operation.idOperation).subscribe(d=>{ this.onReload(); });
+    }
+    this.onReload()
   }
 
 
 
-  verifBc(){
-    this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
-      console.log(t);
-      if (t == 1) {
-        this.msg1 = 1;
-      } else {
-        this.msg1 = 0;
-      }
+  // verifBc(){
+  //   this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
+  //     console.log(t);
+  //     if (t == 1) {
+  //       this.msg1 = 1;
+  //     } else {
+  //       this.msg1 = 0;
+  //     }
 
-      if (
-        this.myForm.get('poidsLait')?.value != null &&
-        this.myForm.get('agriculteur')?.value != null &&
-        this.myForm.get('code')?.value != null &&
-        this.myForm.get('poidsLait')?.value >= 1 &&
-        this.myForm.get('cgu')?.value==true &&
-        t == 0 &&
-        this.myForm.get('code')?.value.toString().length >= 5
-      ) {
-        this.saveInBc();
-      }
+  //     if (
+  //       this.myForm.get('poidsLait')?.value != null &&
+  //       this.myForm.get('agriculteur')?.value != null &&
+  //       this.myForm.get('code')?.value != null &&
+  //       this.myForm.get('poidsLait')?.value >= 1 &&
+  //       this.myForm.get('cgu')?.value==true &&
+  //       t == 0 &&
+  //       this.myForm.get('code')?.value.toString().length >= 5
+  //     ) {
+  //       this.saveInBc();
+  //     }
 
-    });
-  }
+  //   });
+  // }
 
   onSubmit() {
     //this.submitted = true;
@@ -250,8 +243,8 @@ export class CreateOperationComponent implements OnInit {
       console.log(o);
       if (this.myForm.get('poidsLait')?.value <= o) {
         this.save();
+        this.onClose();
         this.msgErreur = 0;
-        this.verifBc();
       } else {
         this.msgErreur = 1;
         this.qteRsetLait = o;

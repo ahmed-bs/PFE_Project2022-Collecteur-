@@ -16,6 +16,7 @@ import {Location} from "@angular/common";
 import { OperationTank } from 'src/app/Models/operationTank';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from 'src/environments/environment';
 
 declare let require: any;
 declare let window: any;
@@ -37,7 +38,7 @@ export class ListeOperationComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
-
+  waiting = environment.wating;
   ELEMENT_DATA?:Operation[];
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;

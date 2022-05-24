@@ -18,6 +18,9 @@ import { Observable } from 'rxjs';
 import { OperationTank } from 'src/app/Models/operationTank';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { environment } from 'src/environments/environment';
 declare let require: any;
 declare let window: any;
 let Remplissage = require('../../../../../build/contracts/RetraitCol.json');
@@ -38,7 +41,7 @@ export class ListeOperationRetraitComponent implements OnInit {
   counter: number = 0;
   ShowToast: string = 'hide';
   erreur =0;
-
+  waiting = environment.wating;
   ELEMENT_DATA?:Operation[];
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
@@ -59,6 +62,10 @@ export class ListeOperationRetraitComponent implements OnInit {
       this.translateService.setDefaultLang('en');
       this.translateService.use(localStorage.getItem('lang') || 'en')
     }
+
+
+
+
 
 
     ngOnInit() {

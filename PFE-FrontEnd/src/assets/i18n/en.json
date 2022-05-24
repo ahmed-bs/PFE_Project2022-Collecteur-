@@ -241,7 +241,7 @@
     "tanks completely filled" : "tanks completely filled",
     "Add a new farmer" : "Add a new farmer",
     "Name" :  "Name",
-    "Farmer's first name" :  "Farmer's first name" ,
+    "Farmers first name" :  "Farmer's first name" ,
     "Farmer name" :"Farmer name" ,
     "Consult the farmer number" : "Consult the farmer number",
     "Table for farmers" : "Table for farmers" ,
@@ -275,7 +275,8 @@
     "Consult factory number" : "Consult factory number",
     "Table for factories" : "Table for factories",
     "Factory address" : "Factory address",
-    "Modify the factory number" : "Modify the factory number"
+    "Modify the factory number" : "Modify the factory number",
+    "Center management" : "Center management" 
 
 
      

@@ -248,7 +248,7 @@
 
      "Add a new farmer" : "Ajouter un nouveau agriculteur",
      "Name" : "Nom",
-     "Farmer's first name" : "Prénom de l'agriculteur",
+     "Farmers first name" : "Prénom de l'agriculteur",
      "Farmer name" :  "Nom de l'agriculteur" ,
      "Consult the farmer number" : "Consulter l'agriculteur numéro",
 
@@ -282,7 +282,8 @@
      "Consult factory number" : "Consulter l'usine numéro",
      "Table for factories" : "Table pour les usines",
      "Factory address" : "Adresse de l'usine",
-     "Modify the factory number" : "Modifier l'usine numéro" 
+     "Modify the factory number" : "Modifier l'usine numéro" ,
+     "Center management" : "Gestion des centres"
 
    
 

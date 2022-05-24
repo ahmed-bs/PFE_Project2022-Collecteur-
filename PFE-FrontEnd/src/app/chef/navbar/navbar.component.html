@@ -12,14 +12,21 @@
   </ul>
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <select class="custom-select" (change)="changeLang($any($event.target).value)">
-      <option value="en" [selected]="lang == 'en'">
-      English
-      </option>
-      <option value="fr" [selected]="lang == 'fr'">
-      French
-      </option>
-    </select>
+    <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
+      
+      <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'en'">
+          <img src="./../../../assets/img/us_flag.jpg" class="mr-2" height="12" alt="" /> English <span class="mdi mdi-chevron-down"></span>
+      </a>
+      <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'fr'">
+        <img src="./../../../assets/img/french_flag.jpg" class="mr-2" height="12" alt="" /> French <span class="mdi mdi-chevron-down"></span>
+    </a>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'en'">
+          <a class="dropdown-item" (click) ="changeLang();"><img src="./../../../assets/img/french_flag.jpg" alt="" height="16" /><span> French </span></a>
+      </div>
+      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'fr'">
+        <a class="dropdown-item" (click) ="changeLang()"><img src="./../../../assets/img/us_flag.jpg" alt="" height="16" /><span> English </span></a>
+    </div>
+  </li>
 
     <li class="nav-item">
       <a class="nav-link" data-widget="fullscreen"  role="button">
@@ -66,7 +73,7 @@
           <div class="media">
             <div class="media-body">
               <h3 class="dropdown-item-title" style="color:#FA5548 ;margin-bottom:18px;font-size:1.2em" >
-              Autres informations :
+              {{ "Other Information" | translate }} :
               </h3>
               <p class="text-sm text-muted"><i class="fas fa-solid fa-id-card " style="color:#43C6F4 ;margin-bottom:14px;"></i>&nbsp; CIN : {{cin}}</p>
               <p class="text-sm text-muted"><i class="fas fa-solid fa-phone"  style="color:#43C6F4 "></i>&nbsp; {{ "Phone" | translate }} : +216 {{tel}}</p>

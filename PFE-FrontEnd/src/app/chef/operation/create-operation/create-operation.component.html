@@ -8,7 +8,7 @@
   <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
   <form [formGroup]="myForm"  novalidate >
     <div class="form-row">
-      <div class="col-md-6 mb-3">
+      <div class="col-md-12 mb-3">
         <label>{{'Quantity of milk (minimum 1Kg)' | translate}}:<span style="color:red;">*</span></label>
               <input type="number"
                formControlName="poidsLait"
@@ -29,12 +29,13 @@
               </div>
 
             </div>
+          </div>
 
-
-            <div class="col-md-6 mb-3">
+            <div class="form-row">
+            <div class="col-md-12 mb-3">
               <label  for="inlineFormCustomSelect">{{'FarmerNumber' | translate}} : <span style="color:red;">*</span></label>
               <select formControlName="agriculteur" name="agriculteur"  class="custom-select mr-sm-2" id="agriculteur" >
-                <option disabled selected value [ngValue]="null">{{'Choose a' | translate}}{{'Farmer' | translate}}...</option>
+                <option disabled selected value [ngValue]="null">{{'Choose a' | translate}} {{'Farmer' | translate}}...</option>
                 <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">{{agriculteur.matricule}}</option>
               </select>
               <div

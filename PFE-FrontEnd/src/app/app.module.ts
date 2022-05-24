@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {MatTableModule} from '@angular/material/table';
+
+import {MatTableExporterModule } from 'mat-table-exporter';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -23,6 +26,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
   ],
   imports: [
+    MatTableExporterModule,
+    MatTableModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

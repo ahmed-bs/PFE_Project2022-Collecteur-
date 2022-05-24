@@ -1,7 +1,15 @@
 <div class="container p-30">
+  <div *ngIf ="waiting == 'startwaiting'">
+    <div style="margin-left: 550px;margin-top: 200px;">
+      <IMG SRC="./../../../../assets/waiting.gif" style="width: 100px;height: 100px;"><br/>
+        <br/> <br/>
+       <b style="margin-left: -80px;"> waiting for metamask confirmation ...</b>
+      </div>
+
+    </div>
   <div class="row">
  
-      <div class="col-md-12 main-datatable">
+      <div class="col-md-12 main-datatable"  *ngIf ="waiting != 'startwaiting'">
         <div class="card-header card-header-danger" id="title-Table">
           <h3 class="card-title" id="titre">{{'Table for filling operations' | translate}}</h3><br>
         </div>
@@ -18,7 +26,7 @@
                   </div> 
               </div>
               <div class="overflow-x">
-                  <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer"  mat-table matSort [dataSource]="dataSource!"  >
+                  <table matTableExporter #exporter="matTableExporter" style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer"  mat-table matSort [dataSource]="dataSource!"  >
                                <thead>
                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                </thead>
@@ -98,6 +106,12 @@
                     [pageSizeOptions]="[ 2, 3, 4, 5, 10, 25, 100]">
                   </mat-paginator>
               </div>
+          </div>
+          <div>
+            <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'data'})">Excel</button>
+            <button mat-raised-button (click)="exporter.exportTable('csv',{fileName:'data'})">CSV</button>
+            <button mat-raised-button (click)="exporter.exportTable('json',{fileName:'data'})">JSON</button>
+            <button mat-raised-button (click)="exporter.exportTable('txt',{fileName:'data'})">TEXT</button>
           </div>
       </div>
   </div>

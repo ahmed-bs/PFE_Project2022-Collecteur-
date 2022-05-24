@@ -34,6 +34,8 @@ import { DetailsOperationTankComponent } from './details-operation-tank/details-
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+
+import {MatTableExporterModule } from 'mat-table-exporter';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -55,7 +57,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     CommonModule,
     OperationRoutingModule,
-
+    MatTableExporterModule,
     FormsModule,
     HttpClientModule,
     MatDialogModule,
