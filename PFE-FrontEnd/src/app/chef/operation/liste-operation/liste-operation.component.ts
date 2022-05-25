@@ -98,22 +98,15 @@ export class ListeOperationComponent implements OnInit {
       if (this.Toast[0] == 'Success') {
         console.log('Toast est n est pas vide');
         this.showToast();
-      } else {
+      } else if (this.Toast[0] == 'Failed') {
+        console.log('Toast est n est pas vide');
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.showToast();
+      }
+      else{
         console.log('Toast Vide');
       }
-
-
-      
-    
-      // this.tankService.getQteLibreAujourdhui().subscribe(
-
-      //   o=>{
-      //   console.log(o);
-      //   if(o==0){
-
-      //   }
-      //   });
-
     }
 
 

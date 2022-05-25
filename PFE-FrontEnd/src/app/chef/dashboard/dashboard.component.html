@@ -38,86 +38,119 @@
           <!-- Small boxes (Stat box) -->
 
           <!-- /.row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <!-- Main row -->
           <div class="row">
             <section class="content">
               <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
+
+
                 <div class="row">
-                  <div class="col-md-4 col-sm-6 col-12">
-                    <div class="info-box" style="background-color:#EBF5FB ">
-                      <span class="info-box-icon"> <i class="ion ion-beaker"
-                          style="font-size:3em;color:#5DADE2  ;"></i></span>
-
-                      <div class="info-box-content">
-                        <span class="info-box-text" style="color:#5DADE2  ;"><b>{{'tanks completely filled' | translate
-                            }}</b></span>
-                        <span class="info-box-number" style="color:#5DADE2  ;">
-                          <h1>{{somTRemplis}}</h1>
-                        </span>
-
-                        <div class="progress" style=" height: 0.5rem">
-                          <div class="progress-bar" style="color:#5DADE2  ;width: 75%"></div>
+                  <div class="col-sm-6 col-xl-4">
+                    <div class="card">
+                      <div class="card-heading p-4">
+                        <div class="mini-stat-icon float-right">
+                          <i class="mdi mdi-cube-outline bg-primary text-white"></i>
                         </div>
-                        <span class="progress-description" style="color:#5DADE2  ;">
-                          {{prcTankRemplis}}% {{'tanks completely filled' | translate }}
-                        </span>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-md-4 col-sm-6 col-12">
-                    <div class="info-box" style="background-color:#EBF5FB ">
-                      <span class="info-box-icon"><i class="ion ion-beaker"
-                          style="font-size:3em;color:#5DADE2  ;"></i></span>
-
-                      <div class="info-box-content">
-                        <span class="info-box-text" style="color:#5DADE2  ;"><b>{{'Unfilled tanks' | translate
-                            }}</b></span>
-                        <span class="info-box-number" style="color:#5DADE2  ;">
-                          <h1>{{somTVide}}</h1>
-                        </span>
-
-                        <div class="progress" style=" height: 0.5rem">
-                          <div class="progress-bar" style="color:#5DADE2;width: 75%"></div>
+                        <div>
+                          <h5 class="font-16">
+                            {{ "TOTAL TANKS FULL" | translate }}
+                          </h5>
                         </div>
-                        <span class="progress-description" style="color:#5DADE2  ;">
-                          {{prcTankNonRemplis}} {{'Unfilled tanks' | translate }}
-                        </span>
-                      </div>
-                      <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-md-4 col-sm-6 col-12">
-                    <div class="info-box" style="background-color:#EBF5FB ">
-                      <span class="info-box-icon"><i class="ion ion-beaker"
-                          style="font-size:3em;color:#5DADE2  ;"></i></span>
-
-                      <div class="info-box-content">
-                        <span class="info-box-text" style="color:#5DADE2 "><b>{{'Tanks being filled' | translate
-                            }}</b></span>
-                        <span class="info-box-number" style="color:#5DADE2  ">
-                          <h1>{{somTEnCours}}</h1>
-                        </span>
-
-                        <div class="progress" style="color:gris;height: 0.5rem">
-                          <div class="progress-bar" style="color:#5DADE2  ;width:75%"></div>
+                        <h3 class="mt-4">{{ somTRemplis }}</h3>
+                        <div class="progress mt-4" style="height: 4px">
+                          <div
+                            class="progress-bar bg-primary"
+                            role="progressbar"
+                            style="width: {{ prcTankRemplis }}%"
+                            aria-valuenow="75"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
                         </div>
-                        <span class="progress-description" style="color:#5DADE2  ">
-                          {{prcTankEnCours}}% {{'Tanks being filled' | translate }}
-                        </span>
+                        <p class="text-muted mt-2 mb-0">
+                          <span class="float-right">{{ prcTankRemplis }}%</span>
+                        </p>
                       </div>
-                      <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                   </div>
-                  <!-- /.col -->
-                  <!-- /.col -->
+                  <div class="col-sm-6 col-xl-4">
+                    <div class="card">
+                      <div class="card-heading p-4">
+                        <div class="mini-stat-icon float-right">
+                          <i
+                            class="mdi mdi-briefcase-check bg-success text-white"
+                          ></i>
+                        </div>
+                        <div>
+                          <h5 class="font-16">
+                            {{ "TOTAL EMPTY TANKS" | translate }}
+                          </h5>
+                        </div>
+                        <h3 class="mt-4">{{ somTVide }}</h3>
+                        <div class="progress mt-4" style="height: 4px">
+                          <div
+                            class="progress-bar bg-success"
+                            role="progressbar"
+                            style="width: {{ prcTankNonRemplis }}%"
+                            aria-valuenow="88"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
+                        </div>
+                        <p class="text-muted mt-2 mb-0">
+                          <span class="float-right">{{ prcTankNonRemplis }}%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-xl-4">
+                    <div class="card">
+                      <div class="card-heading p-4">
+                        <div class="mini-stat-icon float-right">
+                          <i
+                            class="mdi mdi-tag-text-outline bg-warning text-white"
+                          ></i>
+                        </div>
+                        <div>
+                          <h5 class="font-16">
+                            {{ "TANKS FILLING UP" | translate }}
+                          </h5>
+                        </div>
+                        <h3 class="mt-4">{{ somTEnCours }}</h3>
+                        <div class="progress mt-4" style="height: 4px">
+                          <div
+                            class="progress-bar bg-warning"
+                            role="progressbar"
+                            style="width: {{ prcTankEnCours }}%"
+                            aria-valuenow="68"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                          ></div>
+                        </div>
+                        <p class="text-muted mt-2 mb-0">
+                          <span class="float-right">{{ prcTankEnCours }}%</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+      
                 </div>
+      
 
 
                 <div class="row">
