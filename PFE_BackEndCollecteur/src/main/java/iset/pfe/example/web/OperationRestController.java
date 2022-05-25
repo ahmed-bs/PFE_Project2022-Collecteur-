@@ -633,13 +633,13 @@ public class OperationRestController {
 						
 //						p=tank.getPoidActuel()-a;
 						a=a-tank.getPoidActuel();
-						
+						double rest=tank.getPoidActuel();
 						tank.setPoidActuel(0);
 						tankRepository.save(tank);
 						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
 						opt.setTank(tank);
-						opt.setQteInsereTank(a*-1);
+						opt.setQteInsereTank(rest*-1);
 						operationTankRepository.save(opt);
 						
 						//operation.getTanks().add(tank);
@@ -1052,6 +1052,7 @@ public class OperationRestController {
    // operation.setCode(operation.getCode()+operationRepository.findAll().size());
 	return operationRepository.save(operation);
 }
+
 
 	
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.PUT)
