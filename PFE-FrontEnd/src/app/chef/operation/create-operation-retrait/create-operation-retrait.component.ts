@@ -241,6 +241,19 @@ export class CreateOperationRetraitComponent implements OnInit {
   // }
 
   onSubmit() {
+    if (this.myForm.get('poidsLait')?.value == null) {
+      this.msg = 'vous devez remplir le formulaire !!';
+    } else {
+      this.msg = '';
+    }
+
+    if (this.myForm.get('usine')?.value == null) {
+      this.msg = 'vous devez remplir le formulaire !!';
+    } else {
+      this.msg = '';
+    }
+
+
     if (this.myForm.get('cgu')?.value == true) {
       this.msg4 = 0;
     } else {
@@ -250,6 +263,12 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.tankService.getQteTanks().subscribe((a) => {
       this.tankService.getQteG().subscribe((o) => {
         console.log(o);
+        if (
+          this.myForm.get('poidsLait')?.value != null &&
+          this.myForm.get('usine')?.value != null &&
+          this.myForm.get('cgu')?.value==true &&
+          this.myForm.get('poidsLait')?.value > 0
+        ) {
         if (this.myForm.get('poidsLait')?.value <= o) {
           this.save();
           this.onClose();
@@ -260,7 +279,9 @@ export class CreateOperationRetraitComponent implements OnInit {
           this.qteActLaitTank = o;
           this.qteMax = a;
         }
+      }
       });
+ 
     });
   }
 
