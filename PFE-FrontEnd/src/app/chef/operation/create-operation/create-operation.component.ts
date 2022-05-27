@@ -66,7 +66,7 @@ export class CreateOperationComponent implements OnInit {
     private router: Router,
     private location: Location,
     private dialogClose: MatDialog,
-  ) {    
+  ) {
     this.translateService.setDefaultLang('en');
   this.translateService.use(localStorage.getItem('lang') || 'en') }
 
@@ -134,7 +134,7 @@ export class CreateOperationComponent implements OnInit {
             idAgriculteur: this.myForm.get('agriculteur')?.value,
           },
         }).subscribe(async (o) => {
-              this.tab = Object.values(o);           
+              this.tab = Object.values(o);
               this.operationService.getOpTank(this.tab[0]).subscribe(async (i) => {
                 this.tabTankId = Object.values(i);
                 await this.saveInBc(this.tabTankId,this.tabTankId.length)
@@ -146,7 +146,7 @@ export class CreateOperationComponent implements OnInit {
                       "l'opération a été rejetée",
                     ])
                   );
-             
+
                 }else{
                   localStorage.setItem(
                     'Toast',
@@ -155,7 +155,7 @@ export class CreateOperationComponent implements OnInit {
                       'Une operation a été ajouté avec succès',
                     ])
                   );
-                }  
+                }
               });
             },
             (error) => {
@@ -232,7 +232,7 @@ export class CreateOperationComponent implements OnInit {
   // }
 
   onSubmit() {
-    //this.submitted = true; 
+    //this.submitted = true;
     if (this.myForm.get('poidsLait')?.value == null) {
       this.msg = 'vous devez remplir le formulaire !!';
     } else {
@@ -256,6 +256,24 @@ export class CreateOperationComponent implements OnInit {
     else{
       this.msg4=1;
     }
+    this.tankService.getTanksQteLibre().subscribe((o) => {
+    if (this.myForm.get('poidsLait')?.value <= o) {
+      this.msgErreur = 0;
+    }
+      else{
+        this.msgErreur = 1;
+        this.qteRsetLait = o;
+      }
+    });
+
+
+    this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
+      console.log(t);
+      if (t == 1) {
+        this.msg1 = 1;
+      } else {
+        this.msg1 = 0;
+      }
 
     this.tankService.getTanksQteLibre().subscribe((o) => {
       console.log(o);
@@ -264,7 +282,8 @@ export class CreateOperationComponent implements OnInit {
         this.myForm.get('agriculteur')?.value != null &&
         this.myForm.get('poidsLait')?.value > 0 &&
         this.myForm.get('cgu')?.value==true &&
-        this.myForm.get('code')?.value != null 
+        t==0 &&
+        this.myForm.get('code')?.value != null
       ) {
       if (this.myForm.get('poidsLait')?.value <= o) {
 
@@ -272,14 +291,16 @@ export class CreateOperationComponent implements OnInit {
         this.save();
         this.msgErreur = 0;
         this.onClose();
-      
-      } else {
+
+      }
+      else {
         this.msgErreur = 1;
         this.qteRsetLait = o;
       }
     }
-    });
 
+    });
+  });
   }
 
   gotoList() {

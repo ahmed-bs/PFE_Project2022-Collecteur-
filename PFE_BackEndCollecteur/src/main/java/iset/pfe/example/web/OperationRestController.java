@@ -50,6 +50,10 @@ public class OperationRestController {
 				tankRepository.save(t);
 			}
 		}
+		
+	
+		
+		
 		return operationRepository.findAll();
 	}
 	
@@ -190,12 +194,29 @@ public class OperationRestController {
 	public void deleteOperation(@PathVariable Integer idOperation) {
 		Optional<Operation> op= operationRepository.findById(idOperation);
 		Operation o=operationRepository.findById(idOperation).get();
+		
+		List lista=new ArrayList<>();
+		
+			Operation oper=operationRepository.findById(idOperation).get();
+			
+			for(int k=0;k<tankRepository.findAll().size();k++) {
+				if(tankRepository.findAll().get(k).getCodeTank().contains(oper.getCode())) {
+					tankRepository.findAll().get(k).getCodeTank().remove(oper.getCode());
+				}
+				else {
+					System.out.println("false");
+				}
+				}
+				
+		
 		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
 			OperationTank opt=operationRepository.find(idOperation).get(i);
 			if(idOperation==opt.getOperation().getIdOperation()) {
 		
     		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
     		System.out.println(t.getIdTank());
+    		
+    		
     		
     		for(int j=0;j<t.getCodeTank().size();j++) {
 				o.setCodeRemplissage(null);
@@ -324,6 +345,129 @@ public class OperationRestController {
 	}
 	
 	
+	//zetha le 27-05-2022
+	
+	
+	for(int j=0;j<tankRepository.findAll().size();j++){
+		Tank tank=tankRepository.findAll().get(j);
+		
+		s=tank.getPoidVide()-tank.getPoidActuel();
+	if(tank.getPoidActuel()==0 && tank.getPoidActuel()<tank.getPoidVide() && a>0  && a>=(tank.getPoidVide()-tank.getPoidActuel()) && tank.getDateIns()!=null   ) {
+		 String dateP=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+		 String dateP2=tank.getDateIns().charAt(8)+""+tank.getDateIns().charAt(9);
+	 if(  Integer.parseInt(dateP2)==Integer.parseInt(dateP)) {
+		diff=tank.getPoidVide()-tank.getPoidActuel();
+		
+		tank.setPoidActuel(diff);
+		tank.setDateIns(currentDateTime);
+		tank.getCodeTank().add(operation.getCode());
+		a=a-diff;
+		tankRepository.save(tank);
+		
+		OperationTank opt=new OperationTank(currentDateTime);
+		opt.setOperation(operation);
+		opt.setTank(tank);
+		opt.setQteInsereTank(diff);
+		opt.setCodeLiaison(operation.getCode());
+		operationTankRepository.save(opt);
+	
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a1111="+a);	
+		
+		//operation.getTanks().add(tank);
+		
+		//operationRepository.save(operation);
+	}
+	}
+	
+
+	if(tank.getPoidActuel()>0 && tank.getPoidActuel()<tank.getPoidVide() && a>0  && a>=(tank.getPoidVide()-tank.getPoidActuel()) && tank.getDateIns()!=null   ) {
+		 String dateP=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+		 String dateP2=tank.getDateIns().charAt(8)+""+tank.getDateIns().charAt(9);
+	 if(  Integer.parseInt(dateP2)==Integer.parseInt(dateP)) {
+		diff=tank.getPoidVide()-tank.getPoidActuel();
+		
+		tank.setPoidActuel(tank.getPoidActuel()+diff);
+		tank.setDateIns(currentDateTime);
+		tank.getCodeTank().add(operation.getCode());
+		a=a-diff;
+		tankRepository.save(tank);
+		
+		OperationTank opt=new OperationTank(currentDateTime);
+		opt.setOperation(operation);
+		opt.setTank(tank);
+		opt.setQteInsereTank(diff);
+		opt.setCodeLiaison(operation.getCode());
+		operationTankRepository.save(opt);
+	
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a1111="+a);	
+		
+		//operation.getTanks().add(tank);
+		
+		//operationRepository.save(operation);
+	}
+	}
+	}
+	
+	
+	for(int j=0;j<tankRepository.findAll().size();j++){
+		Tank tank=tankRepository.findAll().get(j);
+		
+		s=tank.getPoidVide()-tank.getPoidActuel();
+	if(tank.getPoidActuel()==0 && tank.getPoidActuel()<tank.getPoidVide() && a>0  && a>=(tank.getPoidVide()-tank.getPoidActuel()) && tank.getDateIns()==null   ) {
+		 
+		diff=tank.getPoidVide()-tank.getPoidActuel();
+		
+		tank.setPoidActuel(diff);
+		tank.setDateIns(currentDateTime);
+		tank.getCodeTank().add(operation.getCode());
+		a=a-diff;
+		tankRepository.save(tank);
+		
+		OperationTank opt=new OperationTank(currentDateTime);
+		opt.setOperation(operation);
+		opt.setTank(tank);
+		opt.setQteInsereTank(diff);
+		opt.setCodeLiaison(operation.getCode());
+		operationTankRepository.save(opt);
+	
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a1111="+a);	
+		
+		//operation.getTanks().add(tank);
+		
+		//operationRepository.save(operation);
+	}
+	if(tank.getPoidActuel()>0 && tank.getPoidActuel()<tank.getPoidVide() && a>0  && a>=(tank.getPoidVide()-tank.getPoidActuel()) && tank.getDateIns()==null   ) {
+		 
+		diff=tank.getPoidVide()-tank.getPoidActuel();
+		
+		tank.setPoidActuel(tank.getPoidActuel()+diff);
+		tank.setDateIns(currentDateTime);
+		tank.getCodeTank().add(operation.getCode());
+		a=a-diff;
+		tankRepository.save(tank);
+		
+		OperationTank opt=new OperationTank(currentDateTime);
+		opt.setOperation(operation);
+		opt.setTank(tank);
+		opt.setQteInsereTank(diff);
+		opt.setCodeLiaison(operation.getCode());
+		operationTankRepository.save(opt);
+	
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a1111="+a);	
+		
+		//operation.getTanks().add(tank);
+		
+		//operationRepository.save(operation);
+	}
+	}
+	
+	
+	
+	
 
 	for(int j=0;j<tankRepository.findAll().size();j++){
 		Tank tank=tankRepository.findAll().get(j);
@@ -348,6 +492,9 @@ public class OperationRestController {
 		opt.setCodeLiaison(operation.getCode());
 		operationTankRepository.save(opt);
 	
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a1="+a);	
+		
 		//operation.getTanks().add(tank);
 		
 		//operationRepository.save(operation);
@@ -365,6 +512,8 @@ public class OperationRestController {
 		tank.setPoidActuel(tank.getPoidActuel()+a);
 		tank.setDateIns(currentDateTime);
 		tank.getCodeTank().add(operation.getCode());
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a2="+a);
 		tankRepository.save(tank);
 		
 		OperationTank opt=new OperationTank(currentDateTime);
@@ -374,6 +523,7 @@ public class OperationRestController {
 		opt.setCodeLiaison(operation.getCode());
 		operationTankRepository.save(opt);
 		a=0;
+		
 	}
 	}
 	}
@@ -390,6 +540,8 @@ public class OperationRestController {
 		
 		tank.setPoidActuel(tank.getPoidVide());
 		tank.setDateIns(currentDateTime);
+		System.out.println("id tank : "+tank.getIdTank());
+		System.out.println(" a3="+a);	
 		a=a-s;
 		tank.getCodeTank().add(operation.getCode());
 		tankRepository.save(tank);
@@ -405,22 +557,29 @@ public class OperationRestController {
 		
 		//operationRepository.save(operation);
 	}
-	if(tank.getPoidActuel()>0 && a<tank.getPoidVide() && a>0  && tank.getPoidVide()-tank.getPoidActuel()<a) {
-		diff=tank.getPoidVide()-tank.getPoidActuel();
-		
-		tank.setPoidActuel(tank.getPoidVide());
-		tank.setDateIns(currentDateTime);
-		a=a-s;
-		tank.getCodeTank().add(operation.getCode());
-		tankRepository.save(tank);
-		
-		OperationTank opt=new OperationTank(currentDateTime);
-		opt.setOperation(operation);
-		opt.setTank(tank);
-		opt.setQteInsereTank(diff);
-		opt.setCodeLiaison(operation.getCode());
-		operationTankRepository.save(opt);
-	}
+	
+	
+//	if(tank.getPoidActuel()>0 && a<tank.getPoidVide() && a>0  && tank.getPoidVide()-tank.getPoidActuel()<a) {
+//		diff=tank.getPoidVide()-tank.getPoidActuel();
+//		
+//		tank.setPoidActuel(tank.getPoidVide());
+//		tank.setDateIns(currentDateTime);
+//		System.out.println("id tank : "+tank.getIdTank());
+//		System.out.println(" a4="+a);	
+//		a=a-s;
+//		tank.getCodeTank().add(operation.getCode());
+//		tankRepository.save(tank);
+//		
+//		OperationTank opt=new OperationTank(currentDateTime);
+//		opt.setOperation(operation);
+//		opt.setTank(tank);
+//		opt.setQteInsereTank(diff);
+//		opt.setCodeLiaison(operation.getCode());
+//		operationTankRepository.save(opt);
+//		
+//		
+//		
+//	}
 	}
 	
 		System.out.println("hahahaha : "+a);
@@ -441,12 +600,14 @@ public class OperationRestController {
 					operationTankRepository.save(opt);
 					a=a-tank1.getPoidVide();
 					System.out.println("id tank : "+tank1.getIdTank());
-					System.out.println(" a="+a);	
+					System.out.println(" a5="+a);	
 				}
+			}
 				
 				
-				
-				if(tank1.getPoidActuel()==0 && a<=120 && a>0) {
+				for(int i=0;i<tankRepository.findAll().size();i++) {
+					Tank tank1=tankRepository.findAll().get(i);
+				if(tank1.getPoidActuel()==0 && a<=tank1.getPoidVide() && a>0) {
 					
 					tank1.setPoidActuel(a);
 					tank1.setDateIns(currentDateTime);
@@ -459,13 +620,14 @@ public class OperationRestController {
 					opt.setQteInsereTank(a);
 					opt.setCodeLiaison(operation.getCode());
 					operationTankRepository.save(opt);
-					a=0;
 					System.out.println("id tank : "+tank1.getIdTank());
-					System.out.println(" a="+a);	
+					System.out.println(" a6="+a);	
+					a=0;
 					
 				}
+				}
 				
-			}
+			
 			
 			
 			for(int i=0;i<tankRepository.findAll().size();i++) {
@@ -483,29 +645,33 @@ public class OperationRestController {
 					opt.setQteInsereTank(diff);
 					opt.setCodeLiaison(operation.getCode());
 					operationTankRepository.save(opt);
+					System.out.println("id tank : "+tank1.getIdTank());
+					System.out.println(" a7-1="+a);	
 					a=a-tank1.getPoidVide();
 					System.out.println("id tank : "+tank1.getIdTank());
-					System.out.println(" a="+a);	
+					System.out.println(" a7="+a);	
 				}
 				
 				
-				if(tank1.getPoidActuel()==0 && a<100 && a>0  && tank1.getDateIns()==null) {
-					tank1.setPoidActuel(a);
-					tank1.setDateIns(currentDateTime);
-					tankRepository.save(tank1);
-					
-					OperationTank opt=new OperationTank(currentDateTime);
-					opt.setOperation(operation);
-					opt.setTank(tank1);
-					opt.setQteInsereTank(a);
-					opt.setCodeLiaison(operation.getCode());
-					operationTankRepository.save(opt);
-					a=0;
-					System.out.println("id tank : "+tank1.getIdTank());
-					System.out.println(" a="+a);	
-					
-				}
-				
+//				if(tank1.getPoidActuel()==0 && a<100 && a>0  && tank1.getDateIns()==null) {
+//					tank1.setPoidActuel(a);
+//					tank1.setDateIns(currentDateTime);
+//					tankRepository.save(tank1);
+//					
+//					OperationTank opt=new OperationTank(currentDateTime);
+//					opt.setOperation(operation);
+//					opt.setTank(tank1);
+//					opt.setQteInsereTank(a);
+//					opt.setCodeLiaison(operation.getCode());
+//					operationTankRepository.save(opt);
+//					System.out.println("id tank : "+tank1.getIdTank());
+//					System.out.println(" a8-1="+a);	
+//					a=0;
+//					System.out.println("id tank : "+tank1.getIdTank());
+//					System.out.println(" a8="+a);	
+//					
+//				}
+//				
 				
 				
 			}
@@ -534,9 +700,51 @@ public class OperationRestController {
 					}
 	}
 		
+		for(int i=0;i<operationTankRepository.findAll().size();i++) {
+			OperationTank opt=operationTankRepository.findAll().get(i);
+			if(opt.getQteInsereTank()==0) {
+				operationTankRepository.deleteOpTanks();
+				System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+			}
+		}
+		
+		
 	operation.setCode(operation.getCode());
 	operationRepository.save(operation);
 	
+	List o=new ArrayList<>();
+	o.add(0, 10002);
+	
+	System.out.println("########## 1");
+	System.out.println(tankRepository.findAll().get(0).getCodeTank());
+	System.out.println("########## 2");
+	System.out.println(tankRepository.findAll().get(0).getCodeTank().get(0));
+	System.out.println("########## 3");
+	System.out.println(tankRepository.findAll().get(0).getCodeTank().listIterator().toString());
+	System.out.println("########## 4");
+	System.out.println(tankRepository.findAll().get(0).getCodeTank().contains(o));
+	System.out.println("########## 4");
+	System.out.println(tankRepository.findAll().get(0).getCodeTank().contains(10002));
+	
+	System.out.println("########## 5");
+	List lista=new ArrayList<>();
+	for(int k=0;k<tankRepository.findAll().size();k++) {
+	lista.add(tankRepository.findAll().get(k).getCodeTank());
+	}
+	
+	System.out.println(lista.toString());
+	
+	System.out.println("***********************************************************************");
+	
+	
+	System.out.println("########## 6");
+	System.out.println(operationRepository.find(8));
+	List L=new ArrayList<>();
+	for(int i=0;i<operationRepository.find(8).size();i++) {
+		OperationTank opt=operationRepository.find(8).get(i);
+		L.add(opt.getCodeLiaison());
+	}
+	System.out.println(L.toString());
 	
 		return operation;
 	}
@@ -549,6 +757,9 @@ public class OperationRestController {
 	    double s=0;
 		double a=operation.getPoidsLait();
 		double p=0;
+		
+		List<Integer> liste=new ArrayList<>();
+
 		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	     String currentDateTime = dateFormatter.format(new Date());
 	     System.out.println(currentDateTime);
@@ -587,6 +798,15 @@ public class OperationRestController {
 				opt.setOperation(operation);
 				opt.setTank(tank);
 				
+				for(int n=0;n<tank.getCodeTank().size();n++) {
+					if(liste.contains(tank.getCodeTank().get(n))) {
+		            
+					}
+				else {
+					liste.add(tank.getCodeTank().get(n));
+				}
+				}
+				
 				opt.setQteInsereTank(a*-1);
 				operationTankRepository.save(opt);
 				a=0;
@@ -599,6 +819,16 @@ public class OperationRestController {
 				
 				tank.setPoidActuel(p);
 				tankRepository.save(tank);
+				
+				for(int n=0;n<tank.getCodeTank().size();n++) {
+					if(liste.contains(tank.getCodeTank().get(n))) {
+		            
+					}
+				else {
+					liste.add(tank.getCodeTank().get(n));
+				}
+				}
+				
 				OperationTank opt=new OperationTank(currentDateTime);
 				opt.setOperation(operation);
 				opt.setTank(tank);
@@ -636,6 +866,16 @@ public class OperationRestController {
 						double rest=tank.getPoidActuel();
 						tank.setPoidActuel(0);
 						tankRepository.save(tank);
+						
+						for(int n=0;n<tank.getCodeTank().size();n++) {
+							if(liste.contains(tank.getCodeTank().get(n))) {
+				            
+							}
+						else {
+							liste.add(tank.getCodeTank().get(n));
+						}
+						}
+						
 						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
 						opt.setTank(tank);
@@ -653,6 +893,16 @@ public class OperationRestController {
 				
 				tank.setPoidActuel(p);
 				tankRepository.save(tank);
+				
+				for(int n=0;n<tank.getCodeTank().size();n++) {
+					if(liste.contains(tank.getCodeTank().get(n))) {
+		            
+					}
+				else {
+					liste.add(tank.getCodeTank().get(n));
+				}
+				}
+				
 				OperationTank opt=new OperationTank(currentDateTime);
 				opt.setOperation(operation);
 				opt.setTank(tank);
@@ -669,6 +919,16 @@ public class OperationRestController {
 				
 				tank.setPoidActuel(p);
 				tankRepository.save(tank);
+				
+				for(int n=0;n<tank.getCodeTank().size();n++) {
+					if(liste.contains(tank.getCodeTank().get(n))) {
+		            
+					}
+				else {
+					liste.add(tank.getCodeTank().get(n));
+				}
+				}
+				
 				OperationTank opt=new OperationTank(currentDateTime);
 				opt.setOperation(operation);
 				opt.setTank(tank);
@@ -702,6 +962,16 @@ public class OperationRestController {
 			a=a-tank.getPoidActuel();
 			tank.setPoidActuel(0);
 			tankRepository.save(tank);
+			
+			for(int n=0;n<tank.getCodeTank().size();n++) {
+				if(liste.contains(tank.getCodeTank().get(n))) {
+	            
+				}
+			else {
+				liste.add(tank.getCodeTank().get(n));
+			}
+			}
+			
 			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
@@ -716,6 +986,16 @@ public class OperationRestController {
 			a=a-tank.getPoidActuel();
 			tank.setPoidActuel(0);
 			tankRepository.save(tank);
+			
+			for(int n=0;n<tank.getCodeTank().size();n++) {
+				if(liste.contains(tank.getCodeTank().get(n))) {
+	            
+				}
+			else {
+				liste.add(tank.getCodeTank().get(n));
+			}
+			}
+			
 			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
@@ -747,6 +1027,15 @@ public class OperationRestController {
 						p=tank1.getPoidActuel();
 						tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
 						tankRepository.save(tank1);
+						
+						for(int n=0;n<tank1.getCodeTank().size();n++) {
+							if(liste.contains(tank1.getCodeTank().get(n))) {
+				            
+							}
+						else {
+							liste.add(tank1.getCodeTank().get(n));
+						}
+						}
 						//operation.getTanks().add(tank1);
 						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
@@ -763,6 +1052,15 @@ public class OperationRestController {
 						p=tank1.getPoidActuel();
 						tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
 						tankRepository.save(tank1);
+						
+						for(int n=0;n<tank1.getCodeTank().size();n++) {
+							if(liste.contains(tank1.getCodeTank().get(n))) {
+				            
+							}
+						else {
+							liste.add(tank1.getCodeTank().get(n));
+						}
+						}
 						//operation.getTanks().add(tank1);
 						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
@@ -780,6 +1078,16 @@ public class OperationRestController {
 						
 						tank1.setPoidActuel(tank1.getPoidActuel()-a);
 						tankRepository.save(tank1);
+						
+						for(int n=0;n<tank1.getCodeTank().size();n++) {
+							if(liste.contains(tank1.getCodeTank().get(n))) {
+				            
+							}
+						else {
+							liste.add(tank1.getCodeTank().get(n));
+						}
+						}
+						
 						//operation.getTanks().add(tank1);
 						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
@@ -798,6 +1106,16 @@ public class OperationRestController {
 						
 						tank1.setPoidActuel(tank1.getPoidActuel()-a);
 						tankRepository.save(tank1);
+						
+						for(int n=0;n<tank1.getCodeTank().size();n++) {
+							if(liste.contains(tank1.getCodeTank().get(n))) {
+				            
+							}
+						else {
+							liste.add(tank1.getCodeTank().get(n));
+						}
+						}
+						
 						//operation.getTanks().add(tank1);
 						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
@@ -842,6 +1160,16 @@ public class OperationRestController {
 			
 			tank.setPoidActuel(p);
 			tankRepository.save(tank);
+			
+			for(int n=0;n<tank.getCodeTank().size();n++) {
+				if(liste.contains(tank.getCodeTank().get(n))) {
+	            
+				}
+			else {
+				liste.add(tank.getCodeTank().get(n));
+			}
+			}
+			
 			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
@@ -859,6 +1187,16 @@ public class OperationRestController {
 			
 			tank.setPoidActuel(p);
 			tankRepository.save(tank);
+			
+			for(int n=0;n<tank.getCodeTank().size();n++) {
+				if(liste.contains(tank.getCodeTank().get(n))) {
+	            
+				}
+			else {
+				liste.add(tank.getCodeTank().get(n));
+			}
+			}
+			
 			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
@@ -881,6 +1219,15 @@ public class OperationRestController {
 			
 			tank.setPoidActuel(p);
 			tankRepository.save(tank);
+			
+			for(int n=0;n<tank.getCodeTank().size();n++) {
+				if(liste.contains(tank.getCodeTank().get(n))) {
+	            
+				}
+			else {
+				liste.add(tank.getCodeTank().get(n));
+			}
+			}
 			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
@@ -906,6 +1253,16 @@ public class OperationRestController {
 		a=a-tank.getPoidActuel();
 		tank.setPoidActuel(0);
 		tankRepository.save(tank);
+		
+		for(int n=0;n<tank.getCodeTank().size();n++) {
+			if(liste.contains(tank.getCodeTank().get(n))) {
+            
+			}
+		else {
+			liste.add(tank.getCodeTank().get(n));
+		}
+		}
+		
 		OperationTank opt=new OperationTank(currentDateTime);
 		opt.setOperation(operation);
 		opt.setTank(tank);
@@ -924,6 +1281,16 @@ public class OperationRestController {
 				p=tank1.getPoidActuel();
 				tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
 				tankRepository.save(tank1);
+				
+				for(int n=0;n<tank1.getCodeTank().size();n++) {
+					if(liste.contains(tank1.getCodeTank().get(n))) {
+	                
+					}
+				else {
+					liste.add(tank1.getCodeTank().get(n));
+				}
+				}
+				
 				//operation.getTanks().add(tank1);
 				OperationTank opt=new OperationTank(currentDateTime);
 				opt.setOperation(operation);
@@ -940,6 +1307,16 @@ public class OperationRestController {
 				
 				tank1.setPoidActuel(tank1.getPoidActuel()-a);
 				tankRepository.save(tank1);
+				
+				for(int n=0;n<tank1.getCodeTank().size();n++) {
+					if(liste.contains(tank1.getCodeTank().get(n))) {
+	                
+					}
+				else {
+					liste.add(tank1.getCodeTank().get(n));
+				}
+				}
+				
 				//operation.getTanks().add(tank1);
 				OperationTank opt=new OperationTank(currentDateTime);
 				opt.setOperation(operation);
@@ -966,6 +1343,16 @@ public class OperationRestController {
 					p=tank1.getPoidActuel();
 					tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
 					tankRepository.save(tank1);
+					
+					for(int n=0;n<tank1.getCodeTank().size();n++) {
+						if(liste.contains(tank1.getCodeTank().get(n))) {
+		                
+						}
+					else {
+						liste.add(tank1.getCodeTank().get(n));
+					}
+					}
+					
 					//operation.getTanks().add(tank1);
 					OperationTank opt=new OperationTank(currentDateTime);
 					opt.setOperation(operation);
@@ -982,6 +1369,17 @@ public class OperationRestController {
 					
 					tank1.setPoidActuel(tank1.getPoidActuel()-a);
 					tankRepository.save(tank1);
+					
+					for(int n=0;n<tank1.getCodeTank().size();n++) {
+						if(liste.contains(tank1.getCodeTank().get(n))) {
+		                
+						}
+					else {
+						liste.add(tank1.getCodeTank().get(n));
+					}
+					}
+					
+					
 					//operation.getTanks().add(tank1);
 					OperationTank opt=new OperationTank(currentDateTime);
 					opt.setOperation(operation);
@@ -1018,38 +1416,38 @@ public class OperationRestController {
 							tankRepository.save(tank2);
 							}
 					}
-			for(int i=0;i<tankRepository.findAll().size();i++) {
-				Tank tank2=tankRepository.findAll().get(i);
-				List<Integer> liste=new ArrayList<>();
-				if(tank2.getPoidActuel()==0) {
-					for(int j=0;j<tank2.getCodeTank().size();j++) {
-						liste.add(tank2.getCodeTank().get(j));
-						operation.setCodeRemplissage(liste);
-						operationRepository.save(operation);
-					}
-					tank2.setCodeTank(null);
-						tankRepository.save(tank2);
-				}
-			}
+//			for(int i=0;i<tankRepository.findAll().size();i++) {
+//				Tank tank2=tankRepository.findAll().get(i);
+//				List<Integer> liste=new ArrayList<>();
+//				if(tank2.getPoidActuel()>=0) {
+//					for(int j=0;j<tank2.getCodeTank().size();j++) {
+//						liste.add(tank2.getCodeTank().get(j));
+//						operation.setCodeRemplissage(liste);
+//						operationRepository.save(operation);
+//					}
+//				}
+//				
+//				
+//			}
 			
 			for(int i=0;i<tankRepository.findAll().size();i++) {
-				List<Integer> liste = new ArrayList<>();
+				
 				Tank tank2=tankRepository.findAll().get(i);
-				if(tank2.getPoidActuel()>0) {
-				for(int j=0;j<tank2.getCodeTank().size();j++) {
-					liste.add(tank2.getCodeTank().get(j));
-					operation.setCodeRemplissage(liste);
-					operationRepository.save(operation);
-					
+				if(tank2.getPoidActuel()==0) {
+					tank2.setCodeTank(null);
+					tankRepository.save(tank2);
+				
+				
 					System.out.println("ye <3 <3 <3 <3 <3 <3 <3 <3 <3 ===> aaaaaaaa  bbbbbbbbb "+liste);
 					System.out.println("ye <3 <3 <3 <3 <3 <3 <3 <3 <3 ===> aaaaaaaa  bbbbbbbbb "+operation.getCodeRemplissage());
 				}
 				System.out.println("ye <3 <3 <3 <3 <3 <3 <3 <3 <3 ===> "+operation.getCodeRemplissage());
-			}
+			
 			}
 
-		
+		System.out.println("la liste est ==========> "+liste.toString());
    // operation.setCode(operation.getCode()+operationRepository.findAll().size());
+		operation.setCodeRemplissage(liste);
 	return operationRepository.save(operation);
 }
 
