@@ -76,7 +76,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		a1.setMatricule("als55slql");
 		agriculteurRepository.save(a1);
 		
-		Usine u1=new Usine("Usine 1", "bizerte");
+		Usine u1=new Usine("Usine 1", "bizerte",28799455);
 		usineRepository.save(u1);
 		
 //		Operation o1=new Operation(120, currentDateTime2, "Remplissage", 10006);

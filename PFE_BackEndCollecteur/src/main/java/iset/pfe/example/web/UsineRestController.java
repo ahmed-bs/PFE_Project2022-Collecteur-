@@ -48,7 +48,19 @@ public class UsineRestController {
 		}
 		return msg;
 	}
-	
+	// si le nom de l'usine existe ou nn 
+	@RequestMapping(value="/tel/{tel}",method = RequestMethod.GET)
+	public int getTelUsineUtilse(@PathVariable Integer tel){
+		int msg=0;
+		for(int i=0;i<usineRepository.findAll().size();i++) {
+			Usine t=usineRepository.findAll().get(i);
+			if(tel.equals(t.getTel())) {
+				msg=1;
+			}
+			
+		}
+		return msg;
+	}
 	@RequestMapping(value="/usines/{idUsine}",method = RequestMethod.GET)
     public Usine getUsine(@PathVariable Integer idUsine) {
 		Optional<Usine> usine = usineRepository.findById(idUsine);
@@ -78,6 +90,7 @@ public class UsineRestController {
     	
 		u.setAdresse(usines.getAdresse());
 		u.setNomUsine(usines.getNomUsine());
+		u.setTel(usines.getTel());
 		usineRepository.save(u);
 			
 	  	return u;
