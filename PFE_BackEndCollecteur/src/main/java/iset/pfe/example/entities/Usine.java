@@ -20,7 +20,24 @@ public class Usine implements Serializable{
 	private Integer idUsine;
 	private String nomUsine;
 	private String adresse;
+	private Integer tel;
 	
+	
+	public Integer getTel() {
+		return tel;
+	}
+
+	public void setTel(Integer tel) {
+		this.tel = tel;
+	}
+
+	public Set<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(Set<Operation> operations) {
+		this.operations = operations;
+	}
 	@OneToMany(mappedBy="usine",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Operation> operations;
@@ -61,6 +78,13 @@ public class Usine implements Serializable{
 	}
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+
+	public Usine( String nomUsine, String adresse, Integer tel) {
+		super();
+		this.nomUsine = nomUsine;
+		this.adresse = adresse;
+		this.tel = tel;
 	}
 	
 }
