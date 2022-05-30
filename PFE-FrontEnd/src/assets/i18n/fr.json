@@ -224,7 +224,7 @@
      "Maximum valid capacity" : "Contenance maximale valide",
 
      "Consult tank number" : "Consulter le tank numéro",
-     "tank status" : "Etat du tank",
+     "tank status" : "Etat ",
      "Table for tanks" : "Table pour les tanks",
      "Modify the tank number" : "Modifier le tank numéro",
 
@@ -254,7 +254,7 @@
 
      "Table for farmers" : "Table pour les agriculteurs",
      "Change farmer number" : "Modifier l'agriculteur numéro",
-     "FarmerNumber" :  "Matricule de l'agriculteur",
+     "FarmerNumber" :  "Agriculteur",
      "invalid farmer" : "Invalide agriculteur" ,
      "valid farmer" : "Agriculteur valide",
      "Invalid code" : "Code invalide",
