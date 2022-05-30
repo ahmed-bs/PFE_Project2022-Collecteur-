@@ -98,11 +98,11 @@ export class ListeTankComponent implements OnInit {
             this.onClose();
        
           }
-      let confirmation =confirm("Êtes-vous sûr de supprimer le tank numero :"+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le tank numéro :"+id+" ??")
       if(confirmation)
       this.tankService.deleteTank(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Tank a été supprimé avec succès';
+        this.Toast[1] ='Un tank a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();

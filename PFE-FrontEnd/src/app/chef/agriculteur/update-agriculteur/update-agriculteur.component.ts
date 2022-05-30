@@ -85,7 +85,7 @@ export class UpdateAgriculteurComponent implements OnInit {
 
          })
          .subscribe(o=>{
-           localStorage.setItem('Toast', JSON.stringify(["Success","Un agriculteur a été modifié avec succes"]));
+           localStorage.setItem('Toast', JSON.stringify(["Success","Un agriculteur a été modifié avec succès"]));
           //  window.location.reload();
           this.onClose();
            console.log(this.agriculteur);

@@ -101,7 +101,7 @@ export class CreateUsineComponent implements OnInit {
         .subscribe(o=>{
           // window.location.reload();
           console.log(this.usine);
-          localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été ajouté avec succès"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été ajoutée avec succès"]));
           this.onClose();   
         });
     }

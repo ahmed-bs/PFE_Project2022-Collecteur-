@@ -77,7 +77,7 @@ export class UpdateUsineComponent implements OnInit {
            "tel":this.myForm.get('tel')?.value,
          })
          .subscribe(o=>{
-           localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été modifié avec succes"]));
+           localStorage.setItem('Toast', JSON.stringify(["Success","Une usine a été modifiée avec succès"]));
           //  window.location.reload();
            console.log(this.usine);
            this.onClose();

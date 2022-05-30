@@ -135,11 +135,11 @@ export class ListeOperationRetraitComponent implements OnInit {
         this.ELEMENT_DATA= o;});
         console.log(this.ELEMENT_DATA);
         //console.log(this.id);
-      let confirmation =confirm("Êtes-vous sûr de supprimer l'operation où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'opération où son id est égale à : "+id+" ??")
       if(confirmation)
       this.operationService.deleteOperation(id).subscribe(data => {
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Operation a été supprimé avec succès';
+        this.Toast[1] ='Une opération a été supprimée avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         //window.location.reload();
          this.onClose();
@@ -148,7 +148,7 @@ export class ListeOperationRetraitComponent implements OnInit {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du Operation !!';
+        this.Toast[1] ='Échec de la suppression !!';
         this.showToast();
       }
     );
@@ -177,7 +177,7 @@ export class ListeOperationRetraitComponent implements OnInit {
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
-          this.Toast[1] ='Vous ne pouvez pas supprimer cette opereation, car la quantite restante est inferieur a la quantite que vous voulez la supprimer !!';
+          this.Toast[1] ='Vous ne pouvez pas supprimer cette opéreation, car la quantite disponible est inferieur à la quantité que vous voulez la supprimer !!';
           this.showToast();
         }
       });
@@ -259,7 +259,7 @@ onClose() {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Erreur';
-        this.Toast[1] ='Les tanks sont vide !! \n \n Vous ne pouvez pas faire loperation de retarit !!';
+        this.Toast[1] ='Les tanks sont vide !! \n \n Vous ne pouvez pas effectuer l\'opération de retarit !!';
         this.showToast();
     }
     });

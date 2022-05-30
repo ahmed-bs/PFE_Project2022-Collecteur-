@@ -95,11 +95,11 @@ export class ListeAgriculteurComponent implements OnInit {
             this.onClose();
        
           }
-      let confirmation =confirm("Êtes-vous sûr de supprimer l'agriculteur où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'agriculteur où son id est égale à : "+id+" ??")
       if(confirmation)
       this.agriculteurService.deleteagriculteur(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='agriculteur a été supprimé avec succès';
+        this.Toast[1] ='Un agriculteur a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
        this.onClose();
       },
@@ -107,7 +107,7 @@ export class ListeAgriculteurComponent implements OnInit {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression de l\'agriculteur !!';
+        this.Toast[1] ='Échec de la suppression !!';
         this.showToast();
       }
     );
