@@ -96,11 +96,11 @@ export class ListeUsineComponent implements OnInit {
             this.onClose();
        
           }
-      let confirmation =confirm("Êtes-vous sûr de supprimer l'usine où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer l'usine où son id est égale à : "+id+" ??")
       if(confirmation)
       this.usineService.deleteUsine(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Usine a été supprimé avec succès';
+        this.Toast[1] ='Une usine a été supprimée avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();
@@ -109,7 +109,7 @@ export class ListeUsineComponent implements OnInit {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du Usine !!';
+        this.Toast[1] ='Échec de la suppression !!';
         this.showToast();
       }
     );

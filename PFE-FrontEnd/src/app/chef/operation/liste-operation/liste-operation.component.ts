@@ -140,7 +140,7 @@ export class ListeOperationComponent implements OnInit {
       if(confirmation)
       this.operationService.deleteOperation(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Operation a été supprimé avec succès';
+        this.Toast[1] ='Une opération a été supprimée avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();
@@ -149,7 +149,7 @@ export class ListeOperationComponent implements OnInit {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression de l\'operation !!';
+        this.Toast[1] ='Échec de la suppression !!';
         this.showToast();
       }
     );
@@ -190,7 +190,7 @@ export class ListeOperationComponent implements OnInit {
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
-          this.Toast[1] ='Vous avez deja utiliser la quantite de laits inserée dans les tanks affectees a cette operation !!';
+          this.Toast[1] ='Vous avez déja utilisé la quantité de laits inserée dans les tanks affectées a cette opération !!';
           this.showToast();
         }
 

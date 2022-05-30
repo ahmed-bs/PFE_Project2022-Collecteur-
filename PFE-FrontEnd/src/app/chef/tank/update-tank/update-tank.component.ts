@@ -71,7 +71,7 @@ export class UpdateTankComponent implements OnInit {
 
          })
          .subscribe(o=>{
-           localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été modifié avec succes"]));
+           localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été modifié avec succès"]));
           //  window.location.reload();
            console.log(this.tank);
            this.onClose();

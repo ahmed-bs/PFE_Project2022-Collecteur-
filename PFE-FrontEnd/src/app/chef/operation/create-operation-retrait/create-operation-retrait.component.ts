@@ -158,7 +158,7 @@ export class CreateOperationRetraitComponent implements OnInit {
                   'Toast',
                   JSON.stringify([
                     'Success',
-                    'Une operation a été ajouté avec succès',
+                    'Une operation a été ajoutée avec succès',
                   ])
                 );
               }

@@ -91,7 +91,7 @@ export class CreateTankComponent implements OnInit {
         .subscribe(o=>{
           // window.location.reload();
           console.log(this.tank);
-          localStorage.setItem('Toast', JSON.stringify(["Success","Un Tank a été ajouté avec succès"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été ajouté avec succès"]));
           // window.location.reload();
           this.onClose();
         });
