@@ -167,7 +167,7 @@
     "Collector name": "Collector name",
     "Operation type" : "Operation type",
     "Operation Date" : "Operation Date",
-    "Tank registration number" : "Tank registration number",
+    "Tank registration number" : "Registration number",
     "Operation ID" : "Operation ID",
     "Type of operation" : "Type of operation",
     "Quantity(Insert/Remove)" : "Quantity(Insert/Remove)",
@@ -220,7 +220,7 @@
     "Maximum valid capacity" : "Maximum valid capacity",
 
     "Consult tank number" : "Consult tank number",
-    "tank status" : "tank status",
+    "tank status" : "Status",
     "Table for tanks" : "Table for tanks",
     "Modify the tank number" :  "Modify the tank number" ,
 

@@ -41,7 +41,7 @@
                           </ng-container>
 
                           <ng-container matColumnDef="etat" >
-                            <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'tank status' | translate}}</th>
+                            <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">&nbsp;&nbsp;&nbsp;{{'tank status' | translate}}</th>
                             <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                               <span *ngIf="this.element.etat==='Vide'"  class="mode mode_off" style="font-size: small;">&nbsp;&nbsp;&nbsp;&nbsp;<b>{{element.etat}}</b>&nbsp;&nbsp;&nbsp;&nbsp;</span>
                               <span *ngIf="this.element.etat==='Remplis'" class="mode mode_on" style="font-size: small;">&nbsp;&nbsp;<b>{{element.etat}}</b>&nbsp;&nbsp;</span>
