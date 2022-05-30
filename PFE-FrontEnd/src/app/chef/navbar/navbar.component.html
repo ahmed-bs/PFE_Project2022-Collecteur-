@@ -13,19 +13,19 @@
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
     <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
-      
+           
       <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'en'">
-          <img src="./../../../assets/img/us_flag.jpg" class="mr-2" height="12" alt="" /> English <span class="mdi mdi-chevron-down"></span>
-      </a>
-      <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'fr'">
-        <img src="./../../../assets/img/french_flag.jpg" class="mr-2" height="12" alt="" /> French <span class="mdi mdi-chevron-down"></span>
+        <img src="./../../../assets/img/us_flag.jpg" class="mr-2" height="17" alt=""  style="padding-bottom:3px;" /> English <span class="mdi mdi-chevron-down"></span>
     </a>
-      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'en'">
-          <a class="dropdown-item" (click) ="changeLang();"><img src="./../../../assets/img/french_flag.jpg" alt="" height="16" /><span> French </span></a>
-      </div>
-      <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'fr'">
-        <a class="dropdown-item" (click) ="changeLang()"><img src="./../../../assets/img/us_flag.jpg" alt="" height="16" /><span> English </span></a>
+    <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'fr'">
+      <img src="./../../../assets/img/french_flag.jpg" class="mr-2" height="17" alt=""  style="padding-bottom:3px;" /> French <span class="mdi mdi-chevron-down"></span>
+  </a>
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'en'">
+        <a class="dropdown-item" (click) ="changeLang();"><img src="./../../../assets/img/french_flag.jpg" alt="" height="18"  style="padding-left:3px;padding-right:8px;padding-bottom:3px;"/><span> French </span></a>
     </div>
+    <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated language-switch" *ngIf ="lang == 'fr'">
+      <a class="dropdown-item" (click) ="changeLang()"><img src="./../../../assets/img/us_flag.jpg" alt="" height="18" style="padding-left:3px;padding-right:8px;padding-bottom:3px;" /><span> English </span></a>
+  </div>
   </li>
 
     <li class="nav-item">
