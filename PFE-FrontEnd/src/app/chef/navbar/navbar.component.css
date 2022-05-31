@@ -16,7 +16,18 @@
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
   }
-  
+  .button {
+    /* Green */
+       border: none;
+       color: transparent;
+       background-image: url(../../../assets/metamask.svg);
+       background-size: 100% 100% ;
+       display: inline-block;
+       cursor: pointer;
+       font-size: 16px;
+       margin: 4px 2px;
+       border-radius: 50%;
+     }
   .dropdown-menu > a {
     display: block;
     clear: both;

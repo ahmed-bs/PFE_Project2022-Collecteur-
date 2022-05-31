@@ -5,8 +5,12 @@ import { ChefService } from 'src/app/Services/chef.service';
 import { Chef } from 'src/app/Models/chef';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-
-
+import { OperationTank } from 'src/app/Models/operationTank';
+import { ethers } from 'ethers';
+import { environment } from 'src/environments/environment';
+declare let require: any;
+declare let window: any;
+let RemplissageCentreAdress = require('/build/contracts/RemplissageCol.json');
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -22,8 +26,8 @@ isLoggedin?: boolean ;
   tel?:number;
   prenom?:String;
   nom?:String;
-
-
+  connected !: boolean;
+  con?:String;
   constructor(private translateService :TranslateService,
   public authService: AuthService,
   private chefService:ChefService,
@@ -34,6 +38,7 @@ isLoggedin?: boolean ;
    } 
 
   ngOnInit(): void {
+    this.reloadDataRemplissageCentre01() 
     this.lang = localStorage.getItem('lang') || 'en';
     this.authService.loadToken();
     if (this.authService.getToken()==null || 
@@ -69,6 +74,60 @@ isLoggedin?: boolean ;
     this.authService.logout();
     
   }
+
+
+
+
+  async requestAccount() {
+    if (typeof window.ethereum !== 'undefined') {
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+      location.reload();
+    } 
+    console.log("it does work ")
+  }
+
+
+
+  operationsRemplissageCol1!: OperationTank[];
+  async reloadDataRemplissageCentre01() {
+ 
+    if (typeof window.ethereum !== 'undefined') {
+      try {  
+      const depKEY = Object.keys(RemplissageCentreAdress.networks)[0];
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(RemplissageCentreAdress.networks[depKEY].address, RemplissageCentreAdress.abi, signer);
+      this.operationsRemplissageCol1 = await contract.getOperationTanks();
+      this.connected =true 
+      this.con = "connected"
+      localStorage.setItem("state",JSON.stringify(this.con));
+    } catch (error) {
+      this.connected = false
+      this.con = "notconnected"
+      localStorage.setItem("state",JSON.stringify(this.con));
+    }
+    }
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -41,7 +41,8 @@ export class CreateOperationComponent implements OnInit {
   qteRsetLaitTank = 0;
   valeur1 = 0;
   valeur2 = 0;
-  msg4=0;
+  connected!: boolean;
+  msg4 = 0;
   myForm = new FormGroup({
     poidsLait: new FormControl(null, [Validators.required, Validators.min(1)]),
     code: new FormControl(null, [Validators.required, Validators.minLength(5)]),
@@ -58,26 +59,30 @@ export class CreateOperationComponent implements OnInit {
 
   tab!: any[];
   tabTankId!: any[];
-  constructor(private translateService :TranslateService,
+  msg2= '';
+  constructor(private translateService: TranslateService,
     private operationService: OperationService,
     private tankService: TankService,
     private agriculteurService: AgriculteurService,
-    private authService:AuthService,
+    private authService: AuthService,
     private router: Router,
     private location: Location,
     private dialogClose: MatDialog,
   ) {
     this.translateService.setDefaultLang('en');
-  this.translateService.use(localStorage.getItem('lang') || 'en') }
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+  }
 
   async ngOnInit() {
-
+    await this.reloadDataRemplissageCentre01();
+    console.log("this.operationsRemplissageCol1");
+    console.log(this.operationsRemplissageCol1);
     this.authService.loadToken();
-    if (this.authService.getToken()==null ||
-        this.authService.isTokenExpired()){
-          this.router.navigate(['/login']);
+    if (this.authService.getToken() == null ||
+      this.authService.isTokenExpired()) {
+      this.router.navigate(['/login']);
 
-        }
+    }
 
     //this.ValidatedForm();
     this.tanks = this.tankService.getTanks();
@@ -96,9 +101,36 @@ export class CreateOperationComponent implements OnInit {
   }
 
 
+   operationsRemplissageCol1!: OperationTank[];
+  async reloadDataRemplissageCentre01() {
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        const depKEY = Object.keys(Remplissage.networks)[0];
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer);
+        this.operationsRemplissageCol1 = await contract.getOperationTanks();  
+        this.connected = true ;
+      } catch (error) {
+        this.connected = false ;
+      }
+
+    }
+    console.log('**************************4471441714144');
+    console.log(this.operationsRemplissageCol1);
+  }
+
+
+
+
+
+
+
+
   save() {
     environment.wating = 'startwaiting';
     this.onReload();
+
     if (
       this.myForm.get('poidsLait')?.value == null ||
       this.myForm.get('agriculteur')?.value == null ||
@@ -108,6 +140,7 @@ export class CreateOperationComponent implements OnInit {
     } else {
       this.msg = '';
     }
+
 
     this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
       console.log(t);
@@ -122,7 +155,7 @@ export class CreateOperationComponent implements OnInit {
         this.myForm.get('agriculteur')?.value != null &&
         this.myForm.get('code')?.value != null &&
         this.myForm.get('poidsLait')?.value >= 1 &&
-        this.myForm.get('cgu')?.value==true &&
+        this.myForm.get('cgu')?.value == true &&
         t == 0 &&
         this.myForm.get('code')?.value.toString().length >= 5 &&
         this.msg == ''
@@ -134,34 +167,34 @@ export class CreateOperationComponent implements OnInit {
             idAgriculteur: this.myForm.get('agriculteur')?.value,
           },
         }).subscribe(async (o) => {
-              this.tab = Object.values(o);
-              this.operationService.getOpTank(this.tab[0]).subscribe(async (i) => {
-                this.tabTankId = Object.values(i);
-                await this.saveInBc(this.tabTankId,this.tabTankId.length)
-                if (this.confirmation == 'rejected') {
-                  localStorage.setItem(
-                    'Toast',
-                    JSON.stringify([
-                      'Failed',
-                      "L'opération a été rejetée",
-                    ])
-                  );
+          this.tab = Object.values(o);
+          this.operationService.getOpTank(this.tab[0]).subscribe(async (i) => {
+            this.tabTankId = Object.values(i);
+            await this.saveInBc(this.tabTankId, this.tabTankId.length)
+            if (this.confirmation == 'rejected') {
+              localStorage.setItem(
+                'Toast',
+                JSON.stringify([
+                  'Failed',
+                  "L'opération a été rejetée",
+                ])
+              );
 
-                }else{
-                  localStorage.setItem(
-                    'Toast',
-                    JSON.stringify([
-                      'Success',
-                      'Une operation a été ajoutée avec succès',
-                    ])
-                  );
-                }
-              });
-            },
-            (error) => {
-              console.log('Failed');
-            });
-          this.tankService.getTanksQteLibre().subscribe((o) => {
+            } else {
+              localStorage.setItem(
+                'Toast',
+                JSON.stringify([
+                  'Success',
+                  'Une operation a été ajoutée avec succès',
+                ])
+              );
+            }
+          });
+        },
+          (error) => {
+            console.log('Failed');
+          });
+        this.tankService.getTanksQteLibre().subscribe((o) => {
           if (this.myForm.get('poidsLait')?.value <= o) this.msgErreur = 0;
           else {
             this.msgErreur = 1;
@@ -174,23 +207,23 @@ export class CreateOperationComponent implements OnInit {
 
   confirmation: string = 'confirmed';
 
-  async saveInBc(elem0 : OperationTank[],count : number) {
+  async saveInBc(elem0: OperationTank[], count: number) {
     this.onReload();
 
-      const depKEY = Object.keys(Remplissage.networks)[0];
-      await this.requestAccount();
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(
-        Remplissage.networks[depKEY].address,
-        Remplissage.abi,
-        signer
-      );
-      try {
+    const depKEY = Object.keys(Remplissage.networks)[0];
+    await this.requestAccount();
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(
+      Remplissage.networks[depKEY].address,
+      Remplissage.abi,
+      signer
+    );
+    try {
       const transaction = await contract.addOperationTank(elem0, count);
       await transaction.wait();
       environment.wating = 'confirmed';
-    }catch(error:any){
+    } catch (error: any) {
       this.confirmation = 'rejected';
       console.log('rejected');
     };
@@ -200,7 +233,7 @@ export class CreateOperationComponent implements OnInit {
     if (this.confirmation == 'rejected') {
       environment.wating = 'rejected';
       this.operationService
-        .deleteOperation(elem0[0].operation.idOperation).subscribe(d=>{ this.onReload(); });
+        .deleteOperation(elem0[0].operation.idOperation).subscribe(d => { this.onReload(); });
     }
     this.onReload()
   }
@@ -230,9 +263,21 @@ export class CreateOperationComponent implements OnInit {
 
   //   });
   // }
-
+kk:number = 0;
   onSubmit() {
     //this.submitted = true;
+    try {
+      for (let index = 0; index <= this.kk ; index++) {
+        if (this.myForm.get('code')?.value == this.operationsRemplissageCol1[index].operation.code) {
+          this.msg2 = 'code deja exist';
+        } else {
+          this.msg2 = 'ok';
+        }
+      }
+    } catch (error) {
+      this.msg2 = 'ok';
+    }
+
     if (this.myForm.get('poidsLait')?.value == null) {
       this.msg = 'vous devez remplir le formulaire !!';
     } else {
@@ -250,17 +295,17 @@ export class CreateOperationComponent implements OnInit {
     } else {
       this.msg = '';
     }
-    if(this.myForm.get('cgu')?.value==true){
-      this.msg4=0;
+    if (this.myForm.get('cgu')?.value == true) {
+      this.msg4 = 0;
     }
-    else{
-      this.msg4=1;
+    else {
+      this.msg4 = 1;
     }
     this.tankService.getTanksQteLibre().subscribe((o) => {
-    if (this.myForm.get('poidsLait')?.value <= o) {
-      this.msgErreur = 0;
-    }
-      else{
+      if (this.myForm.get('poidsLait')?.value <= o) {
+        this.msgErreur = 0;
+      }
+      else {
         this.msgErreur = 1;
         this.qteRsetLait = o;
       }
@@ -275,32 +320,33 @@ export class CreateOperationComponent implements OnInit {
         this.msg1 = 0;
       }
 
-    this.tankService.getTanksQteLibre().subscribe((o) => {
-      console.log(o);
-      if (
-        this.myForm.get('poidsLait')?.value != null &&
-        this.myForm.get('agriculteur')?.value != null &&
-        this.myForm.get('poidsLait')?.value > 0 &&
-        this.myForm.get('cgu')?.value==true &&
-        t==0 &&
-        this.myForm.get('code')?.value != null
-      ) {
-      if (this.myForm.get('poidsLait')?.value <= o) {
+      this.tankService.getTanksQteLibre().subscribe((o) => {
+        console.log(o);
+        if (
+          this.myForm.get('poidsLait')?.value != null &&
+          this.myForm.get('agriculteur')?.value != null &&
+          this.myForm.get('poidsLait')?.value > 0 &&
+          this.myForm.get('cgu')?.value == true &&
+          t == 0 &&
+          this.msg2 == 'ok' &&
+          this.myForm.get('code')?.value != null
+        ) {
+          if (this.myForm.get('poidsLait')?.value <= o) {
 
 
-        this.save();
-        this.msgErreur = 0;
-        this.onClose();
+            this.save();
+            this.msgErreur = 0;
+            this.onClose();
 
-      }
-      else {
-        this.msgErreur = 1;
-        this.qteRsetLait = o;
-      }
-    }
+          }
+          else {
+            this.msgErreur = 1;
+            this.qteRsetLait = o;
+          }
+        }
 
+      });
     });
-  });
   }
 
   gotoList() {
