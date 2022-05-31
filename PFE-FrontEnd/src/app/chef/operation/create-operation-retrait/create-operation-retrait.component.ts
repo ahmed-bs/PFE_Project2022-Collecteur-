@@ -51,6 +51,7 @@ export class CreateOperationRetraitComponent implements OnInit {
   usines!: Observable<Usine[]>;
 
   maDate = new Date();
+  connected!: boolean;
 
   exportOne(op: Operation, confirmation: string) {
     // new CsvBuilder("operation.csv")
@@ -94,7 +95,35 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.translateService.use(localStorage.getItem('lang') || 'en');
   }
 
-  ngOnInit() {
+  OpTankRetraitCentreTab01!: number[];
+  async reloadDataRetraitCentre01() {
+
+    if (typeof window.ethereum !== 'undefined') {
+      try {
+        const depKEY = Object.keys(Remplissage.networks)[0];
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        console.log(signer);
+        const contract = new ethers.Contract(
+          Remplissage.networks[depKEY].address,
+          Remplissage.abi,
+          signer
+        );
+        this.OpTankRetraitCentreTab01 = await contract.getOperationNumbers();
+
+        this.jj = this.OpTankRetraitCentreTab01.length;
+        this.connected = true
+      } catch (error) {
+        this.connected = false
+      }
+
+    }
+
+  }
+
+  jj!: number;
+  async ngOnInit() {
+    await this.reloadDataRetraitCentre01()
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -108,7 +137,12 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.usines = this.usineService.getUsines();
     this.operationService.getNbOp().subscribe((o) => {
       console.log(o);
-      this.som = 100000000 + o + 1;
+      if (this.connected == true) {
+        this.som = 100000000 + this.jj + 1;
+      } else {
+        this.som = 100000000 + o + 1;
+      }
+
     });
 
     console.log(this.maDate);
@@ -266,22 +300,22 @@ export class CreateOperationRetraitComponent implements OnInit {
         if (
           this.myForm.get('poidsLait')?.value != null &&
           this.myForm.get('usine')?.value != null &&
-          this.myForm.get('cgu')?.value==true &&
+          this.myForm.get('cgu')?.value == true &&
           this.myForm.get('poidsLait')?.value > 0
         ) {
-        if (this.myForm.get('poidsLait')?.value <= o) {
-          this.save();
-          this.onClose();
-          this.msgErreur = 0;
-          //       this.verifBc();
-        } else {
-          this.msgErreur = 1;
-          this.qteActLaitTank = o;
-          this.qteMax = a;
+          if (this.myForm.get('poidsLait')?.value <= o) {
+            this.save();
+            this.onClose();
+            this.msgErreur = 0;
+            //       this.verifBc();
+          } else {
+            this.msgErreur = 1;
+            this.qteActLaitTank = o;
+            this.qteMax = a;
+          }
         }
-      }
       });
- 
+
     });
   }
 
