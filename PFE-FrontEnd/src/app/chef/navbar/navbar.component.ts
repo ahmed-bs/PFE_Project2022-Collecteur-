@@ -38,6 +38,7 @@ isLoggedin?: boolean ;
    } 
 
   ngOnInit(): void {
+    
     this.reloadDataRemplissageCentre01() 
     this.lang = localStorage.getItem('lang') || 'en';
     this.authService.loadToken();

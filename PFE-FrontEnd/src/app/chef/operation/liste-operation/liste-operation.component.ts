@@ -50,6 +50,7 @@ export class ListeOperationComponent implements OnInit {
 
   test1=0;
   test2=0;
+  lang="";
 
 
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','agriculteur','code','action'];
@@ -78,6 +79,8 @@ export class ListeOperationComponent implements OnInit {
     }
 
     ngOnInit() {
+      console.log(localStorage.getItem('lang')  || 'en');
+      this.lang=localStorage.getItem('lang')  || 'en';
 
       this.authService.loadToken();
       if (this.authService.getToken()==null || 

@@ -28,33 +28,37 @@
        margin: 4px 2px;
        border-radius: 50%;
      }
-  .dropdown-menu > a {
-    display: block;
-    clear: both;
-    font-weight: normal;
-    color: #333333;
-    white-space: nowrap;
-  }
-  .dropdown-menu > a:hover, 
-  .dropdown-menu > a:focus {
-    color: #fff;
-    background: #B8B9BB;
-  }
-  .dropdown-menu> a:hover i{
-    background: yellow;
-  }
-
-
- .dropdown-menu  > button {
-    display: block;
-    clear: both;
-    font-weight: normal;
-    color: #333333;
-    white-space: nowrap;
-  }
- .dropdown-menu > button:hover, 
- .dropdown-menu  > button:focus {
-    color: #fff;
-    background: #B8B9BB   ;
-  }
- 
+   
+     .dropdown-menu > a {
+       display: block;
+       clear: both;
+       cursor: pointer;
+       font-weight: normal;
+       color: #333333;
+       white-space: nowrap;
+     }
+     .dropdown-menu > a:hover, 
+     .dropdown-menu > a:focus {
+       color: #fff;
+       background: #B8B9BB;
+     }
+     .dropdown-menu> a:hover i{
+       background: yellow;
+     }
+   
+   
+    .dropdown-menu  > button {
+       display: block;
+       clear: both;
+       cursor: pointer;
+       font-weight: normal;
+       color: #333333;
+       white-space: nowrap;
+     }
+    .dropdown-menu > button:hover, 
+    .dropdown-menu  > button:focus {
+       color: #fff;
+       background: #B8B9BB   ;
+     }
+   
+   

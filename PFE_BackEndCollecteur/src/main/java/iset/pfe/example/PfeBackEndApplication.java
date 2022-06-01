@@ -76,8 +76,25 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		a1.setMatricule("als55slql");
 		agriculteurRepository.save(a1);
 		
-		Usine u1=new Usine("Usine 1", "bizerte",28799455);
+		Agriculteur a2=new Agriculteur("Slim", "Bousnina", "slim@gmail.com", "Tunis", 54658978);
+		a2.setMatricule("als4zs5ql");
+		agriculteurRepository.save(a2);
+		
+		Agriculteur a3=new Agriculteur("Wafik", "Lahbib", "wafik@gmail.com", "Alia ,Bizerte", 54658978);
+		a3.setMatricule("s22sls53q");
+		agriculteurRepository.save(a3);
+		
+		Usine u1=new Usine("SOCIETE REGIONALE DES INDUSTRIES LAITIERES (YOGO)", "Ben arous, Tunisie",72598844);
 		usineRepository.save(u1);
+		
+		Usine u2=new Usine(" VITALAIT", "Mahdia, Tunisie",72959585);
+		usineRepository.save(u2);
+		
+		Usine u3=new Usine(" Centrale Laitiere Du Nord ( LAINO )", "Bousalem",72565657);
+		usineRepository.save(u3);
+
+		Usine u4=new Usine(" NATILAIT", "Bizerte",72545858);
+		usineRepository.save(u4);
 		
 //		Operation o1=new Operation(120, currentDateTime2, "Remplissage", 10006);
 //		o1.setAgriculteur(a1);
@@ -100,7 +117,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		ch1.setUsername("nour");
 		ch1.setPassword(encoder.encode("nour"));
 		ch1.setAdress("bizerte");
-		ch1.setNom("nour");
+		ch1.setNom("Guerfali");
 		ch1.setPrenom("nour");
 		ch1.setEmail("nour@gmail.com");
 		ch1.setCin(11431134);

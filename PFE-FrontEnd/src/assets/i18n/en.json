@@ -156,7 +156,7 @@
 
      "p6" : "NB: The quantity of milk available in the tanks is",
     "Create a fill operation" : "Create a fill operation",
-    "Quantity of milk (Kg)" :" Quantity of milk (Kg)" ,
+    "Quantity of milk (Kg)" :" Quantity(Kg)" ,
     "Invalid amount of milk" : "Invalid amount of milk",
     "Valid amount of milk" : "Valid amount of milk",
     "p7" : "You must insert a Quantity of milk between 0 and" ,
@@ -276,8 +276,9 @@
     "Table for factories" : "Table for factories",
     "Factory address" : "Factory address",
     "Modify the factory number" : "Modify the factory number",
-    "Center management" : "Center management" 
-
+    "Center management" : "Center management" ,
+    "not connect": "Not connected",
+    "connect": "Connected"
 
      
 
