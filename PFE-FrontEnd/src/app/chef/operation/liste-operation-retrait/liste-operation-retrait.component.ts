@@ -51,6 +51,7 @@ export class ListeOperationRetraitComponent implements OnInit {
   msg='';
   test1=0;
   test2=0;
+  lang="";
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation','usine','action'];
   constructor(
     private translateService :TranslateService,
@@ -69,7 +70,8 @@ export class ListeOperationRetraitComponent implements OnInit {
 
 
     ngOnInit() {
-
+      console.log(localStorage.getItem('lang')  || 'en');
+      this.lang=localStorage.getItem('lang')  || 'en';
 
       this.authService.loadToken();
       if (this.authService.getToken()==null || 

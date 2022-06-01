@@ -117,7 +117,7 @@
 
      "Error" : "Erreur",
      "User Name or Password is incorrect" : "le nom d'utilisateur ou le mot de passe est incorrect",
-     "Welcome" : "Bienvenu(e)s",
+     "Welcome" : "Bienvenu(e)",
      "Username" : "Nom d'utilisateur",
      "Password" : "Mot de passe",
      "Show password" : "Montrer le mot de passe",
@@ -131,7 +131,7 @@
      "Invalid first name" : "Prénom invalide", 
      "Valid first name"  : "Prénom valide",
      "Surname and first name already exist" : "Nom et prénom existe déjà",
-     "Registration number" : "matricule",
+     "Registration number" : "Numéro de matricule",
      "(minimum 8 characters)" : "(minimum 8 caractéres)",
      "Invalid registration number" : "matricule invalide",
      "Valid registration number" : "matricule valide",
@@ -154,7 +154,7 @@
 
      "p6" : "NB : La Quantité de lait disponible dans les tanks est",
      "Create a fill operation" : "Créer une operation de remplissage",
-     "Quantity of milk (Kg)" : "Quantité de lait (Kg)" ,
+     "Quantity of milk (Kg)" : "Quantité(Kg)" ,
      "Invalid amount of milk" : "Quantité de lait invalide",
      "Valid amount of milk" : "Quantité de lait valide",
 
@@ -217,11 +217,12 @@
      "Withdrawal" : "Retrait",
      "on the tanks" : "du tanks",
      "tank s operations management" : "Gestion des opérations des tanks",
-
+     "not connect": "Non connecté",
      "Create a new tank" : "Créer un nouveau tank",
      "Maximum capacity" : "Contenance maximale",
      "Invalid maximum capacity" : "Contenance maximale invalide" ,
      "Maximum valid capacity" : "Contenance maximale valide",
+     "connect": "Connecté(e)",
 
      "Consult tank number" : "Consulter le tank numéro",
      "tank status" : "Etat ",

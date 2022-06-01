@@ -52,6 +52,7 @@ export class CreateOperationRetraitComponent implements OnInit {
 
   maDate = new Date();
   connected!: boolean;
+  text="";
 
   exportOne(op: Operation, confirmation: string) {
     // new CsvBuilder("operation.csv")
@@ -67,10 +68,19 @@ export class CreateOperationRetraitComponent implements OnInit {
     //     [op.idOperation, op.poidsLait, op.code , op.collecteur.nomCollecteur , op.dateOperation , confirmation],
     doc.addImage(imageData, 'JPEG', 0, 0, 210, 297);
     // ]
-    doc.text(op.code.toString(), 92, 54);
-    doc.text(op.chef.nom.toString(), 75, 107.2);
-    doc.text(op.usine.nomUsine.toString(), 107, 139);
+    this.text=op.chef.nom.toString()+" "+op.chef.prenom.toString();
     doc.text(op.dateOperation.toString(), 120, 123.5);
+    doc.text(op.code.toString(), 92, 54);
+    doc.text(this.text, 75, 107.2);
+
+    doc.setFontSize(12);
+    doc.text(op.usine.nomUsine.toString(), 65, 139);
+
+
+//     pdf.setFont("helvetica");
+// pdf.setFontType("bold");
+// pdf.setFontSize(9);
+
     // doc.text(op.code.toString().toString(),92,157)
     // autoTable(doc, {
     //     head: head,
