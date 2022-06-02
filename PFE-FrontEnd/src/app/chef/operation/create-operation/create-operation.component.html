@@ -34,7 +34,7 @@
           <option disabled selected value [ngValue]="null">{{'Choose a' | translate}} {{'Farmer' | translate}}...
           </option>
           <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">
-            {{agriculteur.matricule}}</option>
+            {{agriculteur.nom}} - {{agriculteur.prenom}}</option>
         </select>
         <div *ngIf="agriculteur?.invalid && agriculteur?.touched" class="text-danger">
           {{'invalid farmer' | translate}}!
