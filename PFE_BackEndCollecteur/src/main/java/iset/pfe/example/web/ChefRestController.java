@@ -69,6 +69,7 @@ public class ChefRestController {
     	ag.setUsername(chef.getUsername());
     	ag.setTel(chef.getTel());
     	ag.setPassword(chef.getPassword());
+    	ag.setCentreNom(chef.getCentreNom());
 		chefRepository.save(ag);
 			
 	  	return ag;

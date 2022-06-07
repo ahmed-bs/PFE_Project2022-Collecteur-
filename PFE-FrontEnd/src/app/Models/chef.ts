@@ -9,5 +9,5 @@ export class Chef{
  cin!:number;
  username!:string;
  password!:string;
-
+ centreNom!:string;
 }
