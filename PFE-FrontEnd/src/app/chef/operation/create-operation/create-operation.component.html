@@ -23,6 +23,11 @@
         <div *ngIf="msgErreur==1" class="text-danger">
           {{'pp' | translate}}: {{qteRsetLait}}Kg !!
         </div>
+<!--        
+        <div *ngIf="msg7==1" class="text-danger">
+          {{'poidsLait' | translate}} !!
+        </div>
+      -->
 
       </div>
     </div>
@@ -42,6 +47,9 @@
         <div *ngIf="agriculteur?.valid && agriculteur?.touched" class="text-success">
           {{'valid farmer' | translate}}!
         </div>
+        <!-- <div *ngIf="msg6==0" class="text-success">
+          {{'agrics' | translate}}!
+        </div> -->
       </div>
 
     </div>
@@ -64,6 +72,9 @@
         </div>
         <div *ngIf="msg2=='code deja exist'" class="text-danger">
           &nbsp; {{'Code already exists' | translate}}(BlockChain)!
+        </div>
+        <div *ngIf="msg5==0" class="text-danger">
+          &nbsp; {{'codes' | translate}}!
         </div>
       </div>
     </div>

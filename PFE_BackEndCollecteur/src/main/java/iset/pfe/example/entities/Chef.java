@@ -38,7 +38,7 @@ public class Chef  implements Serializable , UserDetails{
 	private int tel;
 	private String username;
 	private String password;
-	
+	private String centreNom;
 	@OneToMany(mappedBy="chef",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<Operation> operations;
@@ -63,6 +63,22 @@ public class Chef  implements Serializable , UserDetails{
 		this.operations = operations;
 	}
 
+	public Chef(Integer idChef, String nom, String prenom, String email, String adress, int cin, int tel,
+			String username, String password, String centreNom, Set<Role> roles) {
+		super();
+		this.idChef = idChef;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.adress = adress;
+		this.cin = cin;
+		this.tel = tel;
+		this.username = username;
+		this.password = password;
+		this.centreNom = centreNom;
+		this.roles = roles;
+	}
+
 	public Chef() {
 		super();
 	}
@@ -79,6 +95,15 @@ public Chef(String nom, String prenom, String email, String adress, int cin, int
 	this.username = username;
 	this.password = password;
 }
+
+public String getCentreNom() {
+	return centreNom;
+}
+
+public void setCentreNom(String centreNom) {
+	this.centreNom = centreNom;
+}
+
 
 public Integer getIdChef() {
 	return idChef;

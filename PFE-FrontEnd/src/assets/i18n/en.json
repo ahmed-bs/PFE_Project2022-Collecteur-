@@ -278,8 +278,10 @@
     "Modify the factory number" : "Modify the factory number",
     "Center management" : "Center management" ,
     "not connect": "Not connected",
-    "connect": "Connected"
-
+    "connect": "Connected",
+    "agrics" : "This famrer does not correspond to the famrer indicated on the delivery note.",
+    "poidsLait" : "This weight does not correspond to the weight indicated on the delivery note.",
+    "codes" : "There are no operations compatible with this data."
      
 
 

@@ -72,7 +72,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		tankRepository.save(t3);
 		
 		
-		Agriculteur a1=new Agriculteur("Ahmed", "Ben saber", "ahmed@gmail.com", "Bizerte", 22332233);
+		Agriculteur a1=new Agriculteur("Ben saber", "Ahmed", "ahmed@gmail.com", "Bizerte", 22332233);
 		a1.setMatricule("als55slql");
 		agriculteurRepository.save(a1);
 		
@@ -123,7 +123,23 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		ch1.setCin(11431134);
 		ch1.setTel(156465);
 		ch1.getRoles().add(role1);
+		ch1.setCentreNom("SMBSA Ettaoufik");
 		chefRepository.save(ch1);
+		
+		
+		Chef ch2=new Chef();
+		ch2.setUsername("oussema");
+		ch2.setPassword(encoder.encode("oussemas"));
+		ch2.setAdress("bizerte");
+		ch2.setNom("oussema");
+		ch2.setPrenom("bejaoui");
+		ch2.setEmail("oussema@gmail.com");
+		ch2.setCin(11431134);
+		ch2.setTel(156465);
+		ch2.setCentreNom("SMBSA Ettaoufik");
+		ch2.getRoles().add(role1);
+		chefRepository.save(ch2);
+		
 		
 		
 	     System.out.println(currentDateTime);

@@ -17,10 +17,12 @@ import { Usine } from 'src/app/Models/usine';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
+import { ChefService } from 'src/app/Services/chef.service';
 
 
 declare let require: any;
 declare let window: any;
+let RetraitFarmerAdresse = require('/build/contracts/RemplissageAgric.json');
 let Remplissage = require('../../../../../build/contracts/RemplissageCol.json');
 @Component({
   selector: 'app-create-operation',
@@ -32,6 +34,9 @@ export class CreateOperationComponent implements OnInit {
   submitted = false;
   msg = '';
   msg1 = 0;
+  msg5 = 10;
+  msg6 = 10;
+  msg7 = 10;
   t: Tank = new Tank();
   msgErreur = 0;
   msgErreur2 = 0;
@@ -59,10 +64,11 @@ export class CreateOperationComponent implements OnInit {
 
   tab!: any[];
   tabTankId!: any[];
-  msg2= '';
+  msg2 = '';
   constructor(private translateService: TranslateService,
     private operationService: OperationService,
     private tankService: TankService,
+    private chefService: ChefService,
     private agriculteurService: AgriculteurService,
     private authService: AuthService,
     private router: Router,
@@ -101,7 +107,7 @@ export class CreateOperationComponent implements OnInit {
   }
 
 
-   operationsRemplissageCol1!: OperationTank[];
+  operationsRemplissageCol1!: OperationTank[];
   async reloadDataRemplissageCentre01() {
     if (typeof window.ethereum !== 'undefined') {
       try {
@@ -109,25 +115,40 @@ export class CreateOperationComponent implements OnInit {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer);
-        this.operationsRemplissageCol1 = await contract.getOperationTanks();  
-        this.connected = true ;
+        this.operationsRemplissageCol1 = await contract.getOperationTanks();
+        this.connected = true;
       } catch (error) {
-        this.connected = false ;
+        this.connected = false;
       }
 
     }
     console.log('**************************4471441714144');
     console.log(this.operationsRemplissageCol1);
   }
+  operationsfarmerResult !: Operation;
+  codeCompar !: number
+  async FindByCodefarmer(codeCompar: any) {
+    const depKEY = Object.keys(RetraitFarmerAdresse.networks)[0];
+    if (typeof window.ethereum !== 'undefined') {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      this.codeCompar = parseInt(codeCompar);
+      const contract = new ethers.Contract(
+        RetraitFarmerAdresse.networks[depKEY].address,
+        RetraitFarmerAdresse.abi,
+        signer
+      );
+      return this.operationsfarmerResult = await contract.GetOperationFarmerByCode(
+        this.codeCompar
+      );
+    }
+  }
 
 
 
 
 
-
-
-
-  save() {
+  async save() {
     environment.wating = 'startwaiting';
     this.onReload();
 
@@ -263,11 +284,56 @@ export class CreateOperationComponent implements OnInit {
 
   //   });
   // }
-kk:number = 0;
-  onSubmit() {
+  kk: number = 0;
+  async onSubmit() {
     //this.submitted = true;
     try {
-      for (let index = 0; index <= this.kk ; index++) {
+      await this.FindByCodefarmer(this.myForm.get('code')?.value)
+      this.chefService.getUser(12).subscribe((t) => {
+        console.log(this.operationsfarmerResult.collecteur.nomCollecteur)
+      
+        console.log(this.myForm.get('poidsLait')?.value)
+
+
+        if (Math.abs(Number(this.operationsfarmerResult.poidsLait) )== this.myForm.get('poidsLait')?.value) {
+          this.msg7 = 1
+          console.log("founded poids lait")
+        }else{
+          console.log("notfount the poids lait not the same")
+          this.msg7 = 0
+        }
+
+
+
+        this.agriculteurService.getAgriculteur(this.myForm.get('agriculteur')?.value).subscribe(
+          (f) => {
+            if (this.operationsfarmerResult.agriculteur.nom.trim() == f.nom.trim() && this.operationsfarmerResult.agriculteur.prenom.trim() == f.prenom.trim()) {
+              this.msg6 = 1
+              console.log("founded agriculteur")
+            }else{
+              this.msg6 = 0
+              console.log("notfount agriculteur")
+            }
+          }
+        )
+
+        if (this.operationsfarmerResult.collecteur.nomCollecteur.trim() == t.centreNom.trim()) {
+          this.msg5 = 1
+          console.log("founded collecteur")
+        }else{
+          console.log("notfount the name collecteur not the same")
+          this.msg5 = 0
+        }
+
+      })
+
+    } catch (error) {
+      this.msg5 = 0
+      console.log("notfount the code")
+    }
+
+    try {
+      for (let index = 0; index <= this.kk; index++) {
         if (this.myForm.get('code')?.value == this.operationsRemplissageCol1[index].operation.code) {
           this.msg2 = 'code deja exist';
         } else {
@@ -323,6 +389,9 @@ kk:number = 0;
       this.tankService.getTanksQteLibre().subscribe((o) => {
         console.log(o);
         if (
+          this.msg6 == 1 &&
+          this.msg5 == 1 &&
+          this.msg7 == 1 &&
           this.myForm.get('poidsLait')?.value != null &&
           this.myForm.get('agriculteur')?.value != null &&
           this.myForm.get('poidsLait')?.value > 0 &&

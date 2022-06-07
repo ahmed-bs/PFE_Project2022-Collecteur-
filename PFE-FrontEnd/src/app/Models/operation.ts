@@ -17,6 +17,7 @@ export class Operation{
   tank!:Tank;
   codeRemplissage!:[];
 
- // collecteur!:Collecteur;
+
   usine!:Usine;
+  collecteur!:Collecteur;
 }

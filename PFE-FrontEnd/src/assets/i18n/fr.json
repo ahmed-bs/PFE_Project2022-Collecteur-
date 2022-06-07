@@ -284,9 +284,10 @@
      "Table for factories" : "Table pour les usines",
      "Factory address" : "Adresse de l'usine",
      "Modify the factory number" : "Modifier l'usine numéro" ,
-     "Center management" : "Gestion des centres"
-
-   
+     "Center management" : "Gestion des centres",
+     "agrics" : "Ce agriculteur ne correspond pas au nom agriculteur d'expédition indiqué sur le bon de livraison.",
+     "poidsLait" : "Ce poids ne correspond pas au poidsLait d'expédition indiqué sur le bon de livraison.",
+     "codes" : "Il n'y a pas d'opérations compatibles avec ces données."
 
 
 
