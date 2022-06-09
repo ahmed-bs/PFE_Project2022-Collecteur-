@@ -1,77 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Formulaire login </title>
-	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
-	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulaire login </title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-
     const inputs = document.querySelectorAll(".input");
-
-
-    function addcl(){
+    function addcl() {
       let parent = this.parentNode.parentNode;
       parent.classList.add("focus");
     }
-
-    function remcl(){
+    function remcl() {
       let parent = this.parentNode.parentNode;
-      if(this.value == ""){
+      if (this.value == "") {
         parent.classList.remove("focus");
       }
     }
-
-
     inputs.forEach(input => {
       input.addEventListener("focus", addcl);
       input.addEventListener("blur", remcl);
     });
-
-    </script>
+  </script>
 </head>
-<body>
-	<img class="wave" src="../../assets/wave.png" alt="aaaaaaaaaa">
-	<div class="container">
-		<div class="img">
-			<img src="../../assets/bg.svg" alt="bbbbbbbbbbb">
-		</div>
-		<div class="login-content">
-			<form>
-        <div  class="alert alert-danger" style="height:90px;width:365px;text-align:center;padding:15px;" *ngIf="err==1">
-          <strong>{{'Error' | translate}} !!<br> {{'User Name or Password is incorrect' | translate}}...</strong>
-         </div>
-         <br>
 
-         <img src="../../assets/avatar.svg" alt="cccccccc">
-         <h2 class="title">{{'Welcome' | translate}}</h2>
-                <div class="input-div one">
-                   <div class="i">
-                       <i class="fas fa-user"></i>
-                   </div>
-                   <div class="div">
-                       <h5>{{'Username' | translate}}</h5>
-                       <input type="text"  name="username" placeholder="username" [(ngModel)]="user.username" class="input">
-                   </div>
-                </div>
-                <div class="input-div pass">
-                   <div class="i">
-                      <i class="fas fa-lock"></i>
-                   </div>
-                   <div class="div">
-                      <h5>{{'Password' | translate}}</h5>
-                      <input  type="{{ password }}"   placeholder="password" name="password"  [(ngModel)]="user.password"  class="input">
-                  </div>
-               </div>
-               <div>
-                 <input style="color:green;padding-top:20px; width:22px; height:17px;" class="a"  type="checkbox" (click)="myFunction()">  {{'Show password' | translate}} ...
-               </div>
-               <input type="submit" class="btn"  (click)="onLoggedin()" value="Login">
-               
-             </form>
-        </div>
+<body>
+  <img class="wave" src="../../assets/wave.png" alt="aaaaaaaaaa">
+  <div class="container">
+    <div class="img">
+      <img src="../../assets/bg.svg" alt="bbbbbbbbbbb">
     </div>
+    <div class="login-content">
+      <form>
+        <div class="alert alert-danger" style="height:90px;width:365px;text-align:center;padding:15px;" *ngIf="err==1">
+          <strong>{{'Error' | translate}} !!<br> {{'User Name or Password is incorrect' | translate}}...</strong>
+        </div>
+        <br>
+
+        <img src="../../assets/avatar.svg" alt="cccccccc">
+        <h2 class="title">{{'Welcome' | translate}}</h2>
+        <div class="input-div one">
+          <div class="i">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="div">
+            <h5>{{'Username' | translate}}</h5>
+            <input type="text" name="username" placeholder="username" [(ngModel)]="user.username" class="input">
+          </div>
+        </div>
+        <div class="input-div pass">
+          <div class="i">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="div">
+            <h5>{{'Password' | translate}}</h5>
+            <input type="{{ password }}" placeholder="password" name="password" [(ngModel)]="user.password"
+              class="input">
+          </div>
+        </div>
+        <div>
+          <input style="color:green;padding-top:20px; width:22px; height:17px;" class="a" type="checkbox"
+            (click)="myFunction()"> {{'Show password' | translate}} ...
+        </div>
+        <input type="submit" class="btn" (click)="onLoggedin()" value="Login">
+
+      </form>
+    </div>
+  </div>
 
 </body>
+
 </html>

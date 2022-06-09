@@ -1,99 +1,81 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <h2 id="modal-title"><b> {{'Add a new factory' | translate}}:</b></h2>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
-          <form [formGroup]="myForm"  novalidate >
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-3">
-                <label> {{'Factory name' | translate}}:<span style="color:red;">*</span></label>
-                <p> {{'(minimum 3 characters)' | translate}}</p>
-                <input type="text"
-                 formControlName="nomUsine"
-                 placeholder="Nom de l'usine .."
-                 class="form-control"
-                 id="nomUsine"
-                 name="nomUsine">
+<div class="ContenuCard">
+  <div class="modal-header">
+    <h2 id="modal-title"><b> {{'Add a new factory' | translate}}:</b></h2>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
+  <form [formGroup]="myForm" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-3">
+        <label> {{'Factory name' | translate}}:<span style="color:red;">*</span></label>
+        <p> {{'(minimum 3 characters)' | translate}}</p>
+        <input type="text" formControlName="nomUsine" placeholder="Nom de l'usine .." class="form-control" id="nomUsine"
+          name="nomUsine">
 
-                <div *ngIf="nomUsine?.invalid && nomUsine?.touched" class="text-danger">
-                   {{'Invalid factory name' | translate}}!
-                </div>
-                <div *ngIf="nomUsine?.valid && nomUsine?.touched && msg1==0 " class="text-success">
-                  {{'Valid factory name' | translate}}!
-                </div>
-                <div *ngIf="msg1==1"  class="text-danger">
-                  {{'Factory name already exists' | translate}} !
-                </div>
-              </div>
+        <div *ngIf="nomUsine?.invalid && nomUsine?.touched" class="text-danger">
+          {{'Invalid factory name' | translate}}!
+        </div>
+        <div *ngIf="nomUsine?.valid && nomUsine?.touched && msg1==0 " class="text-success">
+          {{'Valid factory name' | translate}}!
+        </div>
+        <div *ngIf="msg1==1" class="text-danger">
+          {{'Factory name already exists' | translate}} !
+        </div>
+      </div>
 
+      <div class="col-md-6 mb-3">
+        <label> {{'Adress' | translate}}:<span style="color:red;">*</span></label>
+        <p>{{'(minimum 4 characters)' | translate}}</p>
+        <input type="text" class="form-control" id="adresse" placeholder="ep : Tunis .." formControlName="adresse"
+          name="adresse">
 
-            <!-- <div class="form-row"> -->
-
-
-              <div class="col-md-6 mb-3">
-                <label>  {{'Adress' | translate}}:<span style="color:red;">*</span></label>
-                <p>{{'(minimum 4 characters)' | translate}}</p>
-                <input type="text"
-                  class="form-control"
-                  id="adresse"
-                  placeholder="ep : Tunis .."
-                  formControlName="adresse"
-                  name="adresse">
-
-                  <div *ngIf="adresse?.invalid && adresse?.touched" class="text-danger">
-                    Invalid address !
-                  </div>
-                  <div *ngIf="adresse?.valid && adresse?.touched" class="text-success">
-                    Valid address
-                  </div>
-
-            </div>
-
-
-            </div>
-
-
-            <div class="form-row">
-            <div class="col-md-12 mb-3">
-              <label for="prix"> {{'Phone number (8 digits)' | translate}}: <span style="color:red;">*</span></label>
-              <input type="number"
-              class="form-control"
-                id="tel"
-                formControlName="tel"
-                placeholder="12345678"
-                name="tel">
-                <div *ngIf="tel?.invalid && tel?.touched " class="text-danger">
-                   {{'Invalid phone number' | translate}}!
-                </div>
-                <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
-                 {{'Valid phone number' | translate}}
-                </div>
-                <div *ngIf="msg2==1" class="text-danger">
-                  {{'Phone number already exists' | translate}} !
-                </div>
-          </div>
-  
-          </div>
-
-
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
-                <br>
-                <br>
-                <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
-                <div class="invalid-feedback"> {{'p3' | translate}}</div>
-              </div>
-            </div>
-            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit"> {{'Save' | translate}}</button>
-            <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal"> {{'Close' | translate}}</button>
-
-          </form>
+        <div *ngIf="adresse?.invalid && adresse?.touched" class="text-danger">
+          Invalid address !
+        </div>
+        <div *ngIf="adresse?.valid && adresse?.touched" class="text-success">
+          Valid address
         </div>
 
+      </div>
+
+
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="prix"> {{'Phone number (8 digits)' | translate}}: <span style="color:red;">*</span></label>
+        <input type="number" class="form-control" id="tel" formControlName="tel" placeholder="12345678" name="tel">
+        <div *ngIf="tel?.invalid && tel?.touched " class="text-danger">
+          {{'Invalid phone number' | translate}}!
+        </div>
+        <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
+          {{'Valid phone number' | translate}}
+        </div>
+        <div *ngIf="msg2==1" class="text-danger">
+          {{'Phone number already exists' | translate}} !
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="cgu" formControlName="cgu" required>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==0">{{'p2' | translate}}</label>
+        <br>
+        <br>
+        <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required
+          fields' | translate}}</span>
+        <div class="invalid-feedback"> {{'p3' | translate}}</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()" type="submit"> {{'Save' |
+      translate}}</button>
+    <!-- close popup -->
+    <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal"> {{'Close' | translate}}</button>
+
+  </form>
+</div>

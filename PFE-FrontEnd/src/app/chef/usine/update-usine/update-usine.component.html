@@ -1,83 +1,61 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <h2 id="modal-title"><b>{{'Modify the factory number' | translate}}: {{usine.idUsine}}</b></h2>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
-    <form [formGroup]="myForm" class="needs-validation" novalidate>
-
-      <div class="form-group">
-        <div class="col-md-12 mb-3">
-          <label> {{'Factory name' | translate}}:<span style="color:red;">*</span></label>
-          <p>{{'(minimum 3 characters)' | translate}}</p>
-        <input type="text"
-               class="form-control"
-               formControlName="nomUsine"
-               name="nomUsine"
-               [(ngModel)]="usine.nomUsine"
-               placeholder="Post Name here ..">
-          <div
-               *ngIf="nomUsine?.invalid && nomUsine?.touched"
-                class="text-danger">
-                {{'Invalid factory name' | translate}} !
-         </div>
-         <div
-              *ngIf="nomUsine?.valid && nomUsine?.touched"
-              class="text-success">
-                {{'Valid factory name' | translate}}!
-         </div>
-        </div>
-
-        <div class="col-md-12 mb-3">
-          <label> {{'Phone number (8 digits)' | translate}}: <span style="color:red;">*</span></label>
-          <input type="number"
-                 class="form-control"
-                 formControlName="tel"
-                 name="tel"
-                 [(ngModel)]="usine.tel"
-                 placeholder="Post Name here ..">
-            <div
-                 *ngIf="tel?.invalid && tel?.touched"
-                  class="text-danger">
-                   {{'Invalid phone number' | translate}}!
-           </div>
-           <div
-                *ngIf="tel?.valid && tel?.touched"
-                class="text-success">
-                {{'Valid phone number' | translate}}!
-           </div>
-          </div>
-
-
-          <div class="col-md-12 mb-3">
-            <label> {{'Adress' | translate}}:<span style="color:red;">*</span></label>
-            <p>{{'(minimum 4 characters)' | translate}}</p>
-            <input type="text"
-                   class="form-control"
-                   formControlName="adresse"
-                   name="adresse"
-                   [(ngModel)]="usine.adresse"
-                   placeholder="Post Name here ..">
-              <div
-                   *ngIf="adresse?.invalid && adresse?.touched"
-                    class="text-danger">
-                    {{'Invalid address' | translate}}!
-             </div>
-             <div
-                  *ngIf="adresse?.valid && adresse?.touched"
-                  class="text-success">
-                  {{'Valid address' | translate}} !
-             </div>
-            </div>
-
-    </div>
-
-      <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-        <button type="submit" (click)="updateUsine()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save' | translate}}</button>
-      </div>
-    </form>
-
+<div class="ContenuCard">
+  <div class="modal-header">
+    <h2 id="modal-title"><b>{{'Modify the factory number' | translate}}: {{usine.idUsine}}</b></h2>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+
+    <div class="form-group">
+      <div class="col-md-12 mb-3">
+        <label> {{'Factory name' | translate}}:<span style="color:red;">*</span></label>
+        <p>{{'(minimum 3 characters)' | translate}}</p>
+        <input type="text" class="form-control" formControlName="nomUsine" name="nomUsine" [(ngModel)]="usine.nomUsine"
+          placeholder="Post Name here ..">
+        <div *ngIf="nomUsine?.invalid && nomUsine?.touched" class="text-danger">
+          {{'Invalid factory name' | translate}} !
+        </div>
+        <div *ngIf="nomUsine?.valid && nomUsine?.touched" class="text-success">
+          {{'Valid factory name' | translate}}!
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label> {{'Phone number (8 digits)' | translate}}: <span style="color:red;">*</span></label>
+        <input type="number" class="form-control" formControlName="tel" name="tel" [(ngModel)]="usine.tel"
+          placeholder="Post Name here ..">
+        <div *ngIf="tel?.invalid && tel?.touched" class="text-danger">
+          {{'Invalid phone number' | translate}}!
+        </div>
+        <div *ngIf="tel?.valid && tel?.touched" class="text-success">
+          {{'Valid phone number' | translate}}!
+        </div>
+      </div>
+
+
+      <div class="col-md-12 mb-3">
+        <label> {{'Adress' | translate}}:<span style="color:red;">*</span></label>
+        <p>{{'(minimum 4 characters)' | translate}}</p>
+        <input type="text" class="form-control" formControlName="adresse" name="adresse" [(ngModel)]="usine.adresse"
+          placeholder="Post Name here ..">
+        <div *ngIf="adresse?.invalid && adresse?.touched" class="text-danger">
+          {{'Invalid address' | translate}}!
+        </div>
+        <div *ngIf="adresse?.valid && adresse?.touched" class="text-success">
+          {{'Valid address' | translate}} !
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' |
+        translate}}</button>
+      <button type="submit" (click)="updateUsine()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save' |
+        translate}}</button>
+    </div>
+  </form>
+
+</div>

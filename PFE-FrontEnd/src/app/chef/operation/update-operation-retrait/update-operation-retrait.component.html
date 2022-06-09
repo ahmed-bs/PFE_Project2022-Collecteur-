@@ -1,78 +1,50 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <h3 id="modal-title"><b>{{'Modify operation number' | translate}}: {{operation.idOperation}}</b></h3>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div><br>
-    <form [formGroup]="myForm" class="needs-validation" novalidate>
-      <div class="form-group">
-        <label>{{'Milk weight' | translate}} :</label>
-        <input type="number"
-               class="form-control"
-               formControlName="poidsLait"
-               name="poidsLait"
-               [(ngModel)]="operation.poidsLait"
-               placeholder="Post Name here ..">
-          <div
-               *ngIf="poidsLait?.invalid && poidsLait?.touched"
-                class="text-danger">
-                {{'Invalid weight' | translate}} !
-         </div>
-         <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
-          {{'Valid weight' | translate}}!
-        </div>
-        <div *ngIf="msgErreur==1" class="text-danger">
-          {{'p0' | translate}}: {{qteActLaitTank}} !
-          <br> {{'p1' | translate}} {{qteActLaitTank}} .
-        </div>
+<div class="ContenuCard">
+  <div class="modal-header">
+    <h3 id="modal-title"><b>{{'Modify operation number' | translate}}: {{operation.idOperation}}</b></h3>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label>{{'Milk weight' | translate}} :</label>
+      <input type="number" class="form-control" formControlName="poidsLait" name="poidsLait"
+        [(ngModel)]="operation.poidsLait" placeholder="Post Name here ..">
+      <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
+        {{'Invalid weight' | translate}} !
       </div>
-  
-      <!-- <div class="lg mb-3">
-        <label>Date Operation :</label>
-        <input type="text" class="form-control"
-                  placeholder="Description Post here ...."
-                  name="dateOperation"
-                  formControlName="dateOperation"
-                  [(ngModel)]="operation.dateOperation"
-                  >
-            <div
-                  *ngIf="dateOperation?.invalid && dateOperation?.touched"
-                   class="text-danger">
-                   Date invalide !
-            </div>
-            <div
-                 *ngIf="dateOperation?.valid && dateOperation?.touched"
-                 class="text-success">
-                  Date valide !
-            </div>
-      </div> -->
-  
-  
-      <div class="lg mb-3">
-        <label class="mr-sm-5" for="inlineFormCustomSelect"> {{'Factorie' | translate}}: <span style="color:red;">*</span></label>
-                <select formControlName="usine" name="usine"    [(ngModel)]="operation.usine.idUsine" class="custom-select mr-sm-2" id="usine" >
-                  <option selected>{{'Choose a' | translate}}{{'supplier' | translate}}...</option>
-                  <option *ngFor="let usine of usines | async" [value]="usine.idUsine">{{usine.nomUsine}}</option>
-                </select>
-                <div
-                *ngIf="usine?.invalid && usine?.touched"
-                 class="text-danger">
-                {{'invalid factory' | translate}}!
-             </div>
-               <div
-               *ngIf="usine?.valid && usine?.touched"
-               class="text-success">
-               {{'Valid factory' | translate}}!
-             </div>
+      <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
+        {{'Valid weight' | translate}}!
       </div>
-  
-  
-      <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-        <button type="submit" (click)="updateOperation()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save' | translate}} </button>
+      <div *ngIf="msgErreur==1" class="text-danger">
+        {{'p0' | translate}}: {{qteActLaitTank}} !
+        <br> {{'p1' | translate}} {{qteActLaitTank}} .
       </div>
-    </form>
-  
-  </div>
-  
+    </div>
+
+    <div class="lg mb-3">
+      <label class="mr-sm-5" for="inlineFormCustomSelect"> {{'Factorie' | translate}}: <span
+          style="color:red;">*</span></label>
+      <select formControlName="usine" name="usine" [(ngModel)]="operation.usine.idUsine" class="custom-select mr-sm-2"
+        id="usine">
+        <option selected>{{'Choose a' | translate}}{{'supplier' | translate}}...</option>
+        <option *ngFor="let usine of usines | async" [value]="usine.idUsine">{{usine.nomUsine}}</option>
+      </select>
+      <div *ngIf="usine?.invalid && usine?.touched" class="text-danger">
+        {{'invalid factory' | translate}}!
+      </div>
+      <div *ngIf="usine?.valid && usine?.touched" class="text-success">
+        {{'Valid factory' | translate}}!
+      </div>
+    </div>
+
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' |
+        translate}}</button>
+      <button type="submit" (click)="updateOperation()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save' |
+        translate}} </button>
+    </div>
+  </form>
+
+</div>

@@ -12,13 +12,10 @@ import { OperationService } from 'src/app/Services/operation.service';
 import { TankService } from 'src/app/Services/tank.service';
 import { Location } from '@angular/common';
 import { ethers } from 'ethers';
-import { Chef } from 'src/app/Models/chef';
-import { Usine } from 'src/app/Models/usine';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { ChefService } from 'src/app/Services/chef.service';
-
 
 declare let require: any;
 declare let window: any;
@@ -65,7 +62,8 @@ export class CreateOperationComponent implements OnInit {
   tab!: any[];
   tabTankId!: any[];
   msg2 = '';
-  constructor(private translateService: TranslateService,
+  constructor(
+    private translateService: TranslateService,
     private operationService: OperationService,
     private tankService: TankService,
     private chefService: ChefService,
@@ -73,24 +71,23 @@ export class CreateOperationComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private location: Location,
-    private dialogClose: MatDialog,
+    private dialogClose: MatDialog
   ) {
     this.translateService.setDefaultLang('en');
-    this.translateService.use(localStorage.getItem('lang') || 'en')
+    this.translateService.use(localStorage.getItem('lang') || 'en');
   }
 
   async ngOnInit() {
     await this.reloadDataRemplissageCentre01();
-    console.log("this.operationsRemplissageCol1");
+    console.log('this.operationsRemplissageCol1');
     console.log(this.operationsRemplissageCol1);
     this.authService.loadToken();
-    if (this.authService.getToken() == null ||
-      this.authService.isTokenExpired()) {
+    if (
+      this.authService.getToken() == null ||
+      this.authService.isTokenExpired()
+    ) {
       this.router.navigate(['/login']);
-
     }
-
-    //this.ValidatedForm();
     this.tanks = this.tankService.getTanks();
     this.agriculteurs = this.agriculteurService.getAgriculteurs();
   }
@@ -106,7 +103,6 @@ export class CreateOperationComponent implements OnInit {
     this.operation = new Operation();
   }
 
-
   operationsRemplissageCol1!: OperationTank[];
   async reloadDataRemplissageCentre01() {
     if (typeof window.ethereum !== 'undefined') {
@@ -114,19 +110,22 @@ export class CreateOperationComponent implements OnInit {
         const depKEY = Object.keys(Remplissage.networks)[0];
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
-        const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer);
+        const contract = new ethers.Contract(
+          Remplissage.networks[depKEY].address,
+          Remplissage.abi,
+          signer
+        );
         this.operationsRemplissageCol1 = await contract.getOperationTanks();
         this.connected = true;
       } catch (error) {
         this.connected = false;
       }
-
     }
     console.log('**************************4471441714144');
     console.log(this.operationsRemplissageCol1);
   }
-  operationsfarmerResult !: Operation;
-  codeCompar !: number
+  operationsfarmerResult!: Operation;
+  codeCompar!: number;
   async FindByCodefarmer(codeCompar: any) {
     const depKEY = Object.keys(RetraitFarmerAdresse.networks)[0];
     if (typeof window.ethereum !== 'undefined') {
@@ -138,15 +137,10 @@ export class CreateOperationComponent implements OnInit {
         RetraitFarmerAdresse.abi,
         signer
       );
-      return this.operationsfarmerResult = await contract.GetOperationFarmerByCode(
-        this.codeCompar
-      );
+      return (this.operationsfarmerResult =
+        await contract.GetOperationFarmerByCode(this.codeCompar));
     }
   }
-
-
-
-
 
   async save() {
     environment.wating = 'startwaiting';
@@ -162,68 +156,71 @@ export class CreateOperationComponent implements OnInit {
       this.msg = '';
     }
 
+    this.operationService
+      .getOpCodeUtilise(this.myForm.get('code')?.value)
+      .subscribe((t) => {
+        console.log(t);
+        if (t == 1) {
+          this.msg1 = 1;
+        } else {
+          this.msg1 = 0;
+        }
 
-    this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
-      console.log(t);
-      if (t == 1) {
-        this.msg1 = 1;
-      } else {
-        this.msg1 = 0;
-      }
-
-      if (
-        this.myForm.get('poidsLait')?.value != null &&
-        this.myForm.get('agriculteur')?.value != null &&
-        this.myForm.get('code')?.value != null &&
-        this.myForm.get('poidsLait')?.value >= 1 &&
-        this.myForm.get('cgu')?.value == true &&
-        t == 0 &&
-        this.myForm.get('code')?.value.toString().length >= 5 &&
-        this.msg == ''
-      ) {
-        this.operationService.createOperationRemplissage({
-          poidsLait: this.myForm.get('poidsLait')?.value,
-          code: this.myForm.get('code')?.value,
-          agriculteur: {
-            idAgriculteur: this.myForm.get('agriculteur')?.value,
-          },
-        }).subscribe(async (o) => {
-          this.tab = Object.values(o);
-          this.operationService.getOpTank(this.tab[0]).subscribe(async (i) => {
-            this.tabTankId = Object.values(i);
-            await this.saveInBc(this.tabTankId, this.tabTankId.length)
-            if (this.confirmation == 'rejected') {
-              localStorage.setItem(
-                'Toast',
-                JSON.stringify([
-                  'Failed',
-                  "L'opération a été rejetée",
-                ])
-              );
-
-            } else {
-              localStorage.setItem(
-                'Toast',
-                JSON.stringify([
-                  'Success',
-                  'Une operation a été ajoutée avec succès',
-                ])
-              );
+        if (
+          this.myForm.get('poidsLait')?.value != null &&
+          this.myForm.get('agriculteur')?.value != null &&
+          this.myForm.get('code')?.value != null &&
+          this.myForm.get('poidsLait')?.value >= 1 &&
+          this.myForm.get('cgu')?.value == true &&
+          t == 0 &&
+          this.myForm.get('code')?.value.toString().length >= 5 &&
+          this.msg == ''
+        ) {
+          this.operationService
+            .createOperationRemplissage({
+              poidsLait: this.myForm.get('poidsLait')?.value,
+              code: this.myForm.get('code')?.value,
+              agriculteur: {
+                idAgriculteur: this.myForm.get('agriculteur')?.value,
+              },
+            })
+            .subscribe(
+              async (o) => {
+                this.tab = Object.values(o);
+                this.operationService
+                  .getOpTank(this.tab[0])
+                  .subscribe(async (i) => {
+                    this.tabTankId = Object.values(i);
+                    await this.saveInBc(this.tabTankId, this.tabTankId.length);
+                    if (this.confirmation == 'rejected') {
+                      localStorage.setItem(
+                        'Toast',
+                        JSON.stringify(['Failed', "L'opération a été rejetée"])
+                      );
+                    } else {
+                      localStorage.setItem(
+                        'Toast',
+                        JSON.stringify([
+                          'Success',
+                          'Une operation a été ajoutée avec succès',
+                        ])
+                      );
+                    }
+                  });
+              },
+              (error) => {
+                console.log('Failed');
+              }
+            );
+          this.tankService.getTanksQteLibre().subscribe((o) => {
+            if (this.myForm.get('poidsLait')?.value <= o) this.msgErreur = 0;
+            else {
+              this.msgErreur = 1;
+              this.qteRsetLait = o;
             }
           });
-        },
-          (error) => {
-            console.log('Failed');
-          });
-        this.tankService.getTanksQteLibre().subscribe((o) => {
-          if (this.myForm.get('poidsLait')?.value <= o) this.msgErreur = 0;
-          else {
-            this.msgErreur = 1;
-            this.qteRsetLait = o;
-          }
-        });
-      }
-    });
+        }
+      });
   }
 
   confirmation: string = 'confirmed';
@@ -247,94 +244,80 @@ export class CreateOperationComponent implements OnInit {
     } catch (error: any) {
       this.confirmation = 'rejected';
       console.log('rejected');
-    };
+    }
     if (this.confirmation == 'confirmed') {
       environment.wating = 'confirmed';
     }
     if (this.confirmation == 'rejected') {
       environment.wating = 'rejected';
       this.operationService
-        .deleteOperation(elem0[0].operation.idOperation).subscribe(d => { this.onReload(); });
+        .deleteOperation(elem0[0].operation.idOperation)
+        .subscribe((d) => {
+          this.onReload();
+        });
     }
-    this.onReload()
+    this.onReload();
   }
 
-
-
-  // verifBc(){
-  //   this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
-  //     console.log(t);
-  //     if (t == 1) {
-  //       this.msg1 = 1;
-  //     } else {
-  //       this.msg1 = 0;
-  //     }
-
-  //     if (
-  //       this.myForm.get('poidsLait')?.value != null &&
-  //       this.myForm.get('agriculteur')?.value != null &&
-  //       this.myForm.get('code')?.value != null &&
-  //       this.myForm.get('poidsLait')?.value >= 1 &&
-  //       this.myForm.get('cgu')?.value==true &&
-  //       t == 0 &&
-  //       this.myForm.get('code')?.value.toString().length >= 5
-  //     ) {
-  //       this.saveInBc();
-  //     }
-
-  //   });
-  // }
   kk: number = 0;
   async onSubmit() {
-    //this.submitted = true;
     try {
-      await this.FindByCodefarmer(this.myForm.get('code')?.value)
+      await this.FindByCodefarmer(this.myForm.get('code')?.value);
       this.chefService.getUser(12).subscribe((t) => {
-        console.log(this.operationsfarmerResult.collecteur.nomCollecteur)
-      
-        console.log(this.myForm.get('poidsLait')?.value)
+        console.log(this.operationsfarmerResult.collecteur.nomCollecteur);
 
+        console.log(this.myForm.get('poidsLait')?.value);
 
-        if (Math.abs(Number(this.operationsfarmerResult.poidsLait) )== this.myForm.get('poidsLait')?.value) {
-          this.msg7 = 1
-          console.log("founded poids lait")
-        }else{
-          console.log("notfount the poids lait not the same")
-          this.msg7 = 0
+        if (
+          Math.abs(Number(this.operationsfarmerResult.poidsLait)) ==
+          this.myForm.get('poidsLait')?.value
+        ) {
+          this.msg7 = 1;
+          console.log('founded poids lait');
+        } else {
+          console.log('notfount the poids lait not the same');
+          this.msg7 = 0;
         }
 
-
-
-        this.agriculteurService.getAgriculteur(this.myForm.get('agriculteur')?.value).subscribe(
-          (f) => {
-            if (this.operationsfarmerResult.agriculteur.nom.trim() == f.nom.trim() && this.operationsfarmerResult.agriculteur.prenom.trim() == f.prenom.trim()) {
-              this.msg6 = 1
-              console.log("founded agriculteur")
-            }else{
-              this.msg6 = 0
-              console.log("notfount agriculteur")
+        this.agriculteurService
+          .getAgriculteur(this.myForm.get('agriculteur')?.value)
+          .subscribe((f) => {
+            if (
+              this.operationsfarmerResult.agriculteur.nom.trim() ==
+                f.nom.trim() &&
+              this.operationsfarmerResult.agriculteur.prenom.trim() ==
+                f.prenom.trim()
+            ) {
+              this.msg6 = 1;
+              console.log('founded agriculteur');
+            } else {
+              this.msg6 = 0;
+              console.log('notfount agriculteur');
             }
-          }
-        )
+          });
 
-        if (this.operationsfarmerResult.collecteur.nomCollecteur.trim() == t.centreNom.trim()) {
-          this.msg5 = 1
-          console.log("founded collecteur")
-        }else{
-          console.log("notfount the name collecteur not the same")
-          this.msg5 = 0
+        if (
+          this.operationsfarmerResult.collecteur.nomCollecteur.trim() ==
+          t.centreNom.trim()
+        ) {
+          this.msg5 = 1;
+          console.log('founded collecteur');
+        } else {
+          console.log('notfount the name collecteur not the same');
+          this.msg5 = 0;
         }
-
-      })
-
+      });
     } catch (error) {
-      this.msg5 = 0
-      console.log("notfount the code")
+      this.msg5 = 0;
+      console.log('notfount the code');
     }
 
     try {
       for (let index = 0; index <= this.kk; index++) {
-        if (this.myForm.get('code')?.value == this.operationsRemplissageCol1[index].operation.code) {
+        if (
+          this.myForm.get('code')?.value ==
+          this.operationsRemplissageCol1[index].operation.code
+        ) {
           this.msg2 = 'code deja exist';
         } else {
           this.msg2 = 'ok';
@@ -363,59 +346,53 @@ export class CreateOperationComponent implements OnInit {
     }
     if (this.myForm.get('cgu')?.value == true) {
       this.msg4 = 0;
-    }
-    else {
+    } else {
       this.msg4 = 1;
     }
     this.tankService.getTanksQteLibre().subscribe((o) => {
       if (this.myForm.get('poidsLait')?.value <= o) {
         this.msgErreur = 0;
-      }
-      else {
+      } else {
         this.msgErreur = 1;
         this.qteRsetLait = o;
       }
     });
 
-
-    this.operationService.getOpCodeUtilise(this.myForm.get('code')?.value).subscribe((t) => {
-      console.log(t);
-      if (t == 1) {
-        this.msg1 = 1;
-      } else {
-        this.msg1 = 0;
-      }
-
-      this.tankService.getTanksQteLibre().subscribe((o) => {
-        console.log(o);
-        if (
-          this.msg6 == 1 &&
-          this.msg5 == 1 &&
-          this.msg7 == 1 &&
-          this.myForm.get('poidsLait')?.value != null &&
-          this.myForm.get('agriculteur')?.value != null &&
-          this.myForm.get('poidsLait')?.value > 0 &&
-          this.myForm.get('cgu')?.value == true &&
-          t == 0 &&
-          this.msg2 == 'ok' &&
-          this.myForm.get('code')?.value != null
-        ) {
-          if (this.myForm.get('poidsLait')?.value <= o) {
-
-
-            this.save();
-            this.msgErreur = 0;
-            this.onClose();
-
-          }
-          else {
-            this.msgErreur = 1;
-            this.qteRsetLait = o;
-          }
+    this.operationService
+      .getOpCodeUtilise(this.myForm.get('code')?.value)
+      .subscribe((t) => {
+        console.log(t);
+        if (t == 1) {
+          this.msg1 = 1;
+        } else {
+          this.msg1 = 0;
         }
 
+        this.tankService.getTanksQteLibre().subscribe((o) => {
+          console.log(o);
+          if (
+            this.msg6 == 1 &&
+            this.msg5 == 1 &&
+            this.msg7 == 1 &&
+            this.myForm.get('poidsLait')?.value != null &&
+            this.myForm.get('agriculteur')?.value != null &&
+            this.myForm.get('poidsLait')?.value > 0 &&
+            this.myForm.get('cgu')?.value == true &&
+            t == 0 &&
+            this.msg2 == 'ok' &&
+            this.myForm.get('code')?.value != null
+          ) {
+            if (this.myForm.get('poidsLait')?.value <= o) {
+              this.save();
+              this.msgErreur = 0;
+              this.onClose();
+            } else {
+              this.msgErreur = 1;
+              this.qteRsetLait = o;
+            }
+          }
+        });
       });
-    });
   }
 
   gotoList() {
@@ -423,7 +400,6 @@ export class CreateOperationComponent implements OnInit {
   }
 
   onReload() {
-    // this.router.navigate([this.router.url]);
     this.router
       .navigateByUrl("/'agriculteur/bon/listeCollecteur", {
         skipLocationChange: true,
@@ -435,7 +411,6 @@ export class CreateOperationComponent implements OnInit {
 
   onClose() {
     this.dialogClose.closeAll();
-    // this.gotoList();
     this.onReload();
   }
 
