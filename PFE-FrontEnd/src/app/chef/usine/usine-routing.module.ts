@@ -15,7 +15,6 @@ const routes: Routes = [
   { path: 'detailsUsine/:id', component: DetailsUsineComponent   },
   { path: 'updateUsine/:id', component: UpdateUsineComponent  },
   { path:'',redirectTo:'/usine',pathMatch:'full'},
-  // {  path:'**', component: UsineComponent },
 ];
 
 @NgModule({

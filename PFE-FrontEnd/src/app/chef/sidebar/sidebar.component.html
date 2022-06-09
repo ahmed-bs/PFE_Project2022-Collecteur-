@@ -1,137 +1,102 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4 " style="position: fixed !important;">
-  
-    <!-- Brand Logo -->
-    <a class="brand-link">
-      <img src="assets/logoCol1.png" alt="RMS Logo" class="image-responsive img-circle elevation-1" style="margin-left: -3px">
-      <span class="brand-text font-weight-light gradient-text" style="font-size: 1.2em; color:white;margin-left:10px; font-weight: bold;  font-family: 'Archivo Black', sans-serif;">Collecteur App</span>
-    </a>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-  
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info" style="margin-left:auto;margin-right:auto;" >
-          <a  class="d-block" style="color:white;font-weight: bold;">  {{'Welcome' | translate}} {{authService.loggedUser}}
-             <!-- <br>{{authService.getRole()}} -->
-            </a>
-        </div>
+  <!-- Brand Logo -->
+  <a class="brand-link">
+    <img src="assets/logoCol1.png" alt="RMS Logo" class="image-responsive img-circle elevation-1"
+      style="margin-left: -3px">
+    <span class="brand-text font-weight-light gradient-text"
+      style="font-size: 1.2em; color:white;margin-left:10px; font-weight: bold;  font-family: 'Archivo Black', sans-serif;">Collecteur
+      App</span>
+  </a>
+
+  <div class="sidebar">
+
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="info" style="margin-left:auto;margin-right:auto;">
+        <a class="d-block" style="color:white;font-weight: bold;"> {{'Welcome' | translate}} {{authService.loggedUser}}
+        </a>
       </div>
-
-      <div class="form-inline">
-        <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-          <div class="input-group-append">
-            <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw" style="margin-left:-6px;"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-  
-      <nav class="mt-2" >
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-          <li class="nav-item">
-            <a routerLink="dashboard" class="nav-link" routerLinkActive="active" >
-              <i class="nav-icon fas fa-chart-area" style="margin-left:-6px;"></i>
-              <!-- <i class="fas fa-chart-area"></i> -->
-              <p>{{'boardTable' | translate}}</p>
-            </a>
-          </li>
-
-          <li  class="nav-item">
-            <a routerLink="agriculteur/listeAgriculteur" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon fas fa-user-friends" style="margin-left:-6px;"></i>
-              <p>{{'Farmer management' | translate}}
-              </p>
-            </a>
-          </li>
-  
-          <!-- Partie Profil lel Les employee lkol -->
-          <li class="nav-item">
-            <a routerLink="usine/listeUsine" class="nav-link" routerLinkActive="active">
-              <i class="nav-icon fas fa-home" style="margin-left:-6px;"></i>
-              <p>{{'Factory management' | translate}}</p>
-            </a>
-          </li>
-         
-          <!-- Partie Job Offers lel Admin w recruteur -->
-          <!-- <li class="nav-item">
-            <a routerLink="produit/listeProduit" class="nav-link ">
-              <i class="nav-icon fab fa-product-hunt"></i>
-              <p>Gestion des produits</p>
-            </a>
-          </li> -->
-          <!-- Partie Condidates List lel Recruteur wel admin -->
-          <li class="nav-item">
-            <a routerLink="tank/listeTank" class="nav-link " routerLinkActive="active" >
-              <i class="nav-icon fas fa-glass" style="margin-left:-6px;"></i>
-              <!-- <i class="fal fa-glass"></i> -->
-              <p>{{'Tank management' | translate}}</p>
-            </a>
-          </li>
-          <!-- Partie Interviews List lel Interviewr wel admin -->
-
-
-          <!-- <li class="nav-item">
-            <a  routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active" >
-              <i class="nav-icon fas fa-plus"></i>
-              <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a routerLink="operation/listeOperationRetrait" class="nav-link" routerLinkActive="active" >
-              <i class="nav-icon fas fa-minus"></i>
-              <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; de retrait</p>
-            </a>
-          </li> -->
-
-          
-          <li class="nav-item">
-            <a href="" class="nav-link" routerLinkActive="active">
-              <i class="far fa-circle nav-icon" style="margin-left:-6px;"></i>
-              <p>{{'Operations management' | translate}}<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-12px;margin-top:3.5px;"></i></p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active">
-                  <i class="nav-icon fas fa-plus" ></i>
-                  <p> {{'Filling' | translate}}</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a  routerLink="operation/listeOperationRetrait" class="nav-link" routerLinkActive="active">
-                  <i class="nav-icon fas fa-minus" ></i>
-                  <p>{{'Withdrawal' | translate}}</p>
-                </a>
-              </li>
-            </ul>
-            </li>
-
-          <li class="nav-item">
-            <a routerLink="operation/listeOperationTank" class="nav-link" routerLinkActive="active" >
-              <i class="nav-icon fa fa-id-card-o" style="margin-left:-6px;"></i>
-              <p>{{'tank s operations management' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            </a>
-          </li>
-         
-<!-- 
-          <li class="nav-item">
-            <a routerLink="operation/operationPage" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
-              <p>Page operations </p>
-            </a>
-          </li> -->
-  
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
-  </aside>
-  
-  
-  
+
+    <div class="form-inline">
+      <div class="input-group" data-widget="sidebar-search">
+        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-sidebar">
+            <i class="fas fa-search fa-fw" style="margin-left:-6px;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+        <li class="nav-item">
+          <a routerLink="dashboard" class="nav-link" routerLinkActive="active">
+            <i class="nav-icon fas fa-chart-area" style="margin-left:-6px;"></i>
+
+            <p>{{'boardTable' | translate}}</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="agriculteur/listeAgriculteur" routerLinkActive="active" class="nav-link">
+            <i class="nav-icon fas fa-user-friends" style="margin-left:-6px;"></i>
+            <p>{{'Farmer management' | translate}}
+            </p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="usine/listeUsine" class="nav-link" routerLinkActive="active">
+            <i class="nav-icon fas fa-home" style="margin-left:-6px;"></i>
+            <p>{{'Factory management' | translate}}</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="tank/listeTank" class="nav-link " routerLinkActive="active">
+            <i class="nav-icon fas fa-glass" style="margin-left:-6px;"></i>
+
+            <p>{{'Tank management' | translate}}</p>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+          <a href="" class="nav-link" routerLinkActive="active">
+            <i class="far fa-circle nav-icon" style="margin-left:-6px;"></i>
+            <p>{{'Operations management' | translate}}<i class="right fas fa-angle-left"
+                style="margin-left:13px;margin-right:-12px;margin-top:3.5px;"></i></p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active">
+                <i class="nav-icon fas fa-plus"></i>
+                <p> {{'Filling' | translate}}</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="operation/listeOperationRetrait" class="nav-link" routerLinkActive="active">
+                <i class="nav-icon fas fa-minus"></i>
+                <p>{{'Withdrawal' | translate}}</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a routerLink="operation/listeOperationTank" class="nav-link" routerLinkActive="active">
+            <i class="nav-icon fa fa-id-card-o" style="margin-left:-6px;"></i>
+            <p>{{'tank s operations management' | translate}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+  </div>
+
+</aside>

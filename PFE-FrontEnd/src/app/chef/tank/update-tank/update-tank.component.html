@@ -1,4 +1,4 @@
-<div class="ContenuCard" >
+<div class="ContenuCard">
   <div class="modal-header">
     <h3 id="modal-title"><b>{{'Modify the tank number' | translate}} : {{tank.idTank}}</b></h3>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
@@ -9,48 +9,34 @@
   <form [formGroup]="myForm" class="needs-validation" novalidate>
     <div class="form-group">
       <label>{{'Maximum capacity' | translate}}(minimum 30 kg) : <span style="color:red;">*</span></label>
-      <input type="text"
-             class="form-control"
-             formControlName="poidVide"
-             name="poidVide"
-             [(ngModel)]="tank.poidVide"
-             placeholder="Post Name here ..">
-        <div
-             *ngIf="poidVide?.invalid && poidVide?.touched"
-              class="text-danger">
-              {{'Invalid maximum capacity' | translate}} !
-       </div>
-       <div
-            *ngIf="poidVide?.valid && poidVide?.touched"
-            class="text-success">
-            {{'Maximum valid capacity' | translate}} !
-       </div>
+      <input type="text" class="form-control" formControlName="poidVide" name="poidVide" [(ngModel)]="tank.poidVide"
+        placeholder="Post Name here ..">
+      <div *ngIf="poidVide?.invalid && poidVide?.touched" class="text-danger">
+        {{'Invalid maximum capacity' | translate}} !
+      </div>
+      <div *ngIf="poidVide?.valid && poidVide?.touched" class="text-success">
+        {{'Maximum valid capacity' | translate}} !
+      </div>
     </div>
 
     <div class="lg mb-3">
-      <label>{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}} : <span style="color:red;">*</span></label>
-      <input class="form-control"
-                placeholder="Description Post here ...."
-                name="matricule"
-                formControlName="matricule"
-                [(ngModel)]="tank.matricule"
-                >
-          <div
-                *ngIf="matricule?.invalid && matricule?.touched"
-                 class="text-danger">
-                 {{'Invalid registration number' | translate}} !
-          </div>
-          <div
-               *ngIf="matricule?.valid && matricule?.touched"
-               class="text-success">
-               {{'Valid registration number' | translate}} !
-          </div>
+      <label>{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}} : <span
+          style="color:red;">*</span></label>
+      <input class="form-control" placeholder="Description Post here ...." name="matricule" formControlName="matricule"
+        [(ngModel)]="tank.matricule">
+      <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+        {{'Invalid registration number' | translate}} !
+      </div>
+      <div *ngIf="matricule?.valid && matricule?.touched" class="text-success">
+        {{'Valid registration number' | translate}} !
+      </div>
     </div>
 
-
     <div class="modal-footer">
-      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-      <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' | translate}} </button>
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' |
+        translate}}</button>
+      <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' |
+        translate}} </button>
     </div>
   </form>
 

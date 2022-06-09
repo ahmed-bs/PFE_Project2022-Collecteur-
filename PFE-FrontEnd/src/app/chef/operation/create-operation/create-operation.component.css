@@ -1,37 +1,37 @@
-#modal-title{
-  color: #FFC300;
+#modal-title {
+  color: #ffc300;
   transform: translateX(-500px);
   animation: fadeIn 1.5s;
-  animation-fill-mode: forwards
+  animation-fill-mode: forwards;
 }
 .form-control.ng-touched.ng-invalid {
-  border:1px solid rgb(238, 28, 28);
- }
- .form-control.ng-touched.ng-valid {
-  border:1px solid rgb(9, 211, 9);
- }
+  border: 1px solid rgb(238, 28, 28);
+}
+.form-control.ng-touched.ng-valid {
+  border: 1px solid rgb(9, 211, 9);
+}
 
-.ContenuCard{
+.ContenuCard {
   width: 500px;
 }
 
-#btnAddComp:hover{
+#btnAddComp:hover {
   text-decoration: blue underline;
   color: blue;
   font-weight: bold;
 }
-html{
+html {
   width: 100px;
 }
 
 @keyframes fadeIn {
   0% {
-      opacity: 0;
-      transform: translateX(-500px)
+    opacity: 0;
+    transform: translateX(-500px);
   }
 
   100% {
-      opacity: 1;
-      transform: translateX(0px)
+    opacity: 1;
+    transform: translateX(0px);
   }
 }

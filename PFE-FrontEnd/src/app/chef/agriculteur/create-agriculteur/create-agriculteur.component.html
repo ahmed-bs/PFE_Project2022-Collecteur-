@@ -1,142 +1,112 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <h3 id="modal-title"><b>{{'Add a new farmer' | translate }} :</b></h3>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate }}</span><br><br>
-          <form [formGroup]="myForm"  novalidate >
-            <div class="form-row">
-              <div class="form-group col-md-6 mb-3">
-                <label> {{'Name' | translate }}: <span style="color:red;">*</span></label>
-                <p>{{'(minimum 3 characters)' | translate }}</p>
-                <input type="text"
-                 formControlName="nom"
-                 placeholder="nom"
-                 class="form-control"
-                 id="nom"
-                 name="nom">
-  
-                <div *ngIf="nom?.invalid && nom?.touched || msg1==1" class="text-danger">
-                 {{'Invalid name' | translate }}!
-                </div>
-                <div *ngIf="nom?.valid && nom?.touched && msg1==0" class="text-success">
-                  {{'Valid name' | translate }}!
-                </div>
-  
-              </div>
+<div class="ContenuCard">
+  <div class="modal-header">
+    <h3 id="modal-title"><b>{{'Add a new farmer' | translate }} :</b></h3>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate }}</span><br><br>
+  <form [formGroup]="myForm" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-3">
+        <label> {{'Name' | translate }}: <span style="color:red;">*</span></label>
+        <p>{{'(minimum 3 characters)' | translate }}</p>
+        <input type="text" formControlName="nom" placeholder="nom" class="form-control" id="nom" name="nom">
 
-  
-            <!-- <div class="form-row"> -->
-  
-              <div class="col-md-6 mb-3">
-                <label> {{'First name' | translate }}: <span style="color:red;">*</span></label>
-                <p>(minimum 3 caractéres) </p>
-                  <input type="text"
-                  class="form-control"
-                  placeholder="prenom"
-                    id="prenom"
-                    formControlName="prenom"
-                    name="prenom">
-    
-                    <div *ngIf="prenom?.invalid && prenom?.touched || msg1==1" class="text-danger">
-                       {{'Invalid first name  ' | translate }}!
-                    </div>
-                    <div *ngIf="prenom?.valid && prenom?.touched && msg1==0" class="text-success">
-                      {{'Valid first name' | translate }}
-                    </div>
-  
-              </div>
+        <div *ngIf="nom?.invalid && nom?.touched || msg1==1" class="text-danger">
+          {{'Invalid name' | translate }}!
+        </div>
+        <div *ngIf="nom?.valid && nom?.touched && msg1==0" class="text-success">
+          {{'Valid name' | translate }}!
+        </div>
 
-              <div *ngIf="msg1==1" class="text-danger">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{'Surname and first name already exist' | translate }} !
-              </div>
+      </div>
 
-              <div class="col-md-12 mb-3">
-                <label for="prix">{{'Address (minimum 4 characters)' | translate }}: <span style="color:red;">*</span></label>
-                <input type="text"
-                class="form-control"
-                  id="adress"
-                  placeholder="exp : Tunis .."
-                  formControlName="adress"
-                  name="adress">
-  
-                  <div *ngIf="adress?.invalid && adress?.touched" class="text-danger">
-                   {{'Invalid address' | translate }}!
-                  </div>
-                  <div *ngIf="adress?.valid && adress?.touched" class="text-success">
-                    {{'Valid address' | translate }}
-                  </div>
+      <div class="col-md-6 mb-3">
+        <label> {{'First name' | translate }}: <span style="color:red;">*</span></label>
+        <p>(minimum 3 caractéres) </p>
+        <input type="text" class="form-control" placeholder="prenom" id="prenom" formControlName="prenom" name="prenom">
 
-            </div>
+        <div *ngIf="prenom?.invalid && prenom?.touched || msg1==1" class="text-danger">
+          {{'Invalid first name ' | translate }}!
+        </div>
+        <div *ngIf="prenom?.valid && prenom?.touched && msg1==0" class="text-success">
+          {{'Valid first name' | translate }}
+        </div>
 
-            <div class="form-row">
-            
-            <div class="col-md-12 mb-3">
-              <label for="prix"> {{'Phone number (8 digits)' | translate }}: <span style="color:red;">*</span></label>
-              <input type="number"
-              class="form-control"
-                id="tel"
-                formControlName="tel"
-                placeholder="12345678"
-                name="tel">
-                <div *ngIf="tel?.invalid && tel?.touched|| msg2==1 " class="text-danger">
-                  {{'Invalid phone number' | translate }}!
-                </div>
-                <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
-                  {{'Valid phone number' | translate }}
-                </div>
-                <div *ngIf="msg2==1" class="text-danger">
-                 {{'Phone number already exists' | translate }} !
-                </div>
+      </div>
+
+      <div *ngIf="msg1==1" class="text-danger">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{'Surname and first name already exist' |
+        translate }} !
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label for="prix">{{'Address (minimum 4 characters)' | translate }}: <span style="color:red;">*</span></label>
+        <input type="text" class="form-control" id="adress" placeholder="exp : Tunis .." formControlName="adress"
+          name="adress">
+
+        <div *ngIf="adress?.invalid && adress?.touched" class="text-danger">
+          {{'Invalid address' | translate }}!
+        </div>
+        <div *ngIf="adress?.valid && adress?.touched" class="text-success">
+          {{'Valid address' | translate }}
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="col-md-12 mb-3">
+          <label for="prix"> {{'Phone number (8 digits)' | translate }}: <span style="color:red;">*</span></label>
+          <input type="number" class="form-control" id="tel" formControlName="tel" placeholder="12345678" name="tel">
+          <div *ngIf="tel?.invalid && tel?.touched|| msg2==1 " class="text-danger">
+            {{'Invalid phone number' | translate }}!
           </div>
+          <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
+            {{'Valid phone number' | translate }}
+          </div>
+          <div *ngIf="msg2==1" class="text-danger">
+            {{'Phone number already exists' | translate }} !
+          </div>
+        </div>
 
-          <div class="col-md-12 mb-3">
-            <label for="prix">{{'registration number' | translate }} {{'(minimum 8 characters)' | translate }}: <span style="color:red;">*</span></label>
-            <input type="text"
-            class="form-control"
-              id="matricule"
-              formControlName="matricule"
-              placeholder="1a2a2a3z"
-              name="matricule">
-              <div *ngIf="matricule?.invalid && matricule?.touched  " class="text-danger">
-                 {{'Invalid registration number' | translate }}!
-              </div>
-              <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
-               {{'Valid registration number' | translate }}
-              </div>
-              <div *ngIf="msg3==1" class="text-danger">
-              {{'Registration number already exists' | translate }}!
-              </div>
+        <div class="col-md-12 mb-3">
+          <label for="prix">{{'registration number' | translate }} {{'(minimum 8 characters)' | translate }}: <span
+              style="color:red;">*</span></label>
+          <input type="text" class="form-control" id="matricule" formControlName="matricule" placeholder="1a2a2a3z"
+            name="matricule">
+          <div *ngIf="matricule?.invalid && matricule?.touched  " class="text-danger">
+            {{'Invalid registration number' | translate }}!
+          </div>
+          <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
+            {{'Valid registration number' | translate }}
+          </div>
+          <div *ngIf="msg3==1" class="text-danger">
+            {{'Registration number already exists' | translate }}!
+          </div>
         </div>
-  
-            </div>
-  
-  
-           
-  
-            </div>
-  
-  
-  
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate }}</label>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate }}</label>
-                <br><br>
-                <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
-           
-                <div class="invalid-feedback">{{'p3' | translate }}</div>
-              </div>
-            </div>
-            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">{{'Send' | translate }}</button>
-            <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate }}</button>
-  
-          </form>
-        </div>
-  
-  
+
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="cgu" formControlName="cgu" required>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate }}</label>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==0">{{'p2' | translate }}</label>
+        <br><br>
+        <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required
+          fields' | translate}}</span>
+
+        <div class="invalid-feedback">{{'p3' | translate }}</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()" type="submit">{{'Send' | translate
+      }}</button>
+    <!-- close popup -->
+    <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate }}</button>
+
+  </form>
+</div>

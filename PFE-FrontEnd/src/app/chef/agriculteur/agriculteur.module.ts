@@ -5,14 +5,12 @@ import { CreateAgriculteurComponent } from './create-agriculteur/create-agricult
 import { UpdateAgriculteurComponent } from './update-agriculteur/update-agriculteur.component';
 import { DetailsAgriculteurComponent } from './details-agriculteur/details-agriculteur.component';
 import { HttpClientModule } from '@angular/common/http';
-
-// import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { AgriculteurRoutingModule } from './agriculteur-routing.module';
 
-import { MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,8 +24,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,12 +36,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     ListeAgriculteurComponent,
     CreateAgriculteurComponent,
     UpdateAgriculteurComponent,
-    DetailsAgriculteurComponent
+    DetailsAgriculteurComponent,
   ],
   imports: [
     CommonModule,
     AgriculteurRoutingModule,
-    
+
     FormsModule,
     HttpClientModule,
     MatDialogModule,
@@ -53,29 +51,22 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatMenuModule,
     ReactiveFormsModule,
-     //add For Sorted
-     MatSortModule,
-     // AddForPaginator
-     MatPaginatorModule,
-     MatFormFieldModule,
-     MatInputModule,
-     MatTableModule,
-     MatSnackBarModule,
-     TranslateModule.forRoot({
+    //add For Sorted
+    MatSortModule,
+    // AddForPaginator
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSnackBarModule,
+    TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
-
-  ]
+  ],
 })
-export class AgriculteurModule{
-//  defaultValue= {hour: 13, minute: 30};
-
-// timeChangeHandler(event: Event) {
-//   console.log(event);
-// }
+export class AgriculteurModule {
 }
-

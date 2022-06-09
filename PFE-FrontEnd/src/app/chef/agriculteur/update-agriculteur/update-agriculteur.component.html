@@ -1,120 +1,87 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <b><h4 id="modal-title"><b>  {{'Change farmer number' | translate }}: {{agriculteur.idAgriculteur}}</b></h4> </b>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*)  {{'Required Field' | translate }}</span><br><br>
-    <form [formGroup]="myForm" class="needs-validation" novalidate>
-      <div class="form-row">
-        <div class="col-md-6 mb-3">
-          <label>{{'Name' | translate }}:<span style="color:red;">*</span></label>
-          <p> {{'(minimum 3 characters)' | translate }}</p>
-        <input type="text"
-               class="form-control"
-               formControlName="nom"
-               name="nom"
-               [(ngModel)]="agriculteur.nom"
-               placeholder="Post Name here ..">
-          <div
-               *ngIf="nom?.invalid && nom?.touched"
-                class="text-danger">
-                {{'Invalid name' | translate }} !
-         </div>
-         <div
-              *ngIf="nom?.valid && nom?.touched"
-              class="text-success">
-               {{'Valid name' | translate }}!
-         </div>
-        </div>
-
-        <div class="col-md-6 mb-3">
-          <label>{{'First name' | translate }}:<span style="color:red;">*</span></label>
-          <p> {{'(minimum 3 characters)' | translate }}</p>
-          <input type="text"
-                 class="form-control"
-                 formControlName="prenom"
-                 name="prenom"
-                 [(ngModel)]="agriculteur.prenom"
-                 placeholder="Post Name here ..">
-            <div
-                 *ngIf="prenom?.invalid && prenom?.touched"
-                  class="text-danger">
-                 {{'Invalid first name' | translate }}!
-           </div>
-           <div
-                *ngIf="prenom?.valid && prenom?.touched"
-                class="text-success">
-                 {{'Valid first name' | translate }}!
-           </div>
-          </div>
-      </div>
-
-        <div class="form-row">
-          <div class="col-md-12 mb-3">
-            <label for="prix"> {{'Address (minimum 4 characters)' | translate }}: <span style="color:red;">*</span></label>
-            <input type="text"
-                   class="form-control"
-                   formControlName="adress"
-                   name="adress"
-                   [(ngModel)]="agriculteur.adress"
-                   placeholder="Post Name here ..">
-              <div
-                   *ngIf="adress?.invalid && adress?.touched"
-                    class="text-danger">
-                     {{'Invalid address' | translate }}!
-             </div>
-             <div
-                  *ngIf="adress?.valid && adress?.touched"
-                  class="text-success">
-                  {{'Valid address' | translate }}!
-             </div>
-            </div>
-
-
-
-            <div class="col-md-12 mb-3">
-              <label for="prix"> {{'Phone number (8 digits)' | translate }}: <span style="color:red;">*</span></label>
-              <input type="number"
-                     class="form-control"
-                     formControlName="tel"
-                     name="tel"
-                     [(ngModel)]="agriculteur.tel"
-                     placeholder="Post Name here ..">
-                <div
-                     *ngIf="tel?.invalid && tel?.touched"
-                      class="text-danger">
-                      {{'Invalid phone number' | translate }}!
-               </div>
-               <div
-                    *ngIf="tel?.valid && tel?.touched"
-                    class="text-success">
-                    {{'Valid phone number' | translate }}!
-               </div>
-              </div>
-
-              <div class="col-md-12 mb-3">
-                <label for="prix"> {{'registration number' | translate }} {{'(minimum 8 characters)' | translate }}: <span style="color:red;">*</span></label>
-                <input type="text"
-                class="form-control"
-                  formControlName="matricule"
-                  [(ngModel)]="agriculteur.matricule"
-                  name="matricule">
-                  <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
-                     {{'Invalid registration number' | translate }}!
-                  </div>
-                  <div *ngIf="matricule?.valid && matricule?.touched " class="text-success">
-                     {{'Valid registration number' | translate }}
-                  </div>
-            </div>
-
-    </div>
-
-      <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal"> {{'Close' | translate }}</button>
-        <button type="submit" (click)="updateAgriculteur()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save' | translate }} </button>
-      </div>
-    </form>
-
+<div class="ContenuCard">
+  <div class="modal-header">
+    <b>
+      <h4 id="modal-title"><b> {{'Change farmer number' | translate }}: {{agriculteur.idAgriculteur}}</b></h4>
+    </b>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate }}</span><br><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label>{{'Name' | translate }}:<span style="color:red;">*</span></label>
+        <p> {{'(minimum 3 characters)' | translate }}</p>
+        <input type="text" class="form-control" formControlName="nom" name="nom" [(ngModel)]="agriculteur.nom"
+          placeholder="Post Name here ..">
+        <div *ngIf="nom?.invalid && nom?.touched" class="text-danger">
+          {{'Invalid name' | translate }} !
+        </div>
+        <div *ngIf="nom?.valid && nom?.touched" class="text-success">
+          {{'Valid name' | translate }}!
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <label>{{'First name' | translate }}:<span style="color:red;">*</span></label>
+        <p> {{'(minimum 3 characters)' | translate }}</p>
+        <input type="text" class="form-control" formControlName="prenom" name="prenom" [(ngModel)]="agriculteur.prenom"
+          placeholder="Post Name here ..">
+        <div *ngIf="prenom?.invalid && prenom?.touched" class="text-danger">
+          {{'Invalid first name' | translate }}!
+        </div>
+        <div *ngIf="prenom?.valid && prenom?.touched" class="text-success">
+          {{'Valid first name' | translate }}!
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="prix"> {{'Address (minimum 4 characters)' | translate }}: <span style="color:red;">*</span></label>
+        <input type="text" class="form-control" formControlName="adress" name="adress" [(ngModel)]="agriculteur.adress"
+          placeholder="Post Name here ..">
+        <div *ngIf="adress?.invalid && adress?.touched" class="text-danger">
+          {{'Invalid address' | translate }}!
+        </div>
+        <div *ngIf="adress?.valid && adress?.touched" class="text-success">
+          {{'Valid address' | translate }}!
+        </div>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="prix"> {{'Phone number (8 digits)' | translate }}: <span style="color:red;">*</span></label>
+        <input type="number" class="form-control" formControlName="tel" name="tel" [(ngModel)]="agriculteur.tel"
+          placeholder="Post Name here ..">
+        <div *ngIf="tel?.invalid && tel?.touched" class="text-danger">
+          {{'Invalid phone number' | translate }}!
+        </div>
+        <div *ngIf="tel?.valid && tel?.touched" class="text-success">
+          {{'Valid phone number' | translate }}!
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-3">
+        <label for="prix"> {{'registration number' | translate }} {{'(minimum 8 characters)' | translate }}: <span
+            style="color:red;">*</span></label>
+        <input type="text" class="form-control" formControlName="matricule" [(ngModel)]="agriculteur.matricule"
+          name="matricule">
+        <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+          {{'Invalid registration number' | translate }}!
+        </div>
+        <div *ngIf="matricule?.valid && matricule?.touched " class="text-success">
+          {{'Valid registration number' | translate }}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal"> {{'Close' | translate
+        }}</button>
+      <button type="submit" (click)="updateAgriculteur()" [disabled]="myForm.invalid" class="btn btn-primary"> {{'Save'
+        | translate }} </button>
+    </div>
+  </form>
+
+</div>

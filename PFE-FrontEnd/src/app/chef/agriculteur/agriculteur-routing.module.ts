@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ListeAgriculteurComponent } from './liste-agriculteur/liste-agriculteur.component';
 import { DetailsAgriculteurComponent } from './details-agriculteur/details-agriculteur.component';
@@ -10,15 +9,14 @@ import { AgriculteurComponent } from './agriculteur.component';
 const routes: Routes = [
   { path: '', component: AgriculteurComponent },
   { path: 'listeAgriculteur', component: ListeAgriculteurComponent },
-  { path: 'addAgriculteur', component: CreateAgriculteurComponent  },
-  { path: 'detailsAgriculteur/:id', component: DetailsAgriculteurComponent   },
-  { path: 'updateAgriculteur/:id', component: UpdateAgriculteurComponent  },
-  { path:'',redirectTo:'/agriculteur',pathMatch:'full'},
-  // {  path:'**', component: AgriculteurComponent },
+  { path: 'addAgriculteur', component: CreateAgriculteurComponent },
+  { path: 'detailsAgriculteur/:id', component: DetailsAgriculteurComponent },
+  { path: 'updateAgriculteur/:id', component: UpdateAgriculteurComponent },
+  { path: '', redirectTo: '/agriculteur', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AgriculteurRoutingModule { }
+export class AgriculteurRoutingModule {}

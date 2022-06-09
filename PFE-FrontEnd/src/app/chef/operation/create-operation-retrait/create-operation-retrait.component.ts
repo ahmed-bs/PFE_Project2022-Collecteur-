@@ -13,7 +13,6 @@ import { DatePipe } from '@angular/common';
 import { AuthService } from 'src/app/Services/auth.service';
 import { ethers } from 'ethers';
 import { OperationTank } from 'src/app/Models/operationTank';
-import { Chef } from 'src/app/Models/chef';
 import { Location } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import jsPDF from 'jspdf';
@@ -52,41 +51,20 @@ export class CreateOperationRetraitComponent implements OnInit {
 
   maDate = new Date();
   connected!: boolean;
-  text="";
+  text = '';
 
   exportOne(op: Operation, confirmation: string) {
-    // new CsvBuilder("operation.csv")
-    // .setColumns(["#ID","Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"])
-    // .addRow([op.idOperation.toString() , op.poidsLait.toString() , op.code.toString() , op.collecteur.nomCollecteur , op.dateOperation , confirmation])
-    // .exportFile();
-
     const doc = new jsPDF();
     var imageData = environment.img;
     const n = op.code.toString() + '.pdf';
-    // const head = [['ID',"Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"]]
-    // const data = [
-    //     [op.idOperation, op.poidsLait, op.code , op.collecteur.nomCollecteur , op.dateOperation , confirmation],
     doc.addImage(imageData, 'JPEG', 0, 0, 210, 297);
-    // ]
-    this.text=op.chef.nom.toString()+" "+op.chef.prenom.toString();
+    this.text = op.chef.nom.toString() + ' ' + op.chef.prenom.toString();
     doc.text(op.dateOperation.toString(), 120, 123.5);
     doc.text(op.code.toString(), 92, 54);
     doc.text(this.text, 75, 107.2);
 
     doc.setFontSize(12);
     doc.text(op.usine.nomUsine.toString(), 65, 139);
-
-
-//     pdf.setFont("helvetica");
-// pdf.setFontType("bold");
-// pdf.setFontSize(9);
-
-    // doc.text(op.code.toString().toString(),92,157)
-    // autoTable(doc, {
-    //     head: head,
-    //     body: data,
-    //     didDrawCell: (data) => { },
-    // });
 
     doc.save(n);
   }
@@ -107,7 +85,6 @@ export class CreateOperationRetraitComponent implements OnInit {
 
   OpTankRetraitCentreTab01!: number[];
   async reloadDataRetraitCentre01() {
-
     if (typeof window.ethereum !== 'undefined') {
       try {
         const depKEY = Object.keys(Remplissage.networks)[0];
@@ -122,18 +99,16 @@ export class CreateOperationRetraitComponent implements OnInit {
         this.OpTankRetraitCentreTab01 = await contract.getOperationNumbers();
 
         this.jj = this.OpTankRetraitCentreTab01.length;
-        this.connected = true
+        this.connected = true;
       } catch (error) {
-        this.connected = false
+        this.connected = false;
       }
-
     }
-
   }
 
   jj!: number;
   async ngOnInit() {
-    await this.reloadDataRetraitCentre01()
+    await this.reloadDataRetraitCentre01();
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -142,7 +117,6 @@ export class CreateOperationRetraitComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    //this.ValidatedForm();
     this.tanks = this.tankService.getTanksFiltres();
     this.usines = this.usineService.getUsines();
     this.operationService.getNbOp().subscribe((o) => {
@@ -152,11 +126,9 @@ export class CreateOperationRetraitComponent implements OnInit {
       } else {
         this.som = 100000000 + o + 1;
       }
-
     });
 
     console.log(this.maDate);
-    // var transformDate = DatePipe.transform(this.maDate, 'yyyy-MM-dd');
   }
 
   newEmployee(): void {
@@ -212,20 +184,6 @@ export class CreateOperationRetraitComponent implements OnInit {
             console.log('Failed');
           }
         );
-      //  ****************   Tank    ******************
-      //     let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
-      //       this.t=o;
-      //       console.log(o);
-      //       console.log(this.t);
-      //       console.log(o.poidActuel);
-      // if(o.poidActuel<this.myForm.get('poidsLait')?.value){
-      // this.msgErreur=1;
-      // this.qteActLaitTank=o.poidActuel;
-      //     }
-      // else
-      // this.msgErreur=0;
-      //     });
-      // if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
     }
     this.tankService.getTanksQteLibre().subscribe((o) => {
       console.log(o);
@@ -277,13 +235,6 @@ export class CreateOperationRetraitComponent implements OnInit {
     this.onReload();
   }
 
-  // verifBc(){
-  //   if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('usine')?.value != null &&
-  //   this.myForm.get('cgu')?.value==true && this.myForm.get('poidsLait')?.value >= 1) {
-  //     this.saveInBc();
-  //   }
-  // }
-
   onSubmit() {
     if (this.myForm.get('poidsLait')?.value == null) {
       this.msg = 'vous devez remplir le formulaire !!';
@@ -296,7 +247,6 @@ export class CreateOperationRetraitComponent implements OnInit {
     } else {
       this.msg = '';
     }
-
 
     if (this.myForm.get('cgu')?.value == true) {
       this.msg4 = 0;
@@ -317,7 +267,6 @@ export class CreateOperationRetraitComponent implements OnInit {
             this.save();
             this.onClose();
             this.msgErreur = 0;
-            //       this.verifBc();
           } else {
             this.msgErreur = 1;
             this.qteActLaitTank = o;
@@ -325,7 +274,6 @@ export class CreateOperationRetraitComponent implements OnInit {
           }
         }
       });
-
     });
   }
 
@@ -334,7 +282,6 @@ export class CreateOperationRetraitComponent implements OnInit {
   }
 
   onReload() {
-    // this.router.navigate([this.router.url]);
     this.router
       .navigateByUrl("/'agriculteur/bon/listeCollecteur", {
         skipLocationChange: true,
@@ -346,7 +293,6 @@ export class CreateOperationRetraitComponent implements OnInit {
 
   onClose() {
     this.dialogClose.closeAll();
-    // this.gotoList();
     this.onReload();
   }
 
