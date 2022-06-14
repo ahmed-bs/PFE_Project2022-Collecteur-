@@ -76,11 +76,11 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		a1.setMatricule("als55slql");
 		agriculteurRepository.save(a1);
 		
-		Agriculteur a2=new Agriculteur("Slim", "Bousnina", "slim@gmail.com", "Tunis", 54658978);
+		Agriculteur a2=new Agriculteur("Bousnina","Slim",  "slim@gmail.com", "Tunis", 54658978);
 		a2.setMatricule("als4zs5ql");
 		agriculteurRepository.save(a2);
 		
-		Agriculteur a3=new Agriculteur("Wafik", "Lahbib", "wafik@gmail.com", "Alia ,Bizerte", 54658978);
+		Agriculteur a3=new Agriculteur("Lahbib","Wafik",  "wafik@gmail.com", "Alia ,Bizerte", 54658978);
 		a3.setMatricule("s22sls53q");
 		agriculteurRepository.save(a3);
 		
@@ -123,7 +123,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		ch1.setCin(11431134);
 		ch1.setTel(156465);
 		ch1.getRoles().add(role1);
-		ch1.setCentreNom("SMBSA Ettaoufik");
+		ch1.setCentreNom("SSA Nour");
 		chefRepository.save(ch1);
 		
 		
@@ -136,7 +136,7 @@ public class PfeBackEndApplication implements CommandLineRunner {
 		ch2.setEmail("oussema@gmail.com");
 		ch2.setCin(11431134);
 		ch2.setTel(156465);
-		ch2.setCentreNom("SMBSA Ettaoufik");
+		ch2.setCentreNom("SSA Nour");
 		ch2.getRoles().add(role1);
 		chefRepository.save(ch2);
 		

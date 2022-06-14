@@ -65,9 +65,7 @@
         <div *ngIf="msg2=='code deja exist'" class="text-danger">
           &nbsp; {{'Code already exists' | translate}}(BlockChain)!
         </div>
-        <div *ngIf="msg5==0 || msg6 == 0 || msg7 == 0" class="text-danger">
-          &nbsp; {{'codes' | translate}}!
-        </div>
+    
       </div>
     </div>
     <br>
@@ -77,9 +75,10 @@
         <input class="form-check-input" type="checkbox" value="" id="cgu" formControlName="cgu" required>
         <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
         <label class="form-check-label" for="cgu" *ngIf="msg4==0">{{'p2' | translate}}</label>
-        <br> <br>
+        <br> <br>      
         <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required
           fields' | translate}}</span>
+        <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg5==0 || msg6 == 0 || msg7 == 0">{{'codes' | translate}}!</span>
         <div class="invalid-feedback">{{'p3' | translate}}</div>
       </div>
     </div>
