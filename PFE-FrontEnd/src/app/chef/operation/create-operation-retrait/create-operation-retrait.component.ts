@@ -166,10 +166,15 @@ export class CreateOperationRetraitComponent implements OnInit {
           (o) => {
             this.tab = Object.values(o);
 
-            this.operationService.getOpTank(this.tab[0]).subscribe((i) => {
+            this.operationService.getOpTank(this.tab[0]).subscribe(async (i) => {
               this.tabTankId = Object.values(i);
-              this.saveInBc(this.tabTankId, this.tabTankId.length);
-              if (this.confirmation == 'confirmed') {
+              await this.saveInBc(this.tabTankId, this.tabTankId.length);
+              if (environment.wating == 'rejected') {
+                localStorage.setItem(
+                  'Toast',
+                  JSON.stringify(['Failed', "L'opération a été rejetée"])
+                );
+              } else {
                 localStorage.setItem(
                   'Toast',
                   JSON.stringify([
